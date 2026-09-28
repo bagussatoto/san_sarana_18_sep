@@ -1,0 +1,806 @@
+<?php
+
+
+class ComTransaksiDataPembelian extends MdlMother
+{
+
+    protected $filters = array();
+    protected $tableName;
+    private $tableName_mutasi;
+    private $tableName_fifoAvg;
+    private $tableName_master = array();
+    private $inParams = array( //===inputan dari transaksi
+
+    );
+    private $outParams = array( //===output ke tabel
+
+    );
+    private $outFields = array( // dari tabel cache
+//        "rekening",
+//        "cabang_id",
+        "debet",
+        "kredit",
+        "saldo",
+        "qty_debet",
+        "qty_kredit",
+        "qty_saldo",
+//        "dtime",
+//        "fulldate",
+//        "extern_id",
+//        "extern_nama",
+//        "jenis",
+//        "gudang_id",
+//        "harga",
+//        "transaksi_id",
+//        "produk_nama",
+    );
+    private $koloms = array(
+        "cabang_id",
+        "produk_id",
+        "nama",
+        "jml",
+        "hpp",
+        "jml_nilai",
+        //        "jml_ot",
+        //        "jml_nilai_ot",
+    );
+    private $outFieldsMutasi = array( // dari tabel rek mutasi rekening
+        "rekening",
+        "cabang_id",
+        "debet",
+        "kredit",
+        "qty_debet",
+        "qty_kredit",
+        "dtime",
+        "fulldate",
+        "extern_id",
+        "extern_nama",
+        "jenis",
+        "gudang_id",
+        "harga",
+        "transaksi_id",
+        "transaksi_no",
+        "keterangan",
+        "extern2_id",
+        "extern2_nama",
+        "extern3_id",
+        "extern3_nama",
+        "extern4_id",
+        "extern4_nama",
+        "extern5_id",
+        "extern5_nama",
+        "produk_id",
+        "produk_nama",
+        "debet_awal",
+        "debet_akhir",
+        "kredit_awal",
+        "kredit_akhir",
+        "qty_debet_awal",
+        "qty_debet_akhir",
+        "qty_kredit_awal",
+        "qty_kredit_akhir",
+    );
+    private $periode = array("forever");
+    protected $jenisTr;
+    protected $sortBy = array(
+        "kolom" => "id",
+        "mode" => "asc",
+    );
+
+    public function __construct()
+    {
+        $this->tableName = "pembelian_transaksi_data";
+        $this->tableName_master = array(
+            "master" => "pembelian_transaksi",
+        );
+    }
+
+    //  region setter, getter
+    public function getJenisTr()
+    {
+        return $this->jenisTr;
+    }
+
+    public function setJenisTr($jenisTr)
+    {
+        $this->jenisTr = $jenisTr;
+    }
+
+    public function getSortBy()
+    {
+        return $this->sortBy;
+    }
+
+    public function setSortBy($sortBy)
+    {
+        $this->sortBy = $sortBy;
+    }
+
+    public function getTableNameMaster()
+    {
+        return $this->tableName_master;
+    }
+
+    public function setTableNameMaster($tableName_master)
+    {
+        $this->tableName_master = $tableName_master;
+    }
+
+    public function getPeriode()
+    {
+        return $this->periode;
+    }
+
+    public function setPeriode($periode)
+    {
+        $this->periode = $periode;
+    }
+
+    public function getTableName()
+    {
+        return $this->tableName;
+    }
+
+    public function setTableName($tableName)
+    {
+        $this->tableName = $tableName;
+    }
+
+    public function getTableNameTmp()
+    {
+        return $this->tableName__tmp;
+    }
+
+    public function setTableNameTmp($tableName__tmp)
+    {
+        $this->tableName__tmp = $tableName__tmp;
+    }
+
+    public function getFilters()
+    {
+        return $this->filters;
+    }
+
+    public function setFilters($filters)
+    {
+        $this->filters = $filters;
+    }
+
+    public function getInParams()
+    {
+        return $this->inParams;
+    }
+
+    public function setInParams($inParams)
+    {
+        $this->inParams = $inParams;
+    }
+
+    public function getOutParams()
+    {
+        return $this->outParams;
+    }
+
+    public function setOutParams($outParams)
+    {
+        $this->outParams = $outParams;
+    }
+
+    public function getOutFields()
+    {
+        return $this->outFields;
+    }
+
+    public function setOutFields($outFields)
+    {
+        $this->outFields = $outFields;
+    }
+
+    public function getOutFieldsMutasi()
+    {
+        return $this->outFieldsMutasi;
+    }
+
+    public function setOutFieldsMutasi($outFieldsMutasi)
+    {
+        $this->outFieldsMutasi = $outFieldsMutasi;
+    }
+
+    public function getTableNameMutasi()
+    {
+        return $this->tableName_mutasi;
+    }
+
+    //  endregion setter, getter
+
+    public function setTableNameMutasi($tableName_mutasi)
+    {
+        $this->tableName_mutasi = $tableName_mutasi;
+    }
+
+    public function pair($inParams)
+    {
+        $this->load->helper("he_mass_table");
+//        $configBalanceProtections = $this->config->item("accountBalanceProtections");
+        $this->inParams = $inParams;
+
+//        arrPrint($inParams);
+//        matiHere(__LINE__."|| ".__CLASS__);
+        if (sizeof($this->inParams) > 0) {
+            $lCounter = 0;
+
+            foreach ($this->inParams as $array_params) {
+//                arrPrint($array_params);
+                $arrRekening = array();
+                foreach ($array_params['loop'] as $key => $x) {
+
+                    $value_item = trim($array_params['static']['produk_nilai']);
+                    $unit = trim($array_params['static']['produk_qty']);
+
+                    $value = $x;
+//                    $position = $array_params['static']['produk_qty'] > 0 ? "kredit" : "debet";
+//                    arrprint($array_params["static"]);
+                    $position = detectRekPositionModul($key, $value, $array_params["static"]["master_jenis"]);
+//matiHere($position);
+                    $arrRekening[] = $key;
+                    $table = $this->tableName;
+                    if (isset($array_params['static']['rejection'])) {
+                        //ambil transaksi yang dibatalkan
+                        if ($array_params['static']['rejection']) {
+//                            if (!isset($array_params['static']['extern_id'])) {
+//                                $array_params['static']['extern_id'] = $_SESSION[$cCode]["main"]["currentID"];
+//                            }
+                            $array_params['static']['extern_id'] = $array_params["static"]["reference_id_reject"];
+                        }
+                    }
+                    $select_curentID = isset($array_params['static']['extern_id']) ? $array_params['static']['extern_id'] : $array_params['static']['transaksi_id'];
+
+                    $_preValues = $this->cekPreValue(
+                        $select_curentID,//transaksi_id
+                        $array_params['static']['produk_id']// produkID
+                    );
+                    cekBiru($this->db->last_query());
+//                    arrPrintWebs($_preValues);
+                    $_preValuesMaster = $this->cekPreValueMaster(
+                        $select_curentID
+//                        $array_params['static']['produk_id']// produkID
+                    );
+
+                    if (array_key_exists("id", $_preValues["cache"]) && ($_preValues["cache"]["id"] > 0)) {
+                        $mode = "update";
+                        $_preValues_id = $_preValues["cache"]["id"];
+                        $_preValues_master_id = $_preValuesMaster["cache"]["id"];
+                    }
+                    else {
+                        return true;
+//                        $mode = "insert";
+//                        $_preValues_id = 0;
+//                        $_preValues_master_id = 0;
+//                        $msg = "Transaksi gagal disimpan karena data otorisasi tidak valid. Silahkan relogin akun anda. code: " . __LINE__;
+//                        mati_disini($msg);
+                    }
+
+//                    arrPrintKuning($_preValues);
+
+
+                    if ($_preValues['cache']['debet'] > 0) {
+                        $preNumber = detectRekByPositionModul($key, $_preValues['cache']['debet'], "debet", $array_params["static"]["master_jenis"]);
+                        $preNumberMaster = detectRekByPositionModul($key, $_preValuesMaster['cache']['debet'], "debet", $array_params["static"]["master_jenis"]);
+//                        $preNumber = $_preValues['cache']['debet'] * -1;
+//                        $preNumberMaster = $_preValuesMaster['cache']['debet'] * -1;
+                    }
+                    else {
+                        $preNumber = detectRekByPositionModul($key, $_preValues['cache']['kredit'], "kredit", $array_params["static"]["master_jenis"]);
+                        $preNumberMaster = detectRekByPositionModul($key, $_preValuesMaster['cache']['kredit'], "kredit", $array_params["static"]["master_jenis"]);
+//                        $preNumber = $_preValues['cache']['kredit'];
+//                        $preNumberMaster = $_preValuesMaster['cache']['kredit'];
+                    }
+                    if ($_preValues['cache']['qty_debet'] > 0) {
+                        $preQtyNumber = detectRekByPositionModul($key, $_preValues['cache']['qty_debet'], "debet", $array_params["static"]["master_jenis"]);
+//                        $preQtyNumber = $_preValues['cache']['qty_debet'] * -1;
+                    }
+                    else {
+                        $preQtyNumber = detectRekByPositionModul($key, $_preValues['cache']['qty_kredit'], "kredit", $array_params["static"]["master_jenis"]);
+//                        $preQtyNumber = $_preValues['cache']['qty_kredit'];
+                    }
+
+                    $afterNumber = $preNumber + $value;
+                    $afterNumberMaster = $preNumberMaster + $value;
+                    $afterQtyNumber = $preQtyNumber + $unit;
+//                    cekMerah($preNumberMaster . ":+:" . $value);
+//                    cekMerah($afterNumberMaster);
+//                    matiHere($afterQtyNumber);
+
+
+//                    $afterPosition = $afterNumber > 0 ? "kredit" : "debet";
+//                    $afterQtyPosition = $afterQtyNumber > 0 ? "kredit" : "debet";
+                    $afterPosition = detectRekPositionModul($key, $afterNumber, $array_params["static"]["master_jenis"]);
+                    $afterQtyPosition = detectRekPositionModul($key, $afterQtyNumber, $array_params["static"]["master_jenis"]);
+
+
+                    $afterNumberAvg = $afterQtyNumber == 0 ? 0 : $afterNumber / $afterQtyNumber;
+
+//                    cekhitam(":: $afterNumber, val: $value,  $afterPosition, preQty: $preQtyNumber, afterQty: $afterQtyNumber");
+//cekPink($afterQtyNumber." = ". $preQtyNumber ."+". $unit);
+
+                    //  region cache rekening pembantu
+                    $pakai_cache = 1;
+                    if ($pakai_cache == 1) {
+                        switch ($afterPosition) {
+                            case "kredit":
+                                $this->outParams[$lCounter]["cache"][$mode]["kredit"] = abs($afterNumber);
+                                $this->outParams[$lCounter]["cache"][$mode]["saldo"] = abs($afterNumber);
+                                $this->outParams[$lCounter]["cache"][$mode]["debet"] = 0;
+                                $this->outParams[$lCounter]["master"][$mode]["kredit"] = abs($afterNumberMaster);
+                                $this->outParams[$lCounter]["master"][$mode]["saldo"] = abs($afterNumberMaster);
+                                $this->outParams[$lCounter]["master"][$mode]["debet"] = 0;
+                                break;
+                            case "debet":
+                                $this->outParams[$lCounter]["cache"][$mode]["kredit"] = 0;
+                                $this->outParams[$lCounter]["cache"][$mode]["debet"] = abs($afterNumber);
+                                $this->outParams[$lCounter]["cache"][$mode]["saldo"] = abs($afterNumber);
+                                $this->outParams[$lCounter]["master"][$mode]["kredit"] = 0;
+                                $this->outParams[$lCounter]["master"][$mode]["debet"] = abs($afterNumberMaster);
+                                $this->outParams[$lCounter]["master"][$mode]["saldo"] = abs($afterNumberMaster);
+                                break;
+                            default:
+                                die(lgShowAlert(__LINE__ . " gagal menentukan posisi rekening DEBET / KREDIT " . __FUNCTION__ . " on file " . __FILE__));
+                                break;
+                        }
+                        switch ($afterQtyPosition) {
+                            case "kredit":
+                                $this->outParams[$lCounter]["cache"][$mode]["qty_kredit"] = abs($afterQtyNumber);
+                                $this->outParams[$lCounter]["cache"][$mode]["qty_debet"] = 0;
+                                $this->outParams[$lCounter]["cache"][$mode]["qty_saldo"] = abs($afterQtyNumber);
+                                break;
+                            case "debet":
+                                $this->outParams[$lCounter]["cache"][$mode]["qty_kredit"] = 0;
+                                $this->outParams[$lCounter]["cache"][$mode]["qty_debet"] = abs($afterQtyNumber);
+                                $this->outParams[$lCounter]["cache"][$mode]["qty_saldo"] = abs($afterQtyNumber);
+                                break;
+                            default:
+                                die(lgShowAlert(__LINE__ . " gagal menentukan posisi rekening DEBET / KREDIT " . __FUNCTION__ . " on file " . __FILE__));
+                                break;
+                        }
+//                        switch ($position) {
+//                            case "kredit":
+//                                $this->outParams[$lCounter]["cache"][$mode]["saldo_kredit"] = $_preValues["cache"]["saldo_kredit"] + abs($value);
+//                                $this->outParams[$lCounter]["cache"][$mode]["saldo_kredit_periode"] = $_preValues["cache"]["saldo_kredit_periode"] + abs($value);
+//                                $this->outParams[$lCounter]["cache"][$mode]["saldo_qty_kredit"] = $_preValues["cache"]["saldo_qty_kredit"] + abs($unit);
+//                                $this->outParams[$lCounter]["cache"][$mode]["saldo_qty_kredit_periode"] = $_preValues["cache"]["saldo_qty_kredit_periode"] + abs($unit);
+//                                break;
+//                            case "debet":
+//                                $this->outParams[$lCounter]["cache"][$mode]["saldo_debet"] = $_preValues["cache"]["saldo_debet"] + abs($value);
+//                                $this->outParams[$lCounter]["cache"][$mode]["saldo_debet_periode"] = $_preValues["cache"]["saldo_debet_periode"] + abs($value);
+//                                $this->outParams[$lCounter]["cache"][$mode]["saldo_qty_debet"] = $_preValues["cache"]["saldo_qty_debet"] + abs($unit);
+//                                $this->outParams[$lCounter]["cache"][$mode]["saldo_qty_debet_periode"] = $_preValues["cache"]["saldo_qty_debet_periode"] + abs($unit);
+//
+//                                break;
+//                            default:
+//                                die(lgShowAlert(__LINE__ . " gagal menentukan posisi rekening DEBET / KREDIT " . __FUNCTION__ . " " . __FILE__));
+//                                break;
+//                        }
+//                        $this->outParams[$lCounter]["cache"][$mode]["rek_id"] = createRekCode($key, $array_params['static']['extern_id']);
+//                        $this->outParams[$lCounter]["cache"][$mode]["transaksi_id"] = $array_params['static']['transaksi_id'];
+//                        $this->outParams[$lCounter]["cache"][$mode]["periode"] = $periode;
+                        $this->outParams[$lCounter]["cache"][$mode]["id"] = $_preValues_id;
+                        $this->outParams[$lCounter]["master"][$mode]["id"] = $_preValues_master_id;
+//                        $this->outParams[$lCounter]["cache"][$mode]["harga"] = $value_item;
+//                        $this->outParams[$lCounter]["cache"][$mode]["harga_avg"] = abs($afterNumberAvg);
+//                        $this->outParams[$lCounter]["cache"][$mode]["harga_awal"] = abs($_preValues['cache']['harga']);
+//arrPrintWebs( $this->outFields);
+                        foreach ($array_params['static'] as $key_static => $value_static) {
+                            if (in_array($key_static, $this->outFields)) {
+                                $this->outParams[$lCounter]["cache"][$mode][$key_static] = $value_static;
+                                $this->outParams[$lCounter]["master"][$mode][$key_static] = $value_static;
+                            }
+                        }
+
+                        $method = isset($array_params['static']['method']) ? $array_params['static']['method'] : NULL;
+//                        cekMerah("[method: $method]");
+                        switch ($method) {
+                            case "approve":
+                                $this->outParams[$lCounter]["cache"][$mode]["" . $method] = $_preValues['cache']['approve'] + abs($value);
+                                $this->outParams[$lCounter]["cache"][$mode]["qty_approve"] = $_preValues['cache']['qty_approve'] + abs($unit);
+                                $this->outParams[$lCounter]["master"][$mode][$method] = $_preValuesMaster['cache']['approve'] + abs($value);
+                                break;
+                            case "return":
+                                $this->outParams[$lCounter]["cache"][$mode]["" . $method] = $_preValues['cache']['return'] + abs($value);
+                                $this->outParams[$lCounter]["cache"][$mode]["qty_return"] = $_preValues['cache']['qty_return'] + abs($unit);
+                                $this->outParams[$lCounter]["master"][$mode][$method] = $_preValuesMaster['cache']['return'] + abs($value);
+                                break;
+                            case "reject":
+                                $this->outParams[$lCounter]["cache"][$mode]["" . $method] = $_preValues['cache']['reject'] + abs($value);
+                                $this->outParams[$lCounter]["cache"][$mode]["qty_reject"] = $_preValues['cache']['qty_reject'] + abs($unit);
+                                $this->outParams[$lCounter]["cache"][$mode]["trash"] = 1;
+                                $this->outParams[$lCounter]["master"][$mode][$method] = $_preValuesMaster['cache']['reject'] + abs($value);
+                                break;
+                            case "batal":
+                                $this->outParams[$lCounter]["cache"][$mode]["" . $method] = $_preValues['cache']['batal'] + abs($value);
+                                $this->outParams[$lCounter]["cache"][$mode]["qty_batal"] = $_preValues['cache']['qty_batal'] + abs($unit);
+                                $this->outParams[$lCounter]["master"][$mode]["" . $method] = $_preValuesMaster['cache']['batal'] + abs($value);
+                                break;
+                            case "create":
+                            default:
+                                $this->outParams[$lCounter]["cache"][$mode]["saldo"] = $_preValues['cache']['saldo'] + abs($value);
+                                $this->outParams[$lCounter]["cache"][$mode]["qty_saldo"] = $_preValues['cache']['qty_saldo'] + abs($unit);
+                                $this->outParams[$lCounter]["master"][$mode]["debet"] = $_preValuesMaster['cache']['debet'] + abs($value);
+                                $this->outParams[$lCounter]["master"][$mode]["saldo"] = $_preValuesMaster['cache']['saldo'] + abs($value);
+                                break;
+                        }
+
+
+                    }
+                    //  endregion cache rekening pembantu
+
+
+                    //  region mutasi rekening pembantu
+                    $pakai_mutasi = 0;
+                    if ($pakai_mutasi == 1) {
+                        switch ($afterPosition) {
+                            case "kredit":
+                                $this->outParams[$lCounter]["mutasi"]["kredit_awal"] = $_preValues["cache"]["kredit"];
+                                $this->outParams[$lCounter]["mutasi"]["kredit_akhir"] = abs($afterNumber);
+                                $this->outParams[$lCounter]["mutasi"]["debet_awal"] = $_preValues["cache"]["ebet"];
+                                $this->outParams[$lCounter]["mutasi"]["debet_akhir"] = 0;
+                                break;
+                            case "debet":
+                                $this->outParams[$lCounter]["mutasi"]["kredit_awal"] = $_preValues["cache"]["kredit"];
+                                $this->outParams[$lCounter]["mutasi"]["kredit_akhir"] = 0;
+                                $this->outParams[$lCounter]["mutasi"]["debet_awal"] = $_preValues["cache"]["debet"];
+                                $this->outParams[$lCounter]["mutasi"]["debet_akhir"] = abs($afterNumber);
+                                break;
+                            default:
+                                $this->outParams[$lCounter]["mutasi"]["kredit_awal"] = $_preValues["cache"]["kredit"];
+                                $this->outParams[$lCounter]["mutasi"]["kredit_akhir"] = 0;
+                                $this->outParams[$lCounter]["mutasi"]["debet_awal"] = $_preValues["cache"]["debet"];
+                                $this->outParams[$lCounter]["mutasi"]["debet_akhir"] = 0;
+                                break;
+                        }
+                        switch ($afterQtyPosition) {
+                            case "kredit":
+                                $this->outParams[$lCounter]["mutasi"]["qty_kredit_awal"] = $_preValues["cache"]["qty_kredit"];
+                                $this->outParams[$lCounter]["mutasi"]["qty_kredit_akhir"] = abs($afterQtyNumber);
+                                $this->outParams[$lCounter]["mutasi"]["qty_debet_awal"] = $_preValues["cache"]["qty_debet"];
+                                $this->outParams[$lCounter]["mutasi"]["qty_debet_akhir"] = 0;
+                                break;
+                            case "debet":
+                                $this->outParams[$lCounter]["mutasi"]["qty_kredit_awal"] = $_preValues["cache"]["qty_kredit"];
+                                $this->outParams[$lCounter]["mutasi"]["qty_kredit_akhir"] = 0;
+                                $this->outParams[$lCounter]["mutasi"]["qty_debet_awal"] = $_preValues["cache"]["qty_debet"];
+                                $this->outParams[$lCounter]["mutasi"]["qty_debet_akhir"] = abs($afterQtyNumber);
+                                break;
+                            default:
+                                $this->outParams[$lCounter]["mutasi"]["qty_kredit_awal"] = $_preValues["cache"]["qty_kredit"];
+                                $this->outParams[$lCounter]["mutasi"]["qty_kredit_akhir"] = 0;
+                                $this->outParams[$lCounter]["mutasi"]["qty_debet_awal"] = $_preValues["cache"]["qty_debet"];
+                                $this->outParams[$lCounter]["mutasi"]["qty_debet_akhir"] = 0;
+                                break;
+                        }
+                        switch ($position) {
+                            case "kredit":
+                                $this->outParams[$lCounter]["mutasi"]["kredit"] = abs($value);
+                                $this->outParams[$lCounter]["mutasi"]["debet"] = 0;
+                                $this->outParams[$lCounter]["mutasi"]["qty_kredit"] = abs($unit);
+                                $this->outParams[$lCounter]["mutasi"]["qty_debet"] = 0;
+                                break;
+                            case "debet":
+                                $this->outParams[$lCounter]["mutasi"]["debet"] = abs($value);
+                                $this->outParams[$lCounter]["mutasi"]["kredit"] = 0;
+                                $this->outParams[$lCounter]["mutasi"]["qty_debet"] = abs($unit);
+                                $this->outParams[$lCounter]["mutasi"]["qty_kredit"] = 0;
+                                break;
+                            default:
+                                die(lgShowAlert("Transaksi gagal, karena rekening $key gagal menentukan posisi DEBET/KREDIT."));
+                                break;
+                        }
+                        foreach ($array_params['static'] as $key_static_mutasi => $value_static_mutasi) {
+                            if (in_array($key_static_mutasi, $this->outFieldsMutasi)) {
+                                $this->outParams[$lCounter]["mutasi"][$key_static_mutasi] = $value_static_mutasi;
+                            }
+                        }
+                        $this->outParams[$lCounter]["mutasi"]["rek_id"] = createRekCode($key, $array_params['static']['extern_id']);
+                        $this->outParams[$lCounter]["mutasi"]["rekening"] = $key;
+                        $this->outParams[$lCounter]["mutasi"]["harga"] = abs($value_item);
+                    }
+                    //  endregion mutasi rekening pembantu
+
+
+                    //region Exec()
+                    $pakai_exec = 1;
+                    if ($pakai_exec == 1) {
+                        $tableName = $this->tableName;
+                        $tableName_mutasi = $this->tableName_mutasi;
+
+                        $insertIDs = array();
+                        if (sizeof($this->outParams) > 0) {
+                            arrPrintHijau($this->outParams);
+                            foreach ($this->outParams as $lCounter => $pSpec) {
+                                foreach ($pSpec as $mode => $pSpec_mode) {
+                                    switch ($mode) {
+                                        case "cache":
+                                            foreach ($pSpec_mode as $sub_mode => $pSpec_mode_data) {
+                                                $id = $pSpec_mode_data["id"];
+                                                unset($pSpec_mode_data["id"]);
+                                                switch ($sub_mode) {
+                                                    case "insert":
+                                                        matiHEre("not allowed to insert update only");
+                                                        $this->db->insert($tableName, $pSpec_mode_data);
+                                                        $insertIDs[] = $this->db->insert_id();
+                                                        cekUngu("$sub_mode :: " . $this->db->last_query());
+                                                        break;
+                                                    case "update":
+                                                        $this->db->where('id', $id);
+                                                        $insertIDs[] = $this->db->update($tableName, $pSpec_mode_data);
+                                                        cekOrange("$sub_mode :: " . $this->db->last_query());
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                        case "master":
+                                            foreach ($pSpec_mode as $sub_mode => $pSpec_mode_data) {
+                                                $id = $pSpec_mode_data["id"];
+                                                unset($pSpec_mode_data["id"]);
+                                                switch ($sub_mode) {
+                                                    case "insert":
+                                                        $this->db->insert($tableName, $pSpec_mode_data);
+                                                        $insertIDs[] = $this->db->insert_id();
+                                                        cekUngu("$sub_mode :: " . $this->db->last_query());
+                                                        matiHEre("not allowed to insert update only");
+                                                        break;
+                                                    case "update":
+                                                        $this->db->where('id', $id);
+                                                        $insertIDs[] = $this->db->update($this->tableName_master["master"], $pSpec_mode_data);
+                                                        cekHitam("$sub_mode :: " . $this->db->last_query());
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                        case "mutasi":
+
+                                            unset($pSpec_mode["tabel"]);
+
+                                            $this->db->insert($tableName_mutasi, $pSpec_mode);
+                                            $insertIDs[] = $this->db->insert_id();
+                                            cekHijau("$mode :: " . $this->db->last_query());
+                                            break;
+                                        default:
+                                            matiHEre("unknown metode to write transaction " . __NAMESPACE__ . "::CODE " . __LINE__);
+                                            break;
+                                    }
+                                }
+                            }
+                            $this->outParams = array();
+
+                            if (sizeof($insertIDs) == 0) {
+                                cekMerah("::: PERIODE :  :::");
+                                return false;
+                            }
+                        }
+                        else {
+                            matiHEre(__LINE__);
+                            return false;
+                        }
+                    }
+                    //endregion
+
+                }
+            }
+        }
+
+//        matiHere(__LINE__."|| ".__CLASS__);
+
+        if (count($insertIDs) > 0) {
+            return true;
+        }
+        else {
+            matiEHre("gagal nulis data");
+            return false;
+        }
+
+    }
+
+    private function cekPreValue($transaksi_id, $produk_id)
+    {
+        $this->filters = array();
+        $this->addFilter("transaksi_id='$transaksi_id'");
+        $this->addFilter("produk_id='$produk_id'");
+        $this->addFilter("trash='0'");
+        $result = array();
+        $localFilters = array();
+        if (sizeof($this->filters) > 0) {
+            foreach ($this->filters as $f) {
+                $tmpArr = explode("=", $f);
+                $localFilters[$tmpArr[0]] = trim($tmpArr[1], "'");
+
+            }
+        }
+        $query = $this->db->select()
+            ->from($this->tableName)
+            ->where($localFilters)
+            ->limit(1)
+            ->get_compiled_select();
+        $tmp = $this->db->query("{$query} FOR UPDATE")->result();
+        cekHitam($this->db->last_query());
+        if (sizeof($tmp) > 0) {
+            foreach ($tmp as $row) {
+                $result["cache"] = array(
+                    "id" => $row->id,
+                    "debet" => $row->debet,
+                    "kredit" => $row->kredit,
+                    "qty_debet" => $row->qty_debet,
+                    "qty_kredit" => $row->qty_kredit,
+                    "saldo" => $row->saldo,
+                    "qty_saldo" => $row->qty_saldo,
+//                    "harga" => $row->harga,
+                    "approve" => $row->approve,
+                    "reject" => $row->reject,
+                    "return" => $row->return,
+                    "batal" => $row->batal,
+                    "qty_approve" => $row->qty_approve,
+                    "qty_reject" => $row->qty_reject,
+                    "qty_return" => $row->qty_return,
+                    "qty_batal" => $row->qty_batal,
+                );
+            }
+        }
+        else {
+            // bila count($tmp) == 0, belum ada data
+            $result["cache"] = array(
+                "debet" => 0,
+                "kredit" => 0,
+                "qty_debet" => 0,
+                "qty_kredit" => 0,
+                "saldo" => 0,
+                "qty_saldo" => 0,
+                "harga" => 0,
+                "approve" => 0,
+                "reject" => 0,
+                "return" => 0,
+                "batal" => 0,
+                "qty_approve" => 0,
+                "qty_reject" => 0,
+                "qty_return" => 0,
+                "qty_batal" => 0,
+            );
+        }
+
+        return $result;
+    }
+
+    private function cekPreValueMaster($transaksi_id)
+    {
+        $this->filters = array();
+        $this->addFilter("id='$transaksi_id'");
+
+        $result = array();
+        $localFilters = array();
+        if (sizeof($this->filters) > 0) {
+            foreach ($this->filters as $f) {
+                $tmpArr = explode("=", $f);
+                $localFilters[$tmpArr[0]] = trim($tmpArr[1], "'");
+
+            }
+        }
+        $query = $this->db->select()
+            ->from($this->tableName_master["master"])
+            ->where($localFilters)
+            ->limit(1)
+            ->get_compiled_select();
+        $tmp = $this->db->query("{$query} FOR UPDATE")->result();
+//        arrprint($tmp);
+//        cekLime($this->db->last_query());
+//        matiHEre(__LINE__);
+        if (sizeof($tmp) > 0) {
+            foreach ($tmp as $row) {
+                $result["cache"] = array(
+                    "id" => $row->id,
+                    "debet" => $row->debet,
+                    "kredit" => $row->kredit,
+                    "saldo" => $row->saldo,
+//                    "qty_debet" => $row->qty_debet,
+//                    "qty_kredit" => $row->qty_kredit,
+//                    "harga" => $row->harga,
+                    "approve" => $row->approve,
+                    "reject" => $row->reject,
+                    "return" => $row->return,
+                    "batal" => $row->batal,
+                );
+            }
+        }
+        else {
+            // bila count($tmp) == 0, belum ada data
+            $result["cache"] = array(
+                "debet" => 0,
+                "kredit" => 0,
+                "saldo" => 0,
+//                "qty_kredit" => 0,
+//                "harga" => 0,
+                "approve" => 0,
+                "reject" => 0,
+                "return" => 0,
+                "batal" => 0,
+            );
+        }
+
+        return $result;
+    }
+
+    public function addFilter($f)
+    {
+        $this->filters[] = $f;
+    }
+
+    public function exec()
+    {
+
+        return true;
+    }
+
+    public function lookupLastEntries($cabang_id)
+    {
+        //        $periode = $this->getPeriode()['3'];
+        $condite = array("trash" => "0", "cabang_id" => "$cabang_id");
+        $arrKoloms = $this->getKoloms();
+        $selectKolom = "";
+        foreach ($arrKoloms as $kolom) {
+            $selectKolom .= "$kolom,";
+        }
+        $selectKolom = rtrim($selectKolom, ",");
+
+        $this->db->select($selectKolom);
+        $this->db->where($condite);
+        $q = $this->db->get($this->tableName_fifoAvg)->result();
+
+        return $q;
+    }
+
+    public function getKoloms()
+    {
+        return $this->koloms;
+    }
+
+    //region tambahan widi cek last stok ambil dari fifo avg
+
+    public function setKoloms($koloms)
+    {
+        $this->koloms = $koloms;
+    }
+
+    //endregion
+
+    public function buildTables($inParams)
+    {
+
+        $this->load->helper("he_mass_table");
+
+        $arrRekening = array();
+        $this->inParams = $inParams;
+        if (sizeof($this->inParams['loop']) > 0) {
+            foreach ($this->periode as $periode) {
+                $arrRekening = array();
+                foreach ($this->inParams['loop'] as $key => $value) {
+                    $arrRekening[] = $key;
+                }
+            }
+        }
+        else {
+            $arrRekening = array();
+        }
+
+
+        if (sizeof($arrRekening) > 0) {
+            $result = heReturnTableName($this->tableName_master, $arrRekening);
+            if (sizeof($result) > 0) {
+                foreach ($result as $rek => $arrSpec) {
+                    foreach ($arrSpec as $key => $val) {
+                        //                        cekMerah("create tabel $val - $key");
+                        $result_c = tableForceCheck($val, $this->tableName_master[$key]);
+                    }
+                }
+            }
+        }
+    }
+
+
+}

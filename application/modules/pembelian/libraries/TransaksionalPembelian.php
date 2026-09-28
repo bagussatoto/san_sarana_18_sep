@@ -1,0 +1,12609 @@
+<?php
+
+/**
+ * Created by JetBrains PhpStorm.
+ * User: azes
+ * Date: 5/9/12
+ * Time: 11:56 AM
+ * To change this template use File | Settings | File Templates.
+ */
+
+class TransaksionalPembelian
+{
+    protected $toko_id;
+    protected $cabang_id;
+    protected $gudang_id;
+    //-------
+    protected $configUiModul;
+    protected $configLayoutModul;
+    protected $configCoreModul;
+    protected $configValuesModul;
+    protected $configCoreMaster;
+    protected $jenisTr;
+    protected $jenisTrReference;
+    protected $jenisTrMaster;
+    protected $modul;
+    protected $cCode;
+    protected $cCodeData;
+    protected $stepNum;
+    protected $stepNumCurrent;
+    protected $masterTargetStepNum;
+    protected $childTargetStepNum;
+    protected $transaksiNumber;
+    protected $accessList;
+    protected $sessionLogin;
+    protected $targetJenisTr;
+    protected $modelModules;
+    protected $pathModules;
+    //-------
+
+
+    //region setter dan getter
+
+    public function getModelModules()
+    {
+        return $this->modelModules;
+    }
+
+    public function setModelModules($modelModules)
+    {
+        $this->modelModules = $modelModules;
+    }
+
+    public function getPathModules()
+    {
+        return $this->pathModules;
+    }
+
+    public function setPathModules($pathModules)
+    {
+        $this->pathModules = $pathModules;
+    }
+
+    public function getTargetJenisTr()
+    {
+        return $this->targetJenisTr;
+    }
+
+    public function setTargetJenisTr($targetJenisTr)
+    {
+        $this->targetJenisTr = $targetJenisTr;
+    }
+
+    public function getJenisTrReference()
+    {
+        return $this->jenisTrReference;
+    }
+
+    public function setJenisTrReference($jenisTrReference)
+    {
+        $this->jenisTrReference = $jenisTrReference;
+    }
+
+    public function getJenisTrMaster()
+    {
+        return $this->jenisTrMaster;
+    }
+
+    public function setJenisTrMaster($jenisTrMaster)
+    {
+        $this->jenisTrMaster = $jenisTrMaster;
+    }
+
+    public function getCabangId()
+    {
+        return $this->cabang_id;
+    }
+
+    public function setCabangId($cabang_id)
+    {
+        $this->cabang_id = $cabang_id;
+    }
+
+    public function getGudangId()
+    {
+        return $this->gudang_id;
+    }
+
+    public function setGudangId($gudang_id)
+    {
+        $this->gudang_id = $gudang_id;
+    }
+
+    public function getSessionLogin()
+    {
+        return $this->sessionLogin;
+    }
+
+    public function setSessionLogin($sessionLogin)
+    {
+        $this->sessionLogin = $sessionLogin;
+    }
+
+    public function getAccessList()
+    {
+        return $this->accessList;
+    }
+
+    public function setAccessList($accessList)
+    {
+        $this->accessList = $accessList;
+    }
+
+    public function getMasterTargetStepNum()
+    {
+        return $this->masterTargetStepNum;
+    }
+
+    public function setMasterTargetStepNum($masterTargetStepNum)
+    {
+        $this->masterTargetStepNum = $masterTargetStepNum;
+    }
+
+    public function getChildTargetStepNum()
+    {
+        return $this->childTargetStepNum;
+    }
+
+    public function setChildTargetStepNum($childTargetStepNum)
+    {
+        $this->childTargetStepNum = $childTargetStepNum;
+    }
+
+    public function getStepNum()
+    {
+        return $this->stepNum;
+    }
+
+    public function setStepNum($stepNum)
+    {
+        $this->stepNum = $stepNum;
+    }
+
+    public function getStepNumCurrent()
+    {
+        return $this->stepNumCurrent;
+    }
+
+    public function setStepNumCurrent($stepNumCurrent)
+    {
+        $this->stepNumCurrent = $stepNumCurrent;
+    }
+
+    public function getTransaksiNumber()
+    {
+        return $this->transaksiNumber;
+    }
+
+    public function setTransaksiNumber($transaksiNumber)
+    {
+        $this->transaksiNumber = $transaksiNumber;
+    }
+
+    public function getConfigUiModul()
+    {
+        return $this->configUiModul;
+    }
+
+    public function setConfigUiModul($configUiModul)
+    {
+        $this->configUiModul = $configUiModul;
+    }
+
+    public function getConfigLayoutModul()
+    {
+        return $this->configLayoutModul;
+    }
+
+    public function setConfigLayoutModul($configLayoutModul)
+    {
+        $this->configLayoutModul = $configLayoutModul;
+    }
+
+    public function getConfigCoreModul()
+    {
+        return $this->configCoreModul;
+    }
+
+    public function setConfigCoreModul($configCoreModul)
+    {
+        $this->configCoreModul = $configCoreModul;
+    }
+
+    public function getConfigValuesModul()
+    {
+        return $this->configValuesModul;
+    }
+
+    public function setConfigValuesModul($configValuesModul)
+    {
+        $this->configValuesModul = $configValuesModul;
+    }
+
+    public function getConfigCoreMaster()
+    {
+        return $this->configCoreMaster;
+    }
+
+    public function setConfigCoreMaster($configCoreMaster)
+    {
+        $this->configCoreMaster = $configCoreMaster;
+    }
+
+    public function getJenisTr()
+    {
+        return $this->jenisTr;
+    }
+
+    public function setJenisTr($jenisTr)
+    {
+        $this->jenisTr = $jenisTr;
+    }
+
+    public function getModul()
+    {
+        return $this->modul;
+    }
+
+    public function setModul($modul)
+    {
+        $this->modul = $modul;
+    }
+
+    public function getCCode()
+    {
+        return $this->cCode;
+    }
+
+    public function setCCode($cCode)
+    {
+        $this->cCode = $cCode;
+    }
+
+    public function getCCodeData()
+    {
+        return $this->cCodeData;
+    }
+
+    public function setCCodeData($cCodeData)
+    {
+        $this->cCodeData = $cCodeData;
+    }
+
+    public function getTokoId()
+    {
+        return $this->toko_id;
+    }
+
+    public function setTokoId($toko_id)
+    {
+        $this->toko_id = $toko_id;
+    }
+
+    //endregion
+
+    public function __construct()
+    {
+        // parent::__construct();
+        $this->CI =& get_instance();
+
+
+    }
+
+    // region library lama
+    public function gerbang_transaksi($toko_id, $transaksi_jenis, $array_data)
+    {
+        $CI =& get_instance();
+        $CI->load->library("FieldCalculator");
+        $cal = new FieldCalculator();
+
+        $array_datas = blobDecode($array_data);
+
+        cekBiru("$toko_id ***** $transaksi_jenis");
+        arrPrintPink($array_datas);
+        // $items = $array_datas["items"];
+
+        $arrItems = isset($array_datas["items"]) ? $array_datas["items"] : array();
+        // id_produk => qty
+
+        $arrTrID = isset($array_datas['trs']) ? $array_datas['trs'] : array();
+
+        $arrMain = isset($array_datas["main"]) ? $array_datas["main"] : array();
+
+        $cCode = "_TR_" . $transaksi_jenis;
+        // $toko_id = my_toko_id();
+
+        // matiHere(__LINE__);
+
+        $selectorModel = $CI->config->item('heTransaksi_ui')[$transaksi_jenis]['selectorModel'];
+        $selectorSrcModel = $CI->config->item('heTransaksi_ui')[$transaksi_jenis]['selectorSrcModel'];
+
+        $CI->load->model("Mdls/" . $selectorSrcModel);
+        $b = new $selectorSrcModel();
+
+
+        $itemNumLabels = isset($CI->config->item('heTransaksi_ui')[$transaksi_jenis]['shoppingCartNumFields'][1]) ? $CI->config->item('heTransaksi_ui')[$transaksi_jenis]['shoppingCartNumFields'][1] : array();
+        $priceConfig = isset($CI->config->item('heTransaksi_ui')[$transaksi_jenis]['selectedPrice']) ? $CI->config->item('heTransaksi_ui')[$transaksi_jenis]['selectedPrice'] : array();
+        $lockerConfig = isset($CI->config->item('heTransaksi_ui')[$transaksi_jenis]['lockerCheck']) ? $CI->config->item('heTransaksi_ui')[$transaksi_jenis]['lockerCheck'] : array();
+        $subAmountConfig = isset($CI->config->item('heTransaksi_ui')[$transaksi_jenis]['shoppingCartAmountValue'][1]) ? $CI->config->item('heTransaksi_ui')[$transaksi_jenis]['shoppingCartAmountValue'][1] : null;
+
+        if (sizeof($arrItems) > 0) {
+            arrPrintWebs($arrItems);
+            foreach ($arrItems as $id => $jmlParam) {
+
+                $tmpB = $b->lookupByID($id)->result();
+                cekHere($CI->db->last_query());
+                arrPrint($tmpB);
+
+                $jml = $jmlParam;
+                if (sizeof($tmpB) > 0) {
+                    foreach ($tmpB as $row) {
+                        $satuan = strlen($row->satuan) > 0 ? $row->satuan : "n/a";
+                        $tmpJml = $jmlParam;
+                        if (isset($lockerConfig['enabled']) && $lockerConfig['enabled'] == true) {
+                            cekMerah("masuk locker config");
+
+                            $mdlName = $lockerConfig['mdlName'];
+                            $this->load->model("Mdls/" . $mdlName);
+                            $c = new $mdlName();
+                            $c->addFilter("produk_id='$id'");
+                            $c->addFilter("state='active'");
+                            $c->addFilter("cabang_id=" . $this->session->login['cabang_id']);
+                            $c->addFilter("gudang_id=" . $this->session->login['gudang_id']);
+                            $tmpC = $c->lookupAll($id)->result();
+                            cekHere($this->db->last_query() . " " . __LINE__);
+
+
+                            if (sizeof($tmpC) > 0) {
+                                arrPrint($tmpC);
+                                foreach ($tmpC as $row) {
+                                    $satuan = strlen($row->satuan) > 0 ? $row->satuan : "n/a";
+                                    $nama = $row->nama;
+
+                                    $jml_now = $row->jumlah;
+                                    if (!array_key_exists($id, $_SESSION[$cCode]["items"])) {
+                                        $jml_sudah_diambil = 0;
+                                        $jml_diperlukan = 1;
+                                        $jml_nambah = 1;
+                                    }
+                                    else {
+                                        if (isset($_GET['newQty'])) {
+                                            $jml_sudah_diambil = $_SESSION[$cCode]["items"][$id]['jml'];
+                                            $jml_diperlukan = $_GET['newQty'];
+                                            $jml_nambah = $jml_diperlukan - $jml_sudah_diambil;
+                                        }
+                                        else {
+                                            $jml_sudah_diambil = $_SESSION[$cCode]["items"][$id]['jml'];
+                                            $jml_diperlukan = $jml_sudah_diambil + $jml;
+                                            $jml_nambah = $jml;
+                                        }
+                                    }
+                                    //  region validasi stok
+                                    if ($jml_nambah > $jml_now) {
+                                        echo "<script>top.alert('stok $nama tidak cukup. (perlu $jml_diperlukan, nambah $jml_nambah stok $jml_now)')";
+                                        echo "</script>";
+                                        die();
+                                    }
+                                    //  endregion validasi stok
+
+
+                                    $this->db->trans_start();
+
+                                    //  region update locker active
+                                    $where = array(
+                                        "id" => $row->id,
+                                    );
+                                    $data_active = array(
+                                        "jumlah" => $jml_now - $jml_nambah,
+                                        "state" => "active",
+                                    );
+                                    $c->updateData($where, $data_active);
+                                    cekHere($this->db->last_query());
+                                    //  endregion update locker active
+
+
+                                    //  region locker hold
+                                    $array_hold_sebelumnya = $c->cekLoker($this->session->login['cabang_id'], $id, "hold", $this->session->login["id"], "0", $this->session->login['gudang_id']);
+                                    if (sizeof($array_hold_sebelumnya) > 0) {
+                                        $where = array(
+                                            "id" => $array_hold_sebelumnya["id"],
+                                        );
+                                        $data_hold = array(
+                                            "jumlah" => $array_hold_sebelumnya['jumlah'] + $jml_nambah,
+                                        );
+                                        $c->updateData($where, $data_hold);
+                                        cekHere($this->db->last_query());
+                                    }
+                                    else {
+                                        $data_hold = array(
+                                            "jenis" => "produk",
+                                            "cabang_id" => $this->session->login['cabang_id'],
+                                            "produk_id" => $id,
+                                            "nama" => $nama,
+                                            "satuan" => $row->satuan,
+                                            "state" => "hold",
+                                            "jumlah" => $jml_nambah,
+                                            "oleh_id" => $this->session->login["id"],
+                                            "oleh_nama" => $this->session->login['nama'],
+                                            "gudang_id" => $this->session->login['gudang_id'],
+                                        );
+                                        $c->addData($data_hold);
+                                        cekHere($this->db->last_query());
+                                    }
+                                    //  endregion locker hold
+
+
+                                    $this->db->trans_complete() or die("Gagal bro");
+
+                                    $tmpJml = $jml_diperlukan;
+
+                                }
+                            }
+                            else {
+                                mati_disini("tidak ditemukan item " . $row->nama . " di locker stock.");
+                            }
+
+                        }
+
+                        /* ----------------------------------------------------------------------------------------------
+                         * memasukan session items
+                         * ----------------------------------------------------------------------------------------------*/
+                        $fieldSrcs = isset($CI->config->item("heTransaksi_ui")[$CI->jenisTr]['shoppingCartFieldSrc']) ? $CI->config->item("heTransaksi_ui")[$transaksi_jenis]['shoppingCartFieldSrc'] : array("nama" => "nama");
+                        if (!array_key_exists($id, $_SESSION[$cCode]["items"])) {
+                            $tmp = array(
+                                "handler" => $CI->uri->segment(1) . "/" . $CI->uri->segment(2),
+                                "id" => $id,
+                                "jml" => $tmpJml,
+                                "harga" => 0,
+                                "subtotal" => 0,
+                            );
+
+                            if (sizeof($priceConfig) > 0) {
+                                $mdlName = $priceConfig['model'];
+                                $CI->load->model("Mdls/" . $mdlName);
+                                $h = new $mdlName();
+                                $h->addFilter("produk_id='$id'");
+                                $h->addFilter("status='1'");
+                                //                                $h->addFilter("jenis_value='" . $priceConfig["label"] . "'");
+                                $h->addFilter("jenis_value in ('" . implode("','", $priceConfig["label"]) . "')");
+                                $h->addFilter("toko_id=" . $toko_id);
+                                $tmpH = $h->lookupAll($id)->result();
+                                cekMerah($CI->db->last_query());
+
+                                if (sizeof($tmpH) > 0) {
+                                    $rawPrices = array();
+                                    foreach ($tmpH as $hSpec) {
+                                        foreach ($priceConfig['key_label'] as $key => $val) {
+                                            if ($key == $hSpec->jenis_value) {
+                                                $rawPrices[$key] = isset($hSpec->nilai) ? $hSpec->nilai : 0;
+                                            }
+                                        }
+                                    }
+                                    $prices = normalizePrices("produk", $rawPrices);
+                                    if (sizeof($prices) > 0) {
+                                        foreach ($prices as $k => $v) {
+                                            $tmp[$k] = $v;
+                                        }
+                                        $tmp['harga'] = isset($tmp[$priceConfig['mainSrc']]) ? $tmp[$priceConfig['mainSrc']] : 0;
+                                    }
+                                }
+
+                            }
+
+                            foreach ($fieldSrcs as $key => $src) {
+                                $tmpEx = $cal->multiExplode($src);
+                                arrPrint($tmpEx);
+                                if (sizeof($tmpEx) > 1) {//===berarti mengandung karakter simbol perhitungan
+                                    cekBiru("$key perhitungan");
+                                    $newSrc = $src;
+                                    foreach ($tmpEx as $key2 => $val2) {
+                                        echo "$key2 - $val2 <br>";
+                                        if (!is_numeric($val2)) {
+                                            if (isset($tmp[$val2]) && $tmp[$val2] > 0) {
+                                                $newSrc = str_replace($val2, $tmp[$val2], $newSrc);
+                                            }
+                                            else {
+                                                $newSrc = str_replace($val2, 0, $newSrc);
+                                            }
+                                        }
+
+                                    }
+                                    cekBiru("$$src -> $newSrc -> " . $cal->calculate($newSrc));
+                                    $tmp[$key] = $cal->calculate($newSrc);
+                                }
+                                else {
+                                    cekBiru("$key BUKAN perhitungan");
+                                    $tmp[$key] = $row->$src;
+                                }
+
+
+                            }
+
+                            //===perhitungan subtotal
+                            $cal = new FieldCalculator();
+
+
+                            if (sizeof($arrMain) > 0) {
+                                foreach ($arrMain as $key => $val) {
+                                    $_SESSION[$cCode][$key] = $val;
+                                }
+                            }
+
+                            if ($subAmountConfig != null) {
+                                $tmpEx = $cal->multiExplode($subAmountConfig);
+                                if (sizeof($tmpEx) > 1) {
+                                    $newSrc = $subAmountConfig;
+                                    foreach ($tmpEx as $key2 => $val2) {
+                                        if (isset($tmp[$val2])) {
+                                            $newSrc = str_replace($val2, $tmp[$val2], $newSrc);
+                                            cekKuning("$val2 direplace dengan " . $tmp[$val2]);
+                                        }
+                                        else {
+                                            $newSrc = str_replace($val2, "0", $newSrc);
+                                            cekKuning("$val2 direplace dengan NOL");
+                                        }
+
+                                    }
+                                    $subtotal = $cal->calculate($newSrc);
+                                    cekHijau("subtotal dari perhitungan $subAmountConfig $newSrc");
+
+                                }
+                                else {
+                                    $subtotal = 0;
+                                    cekHijau("subtotal dari perhitungan yang gak ada");
+                                }
+                            }
+                            else {
+                                $subtotal = 0;
+                                cekHijau("subtotal NOL");
+                            }
+                            $tmp["subtotal"] = $subtotal;
+                            $_SESSION[$cCode]["items"][$id] = $tmp;
+
+                            //                    die();
+                        }
+                        else {
+                            if (isset($_GET['newQty'])) {
+                                $_SESSION[$cCode]["items"][$id]['jml'] = $_GET['newQty'];
+                                $_SESSION[$cCode]["items"][$id]['subtotal'] = ($_SESSION[$cCode]["items"][$id]['jml'] * $_SESSION[$cCode]["items"][$id]['harga']);
+                            }
+                            else {
+                                $_SESSION[$cCode]["items"][$id]['jml'] += $jml;
+                                $_SESSION[$cCode]["items"][$id]['subtotal'] = ($_SESSION[$cCode]["items"][$id]['jml'] * $_SESSION[$cCode]["items"][$id]['harga']);
+                            }
+
+                            if (sizeof($itemNumLabels) > 0) {
+                                echo("iterating subNums.. @" . __LINE__);
+                                foreach ($itemNumLabels as $key => $label) {
+                                    if (isset($_GET[$key]) && $_GET[$key] > 0) {
+                                        $newValue = $_GET[$key];
+                                        $tmp[$key] = $newValue;
+                                        $_SESSION[$cCode]["items"][$id][$key] = $newValue;
+                                        echo "replacing value for $key with " . $newValue . "<br>";
+                                    }
+
+                                }
+
+                                foreach ($itemNumLabels as $key => $label) {
+                                    $_SESSION[$cCode]["items"][$id]["sub_" . $key] = ($_SESSION[$cCode]["items"][$id][$key] * $_SESSION[$cCode]["items"][$id]["jml"]);
+                                }
+                                $_SESSION[$cCode]["items"][$id]['sub_nett'] = ($_SESSION[$cCode]["items"][$id]['nett'] * $_SESSION[$cCode]["items"][$id]['jml']);
+
+                                $_SESSION[$cCode]["items"][$id]['subtotal'] = ($_SESSION[$cCode]["items"][$id]['jml'] * $_SESSION[$cCode]["items"][$id]['harga']);
+                            }
+
+
+                        }
+                    }
+
+                    if (sizeof($_SESSION[$cCode]["items"]) > 0) {
+                        $_SESSION[$cCode]["main"]['harga'] = 0;
+                        $_SESSION[$cCode]['out_master']['harga'] = 0;
+
+                        /*
+                         * akumulasi item ke main
+                         * */
+                        foreach ($_SESSION[$cCode]["items"] as $id => $iSpec) {
+                            $_SESSION[$cCode]["main"]['harga'] += ($iSpec['jml'] * $iSpec['harga']);
+                            $_SESSION[$cCode]['out_master']['harga'] += ($iSpec['jml'] * $iSpec['harga']);
+                        }
+                    }
+
+                }
+                else {
+                    cekMerah("tidak ada itemnya!");
+                    die();
+                }
+
+            }
+        }
+
+        if (sizeof($arrTrID) > 0) {
+            $_SESSION[$cCode]["main"]['references'] = $arrTrID;
+            $_SESSION[$cCode]['out_master']['references'] = $arrTrID;
+        }
+        if (isset($_GET['singleRefID']) && strlen($_GET['singleRefID']) > 0) {
+            $_SESSION[$cCode]["main"]['singleReference'] = $_GET['singleRefID'];
+            $_SESSION[$cCode]['out_master']['singleReference'] = $_GET['singleRefID'];
+        }
+
+    }
+
+    public function wizard_startup()
+    {
+        /* ------------------------------------------------
+        *  companu profile cek
+        * ------------------------------------------------*/
+        // return true;
+        $this->CI->load->model("Mdls/MdlCompany");
+        $cp = new MdlCompany();
+        $cp->setTokoId(my_toko_id());
+
+        $cpSrc = $cp->callDatas();
+        // cekhitam($this->CI->db->last_query());
+        $neracaStatus = $cpSrc->neraca_ok;
+
+        $cp_koloms = array(
+            "bank_ok" => array(
+                "label" => "bank",
+                "link" => "Data/add/Bank/bank",
+                "link_tipe" => "modal",
+            ),
+            "bank_account_ok" => array(
+                "label" => "bank rekening",
+                "link" => "Data/add/BankAccount_in/bank_account",
+                "link_tipe" => "modal",
+            ),
+            "vendor_ok" => array(
+                "label" => "vendor",
+                "icon" => "fa-truck",
+                "link" => "Data/add/Supplier/vendor",
+                "link_tipe" => "modal",
+            ),
+            "produk_ok" => array(
+                "label" => "produk",
+                "link" => "Converter/index/formProduk"
+            ),
+            "customer_ok" => array(
+                "label" => "konsumen",
+                "icon" => "fa-user",
+                "link" => "Converter/index/formCustomer",
+            ),
+            // "stok_ok"         => array(
+            //     "label" => "persediaan",
+            //     "link"  => "Converter/index/formSuppliesRek",
+            // ),
+            "neraca_ok" => array(
+                "label" => "neraca",
+                "icon" => "fa-balance-scale",
+                // "link" => "Neraca/viewBalanceSheet",
+                "link" => "TransaksiPindahBuku/index",
+            ),
+        );
+
+        $link_now = "";
+        $vas_ok = array();
+        $strFree = "";
+        $nom = 0;
+        $next_on = 1;
+        $neraca_link = $cp_koloms['neraca_ok']['link'];
+        foreach ($cp_koloms as $cp_kolom => $cp_datum) {
+            $nom++;
+            $ok = $cpSrc->$cp_kolom;
+            $badge_done = $ok == 1 ? "badge-green" : "";
+            $var_ok[$cp_kolom] = $ok;
+
+            if (isset($cp_datum['link_tipe']) && ($cp_datum['link_tipe'] == "modal")) {
+                $link_data = isset($cp_datum['link']) ? base_url() . $neraca_link : "#";
+            }
+            else {
+
+                $link_data = isset($cp_datum['link']) ? base_url() . $cp_datum['link'] : "#";
+            }
+
+            if ($nom == 1 && $ok == 1) {
+                $next_ok = "text-red";
+            }
+            else {
+                $next_ok = "text-red";
+            }
+
+            $next_ok = ($nom + $ok) == ($next_on + 1) ? "" : "text-red";
+            // if(($nom + $ok) == ($next_on + 1)){
+            if ($ok == 0 && (($nom + $ok) == ($next_on + 1))) {
+                $text_color = "text-grey";
+                $link_data_f = "#";
+            }
+            else {
+                $text_color = "";
+                $link_now = $link_data_f = $link_data;
+            }
+
+            $next_on = $nom + $ok;
+
+            // $text_color = $ok == 0 ? "text-grey" : "";
+
+            $cp_label = $cp_datum["label"];
+            $cp_icon = isset($cp_datum['icon']) ? $cp_datum['icon'] : 'fa-database';
+            $strFree .= "<a href='$link_data_f' title='go to $cp_label' data-toggle='tooltip' class='btn btn-app text-uppercase active $next_ok $text_color'><span class='badge $badge_done'>$nom</span><i class='fa $cp_icon'></i>$cp_label</a>";
+        }
+
+        $vars['html'] = $strFree;
+        $vars['link_now'] = $link_now;
+        $vars['step_status'] = $var_ok;
+
+        return $vars;
+
+    }
+
+    //  undone items, transaksi yang belum selesai
+    public function viewUndoneItems()
+    {
+        $jenisTr = ($this->jenisTr != NULL) ? $this->jenisTr : mati_disini("kode master transaksi belum diset, silahkan hubungi admin.");
+        $steps = $this->CI->configUiModul[$jenisTr]["steps"];
+
+
+        $tr = New MdlTransaksi();
+
+        if (sizeof($steps) > 1) {
+            $stepCodes = array();
+            $jmlStep = count($steps);
+            if (isset($this->accessList[$jenisTr]) && sizeof($this->accessList) > 0) {
+                $arrFilters = array();
+                $indsteps = "(";
+                foreach ($this->accessList[$jenisTr] as $stepNumber => $stepSpec) {
+                    if ($stepNumber <= $jmlStep) {
+                        foreach ($stepSpec as $targetCode => $filters) {
+                            $indsteps .= "'$targetCode',";
+                            $stepCodes[] = $targetCode;
+                            if ($filters['allowFollowUp'] == "true") {
+                                $arrFilters["allowFollowUp"][] = $targetCode;
+                            }
+                        }
+                    }
+                }
+                $indsteps = rtrim($indsteps, ",");
+                $indsteps .= ")";
+                if (sizeof($arrFilters) > 0) {
+                    $tr->addFilter("next_step_code in $indsteps");
+                }
+                else {
+                    $tr->addFilter("transaksi.oleh_id='" . my_id() . "'");
+                }
+            }
+            else {
+                foreach ($steps as $stepNumber => $stepSpec) {
+                    if ($stepNumber < $jmlStep) {
+                        $stepCodes[] = $stepSpec["target"];
+                    }
+                }
+            }
+        }
+
+        $tr->addFilter("div_id=" . my_div_id());
+        $tr->addFilter("jenis_top='" . $steps[1]["target"] . "'");
+        $tr->addFilter("next_substep_code<>''");
+        $tr->addFilter("sub_step_number>0");
+        if (isset($this->accessList[$jenisTr]) && sizeof($this->accessList) > 0) {
+        }
+        else {
+            if (sizeof($this->sessionLogin['membership']) > 0) {
+                $this->db->group_start();
+                $mCtr = 0;
+                foreach ($this->sessionLogin['membership'] as $gID) {
+                    if ($mCtr == 0) {
+                        $this->db->where(array("next_subgroup_code" => $gID));
+                    }
+                    else {
+                        $this->db->or_where(array("next_subgroup_code" => $gID));
+                    }
+                    $mCtr++;
+                }
+                $this->db->group_end();
+            }
+        }
+        $tmpHist = $tr->lookupUndoneEntries_joined(replaceSession())->result();
+
+        $undoneResult = array();
+        if (sizeof($tmpHist) > 0) {
+            $arrTransID = array();
+            foreach ($tmpHist as $row) {
+                $arrTransID[$row->transaksi_id] = $row->transaksi_id;
+            }
+
+            $tmpReg_result = array();
+            $trReg = new MdlTransaksi();
+            $trReg->setFilters(array());
+            $trReg->addFilter("transaksi_id in ('" . implode("','", $arrTransID) . "')");
+            $tmpReg = $trReg->lookupDataRegistries()->result();
+            if (sizeof($tmpReg) > 0) {
+                foreach ($tmpReg as $regRow) {
+                    foreach ($regRow as $k_reg => $v_reg) {
+                        switch ($k_reg) {
+                            case "main":
+                                $tmpReg_result[$regRow->transaksi_id][$k_reg] = ($k_reg != NULL) ? blobDecode($v_reg) : array();
+                                break;
+                            case "items":
+                                $tmpReg_result[$regRow->transaksi_id][$k_reg] = ($k_reg != NULL) ? blobDecode($v_reg) : array();
+                                break;
+                        }
+                    }
+                }
+            }
+            foreach ($tmpHist as $ii => $row) {
+                if ((sizeof($tmpReg_result) > 0) && (isset($tmpReg_result[$row->id]))) {
+                    foreach ($tmpReg_result[$row->id] as $param => $eReg) {
+                        switch ($param) {
+                            case "main":
+                                foreach ($eReg as $k => $v) {
+                                    if (!isset($row->$k)) {
+                                        $row->$k = $v;
+                                    }
+                                }
+                                break;
+                            case "items":
+                                $row->$param = $eReg;
+                                break;
+                        }
+
+                    }
+                }
+
+                $undoneResult[$ii] = $row;
+            }
+        }
+        return $undoneResult;
+    }
+
+    public function viewUndoneItemsConnectedRequest()
+    {
+        $jenisTr = ($this->jenisTr != NULL) ? $this->jenisTr : mati_disini("kode master transaksi belum diset, silahkan hubungi admin.");
+        $steps = $this->CI->configUiModul[$jenisTr]["steps"];
+
+
+        $tr = New MdlTransaksi();
+        $tr->addFilter("transaksi.toko_id=" . $this->toko_id);
+        $tr->addFilter("transaksi.cabang_id=" . $this->cabang_id);
+        $tr->addFilter("transaksi.jenis_master=" . $this->jenisTrMaster);
+        $tr->addFilter("transaksi.jenis=" . $this->jenisTrReference);
+        $tr->addFilter("transaksi.step_current=" . $this->stepNumCurrent);
+        $tmpHist = $tr->lookupRecentHistories()->result();
+
+        $undoneResult = array();
+        if (sizeof($tmpHist) > 0) {
+            $arrTransID = array();
+            foreach ($tmpHist as $row) {
+                $arrTransID[$row->transaksi_id] = $row->transaksi_id;
+            }
+
+            $tmpReg_result = array();
+            $trReg = new MdlTransaksi();
+            $trReg->setFilters(array());
+            $trReg->addFilter("transaksi_id in ('" . implode("','", $arrTransID) . "')");
+            $tmpReg = $trReg->lookupDataRegistries()->result();
+            if (sizeof($tmpReg) > 0) {
+                foreach ($tmpReg as $regRow) {
+                    foreach ($regRow as $k_reg => $v_reg) {
+                        switch ($k_reg) {
+                            case "main":
+                                $tmpReg_result[$regRow->transaksi_id][$k_reg] = ($k_reg != NULL) ? blobDecode($v_reg) : array();
+                                break;
+                            case "items":
+                                $tmpReg_result[$regRow->transaksi_id][$k_reg] = ($k_reg != NULL) ? blobDecode($v_reg) : array();
+                                break;
+                        }
+                    }
+                }
+            }
+            foreach ($tmpHist as $ii => $row) {
+                if ((sizeof($tmpReg_result) > 0) && (isset($tmpReg_result[$row->id]))) {
+                    foreach ($tmpReg_result[$row->id] as $param => $eReg) {
+                        switch ($param) {
+                            case "main":
+                                foreach ($eReg as $k => $v) {
+                                    if (!isset($row->$k)) {
+                                        $row->$k = $v;
+                                    }
+                                }
+                                break;
+                            case "items":
+                                $row->$param = $eReg;
+                                break;
+                        }
+
+                    }
+                }
+
+                $undoneResult[$ii] = $row;
+            }
+        }
+        return $undoneResult;
+    }
+
+    //-------------------------------------
+    public function setterValidate($location = "")
+    {
+        $msg_code = "kode cCode belum disett, silahkan segera hubungi admin. $location";
+        $msg_jenistr = "kode jenisTransaksi belum disett, silahkan segera hubungi admin. $location";
+        $msg_modul = "modul transaksi belum disett, silahkan segera hubungi admin. $location";
+        $msg_config_ui = "konfigurasi UI belum disett, silahkan segera hubungi admin. $location";
+        $msg_config_values = "konfigurasi nilai atau values belum disett, silahkan segera hubungi admin. $location";
+        $msg_config_layout = "konfigurasi layout belum disett, silahkan segera hubungi admin. $location";
+        $msg_config_core_master = "konfigurasi master core belum disett, silahkan segera hubungi admin. $location";
+        $msg_session = "konfigurasi session data belum disett, silahkan segera hubungi admin. $location";
+
+        $this->cCode == NULL ? mati_disini($msg_code) : "";
+        $this->jenisTr == NULL ? mati_disini($msg_jenistr) : "";
+        $this->modul == NULL ? mati_disini($msg_modul) : "";
+        $this->configUi = $this->configUiModul == NULL ? mati_disini($msg_config_ui) : "";
+        $this->configValues = $this->configValuesModul == NULL ? mati_disini($msg_config_values) : "";
+        $this->configLayout = $this->configLayoutModul == NULL ? mati_disini($msg_config_layout) : "";
+        $this->configCoreModul == NULL ? mati_disini($msg_config_layout) : "";
+        $this->configCore = $this->configCoreMaster == NULL ? mati_disini($msg_config_core_master) : "";
+        $this->cCodeData == NULL ? mati_disini($msg_session) : "";
+
+    }
+
+    //-buildTable--------------------------
+    public function buildTableRekening()
+    {
+        $cCode = $this->cCode;
+        $jenisTrTarget = isset($this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["target"]) ? $this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["target"] : NULL;
+        $transaksiMode = isset($this->configUiModul[$this->jenisTr]["transaksiMode"]) ? $this->configUiModul[$this->jenisTr]["transaksiMode"] : mati_disini("Mode transaksi silahkan diseting di coTransaksiUi " . $this->jenisTr);
+        $runCoreAkunting = isset($this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["runCoreAkunting"]) ? $this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["runCoreAkunting"] : false;
+        $core = isset($this->configCoreMaster[$this->modul][$transaksiMode]) ? $this->configCoreMaster[$this->modul][$transaksiMode] : array();
+        //region build table rekening
+        if ($runCoreAkunting == true) {
+            $buildTablesMaster = isset($core['components']['master']) ? $core['components']['master'] : array();
+            $buildTablesDetail = isset($core['components']['detail']) ? $core['components']['detail'] : array();
+            $addMasterTables = array(
+                "rugilaba",
+                "laba ditahan",
+                "rugilaba lain lain",
+            );
+            foreach ($addMasterTables as $trek) {
+                $buildTablesMaster[] = array(
+                    "comName" => "RugiLaba",
+                    "loop" => array(
+                        "$trek" => .0,
+                    ),
+                );
+            }
+            // arrPrint($buildTablesMaster);
+            // matiHere();
+            if (sizeof($buildTablesMaster) > 0) {
+                $bCtr = 0;
+                foreach ($buildTablesMaster as $buildTablesMaster_specs) {
+                    $bCtr++;
+                    $mdlName = $buildTablesMaster_specs['comName'];
+                    if (substr($mdlName, 0, 1) == "{") {
+                        $mdlName = trim($mdlName, "{");
+                        $mdlName = trim($mdlName, "}");
+                        $mdlName = str_replace($mdlName, $this->cCodeData[$cCode]["main"][$mdlName], $mdlName);
+                    }
+                    else {
+                        cekkuning("TIDAK mengandung kurawal");
+                    }
+
+                    $mdlName = "Com" . $mdlName;
+                    $this->CI->load->model("Coms/" . $mdlName);
+                    $m = new $mdlName();
+
+                    if (isset($buildTablesMaster_specs['loop']) && sizeof($buildTablesMaster_specs['loop']) > 0) {
+                        foreach ($buildTablesMaster_specs['loop'] as $key => $val) {
+                            if (substr($key, 0, 1) == "{") {
+                                $oldParam = $buildTablesMaster_specs['loop'][$key];
+                                //                                cekHere($oldParam);
+                                unset($buildTablesMaster_specs['loop'][$key]);
+                                $key = trim($key, "{");
+                                $key = trim($key, "}");
+                                $key = str_replace($key, $this->cCodeData[$cCode]["main"][$key], $key);
+                                $buildTablesMaster_specs['loop'][$key] = $oldParam;
+                            }
+                        }
+                    }
+
+                    if (method_exists($m, "getTableNameMaster")) {
+                        if (sizeof($m->getTableNameMaster())) {
+                            $m->buildTables($buildTablesMaster_specs);
+                        }
+                    }
+                }
+            }
+            if (sizeof($buildTablesDetail) > 0) {
+                foreach ($buildTablesDetail as $buildTablesDetail_specs) {
+                    foreach ($this->cCodeData[$cCode]["items"] as $itemSpec) {
+                        $mdlName = $buildTablesDetail_specs['comName'];
+                        //                        cekLime($mdlName);
+                        if (substr($mdlName, 0, 1) == "{") {
+                            $mdlName = trim($mdlName, "{");
+                            $mdlName = trim($mdlName, "}");
+                            $mdlName = str_replace($mdlName, $itemSpec[$mdlName], $mdlName);
+                        }
+                        $mdlName = "Com" . $mdlName;
+                        $this->CI->load->model("Coms/" . $mdlName);
+                        $m = new $mdlName();
+
+                        if (isset($buildTablesDetail_specs['loop']) && sizeof($buildTablesDetail_specs['loop']) > 0) {
+                            foreach ($buildTablesDetail_specs['loop'] as $key => $val) {
+                                if (substr($key, 0, 1) == "{") {
+                                    $oldParam = $buildTablesDetail_specs['loop'][$key];
+                                    unset($buildTablesDetail_specs['loop'][$key]);
+                                    $key = trim($key, "{");
+                                    $key = trim($key, "}");
+                                    $key = str_replace($key, $itemSpec[$key], $key);
+                                    $buildTablesDetail_specs['loop'][$key] = $oldParam;
+                                }
+                            }
+                        }
+                        if (method_exists($m, "getTableNameMaster")) {
+                            if (sizeof($m->getTableNameMaster())) {
+                                $m->buildTables($buildTablesDetail_specs);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //endregion
+
+    }
+
+    public function buildTableRekeningNS()
+    {
+        $cCode = $this->cCode;
+        $jenisTrTarget = isset($this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["target"]) ? $this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["target"] : NULL;
+        $transaksiMode = isset($this->configUiModul[$this->jenisTr]["transaksiMode"]) ? $this->configUiModul[$this->jenisTr]["transaksiMode"] : mati_disini("Mode transaksi silahkan diseting di coTransaksiUi " . $this->jenisTr);
+        $runCoreAkunting = isset($this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["runCoreAkunting"]) ? $this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["runCoreAkunting"] : false;
+        $core = isset($this->configCoreMaster[$this->modul][$transaksiMode]) ? $this->configCoreMaster[$this->modul][$transaksiMode] : array();
+        //region build table rekening
+        if ($runCoreAkunting == true) {
+            $buildTablesMaster = isset($core['components']['master']) ? $core['components']['master'] : array();
+            $buildTablesDetail = isset($core['components']['detail']) ? $core['components']['detail'] : array();
+            $addMasterTables = array(
+                "rugilaba",
+                "laba ditahan",
+                "rugilaba lain lain",
+            );
+            foreach ($addMasterTables as $trek) {
+                $buildTablesMaster[] = array(
+                    "comName" => "RugiLaba",
+                    "loop" => array(
+                        "$trek" => .0,
+                    ),
+                );
+            }
+            if (sizeof($buildTablesMaster) > 0) {
+                $bCtr = 0;
+                foreach ($buildTablesMaster as $buildTablesMaster_specs) {
+                    $bCtr++;
+                    $mdlName = $buildTablesMaster_specs['comName'];
+                    if (substr($mdlName, 0, 1) == "{") {
+                        $mdlName = trim($mdlName, "{");
+                        $mdlName = trim($mdlName, "}");
+                        $mdlName = str_replace($mdlName, $this->cCodeData[$cCode]["main"][$mdlName], $mdlName);
+                    }
+                    else {
+                        cekkuning("TIDAK mengandung kurawal");
+                    }
+
+                    $mdlName = "Com" . $mdlName;
+                    $this->CI->load->model("Coms/" . $mdlName);
+                    $m = new $mdlName();
+                    if (isset($buildTablesMaster_specs['loop']) && sizeof($buildTablesMaster_specs['loop']) > 0) {
+                        foreach ($buildTablesMaster_specs['loop'] as $key => $val) {
+                            if (substr($key, 0, 1) == "{") {
+                                $oldParam = $buildTablesMaster_specs['loop'][$key];
+                                $buildTablesMaster_specs['loop'][$key] = array();
+                                $key = trim($key, "{");
+                                $key = trim($key, "}");
+                                $key = str_replace($key, $this->cCodeData[$cCode]["main"][$key], $key);
+                                $buildTablesMaster_specs['loop'][$key] = $oldParam;
+                            }
+                        }
+                    }
+                    if (method_exists($m, "getTableNameMaster")) {
+                        if (sizeof($m->getTableNameMaster())) {
+                            $m->buildTables($buildTablesMaster_specs);
+                        }
+                    }
+                }
+            }
+            if (sizeof($buildTablesDetail) > 0) {
+                foreach ($buildTablesDetail as $buildTablesDetail_specs) {
+                    foreach ($this->cCodeData[$cCode]["items"] as $itemSpec) {
+                        $mdlName = $buildTablesDetail_specs['comName'];
+                        if (substr($mdlName, 0, 1) == "{") {
+                            $mdlName = trim($mdlName, "{");
+                            $mdlName = trim($mdlName, "}");
+                            $mdlName = str_replace($mdlName, $itemSpec[$mdlName], $mdlName);
+                        }
+                        $mdlName = "Com" . $mdlName;
+                        $this->CI->load->model("Coms/" . $mdlName);
+                        $m = new $mdlName();
+                        if (isset($buildTablesDetail_specs['loop']) && sizeof($buildTablesDetail_specs['loop']) > 0) {
+                            foreach ($buildTablesDetail_specs['loop'] as $key => $val) {
+                                if (substr($key, 0, 1) == "{") {
+                                    $oldParam = $buildTablesDetail_specs['loop'][$key];
+                                    unset($buildTablesDetail_specs['loop'][$key]);
+                                    $key = trim($key, "{");
+                                    $key = trim($key, "}");
+                                    $key = str_replace($key, $itemSpec[$key], $key);
+                                    $buildTablesDetail_specs['loop'][$key] = $oldParam;
+                                }
+                            }
+                        }
+                        if (method_exists($m, "getTableNameMaster")) {
+                            if (sizeof($m->getTableNameMaster())) {
+                                $m->buildTables($buildTablesDetail_specs);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //endregion
+    }
+
+    //-save--------------------------
+    public function save()
+    {
+
+        $location = "(library " . get_class($this) . ", method " . __FUNCTION__ . ")";
+        $this->setterValidate($location);
+
+        $cCode = $this->cCode;
+        $tokoID = $this->cCodeData[$cCode]["main"]['tokoID'];
+        $tokoNama = $this->cCodeData[$cCode]["main"]["tokoNama"];
+        $cabangID_validate = $this->cCodeData[$cCode]["main"]["placeID"];
+
+//matiHEre(__LINE__);
+        $jenisTrTarget = isset($this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["target"]) ? $this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["target"] : NULL;
+//        $transaksiMode = isset($this->configUiModul[$this->jenisTr]["transaksiMode"]) ? $this->configUiModul[$this->jenisTr]["transaksiMode"] : mati_disini("Mode transaksi silahkan diseting di coTransaksiUi " . $this->jenisTr);
+        $runCoreAkunting = isset($this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["runCoreAkunting"]) ? $this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["runCoreAkunting"] : false;
+//        $core = isset($this->configCoreMaster[$this->modul][$this->jenisTr][$this->stepNum]["target"]) ? $this->configCoreMaster[$this->jenisTr][$this->stepNum]["target"] : array();
+
+        $corePreProcParam = isset($this->configCoreMaster[$this->modul]['requiredParam'][$this->jenisTr]['preProcessor']) ? $this->configCoreMaster[$this->modul]['requiredParam'][$this->jenisTr]['preProcessor'] : false;
+        $coreRequiredParam = isset($this->configCoreMaster[$this->modul]['requiredParam']) ? $this->configCoreMaster[$this->modul]['requiredParam'] : array();
+        $jenisTrTarget = isset($this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["target"]) ? $this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["target"] : NULL;
+        $relOptionConfigs = isset($this->configUiModul[$this->jenisTr]['relativeOptions']) ? $this->configUiModul[$this->jenisTr]['relativeOptions'] : array();
+
+        $relOptionConfigs = isset($this->configUiModul[$this->jenisTr]['relativeOptions']) ? $this->configUiModul[$this->jenisTr]['relativeOptions'] : array();
+        $validationTableInMaster = isset($this->configUiModul[$this->jenisTr]['validationTableInMaster']) ? $this->configUiModul[$this->jenisTr]['validationTableInMaster'] : false;
+
+        $runCliComponentDetail = isset($this->configCoreMaster[$this->modul]["runCliComponentDetail"]) ? $this->configCoreMaster[$this->modul]["runCliComponentDetail"] : false;
+
+        $inputLabels = array();
+        $inputAuthConfigs = array();
+
+        $this->CI->load->library("FieldCalculator");
+        $cal = new FieldCalculator();
+
+        $rawPrevURL = isset($_GET['rawPrev']) ? $_GET['rawPrev'] : "";
+        $prevUrl = blobDecode($rawPrevURL);
+
+        /* ------------------------------
+         * TRANSAKSIONAL TERJADI DI DALAM SINI
+         * $dieForDebug = false; --------> kondisi normal transaksi bisa lanjot
+         * untuk mematikan transksi di jadikan true
+         * ------------------------*/
+        $dieForDebug = false;
+        //        $dieForDebug = true;
+        if (isset($this->cCodeData[$cCode])) {
+            if (!isset($this->cCodeData[$cCode]["items"])) {
+                die("belum ada item yang dipilih");
+            }
+            else {
+                if (sizeof($this->cCodeData[$cCode]["items"]) < 1) {
+                    die("belum ada item yang dipilih");
+                }
+            }
+
+            cekHere("now processing your transaction..<br>");
+
+            //region PREPROCC-----
+            //region pre-processors (item)
+            if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                $iterator = isset($this->cCodeData[$cCode]['revert']['preProc']['detail']) ? $this->cCodeData[$cCode]['revert']['preProc']['detail'] : array();
+                cekKuning("ATAS");
+            }
+            else {
+                $iterator = isset($this->configCoreModul['preProcessor'][$jenisTrTarget]['detail']) ? $this->configCoreModul['preProcessor'][$jenisTrTarget]['detail'] : array();
+                cekKuning("BAWAH $jenisTrTarget");
+            }
+
+
+            if (sizeof($iterator) > 0) {
+                $itemNumLabels = isset($this->configUiModul[$this->jenisTr]['shoppingCartNumFields']) ? $this->configUiModul[$this->jenisTr]['shoppingCartNumFields'] : array();
+                cekHere("ITEM NUM LABELS");
+                if (sizeof($iterator) > 0) {
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $comName = $tComSpec['comName'];
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+
+                        cekHere("sub-preproc: $comName, initializing values <br>");
+                        foreach ($this->cCodeData[$cCode][$srcGateName] as $xid => $dSpec) {
+                            cekHijau("[$xid]");
+                            arrPrintHijau($dSpec);
+                            $tmpOutParams[$cCtr] = array();
+                            $id = $xid;
+                            $subParams = array();
+
+                            if (isset($tComSpec['static'])) {
+                                foreach ($tComSpec['static'] as $key => $value) {
+                                    $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName][$id], $this->cCodeData[$cCode][$srcGateName][$id], 0);
+                                    $subParams['static'][$key] = $realValue;
+                                }
+                                $subParams['static']["fulldate"] = date("Y-m-d");
+                                $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                $subParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["label"] . " oleh " . $this->cCodeData[$cCode][$srcGateName][$id]['nama'];
+                            }
+
+                            if (sizeof($subParams) > 0) {
+                                $tmpOutParams[$cCtr][] = $subParams;
+                                $comName = $tComSpec['comName'];
+                                $srcGateName = $tComSpec['srcGateName'];
+                                $srcRawGateName = $tComSpec['srcRawGateName'];
+                                $resultParams = isset($tComSpec['resultParams']) ? $tComSpec['resultParams'] : array();
+
+                                cekHere("sub preproc #: $comName, sending values " . __LINE__ . "<br>");
+
+                                $mdlName = "Pre" . ucfirst($comName);
+
+                                $this->CI->load->model("Preprocs/" . $mdlName);
+                                $m = new $mdlName($resultParams);
+
+                                if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                                    $tobeExecuted = true;
+                                }
+                                else {
+                                    $tobeExecuted = false;
+                                }
+                                cekHitam(__LINE__ . " :: $mdlName :: $tobeExecuted");
+                                if ($tobeExecuted) {
+                                    $m->pair(0, $tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada pre-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                                    $gotParams = $m->exec();
+                                    // arrPrintWebs($gotParams);
+                                    // matiHEre(__LINE__);
+                                    cekmerah("gotparams dari pre-proc $comName");
+                                    arrPrint($gotParams);
+                                    if (sizeof($gotParams) > 0) {//==gotParams means result from preprocessor
+                                        foreach ($gotParams as $gateName => $paramSpec) {
+                                            arrPrint($paramSpec);
+                                            cekHitam($gateName);
+                                            // cekBiru(":: getParams inject ke $gateName ::");
+                                            if (!isset($this->cCodeData[$cCode][$gateName])) {
+                                                $this->cCodeData[$cCode][$gateName] = array();
+                                            }
+                                            else {
+                                                //                                    cekhijau("NOT building the session: $gateName");
+                                            }
+                                            // matiHEre($cCode);
+                                            foreach ($paramSpec as $id => $gSpec) {
+                                                if (!isset($this->cCodeData[$cCode][$gateName][$id])) {
+                                                    $this->cCodeData[$cCode][$gateName][$id] = array();
+                                                }
+                                                if (isset($this->cCodeData[$cCode][$gateName][$id])) {
+                                                    if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                                        // matiHEre("ada");
+                                                        foreach ($gSpec as $key => $val) {
+                                                            cekHere(":: injecte ke $gateName, ::: $key diisi dengan $val " . __LINE__);
+                                                            $this->cCodeData[$cCode][$gateName][$id][$key] = $val;
+                                                            cekMerah($cCode . "[" . $gateName . "][" . $id . "][" . $key . "]=" . $val);
+                                                        }
+                                                    }
+                                                    else {
+                                                        cekMerah("bukan array");
+                                                        matiHere();
+                                                    }
+                                                }
+                                                //==inject gotParams to child gate
+                                                if (isset($this->cCodeData[$cCode][$srcGateName][$id])) {
+                                                    if (is_array($gSpec) && sizeof($gSpec) > 0) {
+
+                                                        foreach ($gSpec as $key => $val) {
+                                                            $this->cCodeData[$cCode][$srcGateName][$id][$key] = $val;
+
+                                                        }
+                                                    }
+                                                    else {
+                                                        cekMerah("bukan array");
+                                                        matiHere();
+                                                    }
+                                                }
+                                                if (sizeof($itemNumLabels) > 0) {
+                                                    foreach ($itemNumLabels as $key => $label) {
+                                                        if (isset($this->cCodeData[$cCode][$gateName][$id][$key])) {
+                                                            $this->cCodeData[$cCode][$gateName][$id]['sub_' . $key] = ($this->cCodeData[$cCode][$gateName][$id]['jml'] * $this->cCodeData[$cCode][$gateName][$id][$key]);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else {
+                                    cekBiru("sub-komponem $comName tidak memenuhi syarat untuk ditulis");
+                                }
+                                // matiHEre(__LINE__);
+                            }
+                        }
+
+                        $this->CI->load->helper("he_value_builder");
+                        $this->cCodeData[$cCode] = fillValuesSessionData_he_value_builder($this->jenisTr, $this->stepNum, $this->stepNum, $this->configCoreModul[$this->jenisTr], $this->configUiModul[$this->jenisTr], $this->configCoreModul[$this->jenisTr], $this->cCodeData[$cCode]["main"]["ppnFactor"], $this->cCodeData[$cCode]);
+                    }
+                }
+                else {
+                    //cekKuning("sub-preproc is not set");
+                }
+                // arrprintWebs($this->cCodeData[$cCode]);
+
+                $this->CI->load->helper("he_value_builder");
+                $this->cCodeData[$cCode] = fillValuesSessionData_he_value_builder($this->jenisTr, $this->stepNum, $this->stepNum, $this->configCoreModul[$this->jenisTr], $this->configUiModul[$this->jenisTr], $this->configCoreModul[$this->jenisTr], $this->cCodeData[$cCode]["main"]["ppnFactor"], $this->cCodeData[$cCode]);
+                //region injector gerbang value untuk pembatalan ppv dan selisih
+                if (isset($this->cCodeData[$cCode]["revert"]["preProc"]["replacer"])) {
+                    $replace = $this->cCodeData[$cCode]["revert"]["preProc"]["replacer"];
+                    $tempCalculate = array(
+                        "selisih" => ($this->cCodeData[$cCode]["main"]["hpp"] + $this->cCodeData[$cCode]["main"]["ppn"]) - ($this->cCodeData[$cCode]["main"]["nett"] + $this->cCodeData[$cCode]["main"]["ppv"]),
+                        "hpp_nppv" => $this->cCodeData[$cCode]["main"]["hpp"],
+                        "hpp_nppn" => $this->cCodeData[$cCode]["main"]["hpp"] + $this->cCodeData[$cCode]["main"]["ppn"],
+                    );
+                    foreach ($replace['recalculate'] as $iKey => $gate) {
+                        $this->cCodeData[$cCode]["main"][$gate] = $tempCalculate[$gate];
+                    }
+                }
+                //endregion
+            }
+            else {
+                cekHitam("no sub-pre-processor defined. skipping preprocessor..<br>");
+            }
+
+            //endregion
+
+            //region pre-processors (master)
+            if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                $iterator = isset($this->cCodeData[$cCode]['revert']['preProc']['master']) ? $this->cCodeData[$cCode]['revert']['preProc']['master'] : array();
+            }
+            else {
+                $iterator = isset($core['preProcessor'][$jenisTrTarget]['master']) ? $core['preProcessor'][$jenisTrTarget]['master'] : array();
+            }
+            if (sizeof($iterator) > 0) {
+                $itemNumLabels = isset($this->configUiModul[$this->jenisTr]['shoppingCartNumFields']) ? $this->configUiModul[$this->jenisTr]['shoppingCartNumFields'] : array();
+                if (sizeof($iterator) > 0) {
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $comName = $tComSpec['comName'];
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        $resultParams = isset($tComSpec['resultParams']) ? $tComSpec['resultParams'] : array();
+                        $subParams = array();
+
+                        if (isset($tComSpec['static'])) {
+                            foreach ($tComSpec['static'] as $key => $value) {
+                                $realValue = makeValue($value, $this->cCodeData[$cCode]["main"], $this->cCodeData[$cCode]["main"], 0);
+                                $subParams['static'][$key] = $realValue;
+                            }
+                            $subParams['static']["fulldate"] = date("Y-m-d");
+                            $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                            $subParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]["steps"][1]["label"] . " oleh " . $this->cCodeData[$cCode]["main"]['oleh_nama'];
+                        }
+                        $tmpOutParams[$cCtr] = $subParams;
+
+                        $mdlName = "Pre" . ucfirst($comName);
+                        $this->CI->load->model("Preprocs/" . $mdlName);
+                        $m = new $mdlName($resultParams);
+
+                        if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                            $tobeExecuted = true;
+                        }
+                        else {
+                            $tobeExecuted = false;
+                        }
+
+                        if ($tobeExecuted) {
+                            $m->pair(0, $tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada pre-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            $gotParams = $m->exec();
+
+                            if (sizeof($gotParams) > 0) {//==gotParams means result from preprocessor
+                                foreach ($gotParams as $gateName => $gSpec) {
+                                    if (isset($this->cCodeData[$cCode]["main"])) {
+                                        if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                            foreach ($gSpec as $key => $val) {
+                                                $this->cCodeData[$cCode]["main"][$key] = $val;
+                                            }
+                                        }
+                                    }
+
+                                    //==inject gotParams to child gate
+                                    if (isset($this->cCodeData[$cCode]["main"])) {
+                                        if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                            foreach ($gSpec as $key => $val) {
+                                                $this->cCodeData[$cCode]["main"][$key] = $val;
+                                            }
+                                        }
+                                    }
+
+                                    //cekMerah("REBUILDING VALUES..");
+                                    if (sizeof($itemNumLabels) > 0) {
+                                        //cekHijau("REBUILDING SUBS FOR ITEMS");
+                                        foreach ($itemNumLabels as $key => $label) {
+                                            //cekHere("$id === $key => $label");
+                                            if (isset($this->cCodeData[$cCode]["main"][$key])) {
+                                                $this->cCodeData[$cCode]["main"]['sub_' . $key] = ($this->cCodeData[$cCode]["main"]['jml'] * $this->cCodeData[$cCode]["main"][$key]);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            cekBiru("sub-komponem $comName tidak memenuhi syarat untuk ditulis");
+                        }
+                    }
+                }
+                else {
+                    //cekKuning("sub-preproc is not set");
+                }
+                $this->CI->load->helper("he_value_builder");
+                $this->cCodeData[$cCode] = fillValuesSessionData_he_value_builder($this->jenisTr, $this->stepNum, $this->stepNum, $this->configCoreModul[$this->jenisTr], $this->configUiModul[$this->jenisTr], $this->configCoreModul[$this->jenisTr], $this->cCodeData[$cCode]["main"]["ppnFactor"], $this->cCodeData[$cCode]);
+            }
+            else {
+                cekHitam("no main-pre-processor defined. skipping preprocessor..<br>");
+            }
+            //endregion
+
+
+            //region VALIDATOR, masih dari sumber session cCode
+            $this->CI->load->library("Validator");
+            $vd = new Validator();
+            $vd->setCCode($this->cCode);
+            $vd->setConfigUiJenis($this->configUiModul[$this->jenisTr]);
+            $vd->setSessionData($this->cCodeData[$cCode]);
+            $step = $this->cCodeData[$cCode]["main"]['step_number'];
+
+            $vd->midValidateSessionData($step);
+//            matiHere();
+            $vd->unionValidateSessionData();
+            //endregion
+
+            if (isset($this->configUiModul[$this->jenisTr]["steps"][2])) {
+                $nextProp = array(
+                    "num" => 2,
+                    "code" => $this->configUiModul[$this->jenisTr]["steps"][2]["target"],
+                    "label" => $this->configUiModul[$this->jenisTr]["steps"][2]["label"],
+                    "groupID" => $this->configUiModul[$this->jenisTr]["steps"][2]['userGroup'],
+                );
+            }
+            else {
+                $nextProp = array(
+                    "num" => 0,
+                    "code" => "",
+                    "label" => "",
+                    "groupID" => "",
+                );
+            }
+            //endregion
+
+
+            //region penomoran receipt
+            ;
+            $this->CI->load->model("CustomCounter");
+            $cn = new CustomCounter("transaksi");
+            $cn->setType("transaksi");
+            $cn->setModul($this->modul);
+            $cn->setStepCode($this->targetJenisTr);
+            $counterForNumber = array($this->configCoreModul[$this->jenisTr]["formatNota"]);
+            if (!in_array($counterForNumber[0], $this->configCoreModul[$this->jenisTr]['counters'])) {
+                cekBiru($counterForNumber[0]);
+                die(__LINE__ . ":::config counter number " . $this->targetJenisTr . " Used number should be registered in 'counters' config as well");
+            }
+
+            foreach ($counterForNumber as $i => $cRawParams) {
+                $cParams = explode("|", $cRawParams);
+                $cValues = array();
+                foreach ($cParams as $param) {
+                    $cValues[$i][$param] = $_SESSION[$cCode]['main'][$param];
+                }
+                $cRawValues = implode("|", $cValues[$i]);
+                $paramSpec = $cn->getNewCount($cParams, $cValues[$i]);
+            }
+
+            $stepNumber = 1;
+
+            $tmpNomorNota = $paramSpec['paramString'];
+            $tmpNomorNotaAlias = formatNota("nomer_nolink", $tmpNomorNota);
+
+            if (isset($this->configUiModul[$this->jenisTr]['steps'][2])) {
+                $nextProp = array(
+                    "num" => 2,
+                    "code" => $this->configUiModul[$this->jenisTr]['steps'][2]['target'],
+                    "label" => $this->configUiModul[$this->jenisTr]['steps'][2]['label'],
+                    "groupID" => $this->configUiModul[$this->jenisTr]['steps'][2]['userGroup'],
+                );
+            }
+            else {
+                $nextProp = array(
+                    "num" => 0,
+                    "code" => "",
+                    "label" => "",
+                    "groupID" => "",
+                );
+            }
+            //endregion penomoran receipt
+
+            //region dynamic counters
+
+            $cn = new CustomCounter("transaksi");
+            $cn->setType("transaksi");
+            $cn->setModul($this->modul);
+            $cn->setStepCode($this->targetJenisTr);
+            $configCustomParams = $this->configCoreModul[$this->jenisTr]['counters'];
+            $configCustomParams[] = "stepCode";
+            //arrPrint($configCustomParams);
+            if (sizeof($configCustomParams) > 0) {
+                $cContent = array();
+                foreach ($configCustomParams as $i => $cRawParams) {
+                    $cParams = explode("|", $cRawParams);
+                    $cValues = array();
+                    foreach ($cParams as $param) {
+                        $cValues[$i][$param] = $_SESSION[$cCode]['main'][$param];
+                    }
+                    $cRawValues = implode("|", $cValues[$i]);
+                    $paramSpec = $cn->getNewCount($cParams, $cValues[$i]);
+
+                    $cContent[$cRawParams][$cRawValues] = $paramSpec['value'];
+                    switch ($paramSpec['id']) {
+                        case 0: //===counter type is new
+                            $paramKeyRaw = print_r($cParams, true);
+                            $paramValuesRaw = print_r($cValues[$i], true);
+                            $cn->writeNewCount($cParams, $cValues[$i], $paramKeyRaw, $paramValuesRaw);
+                            break;
+                        default: //===counter to be updated
+                            $cn->updateCount($paramSpec['id'], $paramSpec['value']);
+                            break;
+                    }
+                    //echo "<hr>";
+                }
+            }
+            $appliedCounters = base64_encode(serialize($cContent));
+            $appliedCounters_inText = print_r($cContent, true);
+            //endregion dynamic counters
+
+            //region addition on master
+
+            $addValues = array(
+                "counters" => $appliedCounters,
+                'counters_intext' => $appliedCounters_inText,
+                'nomer' => $tmpNomorNota,
+                'dtime' => date("Y-m-d H:i:s"),
+                'fulldate' => date("Y-m-d"),
+                "step_avail" => sizeof($this->configUiModul[$this->jenisTr]["steps"]),
+                "step_number" => 1,
+                "step_current" => 1,
+                "next_step_num" => $nextProp["num"],
+                "next_step_code" => $nextProp["code"],
+                "next_step_label" => $nextProp["label"],
+                "next_group_code" => $nextProp["groupID"],
+                "tail_number" => 1,
+                "tail_code" => $this->configUiModul[$this->jenisTr]["steps"][1]["target"],
+            );
+            foreach ($addValues as $key => $val) {
+                $this->cCodeData[$cCode]["tableIn_master"][$key] = $val;
+            }
+            //endregion
+
+            //
+            //region addition on detail
+            $addSubValues = array(
+                "sub_step_number" => 1,
+                "sub_step_current" => 1,
+                "sub_step_avail" => sizeof($this->configUiModul[$this->jenisTr]["steps"]),
+                "next_substep_num" => $nextProp["num"],
+                "next_substep_code" => $nextProp["code"],
+                "next_substep_label" => $nextProp["label"],
+                "next_subgroup_code" => $nextProp["groupID"],
+                "sub_tail_number" => 1,
+                "sub_tail_code" => $this->configUiModul[$this->jenisTr]["steps"][1]["target"],
+
+
+            );
+            foreach ($this->cCodeData[$cCode]["tableIn_detail"] as $id => $dSpec) {
+                foreach ($addSubValues as $key => $val) {
+                    $this->cCodeData[$cCode]["tableIn_detail"][$id][$key] = $val;
+                }
+            }
+
+            //endregion
+
+            //region numbering tambahan
+            $this->CI->load->library("CounterNumber");
+            $ccn = new CounterNumber();
+            $ccn->setCCode($this->cCode);
+            $ccn->setJenisTr($this->jenisTr);
+            $ccn->setModul($this->modul);
+            $ccn->setStepCode($jenisTrTarget);
+            $ccn->setTransaksiGate($this->cCodeData[$cCode]["tableIn_master"]);
+            $ccn->setMainGate($this->cCodeData[$cCode]["main"]);
+            $ccn->setItemsGate($this->cCodeData[$cCode]["items"]);
+            $ccn->setItems2SumGate($this->cCodeData[$cCode]['items2_sum']);
+
+            if (isset($this->cCodeData[$cCode]["items2_sum"])) {
+                $ccn->setItems2SumGate($this->cCodeData[$cCode]["items2_sum"]);
+            }
+
+            $new_counter = $ccn->getCounterNumber();
+
+            cekHitam("jenistr yang disett dari create " . $this->jenisTr);
+
+            if (isset($new_counter["main"]) && sizeof($new_counter["main"]) > 0) {
+                foreach ($new_counter["main"] as $ckey => $cval) {
+                    $this->cCodeData[$cCode]["tableIn_master"][$ckey] = $cval;
+                    $this->cCodeData[$cCode]["main"][$ckey] = $cval;
+                }
+            }
+            if (isset($new_counter["items"]) && sizeof($new_counter["items"]) > 0) {
+                foreach ($new_counter["items"] as $ikey => $iSpec) {
+                    foreach ($iSpec as $iikey => $iival) {
+                        $this->cCodeData[$cCode]["items"][$ikey][$iikey] = $iival;
+                    }
+                }
+            }
+            if (isset($new_counter["items2_sum"]) && sizeof($new_counter["items2_sum"]) > 0) {
+                foreach ($new_counter["items2_sum"] as $ikey => $iSpec) {
+                    foreach ($iSpec as $iikey => $iival) {
+                        $this->cCodeData[$cCode]["items2_sum"][$ikey][$iikey] = $iival;
+                    }
+                }
+            }
+            //endregion
+
+
+            //region MENULIS TRANSAKSIONAL
+            if (isset($this->cCodeData[$cCode]["tableIn_master"]) && sizeof($this->cCodeData[$cCode]["tableIn_master"]) > 0) {
+
+                $this->cCodeData[$cCode]["tableIn_master"]['status_4'] = 11;
+                $this->cCodeData[$cCode]["tableIn_master"]['trash_4'] = 0;
+                if ($runCliComponentDetail == false) {
+                    $this->cCodeData[$cCode]["tableIn_master"]['cli'] = 1;
+                }
+                else {
+                    $this->cCodeData[$cCode]["tableIn_master"]['cli'] = 0;
+                }
+
+                $tr = new MdlPembelianTransaksi();
+                $tr->addFilter("transaksi.cabang_id='" . $this->cCodeData[$cCode]["tableIn_master"]['cabang_id'] . "'");
+                $insertID = $tr->writeMainEntries($this->cCodeData[$cCode]["tableIn_master"]);
+                cekHitam($this->CI->db->last_query());
+                $insertNum = $this->cCodeData[$cCode]["tableIn_master"]['nomer'];
+                $this->cCodeData[$cCode]["main"]['nomer'] = $insertNum;
+                if ($insertID < 1) {
+                    die("Gagal saat berusaha  write transaction entry pada " . __FILE__ . " baris " . __LINE__);
+                }
+
+                //==transaksi_id dan nomor nota diinject kan ke gate utama
+                $injectors = array(
+                    "transaksi_id" => $insertID,
+                    "nomer" => $tmpNomorNota,
+                    "nomer2" => isset($tmpNomorNotaAlias) ? $tmpNomorNotaAlias : "",
+                );
+                $arrInjectorsTarget = array(
+                    "items",
+                    "items2_sum",
+                    "rsltItems",
+                );
+                foreach ($injectors as $key => $val) {
+                    $this->cCodeData[$cCode]["main"][$key] = $val;
+                    foreach ($arrInjectorsTarget as $target) {
+                        if (isset($this->cCodeData[$cCode][$target])) {
+                            foreach ($this->cCodeData[$cCode][$target] as $xid => $iSpec) {
+                                $id = isset($iSpec["id"]) && $iSpec["id"] > 0 ? $iSpec["id"] : $xid;
+                                if (isset($this->cCodeData[$cCode][$target][$id])) {
+                                    $this->cCodeData[$cCode][$target][$id][$key] = $val;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //===signature
+                $dwsign = $tr->writeSignature($insertID, array(
+                    "nomer" => $this->cCodeData[$cCode]["main"]['nomer'],
+                    "step_number" => 1,
+                    "step_code" => $this->jenisTr,
+                    "step_name" => $this->configUiModul[$this->jenisTr]["steps"][1]["label"],
+                    "group_code" => $this->configUiModul[$this->jenisTr]["steps"][1]['userGroup'],
+                    "oleh_id" => $this->cCodeData[$cCode]["main"]['olehID'],
+                    "oleh_nama" => $this->cCodeData[$cCode]["main"]['olehName'],
+                    "keterangan" => $this->configUiModul[$this->jenisTr]["steps"][1]["label"] . " oleh " . $this->cCodeData[$cCode]["tableIn_master"]['oleh_nama'],
+                    "transaksi_id" => $insertID,
+                )) or die("Failed to write signature");
+
+                $idHis = array(
+                    $stepNumber => array(
+                        "olehID" => $this->cCodeData[$cCode]["main"]['olehID'],
+                        "olehName" => $this->cCodeData[$cCode]["main"]['olehName'],
+                        "step" => $stepNumber,
+                        "trID" => $insertID,
+                        "nomer" => $tmpNomorNota,
+                        "nomer2" => isset($tmpNomorNotaAlias) ? $tmpNomorNotaAlias : "",
+                        "counters" => $appliedCounters,
+                        // "counters_intext" => $appliedCounters_inText,
+                    ),
+                );
+                $idHis_blob = blobEncode($idHis);
+                $idHis_intext = print_r($idHis, true);
+                $tr = new MdlPembelianTransaksi();
+                $dupState = $tr->updateData(array("id" => $insertID), array(
+                    "next_step_num" => $nextProp["num"],
+                    "next_step_code" => $nextProp["code"],
+                    "next_step_label" => $nextProp["label"],
+                    "next_group_code" => $nextProp["groupID"],
+
+                    //===references
+                    "id_master" => $insertID,
+                    "id_top" => $insertID,
+                    "ids_prev" => "",
+                    "nomer_top" => $this->cCodeData[$cCode]["main"]['nomer'],
+                    "nomers_prev" => "",
+                    "jenises_prev" => "",
+                    "ids_his" => $idHis_blob,
+
+                )) or die("Failed to update tr next-state!");
+                cekHijau($this->CI->db->last_query());
+                $addValues = array(
+                    //===references
+                    "id_master" => $insertID,
+                    "id_top" => $insertID,
+                    "ids_prev" => "",
+                    "nomer_top" => $this->cCodeData[$cCode]["main"]['nomer'],
+                    "nomers_prev" => "",
+                    "jenises_prev" => "",
+                    "ids_his" => $idHis_blob,
+                );
+                foreach ($addValues as $key => $val) {
+                    $this->cCodeData[$cCode]["tableIn_master"][$key] = $val;
+                }
+
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_master_values']) && sizeof($this->cCodeData[$cCode]['tableIn_master_values']) > 0) {
+                $inserMainValues = array();
+                if (isset($this->configCoreModul[$this->jenisTr]["tableIn"]['mainValues'])) {
+                    $inserMainValues = array();
+                    foreach ($this->configCoreModul[$this->jenisTr]["tableIn"]['mainValues'] as $key => $src) {
+                        if (isset($this->cCodeData[$cCode]['tableIn_master_values'][$key])) {
+                            $dd = $tr->writeMainValues($insertID, array(
+                                "key" => $key,
+                                "value" => $this->cCodeData[$cCode]['tableIn_master_values'][$key],
+                            ));
+                            $inserMainValues[] = $dd;
+                        }
+                    }
+                }
+                if (sizeof($inserMainValues) > 0) {
+                    $arrBlob = blobEncode($inserMainValues);
+                    $this->CI->db->query("UPDATE transaksi SET indexing_main_values = '$arrBlob' WHERE id=$insertID");
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['main_add_values']) && sizeof($this->cCodeData[$cCode]['main_add_values']) > 0) {
+                $inserMainValues = array();
+                foreach ($this->cCodeData[$cCode]['main_add_values'] as $key => $val) {
+                    $dd = $tr->writeMainValues($insertID, array("key" => $key, "value" => $val));
+                    $inserMainValues[] = $dd;
+                }
+                if (sizeof($inserMainValues) > 0) {
+                    $arrBlob = blobEncode($inserMainValues);
+                    $this->CI->db->query("UPDATE transaksi SET indexing_main_values = '$arrBlob' WHERE id=$insertID");
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['main_inputs']) && sizeof($this->cCodeData[$cCode]['main_inputs']) > 0) {
+                foreach ($this->cCodeData[$cCode]['main_inputs'] as $key => $val) {
+                    $tr->writeMainValues($insertID, array("key" => $key, "value" => $val));
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['main_add_fields']) && sizeof($this->cCodeData[$cCode]['main_add_fields']) > 0) {
+                foreach ($this->cCodeData[$cCode]['main_add_fields'] as $key => $val) {
+                    $tr->writeMainFields($insertID, array("key" => $key, "value" => $val));
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['main_applets']) && sizeof($this->cCodeData[$cCode]['main_applets']) > 0) {
+                foreach ($this->cCodeData[$cCode]['main_applets'] as $amdl => $aSpec) {
+                    $tr->writeMainApplets($insertID, array(
+                        "mdl_name" => $amdl,
+                        "key" => $aSpec['key'],
+                        "label" => $aSpec['labelValue'],
+                        "description" => $aSpec['description'],
+                    ));
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['main_elements']) && sizeof($this->cCodeData[$cCode]['main_elements']) > 0) {
+                foreach ($this->cCodeData[$cCode]['main_elements'] as $elName => $aSpec) {
+                    $tr->writeMainElements($insertID, array(
+                        "mdl_name" => isset($aSpec['mdl_name']) ? $aSpec['mdl_name'] : "",
+                        "key" => isset($aSpec['key']) ? $aSpec['key'] : 0,
+                        "value" => isset($aSpec["value"]) ? $aSpec["value"] : "",
+                        "name" => $aSpec['name'],
+                        "label" => $aSpec["label"],
+                        "contents" => isset($aSpec['contents']) ? $aSpec['contents'] : "",
+                        "contents_intext" => isset($aSpec['contents_intext']) ? $aSpec['contents_intext'] : "",
+
+                    ));
+                    //==nebeng bikin inputLabels
+                    $currentValue = "";
+                    switch ($aSpec['elementType']) {
+                        case "dataModel":
+                            $currentValue = $aSpec['key'];
+                            break;
+                        case "dataField":
+                            $currentValue = $aSpec["value"];
+                            break;
+                    }
+                    if (array_key_exists($elName, $relOptionConfigs)) {
+                        if (isset($relOptionConfigs[$elName][$currentValue])) {
+                            if (sizeof($relOptionConfigs[$elName][$currentValue]) > 0) {
+                                foreach ($relOptionConfigs[$elName][$currentValue] as $oValueName => $oValSpec) {
+                                    $inputLabels[$oValueName] = $oValSpec["label"];
+                                    if (isset($oValSpec['auth'])) {
+                                        if (isset($oValSpec['auth']["groupID"])) {
+                                            $inputAuthConfigs[$oValueName] = $oValSpec['auth']["groupID"];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            //						cekKuning("option $currentValue pada $eName TIDAK ada pilihannya");
+                        }
+                    }
+                }
+            }
+            if (isset($this->cCodeData[$cCode]["tableIn_detail"]) && sizeof($this->cCodeData[$cCode]["tableIn_detail"]) > 0) {
+                $insertIDs = array();
+                $insertDeIDs = array();
+                foreach ($this->cCodeData[$cCode]["tableIn_detail"] as $dSpec) {
+                    $insertDetailID = $tr->writeDetailEntries($insertID, $dSpec);
+                    if ($insertDetailID < 1) {
+                        die("Gagal saat berusaha write transaction detail entry pada " . __FILE__ . " baris " . __LINE__);
+                    }
+                    else {
+                        $insertIDs[] = $insertDetailID;
+                        $insertDeIDs[$insertID][] = $insertDetailID;
+                    }
+                    cekUngu($this->CI->db->last_query());
+                }
+                if (sizeof($insertIDs) == 0) {
+                    die(lgShowAlert("Transaksi gagal disimpan karena rincian transaksi kosong."));
+                }
+                else {
+                    $indexing_details = array();
+                    foreach ($insertDeIDs as $key => $numb) {
+                        $indexing_details[$key] = $numb;
+                    }
+                    foreach ($indexing_details as $k => $arrID) {
+                        $arrBlob = blobEncode($arrID);
+                        $this->CI->db->query("UPDATE transaksi SET indexing_details = '$arrBlob' WHERE id=$k");
+                        cekOrange($this->CI->db->last_query());
+                    }
+                }
+            }
+            else {
+                die(lgShowAlert("Transaksi gagal disimpan karena rincian transaksi kosong."));
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_detail2']) && sizeof($this->cCodeData[$cCode]['tableIn_detail2']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_detail2'] as $dSpec) {
+                    $insertIDs[] = $tr->writeDetailEntries($insertID, $dSpec);
+                    cekUngu($this->CI->db->last_query());
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_detail2_sum']) && sizeof($this->cCodeData[$cCode]['tableIn_detail2_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_detail2_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeDetailEntries($insertID, $dSpec);
+                    $insertIDs[] = $insertDetailID;
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_detail_rsltItems']) && sizeof($this->cCodeData[$cCode]['tableIn_detail_rsltItems']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_detail_rsltItems'] as $dSpec) {
+                    $dd = $tr->writeDetailEntries($insertID, $dSpec);
+                    $insertIDs[] = $dd;
+                    cekUngu($this->CI->db->last_query());
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_detail_values']) && sizeof($this->cCodeData[$cCode]['tableIn_detail_values']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_detail_values'] as $pID => $dSpec) {
+                    if (isset($this->configCoreModul[$this->jenisTr]["tableIn"]['detailValues'])) {
+                        foreach ($this->configCoreModul[$this->jenisTr]["tableIn"]['detailValues'] as $key => $src) {
+                            if (isset($this->cCodeData[$cCode]["tableIn_detail"][$pID])) {
+                                $dd = $tr->writeDetailValues($insertID, array(
+                                    "produk_jenis" => $this->cCodeData[$cCode]["tableIn_detail"][$pID]['produk_jenis'],
+                                    "produk_id" => $pID,
+                                    "key" => $key,
+                                    "value" => isset($dSpec[$src]) ? $dSpec[$src] : "0",
+                                ));
+                                $insertIDs[$pID][] = $dd;
+                            }
+                        }
+                    }
+                }
+                if (sizeof($insertIDs) > 0) {
+                    $arrBlob = blobEncode($insertIDs);
+                    $this->CI->db->query("UPDATE transaksi SET indexing_detail_values = '$arrBlob' WHERE id=$insertID");
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_detail_values2_sum']) && sizeof($this->cCodeData[$cCode]['tableIn_detail_values2_sum']) > 0) {
+                foreach ($this->cCodeData[$cCode]['tableIn_detail_values2_sum'] as $pID => $dSpec) {
+                    if (isset($this->configCoreModul[$this->jenisTr]["tableIn"]['detailValues2_sum'])) {
+                        $insertIDs = array();
+                        foreach ($this->configCoreModul[$this->jenisTr]["tableIn"]['detailValues2_sum'] as $key => $src) {
+                            $dd = $tr->writeDetailValues($insertID, array(
+                                "produk_jenis" => $this->cCodeData[$cCode]['tableIn_detail2_sum'][$pID]['produk_jenis'],
+                                "produk_id" => $pID,
+                                "key" => $key,
+                                "value" => $dSpec[$src],
+                            ));
+                            $insertIDs[] = $dd;
+                        }
+                    }
+                }
+            }
+
+            //pengganti registry ditulis ke tabel fisik
+            if (isset($this->cCodeData[$cCode]['tableIn_items']) && sizeof($this->cCodeData[$cCode]['tableIn_items']) > 0) {
+                //items skip dimerger dengan taransaksi data
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items'] as $dSpec) {
+//                    arrPrint($dSpec);
+                    $insertIDs[] = $tr->writeDetailItemsEntries($insertID, $dSpec);
+                    cekBiru($this->CI->db->last_query());
+                }
+//                matiHere();
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items2']) && sizeof($this->cCodeData[$cCode]['tableIn_items2']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items2'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems2($insertID, $dSpec);
+                    $mongoList['detail'] = $insertIDs;
+                    cekUngu($this->db->last_query());
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items2_sum']) && sizeof($this->cCodeData[$cCode]['tableIn_items2_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items2_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems2_sum($insertID, $dSpec);
+                    $insertIDs[] = $insertDetailID;
+                    $mongoList['detail'][] = $insertDetailID;
+                }
+            }
+
+            if (isset($this->cCodeData[$cCode]['tableIn_items3']) && sizeof($this->cCodeData[$cCode]['tableIn_items3']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items3'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems3($insertID, $dSpec);
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items3_sum']) && sizeof($this->cCodeData[$cCode]['tableIn_items3_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items3_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems3_sum($insertID, $dSpec);
+                    cekMErah($this->db->last_query());
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items4']) && sizeof($this->cCodeData[$cCode]['tableIn_items4']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items4'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems4($insertID, $dSpec);
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items4_sum']) && sizeof($this->cCodeData[$cCode]['tableIn_items4_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items4_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems4_sum($insertID, $dSpec);
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items5']) && sizeof($this->cCodeData[$cCode]['tableIn_items5']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items5'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems5($insertID, $dSpec);
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items5_sum']) && sizeof($this->cCodeData[$cCode]['tableIn_items5_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items5_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems5_sum($insertID, $dSpec);
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items6']) && sizeof($this->cCodeData[$cCode]['tableIn_items6']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items6'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems6($insertID, $dSpec);
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items6_sum']) && sizeof($this->cCodeData[$cCode]['tableIn_items6_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items6_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems6_sum($insertID, $dSpec);
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items7']) && sizeof($this->cCodeData[$cCode]['tableIn_items7']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items7'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems7($insertID, $dSpec);
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items7_sum']) && sizeof($this->cCodeData[$cCode]['tableIn_items7_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items7_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems7_sum($insertID, $dSpec);
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items8']) && sizeof($this->cCodeData[$cCode]['tableIn_items8']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items8'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems8($insertID, $dSpec);
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items8_sum']) && sizeof($this->cCodeData[$cCode]['tableIn_items8_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items8_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems8_sum($insertID, $dSpec);
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items9_sum']) && sizeof($this->cCodeData[$cCode]['tableIn_items9_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items9_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems9_sum($insertID, $dSpec);
+                    cekMErah($this->db->last_query());
+                }
+            }
+            if (isset($this->cCodeData[$cCode]['tableIn_items10_sum']) && sizeof($this->cCodeData[$cCode]['tableIn_items10_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($this->cCodeData[$cCode]['tableIn_items10_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems10_sum($insertID, $dSpec);
+                }
+            }
+
+            $steps = $this->configUiModul[$this->jenisTr]["steps"];
+
+            //endregion
+
+
+            //region COMPONENT-----
+            if ($runCoreAkunting == true) {
+
+                //region processing sub-components, if in single step geser ke CLI
+                $componentGate['detail'] = array();
+                $componentConfig['detail'] = array();
+                //==filter nilai, jika NOL tidak dikirim, sesuai config==
+
+                $compValidators = ($this->CI->config->item('transaksi_value_required_components') != null) ? $this->CI->config->item('transaksi_value_required_components') : array();
+                $filterNeeded = false;
+                $comsLocation = isset($this->configCoreModul[$this->jenisTr]['componentsLocation']['detail']) ? $this->configCoreModul[$this->jenisTr]['componentsLocation']['detail'] : "Coms";
+                $comsPrefix = isset($this->configCoreModul[$this->jenisTr]['componentsPrefix']['detail']) ? $this->configCoreModul[$this->jenisTr]['componentsPrefix']['detail'] : "Com";
+                $componentsDetailLoop = isset($this->configCoreModul[$this->jenisTr]['componentsDetailLoop']) ? $this->configCoreModul[$this->jenisTr]['componentsDetailLoop'] : true;
+                $overWriteDate = isset($this->configCoreModul[$this->jenisTr]['overWriteDate']) ? $this->configCoreModul[$this->jenisTr]['overWriteDate'] : false;
+
+                if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                    $iterator = isset($this->cCodeData[$cCode]['revert']['jurnal']['detail']) ? $this->cCodeData[$cCode]['revert']['jurnal']['detail'] : array();
+                    $revertedTarget = $this->cCodeData[$cCode]["main"]['pihakExternID'];
+                }
+                else {
+                    if (isset($this->cCodeData[$cCode]['componentsBuilder'][1]['detail'])) {
+                        $iterator = $this->cCodeData[$cCode]['componentsBuilder'][1]['detail'];
+                    }
+                    else {
+                        $iterator = isset($core['components']['detail']) ? $core['components']['detail'] : array();
+                    }
+                    $revertedTarget = "";
+                }
+                $componentConfig['detail'] = $iterator;
+
+                if ($runCliComponentDetail == false) {
+
+                    if (sizeof($iterator) > 0) {
+                        foreach ($iterator as $cCtr => $tComSpec) {
+                            $tmpOutParams[$cCtr] = array();
+                            $gg = 0;
+                            $srcGateName = $tComSpec['srcGateName'];
+                            if ($componentsDetailLoop == true) {
+//                                matiHere(__LINE__);
+                                arrprint($this->cCodeData[$cCode][$srcGateName]);
+                                foreach ($this->cCodeData[$cCode][$srcGateName] as $id => $dSpec) {
+                                    $srcRawGateName = $tComSpec['srcRawGateName'];
+
+                                    $comName = $tComSpec['comName'];
+                                    if (substr($comName, 0, 1) == "{") {
+                                        $comName = trim($comName, "{");
+                                        $comName = trim($comName, "}");
+                                        $comName = str_replace($comName, $this->cCodeData[$cCode][$srcGateName][$id][$comName], $comName);
+                                    }
+
+                                    $mdlName = "$comsPrefix" . ucfirst($comName);
+                                    if (in_array($mdlName, $compValidators)) {//perlu validasi filter
+                                        $filterNeeded = true;
+                                    }
+                                    else {
+                                        $filterNeeded = false;
+                                    }
+                                    cekHere("sub-component: [$comsLocation] $comName, initializing values <br>");
+
+                                    $subParams = array();
+
+                                    if (isset($tComSpec['loop'])) {
+                                        foreach ($tComSpec['loop'] as $key => $value) {
+                                            if (substr($key, 0, 1) == "{") {
+                                                $key = trim($key, "{");
+                                                $key = trim($key, "}");
+                                                $key = str_replace($key, $this->cCodeData[$cCode][$srcGateName][$id][$key], $key);
+                                            }
+
+                                            $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName][$id], $this->cCodeData[$cCode][$srcGateName][$id], 0);
+                                            $subParams['loop'][$key] = $realValue;
+
+                                            if ($filterNeeded) {
+                                                if ($subParams['loop'][$key] == 0) {
+                                                    unset($subParams['loop'][$key]);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (isset($tComSpec['static'])) {
+                                        foreach ($tComSpec['static'] as $key => $value) {
+                                            $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName][$id], $this->cCodeData[$cCode][$srcGateName][$id], 0);
+                                            $subParams['static'][$key] = $realValue;
+                                        }
+                                        if (!isset($subParams['static']["transaksi_id"])) {
+                                            $subParams['static']["transaksi_id"] = $insertID;
+                                        }
+                                        if (!isset($subParams['static']["transaksi_no"])) {
+                                            $subParams['static']["transaksi_no"] = $insertNum;
+                                        }
+
+                                        $subParams['static']["fulldate"] = date("Y-m-d");
+                                        $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                        $subParams['static']["dtime_2"] = date("Y-m-d H:i:s");
+                                        $subParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]["steps"][1]["label"] . " nomor " . $tmpNomorNota . " oleh " . $this->cCodeData[$cCode]["tableIn_master"]['oleh_nama'];
+                                        if (strlen($revertedTarget) > 1) {
+                                            $subParams['static']['reverted_target'] = $revertedTarget;
+                                        }
+                                    }
+
+                                    if (sizeof($subParams) > 0) {
+                                        //                                cekhitam("subparam ada isinya");
+                                        if ($filterNeeded) {
+                                            if (isset($subParams['loop']) && sizeof($subParams['loop']) > 0) {
+                                                $tmpOutParams[$cCtr][] = $subParams;
+                                            }
+                                            else {
+                                                cekMErah($subParams);
+                                                cekHitam($cCtr . "::");
+                                            }
+                                        }
+                                        else {
+                                            $tmpOutParams[$cCtr][] = $subParams;
+                                        }
+                                    }
+                                    else {
+                                        cekhitam("subparam TIDAK ada isinya");
+                                    }
+                                }
+                            }
+                            else {
+                                matiHere(__LINE__);
+                                foreach ($this->cCodeData[$cCode][$srcGateName] as $id => $dSpec) {
+                                    if ($cCtr == $id) {
+                                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                                        $comName = $tComSpec['comName'];
+                                        if (substr($comName, 0, 1) == "{") {
+                                            $comName = trim($comName, "{");
+                                            $comName = trim($comName, "}");
+
+                                            $comName = str_replace($comName, $this->cCodeData[$cCode][$srcGateName][$id][$comName], $comName);
+                                        }
+
+                                        $mdlName = "$comsPrefix" . ucfirst($comName);
+                                        if (in_array($mdlName, $compValidators)) {//perlu validasi filter
+                                            $filterNeeded = true;
+                                        }
+                                        else {
+                                            $filterNeeded = false;
+                                        }
+                                        cekHere("sub-component: [$comsLocation] $comName, initializing values <br>");
+
+                                        $subParams = array();
+
+                                        if (isset($tComSpec['loop'])) {
+                                            foreach ($tComSpec['loop'] as $key => $value) {
+
+                                                if (substr($key, 0, 1) == "{") {
+                                                    $key = trim($key, "{");
+                                                    $key = trim($key, "}");
+
+                                                    $key = str_replace($key, $this->cCodeData[$cCode][$srcGateName][$id][$key], $key);
+                                                }
+
+                                                $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName][$id], $this->cCodeData[$cCode][$srcGateName][$id], 0);
+                                                $subParams['loop'][$key] = $realValue;
+
+                                                if ($filterNeeded) {
+                                                    if ($subParams['loop'][$key] == 0) {
+                                                        unset($subParams['loop'][$key]);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        if (isset($tComSpec['static'])) {
+                                            foreach ($tComSpec['static'] as $key => $value) {
+                                                $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName][$id], $this->cCodeData[$cCode][$srcGateName][$id], 0);
+                                                $subParams['static'][$key] = $realValue;
+
+                                            }
+                                            if (!isset($subParams['static']["transaksi_id"])) {
+                                                $subParams['static']["transaksi_id"] = $insertID;
+                                            }
+                                            if (!isset($subParams['static']["transaksi_no"])) {
+                                                $subParams['static']["transaksi_no"] = $insertNum;
+                                            }
+
+                                            $subParams['static']["fulldate"] = date("Y-m-d");
+                                            $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                            $subParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]["steps"][1]["label"] . " nomor " . $tmpNomorNota . " oleh " . $this->cCodeData[$cCode]["tableIn_master"]['oleh_nama'];
+                                            if (strlen($revertedTarget) > 1) {
+                                                $subParams['static']['reverted_target'] = $revertedTarget;
+                                            }
+                                        }
+
+                                        if (sizeof($subParams) > 0) {
+
+                                            if ($filterNeeded) {
+                                                if (isset($subParams['loop']) && sizeof($subParams['loop']) > 0) {
+                                                    $tmpOutParams[$cCtr][] = $subParams;
+                                                }
+                                            }
+                                            else {
+                                                $tmpOutParams[$cCtr][] = $subParams;
+                                            }
+                                        }
+                                        else {
+                                            cekhitam("subparam TIDAK ada isinya");
+                                        }
+                                    }
+                                }
+                            }
+
+                            $componentGate['detail'][$cCtr] = $subParams;
+                        }
+
+                        foreach ($iterator as $cCtr => $tComSpec) {
+                            $srcGateName = $tComSpec['srcGateName'];
+
+                            foreach ($this->cCodeData[$cCode][$srcGateName] as $id => $dSpec) {
+                                $srcRawGateName = $tComSpec['srcRawGateName'];
+                                $comName = $tComSpec['comName'];
+                                if (substr($comName, 0, 1) == "{") {
+                                    $comName = trim($comName, "{");
+                                    $comName = trim($comName, "}");
+                                    $comName = str_replace($comName, $this->cCodeData[$cCode][$srcGateName][$id][$comName], $comName);
+                                }
+                            }
+                            cekHere("sub component: [$comsLocation] $comName, sending values " . __LINE__ . "<br>");
+
+                            $mdlName = "$comsPrefix" . ucfirst($comName);
+                            $this->CI->load->model("$comsLocation/" . $mdlName);
+                            $m = new $mdlName();
+                            //===filter value nol, jika harus difilter
+
+                            if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                                $tobeExecuted = true;
+                            }
+                            else {
+                                $tobeExecuted = false;
+                            }
+
+                            // matiHEre($tobeExecuted);
+//                            arrPrintWebs($tmpOutParams);
+                            if ($tobeExecuted) {
+                                //----- kiriman gerbang
+                                if (method_exists($m, "setTableInMaster")) {
+                                    $m->setTableInMaster($this->cCodeData[$cCode]["tableIn_master"]);
+                                }
+                                if (method_exists($m, "setDetail")) {
+                                    $m->setDetail($this->cCodeData[$cCode][$srcGateName]);
+                                }
+                                if (method_exists($m, "setJenisTr")) {
+                                    $m->setJenisTr($this->jenisTr);
+                                }
+                                //----- kiriman gerbang
+                                $m->pair($tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                                $m->exec() or die("Gagal saat berusaha  exec values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                                cekBiru($this->CI->db->last_query());
+                            }
+                            else {
+                                cekMerah("$comName tidak eksekusi");
+                            }
+
+                        }
+                    }
+                    else {
+                        cekKuning("subcomponents is not set");
+                    }
+
+                }
+                //endregion
+
+
+                //region processing main components, if in single step
+                $componentGate['master'] = array();
+                $componentConfig['master'] = array();
+                //==filter nilai, jika NOL tidak dikirim, sesuai config==
+                $compValidators = ($this->CI->config->item('transaksi_value_required_components') != null) ? $this->CI->config->item('transaksi_value_required_components') : array();
+                if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                    $iterator = isset($this->cCodeData[$cCode]['revert']['jurnal']['master']) ? $this->cCodeData[$cCode]['revert']['jurnal']['master'] : array();
+                }
+                else {
+                    if (isset($this->cCodeData[$cCode]['componentsBuilder'][1]['master'])) {
+                        $iterator = $this->cCodeData[$cCode]['componentsBuilder'][1]['master'];
+                    }
+                    else {
+                        $iterator = isset($core['components']['master']) ? $core['components']['master'] : array();
+                    }
+                }
+
+                if (sizeof($iterator) > 0) {
+                    $componentConfig['master'] = $iterator;
+                    $cCtr = 0;
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $cCtr++;
+                        $comName = $tComSpec['comName'];
+                        if (substr($comName, 0, 1) == "{") {
+                            $comName = trim($comName, "{");
+                            $comName = trim($comName, "}");
+                            $comName = str_replace($comName, $this->cCodeData[$cCode]["main"][$comName], $comName);
+                        }
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        cekHere("component # $cCtr: $comName<br>");
+
+
+                        // arrPrint($this->cCodeData[$cCode][$srcGateName]);
+                        // matiHEre(__LINE__);
+                        $dSpec = $this->cCodeData[$cCode][$srcGateName];
+                        $tmpOutParams = array();
+                        if (isset($tComSpec['loop'])) {
+                            foreach ($tComSpec['loop'] as $key => $value) {
+                                if (substr($key, 0, 1) == "{") {
+                                    $key = trim($key, "{");
+                                    $key = trim($key, "}");
+                                    $key = str_replace($key, $this->cCodeData[$cCode]["main"][$key], $key);
+                                }
+                                $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName], $this->cCodeData[$cCode][$srcGateName], 0);
+                                $tmpOutParams['loop'][$key] = $realValue;
+                            }
+                        }
+                        if (isset($tComSpec['static'])) {
+                            foreach ($tComSpec['static'] as $key => $value) {
+                                $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName], $this->cCodeData[$cCode][$srcGateName], 0);
+                                $tmpOutParams['static'][$key] = $realValue;
+                            }
+                            if (!isset($tmpOutParams['static']["transaksi_id"])) {
+                                $tmpOutParams['static']["transaksi_id"] = $insertID;
+                            }
+                            if (!isset($tmpOutParams['static']["transaksi_no"])) {
+                                $tmpOutParams['static']["transaksi_no"] = $insertNum;
+                            }
+                            $tmpOutParams['static']["urut"] = $cCtr;
+                            $tmpOutParams['static']["fulldate"] = $overWriteDate == true ? formatTanggal($dSpec['dtime'], 'Y-m-d') : date("Y-m-d");
+                            $tmpOutParams['static']["dtime"] = $overWriteDate == true ? $dSpec['dtime'] : date("Y-m-d H:i:s");//baca paymentsource untuk settlement yang lain tetap
+                            $tmpOutParams['static']["dtime_2"] = date("Y-m-d H:i:s");
+                            $tmpOutParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]["steps"][1]["label"] . " nomor " . $tmpNomorNota . " oleh " . $this->cCodeData[$cCode]["tableIn_master"]['oleh_nama'];
+                        }
+
+                        if (isset($tComSpec['static2'])) {
+                            foreach ($tComSpec['static2'] as $key => $value) {
+                                $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName][$cCtr], $this->cCodeData[$cCode][$srcGateName][$cCtr], 0);
+                                $tmpOutParams['static2'][$key] = $realValue;
+                            }
+                            if (!isset($tmpOutParams['static2']["transaksi_id"])) {
+                                $tmpOutParams['static2']["transaksi_id"] = $insertID;
+                            }
+                            if (!isset($tmpOutParams['static2']["transaksi_no"])) {
+                                $tmpOutParams['static2']["transaksi_no"] = $insertNum;
+                            }
+                            $tmpOutParams['static2']["fulldate"] = date("Y-m-d");
+                            $tmpOutParams['static2']["dtime"] = date("Y-m-d H:i:s");
+                            $tmpOutParams['static2']["keterangan"] = $this->configUiModul[$this->jenisTr]["steps"][$stepNum]["label"] . " nomor " . $tmpNomorNota . " oleh " . $this->cCodeData[$cCode]["tableIn_master"]['oleh_nama'];
+                        }
+
+                        $mdlName = "Com" . ucfirst($comName);
+                        $this->CI->load->model("Coms/" . $mdlName);
+                        $m = new $mdlName();
+
+                        //===filter value nol, jika harus difilter
+                        $tobeExecuted = true;
+                        if (in_array($mdlName, $compValidators)) {
+                            $loopParams = isset($tmpOutParams['loop']) ? $tmpOutParams['loop'] : array();
+                            if (sizeof($loopParams) > 0) {
+                                foreach ($loopParams as $key => $val) {
+                                    cekmerah("$comName : $key = $val ");
+                                    if ($val == 0) {
+                                        unset($tmpOutParams['loop'][$key]);
+                                    }
+                                }
+                            }
+                            if (sizeof($tmpOutParams['loop']) < 1) {
+                                $tobeExecuted = false;
+                            }
+                        }
+                        if ($tobeExecuted) {
+                            //----- kiriman gerbang untuk counter mutasi rekening
+                            if (method_exists($m, "setTableInMaster")) {
+                                $m->setTableInMaster($this->cCodeData[$cCode]["tableIn_master"]);
+                            }
+                            if (method_exists($m, "setMain")) {
+                                $m->setMain($this->cCodeData[$cCode]["main"]);
+                            }
+                            if (method_exists($m, "setJenisTr")) {
+                                $m->setJenisTr($this->jenisTr);
+                            }
+                            //----- kiriman gerbang untuk counter mutasi rekening
+                            $m->pair($tmpOutParams) or die("Tidak berhasil memasang  values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            $m->exec() or die("Gagal saat berusaha  exec values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        }
+                        $componentGate['master'][$cCtr] = $tmpOutParams;
+                    }
+                }
+                else {
+                    cekKuning("components is not set");
+                }
+                //endregion
+
+                switch ($this->jenisTr) {
+                    case "758":
+                    case "759":
+                        break;
+                    default:
+                        //validator
+                        $this->CI->load->library("Validator");
+                        $vdt = New Validator();
+                        $vdt->validateMasterDetail($insertID, $componentConfig['master'], $componentConfig['detail']);
+                        break;
+                }
+
+
+            }
+            else {
+                // arrPrintWebs($this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]);
+                // arrPrint($this->configUiModul[$this->jenisTr]["steps"][$this->stepNum]["runCoreAccounting"]);
+                cekHitam("TIDAK ADA COMPONENT ||line " . __LINE__ . " on step =>" . $this->stepNum . " " . $this->jenisTr);
+            }
+            //endregion
+
+
+            //region POST PROCC-----
+            //region processing sub-post-processors, always
+            if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                $iterator = isset($this->cCodeData[$cCode]['revert']['postProc']['detail']) ? $this->cCodeData[$cCode]['revert']['postProc']['detail'] : array();
+            }
+            else {
+                $iterator = isset($this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget]['detail']) ? $this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget]['detail'] : array();
+            }
+
+            if (sizeof($iterator) > 0) {
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    cekHere("[$cCtr] sub-postProcessor: $comName, gate: $srcGateName, initializing values <br>");
+                    $tmpOutParams[$cCtr] = array();
+                    if (isset($this->cCodeData[$cCode][$srcGateName]) && (sizeof($this->cCodeData[$cCode][$srcGateName]) > 0)) {
+                        foreach ($this->cCodeData[$cCode][$srcGateName] as $xid => $dSpec) {
+                            $id = $xid;
+                            $subParams = array();
+                            if (isset($tComSpec['loop'])) {
+                                foreach ($tComSpec['loop'] as $key => $value) {
+                                    $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName][$id], $this->cCodeData[$cCode][$srcGateName][$id], 0);
+                                    $subParams['loop'][$key] = $realValue;
+                                }
+                            }
+                            if (isset($tComSpec['static'])) {
+                                foreach ($tComSpec['static'] as $key => $value) {
+                                    $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName][$id], $this->cCodeData[$cCode][$srcGateName][$id], 0);
+                                    $subParams['static'][$key] = $realValue;
+                                }
+                                if (!isset($subParams['static']["transaksi_id"])) {
+                                    $subParams['static']["transaksi_id"] = $insertID;
+                                }
+                                if (!isset($subParams['static']["transaksi_no"])) {
+                                    $subParams['static']["transaksi_no"] = $insertNum;
+                                }
+                                $subParams['static']["fulldate"] = date("Y-m-d");
+                                $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                if (isset($this->cCodeData[$cCode]['revert']['postProc']['detail'])) {
+                                    $subParams['static']["reverted_target"] = $this->cCodeData[$cCode]["main"]['pihakExternID'];
+                                }
+                                $subParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]["steps"][1]["label"] . " nomor " . $tmpNomorNota . " oleh " . $this->cCodeData[$cCode]["tableIn_master"]['oleh_nama'];
+                            }
+                            if (sizeof($subParams) > 0) {
+                                $tmpOutParams[$cCtr][] = $subParams;
+                            }
+                        }
+                    }
+                }
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    if (isset($this->cCodeData[$cCode][$srcGateName])) {
+                        cekHere("[$cCtr] sub-postProcessor: $comName, sending values " . __LINE__ . "<br>");
+                        $mdlName = "Com" . ucfirst($comName);
+                        $this->CI->load->model("Coms/" . $mdlName);
+                        $m = new $mdlName();
+                        $m->pair($tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        cekHitam($this->CI->db->last_query());
+                    }
+                }
+            }
+            else {
+                cekHitam("TIDAK ADA SETUP SUB-POSTPROC");
+            }
+            //endregion
+
+            //region relesaese connected payment source dan marking trash transaksi
+            if (isset($this->cCodeData[$cCode]["revert"]["connectedPaymentsource"]) && $this->cCodeData[$cCode]["revert"]["connectedPaymentsource"] == true) {
+                $keyRel = $this->cCodeData[$cCode]["main"]["referenceID"];
+                $keyRelRef = $this->cCodeData[$cCode]["main"]["pihakExternID"];
+                $relPaymentSrc = isset($this->CI->config->item("payment_source")[$keyRelRef]) ? $this->CI->config->item("payment_source")[$keyRelRef] : array();
+                if (sizeof($relPaymentSrc) > 0) {
+                    $this->CI->load->model("Mdls/MdlPaymentSource");
+                    $m = new MdlPaymentSource();
+                    $m->addFilter("transaksi_id='$keyRel'");
+                    $tmpRelPay = $m->lookupAll()->result();
+                    $paymentRelUsed = array(
+                        "cabang_id" => "placeID",
+                        "extern_id" => "id",
+                        "extern_nama" => "name",
+                        "label" => ".hutang biaya",
+                        "target_jenis" => "jenisTr",
+                        "transaksi_id" => "refID",
+                        "terbayar" => "nilai_bayar",
+                        "sisa" => "new_sisa",
+                        "ppn" => "valid_ppn",
+                        "extern_nilai2" => "valid_dpp",
+                    );
+                    if (sizeof($tmpRelPay) > 0) {
+                        $tmpOutParams = array();
+                        $iterator = array();
+                        foreach ($tmpRelPay as $indexKey => $relData) {
+                            $tmp = array();
+                            foreach ($paymentRelUsed as $key => $keyGate) {
+                                if ($key == "terbayar") {
+                                    $val = $relData->sisa;
+                                }
+                                else {
+                                    if ($key == "sisa") {
+                                        $val = "-" . $relData->sisa;
+                                    }
+                                    else {
+                                        $val = $relData->$key;
+                                    }
+                                }
+                                $tmp["static"][$key] = $val;
+                                $tmp["static"]["keterangan"] = $this->configUiModul[$this->jenisTr]["steps"][1]["label"] . " nomor " . $tmpNomorNota . " oleh " . $this->cCodeData[$cCode]["tableIn_master"]['oleh_nama'];
+                            }
+                            $iterator[$indexKey]["loop"] = array();
+                            $iterator[$indexKey]["comName"] = "PaymentSrcItem";
+                            if (sizeof($tmp) > 0) {
+                                $tmpOutParams[$indexKey][] = $tmp;
+                            }
+                        }
+                        foreach ($iterator as $cCtr => $tComSpec) {
+                            $comName = $tComSpec['comName'];
+                            cekHere("sub-postProcessor: $comName, sending values <br>");
+                            $mdlName = "Com" . ucfirst($comName);
+                            $this->CI->load->model("Coms/" . $mdlName);
+                            $m = new $mdlName();
+                            $m->pair($tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        }
+                    }
+                    cekLime("yuk direset paymentsource**");
+                }
+            }
+            //endregion
+
+            //region processing main-post-processors, always
+            if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                $iterator = isset($this->cCodeData[$cCode]['revert']['postProc']['detail']) ? $this->cCodeData[$cCode]['revert']['postProc']['master'] : array();
+            }
+            else {
+                $iterator = isset($this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget]['master']) ? $this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget]['master'] : array();
+            }
+
+            if (sizeof($iterator) > 0) {
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    cekHere("post-processor: $comName<br>LINE: " . __LINE__);
+
+                    $dSpec = $this->cCodeData[$cCode][$srcGateName];
+                    $tmpOutParams = array();
+                    if (isset($tComSpec['loop'])) {
+                        foreach ($tComSpec['loop'] as $key => $value) {
+                            $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName], $this->cCodeData[$cCode][$srcGateName], 0);
+                            $tmpOutParams['loop'][$key] = $realValue;
+                        }
+                    }
+                    if (isset($tComSpec['static'])) {
+                        foreach ($tComSpec['static'] as $key => $value) {
+                            $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName], $this->cCodeData[$cCode][$srcGateName], 0);
+                            $tmpOutParams['static'][$key] = $realValue;
+                        }
+                        if (!isset($tmpOutParams['static']["transaksi_id"])) {
+                            $tmpOutParams['static']["transaksi_id"] = $insertID;
+                        }
+                        if (!isset($tmpOutParams['static']["transaksi_no"])) {
+                            $tmpOutParams['static']["transaksi_no"] = $insertNum;
+                        }
+                        $tmpOutParams['static']["fulldate"] = date("Y-m-d");
+                        $tmpOutParams['static']["dtime"] = date("Y-m-d H:i:s");
+                        $tmpOutParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]["steps"][1]["label"] . " nomor " . $tmpNomorNota . " oleh " . $this->cCodeData[$cCode]["tableIn_master"]['oleh_nama'];
+                    }
+                    if (isset($tComSpec['static2'])) {
+                        foreach ($tComSpec['static2'] as $key => $value) {
+                            $realValue = makeValue($value, $this->cCodeData[$cCode][$srcGateName][$cCtr], $this->cCodeData[$cCode][$srcGateName][$cCtr], 0);
+                            $tmpOutParams['static2'][$key] = $realValue;
+                        }
+                        if (!isset($tmpOutParams['static2']["transaksi_id"])) {
+                            $tmpOutParams['static2']["transaksi_id"] = $insertID;
+                        }
+                        if (!isset($tmpOutParams['static2']["transaksi_no"])) {
+                            $tmpOutParams['static2']["transaksi_no"] = $insertNum;
+                        }
+
+                        $tmpOutParams['static2']["fulldate"] = date("Y-m-d");
+                        $tmpOutParams['static2']["dtime"] = date("Y-m-d H:i:s");
+                        $tmpOutParams['static2']["keterangan"] = $this->configUiModul[$this->jenisTr]["steps"][$stepNum]["label"] . " nomor " . $tmpNomorNota . " oleh " . $this->cCodeData[$cCode]["tableIn_master"]['oleh_nama'];
+                    }
+
+                    //lgShowError("Ada kesalahan",);
+                    $mdlName = "Com" . ucfirst($comName);
+                    $this->CI->load->model("Coms/" . $mdlName);
+                    $m = new $mdlName();
+
+                    cekBiru("kiriman komponem $comName");
+                    $m->pair($tmpOutParams) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                    $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                }
+            }
+            else {
+                cekHitam("TIDAK ADA SETUP MAIN-POSTPROC");
+            }
+            //endregion
+            //endregion
+
+
+            //region updater main transaksi rejection jurnal next step exist
+            $mongUpdateList = array();
+            if (isset($core['relativeComponets']) && $core['relativeComponets'] == true) {
+                //            if (isset($this->configValuesModul[$this->jenisTr]['relativeComponets']) && $this->configValuesModul[$this->jenisTr]['relativeComponets'] == true) {
+
+                $tr->setFilters(array());
+                $tr->addFilter("id = '" . $this->cCodeData[$cCode]["main"]["referenceID"] . "'");
+                $tempData = $tr->lookupAll()->result();
+                $refMasterID = $tempData[0]->id_master;
+                $refMasterJenis = $tempData[0]->jenis_master;
+                $nextStepCode = $tempData[0]->next_step_code;
+                $mainStepCode = $tempData[0]->jenis;
+                $stepnum = $tempData[0]->step_number;
+                $stepnumAvail = $tempData[0]->step_avail;
+                if (($stepnumAvail - $stepnum) > 0) {
+                    $this->CI->load->model("Coms / ComTransaksi_jurnal_revert");
+                    $r = new ComTransaksi_jurnal_revert();
+                    $outParams = array(
+                        "refID" => $refMasterID,
+                        "main_code" => $mainStepCode,
+                        "next_code" => $nextStepCode,
+                        "step_num" => $stepnum,
+                    );
+                    $r->pair($outParams) or die("Tidak berhasil memasang  values pada komponen: $comName / " . $this->jenisTr . " / " . __FUNCTION__ . " / " . __LINE__);
+                    $r->exec() or die("Gagal saat berusaha  exec values pada komponen: $comName / " . $this->jenisTr . " / " . __FUNCTION__ . " / " . __LINE__);
+
+                    //marking main transaksi trash4
+                    $udpate = array(
+                        "trash_4" => "1",
+                    );
+                    $tr->setFilters(array());
+                    $dupState = $tr->updateData(array(
+                        "id" => $this->cCodeData[$cCode]["main"]["referenceID"],
+                    ), $udpate) or die("Failed to update tr next - state!");
+                    //                    cekHijau("UPDATE transaksi step sebelumnya...");
+                    //                    cekHijau($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+
+                    //update validqty 0 supaya gak bisa difollowup
+                    $td = new MdlTransaksi();
+                    $td->setFilters(array());
+                    $rslt = $td->lookupJoinedByID($this->cCodeData[$cCode]["main"]["referenceID"])->result();
+                    if (sizeof($rslt) > 0) {
+                        foreach ($rslt as $rsltSpec) {
+                            if (array_key_exists($rsltSpec->produk_id, $this->cCodeData[$cCode]["items"])) {
+                                $arrData_detail["valid_qty"] = 0;
+                                $tr = new MdlTransaksi();
+                                $tr->setFilters(array());
+                                $tr->setTableName($tr->getTableNames()['detail']);
+                                $dupState = $tr->updateData(array(
+                                    "transaksi_id" => $this->cCodeData[$cCode]["main"]["referenceID"],
+                                    "produk_id" => $rsltSpec->produk_id,
+                                ), $arrData_detail) or die("Failed to update tr next - state!");
+                                //                                cekKuning("UPDATE transaksi data...");
+                                //                                cekKuning($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+                            }
+                        }
+                    }
+
+                    $dwsign = $tr->writeSignature($refMasterID, array(
+                        "prev_id" => "",
+                        "nomer" => "pembatalan jurnal",
+                        "step_number" => " - " . $stepnum, // ini minus step number
+                        "step_code" => $this->configUiModul[$refMasterJenis]["steps"][abs($stepnum)]["target"],
+                        "step_name" => $this->configUiModul[$refMasterJenis]["steps"][abs($stepnum)]["label"],
+                        "group_code" => $this->configUiModul[$refMasterJenis]["steps"][abs($stepnum)]['userGroup'],
+                        "oleh_id" => $this->cCodeData[$cCode]["main"]['olehID'],
+                        "oleh_nama" => $this->cCodeData[$cCode]["main"]['olehName'],
+                        "keterangan" => $this->configUiModul[$refMasterJenis]["steps"][abs($stepnum)]["label"] . " oleh " . $this->cCodeData[$cCode]["tableIn_master"]['oleh_nama'],
+                        //            "transaksi_id" => $no,
+                    )) or die("Failed to write signature");
+                    //                    cekKuning($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+                    //                    matiHere();
+                }
+                else {
+                    //marking main transaksi trash4
+                    $udpate = array(
+                        "trash_4" => "1",
+                    );
+                    $tr->setFilters(array());
+                    $dupState = $tr->updateData(array(
+                        "id" => $this->cCodeData[$cCode]["main"]["referenceID"],
+                    ), $udpate) or die("Failed to update tr next - state!");
+                    //                    cekHijau("UPDATE transaksi step sebelumnya...");
+                    //                    cekHijau($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+                    //update validqty 0 supaya gak bisa difollowup
+                    $arrData_detail["valid_qty"] = $new_valid_qty;
+                    $td = new MdlTransaksi();
+                    $td->setFilters(array());
+                    $rslt = $td->lookupJoinedByID($this->cCodeData[$cCode]["main"]["referenceID"])->result();
+                    if (sizeof($rslt) > 0) {
+                        foreach ($rslt as $rsltSpec) {
+                            if (array_key_exists($rsltSpec->produk_id, $this->cCodeData[$cCode]["items"])) {
+                                $arrData_detail["valid_qty"] = 0;
+                                $tr = new MdlTransaksi();
+                                $tr->setFilters(array());
+                                $tr->setTableName($tr->getTableNames()['detail']);
+                                $dupState = $tr->updateData(array(
+                                    "transaksi_id" => $this->cCodeData[$cCode]["main"]["referenceID"],
+                                    "produk_id" => $rsltSpec->produk_id,
+                                ), $arrData_detail) or die("Failed to update tr next - state!");
+                                //                                cekKuning("UPDATE transaksi data...");
+                                //                                cekKuning($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+                            }
+                        }
+                    }
+
+                    $dwsign = $tr->writeSignature($refMasterID, array(
+                        "prev_id" => "",
+                        "nomer" => "pembatalan jurnal",
+                        "step_number" => " - " . $stepnum, // ini minus step number
+                        "step_code" => $this->configUiModul[$refMasterJenis]["steps"][abs($stepnum)]["target"],
+                        "step_name" => $this->configUiModul[$refMasterJenis]["steps"][abs($stepnum)]["label"],
+                        "group_code" => $this->configUiModul[$refMasterJenis]["steps"][abs($stepnum)]['userGroup'],
+                        "oleh_id" => $this->cCodeData[$cCode]["main"]['olehID'],
+                        "oleh_nama" => $this->cCodeData[$cCode]["main"]['olehName'],
+                        "keterangan" => $this->configUiModul[$refMasterJenis]["steps"][abs($stepnum)]["label"] . " oleh " . $this->cCodeData[$cCode]["tableIn_master"]['oleh_nama'],
+                    )) or die("Failed to write signature");
+                    //                    cekKuning($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+                    //
+                    //                    matiHEre("uhuu");
+                    //
+                }
+            }
+
+            //endregion
+
+            // region berlaku pembatalan transaksi bila ada config revertStep di model MdlRevertJurnal (true)
+            if (isset($this->cCodeData[$cCode]["main"]['pihakExternRevertStep']) && ($this->cCodeData[$cCode]["main"]['pihakExternRevertStep'] == true)) {
+                $referenceNextProp = (isset($this->cCodeData[$cCode]["main"]['referenceNextProp']) && (sizeof($this->cCodeData[$cCode]["main"]['referenceNextProp']) > 0)) ? $this->cCodeData[$cCode]["main"]['referenceNextProp'] : array();
+                if (sizeof($referenceNextProp) > 0) {
+                    // update transaksi reference, step sebelumnya menjadi aktif lagi
+                    $tr = new MdlTransaksi();
+                    $tr->setFilters(array());
+                    $dupState = $tr->updateData(array("id" => $referenceNextProp['trID']), array(
+                        "next_step_code" => $referenceNextProp["code"],
+                        "next_step_label" => $referenceNextProp["label"],
+                        "next_group_code" => $referenceNextProp["groupID"],
+                        "next_step_num" => $referenceNextProp["num"],
+                        "step_current" => $referenceNextProp['step_num'],
+
+                    )) or die("Failed to update tr next-state!");
+                    cekHijau("BATAL :: " . $this->CI->db->last_query() . " -- " . $this->CI->db->affected_rows());
+                    $mongUpdateList['update']["main"][] = array(
+                        "where" => array("id" => $referenceNextProp['trID']),
+                        "value" => array(
+                            "next_step_code" => $referenceNextProp["code"],
+                            "next_step_label" => $referenceNextProp["label"],
+                            "next_group_code" => $referenceNextProp["groupID"],
+                            "next_step_num" => $referenceNextProp["num"],
+                            "step_current" => $referenceNextProp['step_num'],
+                        ),
+                    );
+
+
+                    // update transaksi data reference, step sebelumnya menjadi aktif lagi
+                    $tr = new MdlTransaksi();
+                    $tr->setFilters(array());
+                    $tr->addFilter("trash='0'");
+                    $tr->addFilter("transaksi_id='" . $referenceNextProp['trID'] . "'");
+                    $tr->setTableName($tr->getTableNames()['detail']);
+                    $detailTmp = $tr->lookupAll()->result();
+                    $detailData = array();
+                    foreach ($detailTmp as $dTmpSpec) {
+                        $detailData[$dTmpSpec->produk_id] = array(
+                            "valid_qty" => $dTmpSpec->valid_qty,
+                        );
+                    }
+                    cekOrange($referenceNextProp['detailGate']);
+                    if (isset($this->cCodeData[$cCode][$referenceNextProp['detailGate']]) && ($this->cCodeData[$cCode][$referenceNextProp['detailGate']] != NULL)) {
+                        foreach ($this->cCodeData[$cCode][$referenceNextProp['detailGate']] as $itemsSpec) {
+                            $valid_qty = isset($detailData[$itemsSpec["id"]]['valid_qty']) ? $detailData[$itemsSpec["id"]]['valid_qty'] : 0;
+                            $valid_qty_new = $valid_qty + $itemsSpec['qty'];
+
+                            $tr = new MdlTransaksi();
+                            $tr->setFilters(array());
+                            $tr->setTableName($tr->getTableNames()['detail']);
+                            $ddupState = $tr->updateData(
+                                array(
+                                    "transaksi_id" => $referenceNextProp['trID'],
+                                    "trash" => 0,
+                                    "produk_id" => $itemsSpec["id"],
+                                ), array(
+                                "next_substep_code" => $referenceNextProp["code"],
+                                "next_substep_label" => $referenceNextProp["label"],
+                                "next_subgroup_code" => $referenceNextProp["groupID"],
+                                "next_substep_num" => $referenceNextProp["num"],
+                                "sub_step_current" => $referenceNextProp['step_num'],
+                                "valid_qty" => $valid_qty_new,
+
+                            )) or die("Failed to update tr next-state!");
+                            cekHijau("BATAL :: " . $this->CI->db->last_query() . " -- " . $this->CI->db->affected_rows());
+
+                        }
+                    }
+                }
+            }
+            // endregion
+
+            //region nulis paymentSource
+            $stepCode = $this->configUiModul[$this->jenisTr]["steps"][1]["target"];
+            $cloneBlobPaymentSrc = isset($this->configUiModul[$this->jenisTr]["cloneBlobPaymentSrc"]) ? $this->configUiModul[$this->jenisTr]["cloneBlobPaymentSrc"] : array();
+            $paymentSources = $this->CI->config->item("payment_source");
+            //baru suport single payment source
+            if (array_key_exists($stepCode, $paymentSources)) {
+                $payConfigs = $paymentSources[$stepCode];
+                if (count($cloneBlobPaymentSrc) > 0) {
+                    $srcGate = $cloneBlobPaymentSrc["srcGateName"];
+                    $srcKeyId = $cloneBlobPaymentSrc["srcKey"];
+                    $srcKeyKolom = $cloneBlobPaymentSrc["srckolom"];
+                    $this->CI->load->model("Mdls/MdlPaymentSource");
+                    $p = new MdlPaymentSource();
+                    if (isset($this->cCodeData[$cCode][$srcGate])) {
+                        $idPaymenOld = 0;
+                        foreach ($this->cCodeData[$cCode][$srcGate] as $pymIDS => $pymDatasOld) {
+                            if (isset($pymDatasOld[$srcKeyId])) {
+                                // matiHEre($pymDatasOld[$srcKeyId]);
+                                $idPaymenOld = $pymDatasOld[$srcKeyId];
+                            }
+                        }
+                    }
+
+                    if ($idPaymenOld > 0) {
+                        $p->addFilter("id='$idPaymenOld'");
+                        $tempOldPym = $p->lookUpAll()->result();
+                        $oldblobPym = $tempOldPym[0]->$srcKeyKolom;
+//                         arrPrintWebs($oldblobPym);
+//                         arrprint(blobDecode($oldblobPym));
+//                         matiHere(__LINE__."|| $srcKeyKolom");
+                        // cekMerah($idPaymenOld." ".__LINE__);
+                    }
+                    else {
+                        $oldblobPym = blobEncode(array());
+                    }
+                    // cekMerah($idPaymenOld);
+                    // arrPrint($this->cCodeData[$cCode][$srcGate]);
+//                     matiHEre(__LINE__." ".__FUNCTION__);
+                }
+                if (sizeof($payConfigs) > 0) {
+                    foreach ($payConfigs[1] as $paymentSrcConfig) {
+                        $valueSrc = $paymentSrcConfig['valueSrc'];
+                        $externSrc = $paymentSrcConfig['externSrc'];
+                        $tr->writePaymentSrc($insertID, array(
+                            "jenis" => $stepCode,
+                            "target_jenis" => $paymentSrcConfig['jenisTarget'],
+                            "reference_jenis" => $paymentSrcConfig['jenisSrc'],
+                            "extern_id" => $this->cCodeData[$cCode]["main"][$externSrc["id"]],
+                            "extern_nama" => $this->cCodeData[$cCode]["main"][$externSrc['nama']],
+                            "nomer" => $this->cCodeData[$cCode]["main"]['nomer'],
+                            "label" => $paymentSrcConfig["label"],
+                            "tagihan" => isset($this->cCodeData[$cCode]["main"][$valueSrc]) ? $this->cCodeData[$cCode]["main"][$valueSrc] : 0,
+                            "terbayar" => 0,
+                            "sisa" => isset($this->cCodeData[$cCode]["main"][$valueSrc]) ? $this->cCodeData[$cCode]["main"][$valueSrc] : 0,
+                            "cabang_id" => $this->cCodeData[$cCode]["main"]['placeID'],
+                            "cabang_nama" => $this->cCodeData[$cCode]["main"]['placeName'],
+                            "oleh_id" => $this->cCodeData[$cCode]["main"]['olehID'],
+                            "oleh_nama" => $this->cCodeData[$cCode]["main"]['olehName'],
+                            "toko_id" => $this->cCodeData[$cCode]["main"]['tokoID'],
+                            "toko_nama" => $this->cCodeData[$cCode]["main"]["tokoNama"],
+                            "dtime" => date("Y-m-d H:i:s"),
+                            "fulldate" => date("Y-m-d"),
+                            "valas_id" => (isset($externSrc['valasId']) && isset($this->cCodeData[$cCode]["main"][$externSrc['valasId']])) ? $this->cCodeData[$cCode]["main"][$externSrc['valasId']] : '',
+                            "valas_nama" => (isset($externSrc['valasLabel']) && isset($this->cCodeData[$cCode]["main"][$externSrc['valasLabel']])) ? $this->cCodeData[$cCode]["main"][$externSrc['valasLabel']] : '',
+                            "valas_nilai" => (isset($externSrc['valasValue']) && isset($this->cCodeData[$cCode]["main"][$externSrc['valasValue']])) ? $this->cCodeData[$cCode]["main"][$externSrc['valasValue']] : 0,
+                            "tagihan_valas" => (isset($externSrc['valasTagihan']) && isset($this->cCodeData[$cCode]["main"][$externSrc['valasTagihan']])) ? $this->cCodeData[$cCode]["main"][$externSrc['valasTagihan']] : 0,
+                            "terbayar_valas" => (isset($externSrc['valasTerbayar']) && isset($this->cCodeData[$cCode]["main"][$externSrc['valasTerbayar']])) ? $this->cCodeData[$cCode]["main"][$externSrc['valasTerbayar']] : 0,
+                            "sisa_valas" => (isset($externSrc['valasSisa']) && isset($this->cCodeData[$cCode]["main"][$externSrc['valasSisa']])) ? $this->cCodeData[$cCode]["main"][$externSrc['valasSisa']] : 0,
+                            "extern_label2" => (isset($externSrc['extern_label2']) && ($this->cCodeData[$cCode]["main"][$externSrc['extern_label2']])) ? $this->cCodeData[$cCode]["main"][$externSrc['extern_label2']] : "",
+                            "extern_nilai2" => (isset($externSrc['extern_nilai2']) && ($this->cCodeData[$cCode]["main"][$externSrc['extern_nilai2']])) ? $this->cCodeData[$cCode]["main"][$externSrc['extern_nilai2']] : 0,
+                            "extern_date2" => (isset($externSrc['extern_date2']) && ($this->cCodeData[$cCode]["main"][$externSrc['extern_date2']])) ? $this->cCodeData[$cCode]["main"][$externSrc['extern_date2']] : 0,
+                            //-----
+                            "seller_id" => (isset($externSrc['seller_id']) && ($this->cCodeData[$cCode]["main"][$externSrc['seller_id']])) ? $this->cCodeData[$cCode]["main"][$externSrc['seller_id']] : "",
+                            "seller_nama" => (isset($externSrc['seller_nama']) && ($this->cCodeData[$cCode]["main"][$externSrc['seller_nama']])) ? $this->cCodeData[$cCode]["main"][$externSrc['seller_nama']] : "",
+                            "extern2_id" => (isset($externSrc['extern2_id']) && ($this->cCodeData[$cCode]["main"][$externSrc['extern2_id']])) ? $this->cCodeData[$cCode]["main"][$externSrc['extern2_id']] : "",
+                            "extern2_nama" => (isset($externSrc['extern2_nama']) && ($this->cCodeData[$cCode]["main"][$externSrc['extern2_nama']])) ? $this->cCodeData[$cCode]["main"][$externSrc['extern2_nama']] : "",
+                            "extern_nilai2" => (isset($externSrc['extern_nilai2']) && ($this->cCodeData[$cCode]["main"][$externSrc['extern_nilai2']])) ? $this->cCodeData[$cCode]["main"][$externSrc['extern_nilai2']] : "",
+                            "extern_nilai3" => (isset($externSrc['extern_nilai3']) && ($this->cCodeData[$cCode]["main"][$externSrc['extern_nilai3']])) ? $this->cCodeData[$cCode]["main"][$externSrc['extern_nilai3']] : "",
+                            "extern_nilai4" => (isset($externSrc['extern_nilai4']) && ($this->cCodeData[$cCode]["extern4_nilai"][$externSrc['extern_nilai4']])) ? $this->cCodeData[$cCode]["main"][$externSrc['extern_nilai4']] : "",
+                            "extern_nilai5" => (isset($externSrc['extern_nilai5']) && ($this->cCodeData[$cCode]["main"][$externSrc['extern_nilai5']])) ? $this->cCodeData[$cCode]["main"][$externSrc['extern_nilai5']] : "",
+                            "extern_nilai6" => (isset($externSrc['extern_nilai6']) && ($this->cCodeData[$cCode]["main"][$externSrc['extern_nilai6']])) ? $this->cCodeData[$cCode]["main"][$externSrc['extern_nilai6']] : "",
+                            "externValueBlob" => $oldblobPym,
+                        ));
+                        cekMerah($this->CI->db->last_query());
+                    }
+                }
+            }
+            else {
+                cekMerah("TIDAK nulis paymentSrc");
+            }
+            //endregion
+
+            //region nulis paymentAntiSource
+            $stepCode = $this->configUiModul[$this->jenisTr]["steps"][1]["target"];
+            $paymentSources = $this->CI->config->item("payment_antiSource") != null ? $this->CI->config->item("payment_antiSource") : array();
+            if (array_key_exists($stepCode, $paymentSources)) {
+                cekHitam(":: starting PAYMENT ANTI SOURCE");
+                $payConfigs = $paymentSources[$stepCode];
+                if (sizeof($payConfigs) > 0) {
+                    foreach ($payConfigs as $paymentSrcConfig) {
+                        $valueSrc = $paymentSrcConfig['valueSrc'];
+                        $externSrc = $paymentSrcConfig['externSrc'];
+                        $tr->writePaymentAntiSrc($insertID, array(
+                            "jenis" => $stepCode,
+                            "target_jenis" => $paymentSrcConfig['jenisTarget'],
+                            "reference_jenis" => $paymentSrcConfig['jenisSrc'],
+                            "extern_id" => $this->cCodeData[$cCode]["main"][$externSrc["id"]],
+                            "extern_nama" => $this->cCodeData[$cCode]["main"][$externSrc['nama']],
+                            "nomer" => $this->cCodeData[$cCode]["main"]['nomer'],
+                            "label" => $paymentSrcConfig["label"],
+                            "tagihan" => $this->cCodeData[$cCode]["main"][$valueSrc],
+                            "terbayar" => 0,
+                            "sisa" => $this->cCodeData[$cCode]["main"][$valueSrc],
+                            "cabang_id" => $this->cCodeData[$cCode]["main"]['placeID'],
+                            "cabang_nama" => $this->cCodeData[$cCode]["main"]['placeName'],
+                            "toko_id" => $this->cCodeData[$cCode]["main"]['tokoID'],
+                            "toko_nama" => $this->cCodeData[$cCode]["main"]["tokoNama"],
+                            "oleh_id" => $this->cCodeData[$cCode]["main"]['olehID'],
+                            "oleh_nama" => $this->cCodeData[$cCode]["main"]['olehName'],
+                            "dtime" => date("Y-m-d H:i:s"),
+                            "fulldate" => date("Y-m-d"),
+                            "valas_id" => isset($this->cCodeData[$cCode]["main"][$externSrc['valasId']]) ? $this->cCodeData[$cCode]["main"][$externSrc['valasId']] : '',
+                            "valas_nama" => isset($this->cCodeData[$cCode]["main"][$externSrc['valasLabel']]) ? $this->cCodeData[$cCode]["main"][$externSrc['valasLabel']] : '',
+                            "valas_nilai" => isset($this->cCodeData[$cCode]["main"][$externSrc['valasValue']]) ? $this->cCodeData[$cCode]["main"][$externSrc['valasValue']] : '',
+                            "tagihan_valas" => isset($this->cCodeData[$cCode]["main"][$externSrc['valasTagihan']]) ? $this->cCodeData[$cCode]["main"][$externSrc['valasTagihan']] : '',
+                            "terbayar_valas" => isset($this->cCodeData[$cCode]["main"][$externSrc['valasTerbayar']]) ? $this->cCodeData[$cCode]["main"][$externSrc['valasTerbayar']] : '',
+                            "sisa_valas" => isset($this->cCodeData[$cCode]["main"][$externSrc['valasSisa']]) ? $this->cCodeData[$cCode]["main"][$externSrc['valasSisa']] : '',
+                            "extern2_id" => (isset($externSrc['extern2_id']) && ($this->cCodeData[$cCode]["main"][$externSrc['extern2_id']])) ? $this->cCodeData[$cCode]["main"][$externSrc['extern2_id']] : "",
+                            "extern2_nama" => (isset($externSrc['extern2_nama']) && ($this->cCodeData[$cCode]["main"][$externSrc['extern2_nama']])) ? $this->cCodeData[$cCode]["main"][$externSrc['extern2_nama']] : "",
+                        ));
+                        //cekMerah($this->CI->db->last_query());
+                    }
+                }
+            }
+            else {
+                //cekMerah("TIDAK nulis paymentSrc");
+            }
+            //endregion
+
+            //region MENULIS KE REGISTRY
+            $pakai_ini = 1;
+            if ($pakai_ini == 1) {
+
+                if (isset($this->configCoreModul[$this->jenisTr]['components']) && sizeof($this->configCoreModul[$this->jenisTr]['components'])) {
+                    $jurnalIndex = $this->configCoreModul[$this->jenisTr]['components'];
+                }
+                else {
+                    if (isset($this->cCodeData[$cCode]["revert"]["jurnal"]) && sizeof($this->cCodeData[$cCode]["revert"]["jurnal"]) > 0) {
+                        $jurnalIndex = $this->cCodeData[$cCode]["revert"]["jurnal"];
+                    }
+                    else {
+                        $jurnalIndex = array();
+                    }
+                }
+                //------------
+                if (isset($this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget]) && sizeof($this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget])) {
+                    $jurnalPostProc = $this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget];
+                }
+                else {
+                    if (isset($this->cCodeData[$cCode]["revert"]["postProc"]) && sizeof($this->cCodeData[$cCode]["revert"]["postProc"]) > 0) {
+                        $jurnalPostProc = $this->cCodeData[$cCode]["revert"]["postProc"];
+                    }
+                    else {
+                        $jurnalPostProc = array();
+                    }
+                }
+                //------------
+                if (isset($this->configCoreModul[$this->jenisTr]['preProcessor'][$jenisTrTarget]) && sizeof($this->configCoreModul[$this->jenisTr]['preProcessor'][$jenisTrTarget])) {
+                    $jurnalPreProc = $this->configCoreModul[$this->jenisTr]['preProcessor'][$jenisTrTarget];
+                }
+                else {
+                    if (isset($this->cCodeData[$cCode]["revert"]["preProc"]) && sizeof($this->cCodeData[$cCode]["revert"]["preProc"]) > 0) {
+                        $jurnalPreProc = $this->cCodeData[$cCode]["revert"]["preProc"];
+                    }
+                    else {
+                        $jurnalPreProc = array();
+                    }
+                }
+                //------------
+                if (isset($this->configCoreModul[$this->jenisTr]['coreBuilder'][$jenisTrTarget]) && sizeof($core[$this->jenisTr]['coreBuilder'][$jenisTrTarget])) {
+                    $coreBuilder = $this->configCoreModul[$this->jenisTr]['coreBuilder'][$jenisTrTarget];
+                }
+                else {
+                    $coreBuilder = array();
+                }
+                //------------
+                $baseRegistries = array(
+                    "jurnal_index" => $jurnalIndex,
+                    "postProcessor" => $jurnalPostProc,
+                    "preProcessor" => $jurnalPreProc,
+                    "revert" => isset($this->cCodeData[$cCode]['revert']) ? $this->cCodeData[$cCode]['revert'] : array(),
+                    "items_komposisi" => isset($this->cCodeData[$cCode]['items_komposisi']) ? $this->cCodeData[$cCode]['items_komposisi'] : array(),
+                    "items_noapprove" => isset($this->cCodeData[$cCode]['items_noapprove']) ? $this->cCodeData[$cCode]['items_noapprove'] : array(),
+                    "jurnalItems" => isset($this->cCodeData[$cCode]['jurnalItems']) ? $this->cCodeData[$cCode]['jurnalItems'] : array(),
+                    "componentsBuilder" => isset($this->cCodeData[$cCode]['componentsBuilder']) ? $this->cCodeData[$cCode]['componentsBuilder'] : array(),
+                );
+                $doWriteReg = $tr->writeDataRegistries($insertID, $baseRegistries) or die(lgShowError("Ada kesalahan", "Gagal saat berusaha  write base params into registries"));
+                showLast_query("biru");
+
+            }
+            //endregion
+
+            //region extended steps
+            if (isset($this->cCodeData[$cCode]['main_inputs']) && sizeof($this->cCodeData[$cCode]['main_inputs']) > 0) {
+                foreach ($this->cCodeData[$cCode]['main_inputs'] as $iKey => $iVal) {
+                    if ($iVal > 0) {
+                        cekbiru("evaluating $iKey ($iVal) for paymentSrc..");
+                        $stepCode = $this->jenisTr . "_";
+                        $paymentSources = $this->CI->config->item("payment_source");
+
+                        if (array_key_exists($stepCode, $paymentSources)) {
+                            $payConfigs = $paymentSources[$stepCode];
+                            cekbiru("$stepCode registered");
+
+                            //===kalau melibatkan payment-source
+                            if (sizeof($payConfigs) > 0) {
+                                foreach ($payConfigs as $paymentSrcConfig) {
+                                    if ($paymentSrcConfig['valueSrc'] == $iKey) {
+                                        cekhijau($paymentSrcConfig['valueSrc'] . " / $iKey akan dieksekusi");
+                                        $valueSrc = $paymentSrcConfig['valueSrc'];
+                                        $externSrc = $paymentSrcConfig['externSrc'];
+                                        if ($tr->paymentSrcExistsInMaster($insertID, $stepCode, $paymentSrcConfig["label"])) {
+                                            cekhijau($paymentSrcConfig["label"] . " pada $stepCode $insertID sudah ada, tidak perlu ditulis");
+                                        }
+                                        else {
+                                            cekhijau($paymentSrcConfig["label"] . " pada $stepCode $insertID BELUM ada, ditulis sekarang");
+                                            $tr->writePaymentSrc($insertID, array(
+                                                "_key" => $iKey,
+                                                "jenis" => $stepCode,
+                                                "target_jenis" => $paymentSrcConfig['jenisTarget'],
+                                                "reference_jenis" => $paymentSrcConfig['jenisSrc'],
+                                                "extern_id" => $this->cCodeData[$cCode]["main"][$externSrc["id"]],
+                                                "extern_nama" => $this->cCodeData[$cCode]["main"][$externSrc['nama']],
+                                                "nomer" => $this->cCodeData[$cCode]["main"]['nomer'],
+                                                "label" => $paymentSrcConfig["label"],
+                                                "tagihan" => $this->cCodeData[$cCode]['main_inputs'][$valueSrc],
+                                                "terbayar" => 0,
+                                                "sisa" => $this->cCodeData[$cCode]['main_inputs'][$valueSrc],
+                                                "cabang_id" => $this->cCodeData[$cCode]["main"]['placeID'],
+                                                "cabang_nama" => $this->cCodeData[$cCode]["main"]['placeName'],
+                                                "oleh_id" => $this->cCodeData[$cCode]["main"]['olehID'],
+                                                "oleh_nama" => $this->cCodeData[$cCode]["main"]['olehName'],
+                                                "dtime" => dtimeNow(),
+                                                "fulldate" => dtimeNow("Y-m-d"),
+                                                "valas_id" => isset($this->cCodeData[$cCode]["main"][$externSrc['valasId']]) ? $this->cCodeData[$cCode]["main"][$externSrc['valasId']] : '',
+                                                "valas_nama" => isset($this->cCodeData[$cCode]["main"][$externSrc['valasLabel']]) ? $this->cCodeData[$cCode]["main"][$externSrc['valasLabel']] : '',
+                                                "valas_nilai" => isset($this->cCodeData[$cCode]["main"][$externSrc['valasValue']]) ? $this->cCodeData[$cCode]["main"][$externSrc['valasValue']] : '',
+                                                "tagihan_valas" => isset($this->cCodeData[$cCode]["main"][$externSrc['valasTagihan']]) ? $this->cCodeData[$cCode]["main"][$externSrc['valasTagihan']] : '',
+                                                "terbayar_valas" => 0,
+                                                "sisa_valas" => isset($this->cCodeData[$cCode]["main"][$externSrc['valasSisa']]) ? $this->cCodeData[$cCode]["main"][$externSrc['valasSisa']] : '',
+                                            ));
+                                        }
+                                        //									cekMerah("paySrc: ".$this->CI->db->last_query());
+                                    }
+                                    else {
+                                        cekmerah($paymentSrcConfig['valueSrc'] . " / $iKey tidak untuk dieksekusi");
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            cekbiru("$stepCode NOT registered");
+                        }
+
+                        //==periksa apakah mainInput memerlukan auth
+                        if (array_key_exists($iKey, $inputAuthConfigs)) {
+                            $gID = $inputAuthConfigs[$iKey];
+                            if (strlen($gID) > 0) {
+                                cekhijau("input $iKey bernilai $iVal memerlukan auth dari $gID");
+                                $trA = new MdlTransaksi();
+                                if ($trA->extStepExistsInMaster($insertID, $iKey)) {
+                                    cekhijau("extStep SUDAH terdaftar, sekarang nggak akan ditulis");
+                                }
+                                else {
+                                    cekhijau("extStep belum terdaftar, sekarang hendak ditulis");
+                                    $trA->writeExtStep($insertID, array(
+                                        "master_id" => $insertID,
+                                        "transaksi_id" => $insertID,
+                                        "_key" => $iKey,
+                                        "_label" => $inputLabels[$iKey],
+                                        "_value" => $iVal,
+                                        "group_id" => $gID,
+                                        "state" => "0",
+                                        "proposed_by" => $this->cCodeData[$cCode]["main"]['olehID'],
+                                        "proposed_dtime" => date("Y-m-d H:i:s"),
+                                        "done_by",
+                                        "done_dtime",
+                                    ));
+                                    cekhijau($this->CI->db->last_query());
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+            }
+            //endregion
+
+            $outResultLib = array(
+                "sessionData" => $this->cCodeData[$cCode],
+                "tmpNomerNota" => $tmpNomorNota,
+                "transaksiId" => $insertID,
+            );
+
+            $masterID = $insertID;
+
+            //            validateAllBalances($tokoID);
+            cekHitam($tokoID . "::" . $cabangID_validate);
+            validateAllBalances($tokoID, $cabangID_validate);
+
+        }
+
+        // commit dan log ada di controller
+        // pembersih session, redirect, ada di controller
+
+        return $outResultLib;
+    }
+
+    public function followupPrePreview()
+    {
+        $srcIdTr = $no = $this->transaksiNumber;
+        $stepNumber = $this->stepNum;
+        $currentStepNum = $this->stepNumCurrent;
+        // matiHEre($no);
+        //        $rawBuilderURL = url_cleanup(blobEncode(current_url()));
+        //
+        //
+        //
+
+        $this->CI->load->model("MdlTransaksi");
+
+        //region read items from existing model
+        $tr = new MdlTransaksi();
+        $tr->addFilter("transaksi_id in (" . implode(",", explode("-", $no)) . ")");
+        $tmpTr = $tr->lookupJoined()->result();
+        cekBiru($this->CI->db->last_query());
+        //        arrprint($tr->getFilters());
+        showLast_query("merah");
+        //endregion
+
+        $cancelPackingId = isset($tmpTr[0]->cancel_packing_source_id) ? $tmpTr[0]->cancel_packing_source_id : 0;
+        $tmpTrCancelPacking = array();
+        $id_top_source_cancel_packing = array();
+        if ($cancelPackingId > 0) {
+            $tr->setFilters(array());
+            $tr->addFilter("transaksi_id in (" . implode(",", explode("-", $cancelPackingId)) . ")");
+            $tmpTrCancelPacking = $tr->lookupJoined()->result();
+            $id_top_source_cancel_packing = $tmpTrCancelPacking[0]->id_top;
+        }
+
+        $signNumbers = array();
+        $trs = new MdlTransaksi();
+        $trs->setFilters(array());
+        $tmpSign = $trs->lookupSignaturesByMasterID($no)->result();
+        if (sizeof($tmpSign) > 0) {
+            $sCtr = 0;
+            foreach ($tmpSign as $row) {
+                $signNumbers[$sCtr] = "" . $row->step_number;
+                $sCtr++;
+            }
+        }
+
+        $rawItems = array();
+        if (sizeof($tmpTr) > 0) {
+            $jenisTr = $this->jenisTr = $tmpTr[0]->jenis_master;
+            $cCode = $this->cCode;
+            $tokoID = $tmpTr[0]->toko_id;
+
+            $configUi = $this->configUiModul;
+            $configCore = $this->configCoreModul;
+            $configLayout = $this->configLayoutModul;
+            $configValues = $this->configValuesModul;
+
+            /* -------------------
+             * settlement
+             * -------------------*/
+            $confSettlement = $this->CI->config->item('settlement');
+            $warning = "";
+            if ($confSettlement['restrictions'] == true) {
+                $condites = array(
+                    "date(dtime)<" => dtimeNow('Y-m-d'),
+                );
+                $this->db->where($condites);
+                $mySettlementDatas = $trs->callMyTransaksi(my_id(), my_cabang_id());
+                $jmlOldTransaksi = sizeof($mySettlementDatas);
+
+                if ($jmlOldTransaksi > 0) {
+                    $alerts = array(
+                        "type" => "error",
+                        "title" => "Peringatan!",
+                        "html" => "Masih ada setelmen belum diselesaikan, silahkan diselesaikan terlebih dahulu",
+                        // "allowOutsideClick" => true,
+                        // "allowEscapeKey" => false,
+                        // "confirmButtonText" => "Settlement",
+                    );
+                    $warning = swalAlertSettlement($alerts, $jenisTr);
+                }
+                echo $warning;
+            }
+            // -------------------
+
+            if (isset($this->cCodeData[$cCode])) {
+                $this->cCodeData[$cCode] = null;
+                unset($this->cCodeData[$cCode]);
+            }
+
+            //region session init
+            if (!isset($this->cCodeData[$cCode])) {
+                $this->cCodeData[$cCode] = array(
+                    "items" => array(),
+                    "main" => array(),
+                );
+            }
+            if (!isset($this->cCodeData[$cCode]["main"])) {
+                $this->cCodeData[$cCode]["main"] = array();
+            }
+            if (!isset($this->cCodeData[$cCode]["items"])) {
+                $this->cCodeData[$cCode]["items"] = array();
+            }
+            //endregion
+
+            $trID = $tmpTr[0]->transaksi_id;
+            $itemLabels = isset($this->configLayoutModul[$this->jenisTr]['receiptDetailFields'][$stepNumber]) ? $this->configLayoutModul[$this->jenisTr]['receiptDetailFields'][$stepNumber] : array();
+            $itemNumLabels = isset($this->configUiModul[$this->jenisTr]['shoppingCartNumFields'][$stepNumber]) ? $this->configUiModul[$this->jenisTr]['shoppingCartNumFields'][$stepNumber] : array();
+            $subAmountConfig = isset($this->configUiModul[$this->jenisTr]['shoppingCartAmountValue'][$stepNumber]) ? $this->configUiModul[$this->jenisTr]['shoppingCartAmountValue'][$stepNumber] : null;
+            $measurementDetails = isset($this->configUiModul[$this->jenisTr]["receiptMesurementRows"]) ? $this->configUiModul[$this->jenisTr]["receiptMesurementRows"] : array();
+            $validatePaymentLocker = isset($this->configUiModul[$this->jenisTr]["validatePaymentSource"][$stepNumber]) ? $this->configUiModul[$this->jenisTr]["validatePaymentSource"][$stepNumber] : array();
+            $itemsChild = isset($this->configUiModul[$this->jenisTr]["shopingCartDetailFields"][$stepNumber]['fields']) ? $this->configUiModul[$this->jenisTr]["shopingCartDetailFields"][$stepNumber]['fields'] : array();//dipake detil pembelian aset
+            $updatePrice = isset($this->configUiModul[$this->jenisTr]["updatePrice"][$stepNumber]) ? $this->configUiModul[$this->jenisTr]["updatePrice"][$stepNumber] : false;                                             //dipake add price pembelian aset
+            $priceInjectorItems = isset($this->configUiModul[$this->jenisTr]["priceInjectorItems"][$stepNumber]) ? $this->configUiModul[$this->jenisTr]["priceInjectorItems"][$stepNumber] : array();
+            $masterID = $tmpTr[0]->id_master;
+            $topID = $tmpTr[0]->id_top;
+            $tmpNomorNota = $tmpTr[0]->nomer;
+            $origJenis = $tmpTr[0]->jenis_master;
+            $currentStepNum = $tmpTr[0]->step_number;
+            $afterTargetStepNum = ($currentStepNum + 1);
+
+
+            //region periksa locker value;
+            $tempLocker = array();
+            $tempBtnUndo = array();
+            if (sizeof($validatePaymentLocker) > 0) {
+                $mdlName = "Mdls/" . $validatePaymentLocker;
+                $this->load->model($mdlName);
+                $l = new $validatePaymentLocker();
+                $l->addFilter("transaksi_id='$no'");
+                $l->addFilter("state='active'");
+                $l->addFilter("nilai > 0");
+                $tempLocker = $l->lookupAll()->result();
+                if (sizeof($tempLocker) > 0) {
+                    $tempBtnUndo = array(
+                        "allowedUndone" => false,//tidak boleh di undo/reject
+                        "allowedFollow" => false,//boleh di followup
+                    );
+                }
+                else {
+                    //                    arrPrint($this->config->item('payment_source')[$this->jenisTr]);
+                    //                    cekKuning(":: $currentStepNum ::");
+                    $jnTarget = isset($this->config->item('payment_source')[$this->jenisTr][$currentStepNum][0]['jenisTarget']) ? $this->config->item('payment_source')[$this->jenisTr][$currentStepNum][0]['jenisTarget'] : "";
+                    //                    cekHitam(":: ** $jnTarget ** ::");
+                    $tempBtnUndo = array(
+                        "allowedUndone" => true,// boleh di undo/reject
+                        "allowedFollow" => true,//tidak boleh di followup
+                        "label" => isset($this->configUiModul[$jnTarget]["label"]) ? $this->configUiModul[$jnTarget]["label"] : "",
+                    );
+                }
+            }
+            //endregion
+
+
+            //==periksa apakah ada ganjalan
+            $trA = new MdlTransaksi();
+            $extSteps = $trA->lookupExtSteps($masterID);
+            if (sizeof($extSteps) > 0) {
+                cekmerah("ada ganjalan step sebanyak " . sizeof($extSteps));
+            }
+            else {
+                cekhijau("TAK ada ganjalan step");
+            }
+            $paySrcs = $trA->lookupPaymentSrcs($masterID, $this->jenisTr . "_");
+            if (sizeof($paySrcs) > 0) {
+                cekmerah("ada ganjalan paymentSrc sebanyak " . sizeof($paySrcs));
+            }
+            else {
+                cekhijau("TAK ada ganjalan paymentSrc");
+            }
+
+
+            $allowEdit = isset($this->configUiModul[$this->jenisTr]["steps"][$stepNumber]['allowEdit']) ? $this->configUiModul[$this->jenisTr]["steps"][$stepNumber]['allowEdit'] : false;
+            $allowCancel = isset($this->configUiModul[$this->jenisTr]["steps"][$stepNumber]['allowCancel']) ? $this->configUiModul[$this->jenisTr]["steps"][$stepNumber]['allowCancel'] : false;
+            $editableFields = isset($this->configUiModul[$this->jenisTr]['shoppingCartEditableFields'][$stepNumber]) ? $this->configUiModul[$this->jenisTr]['shoppingCartEditableFields'][$stepNumber] : array();
+
+
+            //region valid items
+            $this->CI->load->model("MdlTransaksi");
+            $tr = new MdlTransaksi();
+            $tr->addFilter("transaksi_id in (" . implode(",", explode("-", $no)) . ")");
+            $tr->addFilter("sub_step_number='" . $currentStepNum . "'");
+            $tr->addFilter("next_substep_code='" . $this->configUiModul[$this->jenisTr]["steps"][$stepNumber]["target"] . "'");
+            $tr->addFilter("next_substep_num='$stepNumber'");
+            $tr->addFilter("valid_qty>0");
+            $tmpTr = $tr->lookupJoined()->result();
+
+
+            $id_top = isset($tmpTr[0]->id_top) ? $tmpTr[0]->id_top : "";
+            $tmpTrPacked = array();
+            // dibawa ini dimatikan karena tidak dibutuhkan di teguh
+            // dipakai untuk mencari qty dicancel/direturn/dikirimkan
+            //            if ($id_top != "") {
+            //                $idTr = isset($tmpTr[0]->id) ? $tmpTr[0]->id : "";
+            //                $trPack = new MdlTransaksi();
+            //                $trPack->setFilters(array());
+            //                $trPack->addFilter("id_top in (" . implode(",", explode("-", $id_top)) . ")");
+            //                $trPack->addFilter("valid_qty>0");
+            //                $tmpTrPacked = $trPack->lookupJoined()->result();
+            //            }
+
+            $tmpTrPrePacked = array();
+            if (sizeof($id_top_source_cancel_packing) > 0) {
+                $trPrePack = new MdlTransaksi();
+                $trPrePack->setFilters(array());
+                $trPrePack->addFilter("id_top in (" . implode(",", explode("-", $id_top_source_cancel_packing)) . ")");
+                $trPrePack->addFilter("valid_qty>0");
+                $trPrePack->addFilter("trash_4<1");
+                $tmpTrPrePacked = $trPrePack->lookupJoined()->result();
+            }
+            else {
+                if ($tmpTr[0]->cancel_packing_source_id == "") {
+                    //mati_disini("TENGAH");
+                }
+                else {
+                    //mati_disini("BAWAH");
+                    $trPrePack = new MdlTransaksi();
+                    $trPrePack->setFilters(array());
+                    $trPrePack->addFilter("cancel_packing_source_id in (" . implode(",", explode("-", $no)) . ")");
+                    $trPrePack->addFilter("valid_qty>0");
+                    $trPrePack->addFilter("trash_4<1");
+                    $tmpTrPrePacked = $trPrePack->lookupJoined()->result();
+                }
+            }
+
+
+            $arrPreTmp__ = array();
+            foreach ($tmpTrPrePacked as $y => $dd) {
+                if (!isset($arrPreTmp__[$dd->jenis][$dd->produk_id])) {
+                    $arrPreTmp__[$dd->jenis][$dd->produk_id] = 0;
+                }
+                $arrPreTmp__[$dd->jenis][$dd->produk_id] += $dd->produk_ord_jml;
+            }
+
+            $arrTmp__ = array();
+            if (sizeof($tmpTrPacked) > 0) {
+                foreach ($tmpTrPacked as $y => $dd) {
+                    if (!isset($arrTmp__[$dd->jenis][$dd->produk_id])) {
+                        $arrTmp__[$dd->jenis][$dd->produk_id] = 0;
+                    }
+                    $arrTmp__[$dd->jenis][$dd->produk_id] += $dd->produk_ord_jml;
+                }
+            }
+
+
+            $extractedItems = array();//==untuk urusan update transaksi referer
+            $validItems = array();
+            $validItemSends = array();
+            $validItemReqCancels = array();
+            $validItemCancels = array();
+            $validItemPreCancels = array();
+            $validItemSents = array();
+            if (sizeof($tmpTr) > 0) {
+                cekmerah("ada yang mau diekstrak @" . __LINE__);
+                foreach ($tmpTr as $row) {
+                    if (!isset($validItems[$row->produk_id])) {
+                        $validItems[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemSends[$row->produk_id])) {
+                        $validItemSends[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemCancels[$row->produk_id])) {
+                        $validItemCancels[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemReqCancels[$row->produk_id])) {
+                        $validItemReqCancels[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemPackeds[$row->produk_id])) {
+                        $validItemPackeds[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemPreCancels[$row->produk_id])) {
+                        $validItemPreCancels[$row->produk_id] = 0;
+                    }
+
+                    $validItems[$row->produk_id] += isset($row->valid_qty) ? $row->valid_qty : 0;
+                    $validItemSends[$row->produk_id] += isset($arrTmp__['582spd'][$row->produk_id]) ? $arrTmp__['582spd'][$row->produk_id] : 0;
+                    $validItemCancels[$row->produk_id] += isset($row->cancel_qty) ? $row->cancel_qty : 0;
+                    $validItemReqCancels[$row->produk_id] += isset($row->req_cancel_qty) ? $row->req_cancel_qty : 0;
+                    $validItemPreCancels[$row->produk_id] += isset($arrPreTmp__['1982'][$row->produk_id]) ? $arrPreTmp__['1982'][$row->produk_id] : 0;
+                    $validItemPackeds[$row->produk_id] += isset($arrTmp__['582pkd'][$row->produk_id]) ? $arrTmp__['582pkd'][$row->produk_id] : 0;
+
+                    if (!isset($extractedItems[$row->produk_id])) {
+                        $extractedItems[$row->produk_id] = array();
+                    }
+                    $extractedItems[$row->produk_id][$row->id] = array(
+                        "id" => $row->id,
+                        "produk_id" => $row->produk_id,
+                        "qty" => $row->produk_ord_jml,
+                        "valid_qty" => $row->valid_qty,
+                        "transaksi_id" => $row->transaksi_id,
+                        "packed_qty" => isset($arrTmp__['582pkd'][$row->produk_id]) ? $arrTmp__['582pkd'][$row->produk_id] : 0,
+                        "sent_qty" => isset($arrTmp__['582spd'][$row->produk_id]) ? $arrTmp__['582spd'][$row->produk_id] : 0,
+                        "req_cancel_qty" => isset($arrPreTmp__['1982'][$row->produk_id]) ? $arrPreTmp__['1982'][$row->produk_id] : 0,
+                        "cancel_qty" => $row->cancel_qty,
+                        "outstanding" => $row->produk_ord_jml - ($row->produk_ord_jml - $row->valid_qty),
+                    );
+                }
+            }
+            else {
+                cekmerah("TIDAK ada yang mau diekstrak");
+            }
+            //endregion
+
+
+            //region tabel2 tarikan untuk kolom2 nilai (hpp, ppn, dll)
+            $tmpVal_main = $tr->lookupMainValuesByTransID($trID)->result();
+            $tmpVal_detail = $tr->lookupDetailValuesByTransID($trID)->result();
+            $mainValues = array();
+            if (sizeof($tmpVal_main) > 0) {
+                foreach ($tmpVal_main as $row) {
+                    $mainValues[$row->key] = $row->value;
+                }
+            }
+            $detailValues = array();
+            if (sizeof($tmpVal_detail) > 0) {
+                foreach ($tmpVal_detail as $row) {
+                    $detailValues[$row->produk_id][$row->key] = $row->value;
+                }
+            }
+            //endregion
+
+
+            //region take from registries
+            $trr = new MdlTransaksi();
+            $trr->setFilters(array());
+            $trr->addFilter("trash='0'");
+            $tmpReg = $tr->lookupDataRegistriesByMasterID($srcIdTr)->row();
+
+            $main = array();
+            $items = array();
+            $items2 = array();
+            $items2_sum = array();
+            $items3 = array();
+            $items3_sum = array();
+            $items4_sum = array();
+            $items5_sum = array();
+            $items6_sum = array();
+            $items7_sum = array();
+            $items8_sum = array();
+            $items9_sum = array();
+            $items10_sum = array();
+            $rsltItems = array();
+            $rsltItems2 = array();
+            $masterGates = array();
+            $childGates = array();
+            $childGates2 = array();
+            $childGates2_sum = array();
+            $childGatesRsltItems = array();
+            $childGatesRsltItems2 = array();
+            $masterTableInParams = array();
+            $childTableInParams = array();
+            $childTableInParamsRsltItems = array();
+            $childTableInParamsRsltItems2 = array();
+            $masterTableInValueParams = array();
+            $childTableInValueParams = array();
+            $childTableInValueParamsRsltItems = array();
+            $childTableInValueParamsRsltItems2 = array();
+            $masterAddValues = array();
+            $masterAddFields = array();
+            $mainElements = array();
+            $mainInputs = array();
+            $diskon_event = array();
+            $cashback_event = array();
+            if (sizeof($tmpReg) > 0) {
+                foreach ($tmpReg as $param => $row) {
+                    switch ($param) {
+                        case "main"://
+                            $main = $main + unserialize(base64_decode($row));
+                            break;
+                        case "items"://
+                            $items = $items + unserialize(base64_decode($row));
+                            break;
+                        case "items2"://
+                            $items2 = $items2 + unserialize(base64_decode($row));
+                            break;
+                        case "rsltItems"://
+                            $rsltItems = $rsltItems + unserialize(base64_decode($row));
+                            break;
+                        case "rsltItems2"://
+                            $rsltItems2 = $rsltItems2 + unserialize(base64_decode($row));
+                            break;
+                        case "items2_sum"://
+                            $items2_sum = $items2_sum + unserialize(base64_decode($row));
+                            break;
+                        case "items3"://
+                            $items3 = $items3 + unserialize(base64_decode($row));
+                            break;
+                        case "items3_sum"://
+                            $items3_sum = $items3_sum + unserialize(base64_decode($row));
+                            break;
+                        case "items4_sum"://
+                            $items4_sum = $items4_sum + unserialize(base64_decode($row));
+                            break;
+                        case "items5_sum"://
+                            $items5_sum = $items5_sum + unserialize(base64_decode($row));
+                            break;
+                        case "items6_sum"://
+                            $items6_sum = $items6_sum + unserialize(base64_decode($row));
+                            break;
+                        case "items7_sum"://
+                            $items7_sum = $items7_sum + unserialize(base64_decode($row));
+                            break;
+                        case "items8_sum"://
+                            $items8_sum = $items8_sum + unserialize(base64_decode($row));
+                            break;
+                        case "items9_sum"://
+                            $items9_sum = $items9_sum + unserialize(base64_decode($row));
+                            break;
+                        case "items10_sum"://
+                            $items10_sum = $items10_sum + unserialize(base64_decode($row));
+                            break;
+                        case "tableIn_master"://
+                            $masterTableInParams = $masterTableInParams + unserialize(base64_decode($row));
+                            break;
+                        case "tableIn_detail"://
+                            $childTableInParams = $childTableInParams + unserialize(base64_decode($row));
+                            break;
+                        case "tableIn_detail_rsltItems"://
+                            $childTableInParamsRsltItems = $childTableInParamsRsltItems + unserialize(base64_decode($row));
+                            break;
+                        case "tableIn_detail_rsltItems2"://
+                            $childTableInParamsRsltItems2 = $childTableInParamsRsltItems2 + unserialize(base64_decode($row));
+                            break;
+                        case "tableIn_master_values"://
+                            $masterTableInValueParams = $masterTableInValueParams + unserialize(base64_decode($row));
+                            break;
+                        case "tableIn_detail_values"://
+                            $childTableInValueParams = $childTableInValueParams + unserialize(base64_decode($row));
+                            break;
+                        case "tableIn_detail_values_rsltItems"://
+                            $childTableInValueParamsRsltItems = $childTableInValueParamsRsltItems + unserialize(base64_decode($row));
+                            break;
+                        case "tableIn_detail_values_rsltItems2"://
+                            $childTableInValueParamsRsltItems2 = $childTableInValueParamsRsltItems2 + unserialize(base64_decode($row));
+                            break;
+                        case "main_add_values"://
+                            $masterAddValues = $masterAddValues + unserialize(base64_decode($row));
+                            break;
+                        case "main_add_fields"://
+                            $masterAddFields = $masterAddFields + unserialize(base64_decode($row));
+                            break;
+                        case "main_elements"://
+                            $mainElements = unserialize(base64_decode($row));
+                            break;
+                        case "main_inputs"://
+                            $mainInputs = unserialize(base64_decode($row));
+                            break;
+                        case "diskon_event"://
+                            $diskon_event = unserialize(base64_decode($row));
+                            break;
+                        case "cashback_event"://
+                            $cashback_event = unserialize(base64_decode($row));
+                            break;
+                    }
+                }
+            }
+            else {
+                mati_disini("Cannot read the registry entries from $masterID!");
+            }
+            //endregion
+            // arrprint($main);
+            //             matiHEre(__LINE__);
+
+            //region replacer Downpayment avail
+            if (isset($mainInputs['dp'])) {
+                if (isset($this->configUiModul[$this->jenisTr]["updateDownpayment"][$stepNumber])) {
+                    $this->CI->load->model("Coms/ComLockerValue");
+                    $mi = new ComLockerValue();
+                    $mi->addFilter("produk_id='" . $main["masterID"] . "'");
+                    $mainInputAvail = $mi->fetchBalances("downpayment");
+                    $lockerVal = $mainInputAvail[0]->nilai;
+                    $mainValTmp_dp = $main['dp_value'];
+                    $mainValTmp_dp_ppn = $main['dp_ppn_value'];
+
+                    if (isset($main['valid_dp']) && $main['valid_dp'] > 0) {
+                        $validate = round($mainInputAvail[0]->nilai - $mainValTmp_dp, 2);
+                        if ($lockerVal > 0) {
+                            $valnew = $main['new_net1'] - $lockerVal > 0 ? 0 : $main['new_net1'];
+                            $main['dp_value'] = $valnew;
+                            $main['dp_ppn_value'] = $valnew * 10 / 100;
+                        }
+                        else {
+                            $main['dp_value'] = 0;
+                            $main['dp_ppn_value'] = 0;
+                        }
+
+                        if ($validate > 0) {
+                            $mainInputs['dp'] = $mainInputAvail[0]->nilai;
+                        }
+                        else {
+                            if ($validate < 0) {
+                                if (isset($main['valid_dp']) && $main['valid_dp'] > 0) {
+                                    $main['downpayment'] = $mainInputs['dp'];
+                                    $mainInputs['downpayment'] = $mainInputs['dp'];
+                                    $main['total_ui'] = $masterTableInValueParams['tagihan'] - $masterTableInValueParams['dp_ppn_value'];
+                                }
+                                unset($mainInputs['dp']);
+                            }
+                        }
+                    }
+                    else {
+                        $main['dp_value'] = 0;
+                        $main['dp_ppn_value'] = 0;
+                        unset ($mainInputs['dp']);
+                    }
+
+                    if (!isset($main['valid_dp'])) {
+                        $main['valid_dp'] = $mainInputAvail[0]->nilai;
+                    }
+                }
+            }
+            else {
+                if (isset($main['valid_dp']) && $main['valid_dp'] > 0) {
+                    $main['downpayment'] = $main['dp'];
+                    $mainInputs['downpayment'] = $main['dp'];
+                    $main['total_ui'] = $masterTableInValueParams['new_net1'] - $main['valid_dp'];
+                }
+            }
+            //endregion
+
+            $masterReplacers = array(
+                "jenisTrMaster" => $this->jenisTr,
+                "jenisTrTop" => $masterTableInParams['jenis_top'],
+                "harga" => 0,
+                "masterID" => $masterID,
+            );
+            foreach ($masterReplacers as $key => $src) {
+                $main[$key] = $src;
+                $mainValues[$key] = $src;
+                $masterGates[$key] = $src;
+            }
+
+
+            //==revalidate items
+            $this->CI->load->library("FieldCalculator");
+            $this->CI->load->helper("he_angka");
+            $cal = new FieldCalculator();
+
+
+            $itemChildData = array();
+            $finalItemPrice = array();
+            $finalItemPriceSum = array();
+            $finalHargaJual = array();
+            $arrHpp = array();
+            if (sizeof($items) > 0) {
+                $listedItemsIDs = "(";
+                foreach ($items as $xid => $iSpec) {
+                    $id = $iSpec["id"];
+                    $listedItemsIDs .= "'$id',";
+                    $tipeSize = isset($iSpec['detilSize']) && sizeof($iSpec['detilSize']) > 0 ? $iSpec['detilSize'] : "";
+
+                    if (array_key_exists($id, $validItems)) {
+                        $items[$id]['jml'] = $validItems[$id];
+                        //                        $items[$id]['jml'] = $validItems[$id]-(int)$validItemPreCancels[$id];
+                        $items[$id]['max_jml'] = $validItems[$id];
+                        //                        $items[$id]['max_jml'] = $validItems[$id]-(int)$validItemPreCancels[$id];
+                        $items[$id]['packed_jml'] = $validItemPackeds[$id];
+                        $items[$id]['sent_jml'] = $validItemSends[$id];
+                        $items[$id]['cancel_jml'] = $validItemCancels[$id];
+                        $items[$id]['req_cancel_jml'] = $validItemPreCancels[$id];
+                        if (sizeof($editableFields) > 0) {
+                            foreach ($editableFields as $fName) {
+                                $items[$id]["max_$fName"] = isset($iSpec[$fName]) ? $iSpec[$fName] : 0;
+                            }
+                        }
+
+                        if (sizeof($measurementDetails)) {
+                            if (in_array($stepNumber, $measurementDetails["allowView"]) && isset($measurementDetails[$tipeSize])) {
+                                $selectedColl = $measurementDetails[$tipeSize];
+                                foreach ($selectedColl as $colSelected => $tempHelper) {
+                                    //                                    cekHitam("$heAngka");
+
+                                    foreach ($tempHelper as $newKey => $heAngka) {
+                                        cekHitam($newKey);
+                                        $items[$id][$newKey] = $heAngka($iSpec[$colSelected]);
+                                    }
+                                    //
+                                }
+                            }
+
+                        }
+
+
+                        if ($subAmountConfig != null) {
+                            $tmpEx = $cal->multiExplode($subAmountConfig);
+                            if (sizeof($tmpEx) > 1) {
+                                //                            echo lgShowAlert("menghitung subtotal pakai rumus $subAmountConfig di step ke # $stepNumber");
+                                $newSrc = $subAmountConfig;
+                                foreach ($tmpEx as $key2 => $val2) {
+                                    if (isset($items[$id][$val2])) {
+                                        $newSrc = str_replace($val2, $items[$id][$val2], $newSrc);
+
+                                    }
+                                    else {
+                                        if (isset($tmp[$val2])) {
+                                            $newSrc = str_replace($val2, $items[$val2], $newSrc);
+
+                                        }
+                                        else {
+                                            $newSrc = str_replace($val2, "0", $newSrc);
+
+                                        }
+                                    }
+
+
+                                }
+                                $subtotal = $cal->calculate($newSrc);
+
+
+                            }
+                            else {
+                                //                            echo lgShowAlert("memasang subtotal dari $subAmountConfig");
+                                $subtotal = $items[$id][$subAmountConfig];
+
+                            }
+                        }
+                        else {
+                            //                        echo lgShowAlert("tidak mengapa-apakan subtotal");
+                            $subtotal = 0;
+
+                        }
+
+                        $items[$id]['subtotal'] = $subtotal;
+                        //region item child
+                        if (sizeof($itemsChild) > 0) {
+                            for ($x = 1; $x <= $validItems[$id]; $x++) {
+                                foreach ($itemsChild as $col => $col_label) {
+                                    $itemChildData[$id][$x][$col] = isset($items[$id][$col]) ? $items[$id][$col] : "";
+                                    $itemChildData[$id][$x]["jml"] = 1;
+                                    $itemChildData[$id][$x]["qty"] = 1;
+                                    $itemChildData[$id][$x]["folders"] = $main['pihakMainID'];
+                                }
+
+                            }
+                            //                            arrPrint($itemsChild);
+                            //                        foreach ($itemsChild as )
+                        }
+
+                        //endregion
+
+
+                    }
+                    else {
+                        cekUngu(":: masuk sini, UNSET semua ::");
+                        unset($items[$id]);
+                        unset($childGates[$id]);
+                        unset($childTableInParams[$id]);
+                        unset($childTableInValueParams[$id]);
+
+                    }
+
+                    if (!isset($arrHpp[$xid])) {
+                        $arrHpp[$xid] = array();
+                    }
+                    $arrHpp[$xid] = isset($iSpec) ? $iSpec : array();
+                }
+                $listedItemsIDs = rtrim($listedItemsIDs, ",");
+                $listedItemsIDs .= ")";
+                if ($updatePrice) {
+                    $extenMdl = $this->configUiModul[$this->jenisTr]["itemPrice"][$stepNumber]['mdlName'];
+                    $extenFields = $this->configUiModul[$this->jenisTr]["itemPrice"][$stepNumber]['fields'];
+                    $this->CI->load->model("Mdls/" . $extenMdl);
+                    $pr = new $extenMdl();
+                    $pr->addFilter("produk_id in $listedItemsIDs");
+                    $tmpPrice = $pr->lookUpAll()->result();
+
+                    $externPriceDataTmp = array();
+                    if (sizeof($tmpPrice) > 0) {
+                        foreach ($tmpPrice as $tmpPrice0) {
+                            $externPriceDataTmp[$tmpPrice0->cabang_id][$tmpPrice0->produk_id][$tmpPrice0->jenis_value] = $tmpPrice0->nilai;
+                            $externPriceDataTmp[$tmpPrice0->cabang_id][$tmpPrice0->produk_id]['harga_jual_old'] = $tmpPrice0->jenis_value == "jual" ? $tmpPrice0->nilai * 1 : 0;
+                        }
+                    }
+                    else {
+                        $this->CI->load->model("Mdls/MdlCabang");
+                        $c = new MdlCabang();
+                        $tnpC = $c->lookUpAll()->result();
+                        $cab = array();
+                        foreach ($tnpC as $tmp) {
+                            $cab[$tmp->id] = $tmp->nama;
+                        }
+                        $cab[CB_ID_PUSAT] = "PUSAT";
+                        foreach ($cab as $cabang_id => $cabang_nama) {
+                            foreach ($validItems as $prod_id => $itemms) {
+                                foreach ($extenFields as $field_key => $field_val) {
+                                    $externPriceDataTmp[$cabang_id][$prod_id][$field_val] = 0;
+                                    $externPriceDataTmp[$cabang_id][$prod_id]['harga_jual_old'] = 0;
+                                }
+                            }
+                        }
+                    }
+
+
+                    if (sizeof($externPriceDataTmp) > 0) {
+                        foreach ($items as $pidMaster => $tmpDataItems) {
+                            foreach ($externPriceDataTmp as $cID => $tmp) {
+                                if (isset($tmp[$pidMaster])) {
+                                    foreach ($extenFields as $field) {
+                                        $valFinal = isset($tmpPriceData[$field]) ? $tmpPriceData[$field] : 0;
+                                        if ($pidMaster > 0) {
+                                            $finalItemPrice[$cID][$pidMaster][$field] = $valFinal;
+                                            $finalItemPrice[$cID][$pidMaster]['harga_jual_old'] = isset($tmpPriceData['jual']) ? $tmpPriceData['jual'] * 1 : 0;
+                                        }
+                                    }
+                                }
+                                else {
+                                    foreach ($extenFields as $field) {
+                                        if ($pidMaster > 0) {
+                                            $finalItemPrice[$cID][$pidMaster][$field] = 0;
+                                            $finalItemPrice[$cID][$pidMaster]['harga_jual_old'] = 0;
+                                        }
+                                    }
+                                }
+                                foreach ($tmp as $pID => $tmpPriceData) {
+                                    foreach ($extenFields as $field) {
+                                        $valFinal = isset($tmpPriceData[$field]) ? $tmpPriceData[$field] : 0;
+                                        if ($pID > 0) {
+                                            $finalItemPrice[$cID][$pID][$field] = $valFinal;
+                                            $finalItemPrice[$cID][$pID]['harga_jual_old'] = (isset($tmpPriceData['jual']) ? $tmpPriceData['jual'] * 1 : 0);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        //-----------------
+                        if (sizeof($finalItemPrice) > 0) {
+
+                            $nom = 0;
+                            foreach ($finalItemPrice as $cID => $cSpec) {
+                                foreach ($cSpec as $pID => $pSpec) {
+
+                                    $items[$pID]['price_setting'][$cID] = $pSpec;
+
+
+                                    $nom++;
+                                    foreach ($pSpec as $key => $val) {
+                                        $finalItemPriceSum[$nom][$key] = $val;
+                                        $finalItemPriceSum[$nom]["id"] = $pID;
+                                    }
+                                }
+                            }
+                        }
+                        //-----------------
+                    }
+                    $this->CI->load->model("Mdls/MdlHargaJual");
+                    $c = new MdlHargaJual();
+                    $c->setItems($arrHpp);
+                    $tnpC = $c->callHargaJual(array_keys($items));
+                    $finalHargaJual = $tnpC;
+                }
+                /* ============ HargaJual ============*/
+
+            }
+
+
+            //region session-swapper
+            $swappers = array(
+                "main" => $main,
+                "items" => $items,
+                "items2" => $items2,
+                "items2_sum" => $items2_sum,
+                "items3" => $items3,
+                "items3_sum" => $items3_sum,
+                "items4_sum" => $items4_sum,
+                "items5_sum" => $items5_sum,
+                "items6_sum" => $items6_sum,
+                "items7_sum" => $items7_sum,
+                "items8_sum" => $items8_sum,
+                "items9_sum" => $items9_sum,
+                "items10_sum" => $items10_sum,
+                "items_child" => $itemChildData,
+                "rsltItems" => $rsltItems,
+                "rsltItems2" => $rsltItems2,
+                "extractedItems" => $extractedItems,
+                "tableIn_master" => $masterTableInParams,
+                "tableIn_detail" => $childTableInParams,
+                "tableIn_detail_rsltItems" => $childTableInParamsRsltItems,
+                "tableIn_detail_rsltItems2" => $childTableInParamsRsltItems2,
+                "tableIn_master_values" => $masterTableInValueParams,
+                "tableIn_detail_values" => $childTableInValueParams,
+                "tableIn_detail_values_rsltItems" => $childTableInValueParamsRsltItems,
+                "tableIn_detail_values_rsltItems2" => $childTableInValueParamsRsltItems2,
+                "main_add_values" => $masterAddValues,
+                "main_add_fields" => $masterAddFields,
+                "main_elements" => $mainElements,
+                "main_inputs" => $mainInputs,
+                "extSteps" => $extSteps,
+                "paySrcs" => $paySrcs,
+                "lockerPayment" => $tempBtnUndo,
+                "itemPrice" => $finalItemPrice,
+                "itemPrice_sum" => $finalItemPriceSum,
+                "itemHargaJual" => $finalHargaJual,
+                "diskon_event" => $diskon_event,
+                "cashback_event" => $cashback_event,
+            );
+            // arrPrint($swappers);
+            // matiHEre(__LINE__." || ".__FUNCTION__);
+            foreach ($swappers as $targetVar => $src) {
+                $this->cCodeData[$cCode][$targetVar] = $src;
+            }
+            //endregion
+
+
+            //==init replacer
+            arrPrint($this->cCodeData[$cCode]);
+            //==recover nilai HARGA master
+            $this->cCodeData[$cCode]["main"]['harga'] = 0;
+
+
+            //==default load dari nota, maka dianggap langsung done
+            $this->cCodeData[$cCode]["main"]['status_4'] = 1;
+            $this->cCodeData[$cCode]["main"]['trash_4'] = 0;
+            if (sizeof($this->cCodeData[$cCode]["items"]) > 0) {
+                foreach ($this->cCodeData[$cCode]["items"] as $xid => $iSpec) {
+                    $id = $iSpec["id"];
+                    $this->cCodeData[$cCode]["main"]['harga'] += ($iSpec['jml'] * $iSpec['harga']);
+
+                }
+            }
+
+            // matiHEre($cCode." || ". __LINE__." function ".__FUNCTION__);
+            $this->CI->load->helper("he_value_builder");
+            //            resetValues($this->jenisTr);
+            $this->cCodeData[$cCode] = fillValuesSessionData_he_value_builder(
+                $this->jenisTr,
+                $currentStepNum,
+                $stepNumber,
+                $this->configCoreModul[$this->jenisTr],
+                $this->configUiModul[$this->jenisTr],
+                $this->configValuesModul[$this->jenisTr],
+                $this->cCodeData[$cCode]["main"]["ppnFactor"],
+                $this->cCodeData[$cCode]);
+
+
+            $outResultLib = array(
+                "sessionData" => $this->cCodeData[$cCode],
+                //                "tmpNomerNota" => $tmpNomorNota,
+                //                "transaksiId" => $insertID,
+            );
+            return $outResultLib;
+
+        }
+        else {
+            echo "<script>top.close_holdon()</script>";
+            die(lgShowAlert("No such transaction. You may want to refresh the browser to re-fetch actual content. @" . __LINE__));
+        }
+
+    }
+
+    // endregion library lama
+
+
+    public function followupPrePreviewAuto($jenisTr, $no, $stepNum, $stepNumCurrent)
+    {
+
+        $no = rtrim($no, "-");
+        $stepNumber = $stepNum;
+        $currentStepNum = $stepNumCurrent;
+        $url = str_replace("index.php/", "", current_url());
+        $rawBuilderURL = blobEncode($url);
+        $modePengirim = isset($_GET["pengirim"]) ? $_GET["pengirim"] : "";
+
+
+        //region read items from existing model
+        $this->CI->load->model("MdlPembelianTransaksi");
+        $tr = new MdlPembelianTransaksi();
+        $tr->setFilters(array());
+        $tr->addFilter($tr->getTableName() . ".id in (" . implode(",", explode("-", $no)) . ")");
+        $tmpTr = $tr->lookupJoined();
+        cekBiru($this->CI->db->last_query());
+        //endregion
+
+
+        $cancelPackingId = isset($tmpTr[0]->cancel_packing_source_id) ? $tmpTr[0]->cancel_packing_source_id : 0;
+        $tmpTrCancelPacking = array();
+        $id_top_source_cancel_packing = array();
+        if ($cancelPackingId > 0) {
+            $tr->setFilters(array());
+            $tr->addFilter("id in (" . implode(",", explode("-", $cancelPackingId)) . ")");
+            $tmpTrCancelPacking = $tr->lookupJoined();
+            $id_top_source_cancel_packing = $tmpTrCancelPacking[0]->id_top;
+        }
+
+
+        $signNumbers = array();
+        $trs = new MdlPembelianTransaksi();
+        $trs->setFilters(array());
+        $tmpSign = $trs->lookupSignaturesByMasterID($no)->result();
+        if (sizeof($tmpSign) > 0) {
+            $sCtr = 0;
+            foreach ($tmpSign as $row) {
+                $signNumbers[$sCtr] = "" . $row->step_number;
+                $sCtr++;
+            }
+        }
+
+
+        $rawItems = array();
+        if (sizeof($tmpTr) > 0) {
+            $this->jenisTr = $tmpTr[0]->jenis_master;
+            $cCode = "_TR_" . $this->jenisTr;
+            if (isset($sessionData[$cCode])) {
+                $sessionData[$cCode] = null;
+                unset($sessionData[$cCode]);
+            }
+
+            //region session init
+            if (!isset($sessionData[$cCode])) {
+                $sessionData[$cCode] = array(
+                    "items" => array(),
+                    "main" => array(),
+                );
+            }
+            if (!isset($sessionData[$cCode]['main'])) {
+                $sessionData[$cCode]['main'] = array();
+            }
+            if (!isset($sessionData[$cCode]['items'])) {
+                $sessionData[$cCode]['items'] = array();
+            }
+            //endregion
+
+            $trID = $tmpTr[0]->transaksi_id;
+            $itemLabels = isset($this->configLayout[$this->jenisTr]['receiptDetailFields'][$stepNumber]) ? $this->configLayout[$this->jenisTr]['receiptDetailFields'][$stepNumber] : array();
+            $itemNumLabels = isset($this->configUi[$this->jenisTr]['shoppingCartNumFields'][$stepNumber]) ? $this->configUi[$this->jenisTr]['shoppingCartNumFields'][$stepNumber] : array();
+            $subAmountConfig = isset($this->configUi[$this->jenisTr]['shoppingCartAmountValue'][$stepNumber]) ? $this->configUi[$this->jenisTr]['shoppingCartAmountValue'][$stepNumber] : null;
+            $measurementDetails = isset($this->configUi[$this->jenisTr]["receiptMesurementRows"]) ? $this->configUi[$this->jenisTr]["receiptMesurementRows"] : array();
+            $validatePaymentLocker = isset($this->configUi[$this->jenisTr]["validatePaymentSource"][$stepNumber]) ? $this->configUi[$this->jenisTr]["validatePaymentSource"][$stepNumber] : array();
+            $itemsChild = isset($this->configUi[$this->jenisTr]["shopingCartDetailFields"][$stepNumber]['fields']) ? $this->configUi[$this->jenisTr]["shopingCartDetailFields"][$stepNumber]['fields'] : array();//dipake detil pembelian aset
+            $itemsChildGate = isset($this->configUi[$this->jenisTr]["shopingCartDetailFields"][$stepNumber]['gate']) ? $this->configUi[$this->jenisTr]["shopingCartDetailFields"][$stepNumber]['gate'] : array();//dipake detil pembelian aset/penambahan aset dari supplies sebagai switcer baca item atau main
+            $validatePaymentLocker = isset($this->configUi[$this->jenisTr]["validatePaymentSource"][$stepNumber]) ? $this->configUi[$this->jenisTr]["validatePaymentSource"][$stepNumber] : array();
+            $itemsChild = isset($this->configUi[$this->jenisTr]["shopingCartDetailFields"][$stepNumber]['fields']) ? $this->configUi[$this->jenisTr]["shopingCartDetailFields"][$stepNumber]['fields'] : array();//dipake detil pembelian aset
+            $itemsChildGate = isset($this->configUi[$this->jenisTr]["shopingCartDetailFields"][$stepNumber]['gate']) ? $this->configUi[$this->jenisTr]["shopingCartDetailFields"][$stepNumber]['gate'] : array();//dipake detil pembelian aset/penambahan aset dari supplies sebagai switcer baca item atau main
+            $tableInMaster = isset($this->configCore[$this->jenisTr]['tableIn']['master']) ? $this->configCore[$this->jenisTr]['tableIn']['master'] : array();
+            $elementConfig = isset($this->configUi[$this->jenisTr]['receiptElements']) ? $this->configUi[$this->jenisTr]['receiptElements'] : array();
+
+            $masterID = $tmpTr[0]->id_master;
+            $topID = $tmpTr[0]->id_top;
+            $tmpNomorNota = $tmpTr[0]->nomer;
+            $origJenis = $tmpTr[0]->jenis_master;
+            $currentStepNum = $tmpTr[0]->step_number;
+            $afterTargetStepNum = ($currentStepNum + 1);
+            $pengirimID = $tmpTr[0]->pengirim_id;
+            $pengirimName = $tmpTr[0]->pengirim_nama;
+            $jenisCurrentTransaksi = $tmpTr[0]->jenis;
+            //--------------------------------
+            $id_top = isset($tmpTr[0]->id_top) ? $tmpTr[0]->id_top : "";
+            $gudangStatusJenis = $tmpTr[0]->gudang_status_jenis;
+            $idsHis = ($tmpTr[0]->ids_his != null) ? blobDecode($tmpTr[0]->ids_his) : array();
+
+            //region periksa locker value;
+            $tempLocker = array();
+            $tempBtnUndo = array();
+            if (sizeof($validatePaymentLocker) > 0) {
+                $mdlName = "Mdls/" . $validatePaymentLocker;
+                $this->CI->load->model($mdlName);
+                $l = new $validatePaymentLocker();
+                $l->addFilter("transaksi_id='$no'");
+                $l->addFilter("state='active'");
+                $l->addFilter("nilai > 0");
+                $tempLocker = $l->lookupAll()->result();
+                //cekUngu($this->CI->db->last_query() . " >> $validatePaymentLocker");
+                //arrPrint($tempLocker);
+                if (sizeof($tempLocker) > 0) {
+                    $tempBtnUndo = array(
+                        "allowedUndone" => false,//tidak boleh di undo/reject
+                        "allowedFollow" => false,//boleh di followup
+                    );
+                }
+                else {
+                    $jnTarget = isset($this->CI->config->item('payment_source')[$this->jenisTr][$currentStepNum][0]['jenisTarget']) ? $this->CI->config->item('payment_source')[$this->jenisTr][$currentStepNum][0]['jenisTarget'] : "";
+                    $tempBtnUndo = array(
+                        "allowedUndone" => true,// boleh di undo/reject
+                        "allowedFollow" => true,//tidak boleh di followup
+                        "label" => isset($this->configUi[$jnTarget]['label']) ? $this->configUi[$jnTarget]['label'] : "",
+                    );
+                }
+            }
+
+            //endregion
+
+            $allowEdit = isset($this->configUi[$this->jenisTr]['steps'][$stepNumber]['allowEdit']) ? $this->configUi[$this->jenisTr]['steps'][$stepNumber]['allowEdit'] : false;
+            $allowCancel = isset($this->configUi[$this->jenisTr]['steps'][$stepNumber]['allowCancel']) ? $this->configUi[$this->jenisTr]['steps'][$stepNumber]['allowCancel'] : false;
+            $editableFields = isset($this->configUi[$this->jenisTr]['shoppingCartEditableFields'][$stepNumber]) ? $this->configUi[$this->jenisTr]['shoppingCartEditableFields'][$stepNumber] : array();
+
+
+            //region valid items
+            $extractedItems = array();//==untuk urusan update transaksi referer
+            $validItems = array();
+            $validItemSends = array();
+            $validItemReqCancels = array();
+            $validItemCancels = array();
+            $validItemPreCancels = array();
+            $validItemSents = array();
+            $main = array();
+//            $items = array();
+            if (sizeof($tmpTr) > 0) {
+                cekmerah("ada yang mau diekstrak");
+                foreach ($tmpTr as $row) {
+                    //----
+                    $main = (array)$row;
+//                    $items[$row->produk_id] = (array)$row;
+                    //----
+                    if (!isset($validItems[$row->produk_id])) {
+                        $validItems[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemSends[$row->produk_id])) {
+                        $validItemSends[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemCancels[$row->produk_id])) {
+                        $validItemCancels[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemReqCancels[$row->produk_id])) {
+                        $validItemReqCancels[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemPackeds[$row->produk_id])) {
+                        $validItemPackeds[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemPreCancels[$row->produk_id])) {
+                        $validItemPreCancels[$row->produk_id] = 0;
+                    }
+                    $validItems[$row->produk_id] += isset($row->qty_saldo) ? $row->qty_saldo : 0;
+                    $validItemSends[$row->produk_id] += isset($arrTmp__['582spd'][$row->produk_id]) ? $arrTmp__['582spd'][$row->produk_id] : 0;
+                    $validItemCancels[$row->produk_id] += isset($row->cancel_qty) ? $row->cancel_qty : 0;
+                    $validItemReqCancels[$row->produk_id] += isset($row->req_cancel_qty) ? $row->req_cancel_qty : 0;
+                    $validItemPreCancels[$row->produk_id] += isset($arrPreTmp__['1982'][$row->produk_id]) ? $arrPreTmp__['1982'][$row->produk_id] : 0;
+                    $validItemPackeds[$row->produk_id] += isset($arrTmp__['582pkd'][$row->produk_id]) ? $arrTmp__['582pkd'][$row->produk_id] : 0;
+                    if (!isset($extractedItems[$row->produk_id])) {
+                        $extractedItems[$row->produk_id] = array();
+                    }
+                    $extractedItems[$row->produk_id][$row->id_detail] = array(
+//                        "id" => $row->id,
+                        "id" => $row->produk_id,
+                        "produk_id" => $row->produk_id,
+                        "qty" => $row->produk_ord_jml,
+//                        "valid_qty" => $row->valid_qty,
+                        "valid_qty" => $row->qty_kredit,
+                        "transaksi_id" => $row->transaksi_id,
+                        "packed_qty" => isset($arrTmp__['582pkd'][$row->produk_id]) ? $arrTmp__['582pkd'][$row->produk_id] : 0,
+                        "sent_qty" => isset($arrTmp__['582spd'][$row->produk_id]) ? $arrTmp__['582spd'][$row->produk_id] : 0,
+                        "req_cancel_qty" => isset($arrPreTmp__['1982'][$row->produk_id]) ? $arrPreTmp__['1982'][$row->produk_id] : 0,
+                        "cancel_qty" => isset($row->cancel_qty) ? $row->cancel_qty : 0,
+//                        "outstanding" => $row->produk_ord_jml - ($row->produk_ord_jml - $row->valid_qty),
+                        "outstanding" => $row->produk_ord_jml - ($row->produk_ord_jml - $row->qty_kredit),
+                    );
+                    //-------
+                    if (sizeof($tableInMaster) > 0) {
+                        foreach ($tableInMaster as $mKey => $mVal) {
+//                            if ($mVal != NULL) {
+                            $main[$mVal] = isset($row->$mKey) ? $row->$mKey : "";
+//                            }
+                        }
+                    }
+                    //-------
+                    if (sizeof($tableInDetail) > 0) {
+                        foreach ($tableInDetail as $mKey => $mVal) {
+                            if ($mVal != NULL) {
+//                                $items[$row->produk_id][$mVal] = isset($row->$mKey) ? $row->$mKey : "";
+                            }
+                        }
+                    }
+                    //-------
+                }
+            }
+            else {
+                cekmerah("TIDAK ada yang mau diekstrak");
+            }
+            cekBiru($validItems);
+            //endregion
+
+
+            $pakai_ini = 1;
+            if ($pakai_ini == 1) {
+                $trr = new MdlPembelianTransaksi();
+                $trr->setFilters(array());
+                $trrTmp = $trr->lookupTransaksionalModulesByID($no);
+                if (sizeof($trrTmp) > 0) {
+                    foreach ($trrTmp as $key => $val) {
+                        $$key = $val;
+                    }
+                }
+            }
+
+
+            //region take from registries
+            $trr = new MdlPembelianTransaksi();
+            $trr->setFilters(array());
+            $trrTmp = $trr->lookupMainElementsByTransID($no)->result();
+//                cekBiru($this->db->last_query());
+            if (sizeof($trrTmp) > 0) {
+//                    arrPrint($elementConfig);
+                foreach ($trrTmp as $trrSpec) {
+//                        arrPrint($trrSpec);
+                    $mainElements[$trrSpec->element_name] = (array)$trrSpec;
+                    //buildkemain
+                    if (isset($elementConfig[$trrSpec->element_name])) {
+                        switch ($elementConfig[$trrSpec->element_name]["elementType"]) {
+                            case "dataField":
+                                if (!isset($main[$trrSpec->element_name])) {
+                                    $main[$trrSpec->element_name] = $trrSpec->value;
+                                }
+
+                                break;
+                            case "dataModel":
+
+                                if (!isset($main[$trrSpec->element_name])) {
+                                    $main[$trrSpec->element_name] = $trrSpec->key;
+                                }
+                                if (isset($elementConfig[$trrSpec->element_name]["usedFields"]) && count($elementConfig[$trrSpec->element_name]["usedFields"]) > 0) {
+                                    if (!isset($main[$trrSpec->element_name . "__" . $elementConfig[$trrSpec->element_name]["key"]])) {
+                                        $main[$trrSpec->element_name . "__" . $elementConfig[$trrSpec->element_name]["key"]] = $trrSpec->key;
+                                    }
+                                    foreach ($elementConfig[$trrSpec->element_name]["usedFields"] as $kx => $alias) {
+
+
+                                        $main[$trrSpec->element_name . "__" . $kx] = $trrSpec->$kx;
+
+
+                                    }
+
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+
+                }
+            }
+
+
+            //lookup pengganti registry ke tabel penjuelan_transkai_data_xxx
+            $trr->setFilters(array());
+//            $tempReg = $trr->lookUpAllChild($no);
+            $tempReg = $trr->lookupDataRegistriesByMasterID($no);
+            //            matiHere();
+            $main = array();
+            $items = array();
+            $items2 = array();
+            $items2_sum = array();
+            $items3 = array();
+            $items3_sum = array();
+            $items4 = array();
+            $items4_sum = array();
+            $items6 = array();
+            $items6_sum = array();
+            $items7 = array();
+            $items7_sum = array();
+            $items8_sum = array();
+            $items9_sum = array();
+            $items10_sum = array();
+            $rsltItems = array();
+            $rsltItems2 = array();
+
+            $masterGates = array();
+            $childGates = array();
+            $childGates2 = array();
+            $childGates2_sum = array();
+            $childGatesRsltItems = array();
+            $childGatesRsltItems2 = array();
+            $masterTableInParams = array();
+            $childTableInParams = array();
+            $childTableInParamsRsltItems = array();
+            $childTableInParamsRsltItems2 = array();
+            $masterTableInValueParams = array();
+            $childTableInValueParams = array();
+            $childTableInValueParamsRsltItems = array();
+            $childTableInValueParamsRsltItems2 = array();
+            $masterAddValues = array();
+            $masterAddFields = array();
+            $mainElements = array();
+            $mainInputs = array();
+            $itemsKomposisi = array();
+            if (sizeof($tmpReg) > 0) {
+                foreach ($tempReg as $reg => $valuePair) {
+                    switch ($reg) {
+                        case "main_entries"://
+//                                $main = $main + $valuePair;
+                            foreach ($valuePair as $m_key => $mVal) {
+                                $main[$m_key] = $mVal;
+                            }
+//                                arrPrint($main);
+//                                matiHere(__LINE__);
+                            break;
+                        case "main"://
+                            $main = $main + $valuePair;
+                            break;
+                        case "items"://
+                            $items = $items + $valuePair;
+                            break;
+                        case "items2"://
+                            $items2 = $items2 + $valuePair;
+                            break;
+                        case "rsltItems"://
+                            $rsltItems = $rsltItems + $valuePair;
+                            break;
+                        case "rsltItems2"://
+                            $rsltItems2 = $rsltItems2 + $valuePair;
+                            break;
+                        case "items2_sum"://
+                            $items2_sum = $items2_sum + $valuePair;
+                            break;
+                        case "items3"://
+                            $items3 = $items3 + $valuePair;
+                            break;
+                        case "items3_sum"://
+                            $items3_sum = $items3_sum + $valuePair;
+                            break;
+                        case "items4_sum"://
+                            $items4_sum = $items4_sum + $valuePair;
+                            break;
+                        case "items5_sum"://
+                            $items5_sum = $items5_sum + $valuePair;
+                            break;
+                        case "items6_sum"://
+                            $items6_sum = $items6_sum + $valuePair;
+                            break;
+                        case "items7_sum"://
+                            $items7_sum = $items7_sum + $valuePair;
+                            break;
+                        case "items8_sum"://
+                            $items8_sum = $items8_sum + $valuePair;
+                            break;
+                        case "items9_sum"://
+                            $items9_sum = $items9_sum + $valuePair;
+                            break;
+                        case "items10_sum"://
+                            $items10_sum = $items10_sum + $valuePair;
+                            break;
+                        case "items_komposisi"://
+                            $itemsKomposisi = $valuePair;
+                            break;
+                    }
+                }
+
+            }
+            else {
+                die("Cannot read the registry entries from $masterID!");
+            }
+            //endregion
+
+            $masterReplacers = array(
+                "jenisTrMaster" => $this->jenisTr,
+                "jenisTrTop" => $masterTableInParams['jenis_top'],
+                "harga" => 0,
+                "masterID" => $masterID,
+            );
+            foreach ($masterReplacers as $key => $src) {
+                $main[$key] = $src;
+                $mainValues[$key] = $src;
+                $masterGates[$key] = $src;
+            }
+
+
+            //==revalidate items
+            $this->CI->load->library("FieldCalculator");
+            $this->CI->load->helper("he_angka");
+            $cal = new FieldCalculator();
+
+            $itemChildData = array();
+            if (sizeof($items) > 0) {
+
+                foreach ($items as $xid => $iSpec) {
+                    $id = $iSpec['id'];
+                    $tipeSize = isset($iSpec['detilSize']) && sizeof($iSpec['detilSize']) > 0 ? $iSpec['detilSize'] : "";
+
+                    if (array_key_exists($id, $validItems)) {
+                        $items[$id]['jml'] = $validItems[$id];
+                        //                        $items[$id]['jml'] = $validItems[$id]-(int)$validItemPreCancels[$id];
+                        $items[$id]['max_jml'] = $validItems[$id];
+                        //                        $items[$id]['max_jml'] = $validItems[$id]-(int)$validItemPreCancels[$id];
+                        $items[$id]['packed_jml'] = $validItemPackeds[$id];
+                        $items[$id]['sent_jml'] = $validItemSends[$id];
+                        $items[$id]['cancel_jml'] = $validItemCancels[$id];
+                        $items[$id]['req_cancel_jml'] = $validItemPreCancels[$id];
+                        if (sizeof($editableFields) > 0) {
+                            foreach ($editableFields as $fName) {
+                                $items[$id]["max_$fName"] = isset($iSpec[$fName]) ? $iSpec[$fName] : 0;
+                            }
+                        }
+
+                        if (sizeof($measurementDetails)) {
+                            if (in_array($stepNumber, $measurementDetails["allowView"]) && isset($measurementDetails[$tipeSize])) {
+                                $selectedColl = $measurementDetails[$tipeSize];
+                                foreach ($selectedColl as $colSelected => $tempHelper) {
+                                    foreach ($tempHelper as $newKey => $heAngka) {
+                                        $items[$id][$newKey] = $heAngka($iSpec[$colSelected]);
+                                    }
+                                }
+                            }
+                        }
+
+
+                        if ($subAmountConfig != null) {
+                            $tmpEx = $cal->multiExplode($subAmountConfig);
+                            if (sizeof($tmpEx) > 1) {
+                                //                            echo lgShowAlert("menghitung subtotal pakai rumus $subAmountConfig di step ke # $stepNumber");
+                                $newSrc = $subAmountConfig;
+                                foreach ($tmpEx as $key2 => $val2) {
+                                    if (isset($items[$id][$val2])) {
+                                        $newSrc = str_replace($val2, $items[$id][$val2], $newSrc);
+
+                                    }
+                                    else {
+                                        if (isset($tmp[$val2])) {
+                                            $newSrc = str_replace($val2, $items[$val2], $newSrc);
+
+                                        }
+                                        else {
+                                            $newSrc = str_replace($val2, "0", $newSrc);
+
+                                        }
+                                    }
+
+
+                                }
+                                $subtotal = $cal->calculate($newSrc);
+
+
+                            }
+                            else {
+                                //                            echo lgShowAlert("memasang subtotal dari $subAmountConfig");
+                                $subtotal = $items[$id][$subAmountConfig];
+
+                            }
+                        }
+                        else {
+                            //                        echo lgShowAlert("tidak mengapa-apakan subtotal");
+                            $subtotal = 0;
+
+                        }
+
+                        $items[$id]['subtotal'] = $subtotal;
+                        //region item child
+                        if (sizeof($itemsChild) > 0 && ($itemsChildGate == 'detail')) {
+                            //                        if (sizeof($itemsChild)  > 0 ) {
+                            for ($x = 1; $x <= $validItems[$id]; $x++) {
+                                foreach ($itemsChild as $col => $col_label) {
+                                    $itemChildData[$id][$x][$col] = isset($items[$id][$col]) ? $items[$id][$col] : "";
+                                    $itemChildData[$id][$x]["jml"] = 1;
+                                    $itemChildData[$id][$x]["qty"] = 1;
+                                    $itemChildData[$id][$x]["folders"] = $main['pihakMainID'];
+                                }
+
+                            }
+                            //                            arrPrint($itemsChild);
+                            //                        foreach ($itemsChild as )
+                        }
+
+                        //endregion
+//                        cekBiru($itemsKomposisi);
+                        if (sizeof($itemsKomposisi) > 0) {
+                            if (array_key_exists($id, $itemsKomposisi)) {
+                                foreach ($items2[$id] as $jenis_komposisi => $iiSpec) {
+                                    foreach ($iiSpec as $ee => $eeSpec) {
+                                        $komposisi = $itemsKomposisi[$id][$jenis_komposisi][$ee];
+                                        // re-kalkulasi gerbang items2
+                                        $items2[$id][$jenis_komposisi][$ee]['jml'] = $komposisi->jml * $validItems[$id];
+                                        $items2[$id][$jenis_komposisi][$ee]['sub_nilai'] = $komposisi->nilai * $validItems[$id];
+                                        cekhijau("pID: $id [], jml: " . $komposisi->jml . " validItems: " . $validItems[$id]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        unset($items[$id]);
+                        unset($items2[$id]);
+                        unset($childGates[$id]);
+                        unset($childTableInParams[$id]);
+                        unset($childTableInValueParams[$id]);
+                    }
+
+                    if (isset($items6[$xid]) && sizeof($items6[$xid]) > 0) {
+                        foreach ($items6[$xid] as $xid6 => $iSpec) {
+                            $id = $iSpec['id'];
+                            $tipeSize = isset($iSpec['detilSize']) && sizeof($iSpec['detilSize']) > 0 ? $iSpec['detilSize'] : "";
+                            if (array_key_exists($xid, $validItems)) {
+//                                $items6[$xid][$xid6]['jml'] = $iSpec['qty'];
+//                                $items6[$xid][$xid6]['max_jml'] = $iSpec['qty'];
+//                                cekHitam("[max_jml]  :: " . $iSpec['qty']);
+//                                cekUngu("[max_jml]  :: " . $items6[$xid][$xid6]['max_jml']);
+                                //---------------------
+
+                                //---------------------
+
+                                if ($subAmountConfig != null) {
+                                    $tmpEx = $cal->multiExplode($subAmountConfig);
+                                    if (sizeof($tmpEx) > 1) {
+                                        //                            echo lgShowAlert("menghitung subtotal pakai rumus $subAmountConfig di step ke # $stepNumber");
+                                        $newSrc = $subAmountConfig;
+                                        foreach ($tmpEx as $key2 => $val2) {
+                                            if (isset($items6[$xid][$xid6][$val2])) {
+                                                $newSrc = str_replace($val2, $items6[$xid][$xid6][$val2], $newSrc);
+
+                                            }
+                                            else {
+                                                if (isset($tmp[$val2])) {
+                                                    $newSrc = str_replace($val2, $items6[$xid][$xid6][$val2], $newSrc);
+
+                                                }
+                                                else {
+                                                    $newSrc = str_replace($val2, "0", $newSrc);
+
+                                                }
+                                            }
+
+
+                                        }
+                                        $subtotal = $cal->calculate($newSrc);
+
+
+                                    }
+                                    else {
+                                        //                            echo lgShowAlert("memasang subtotal dari $subAmountConfig");
+                                        $subtotal = $items6[$xid][$xid6][$subAmountConfig];
+
+                                    }
+                                }
+                                else {
+                                    //                        echo lgShowAlert("tidak mengapa-apakan subtotal");
+                                    $subtotal = 0;
+
+                                }
+
+
+                                $items6[$xid][$xid6]['subtotal'] = $subtotal;
+
+                                //region item child
+
+                                if (sizeof($itemsChild) > 0 && ($itemsChildGate == 'detail')) {
+                                    //                        if (sizeof($itemsChild)  > 0 ) {
+                                    for ($x = 1; $x <= $validItems[$id]; $x++) {
+                                        foreach ($itemsChild as $col => $col_label) {
+                                            $itemChildData[$id][$x][$col] = isset($items[$id][$col]) ? $items[$id][$col] : "";
+                                            $itemChildData[$id][$x]["jml"] = 1;
+                                            $itemChildData[$id][$x]["qty"] = 1;
+                                            $itemChildData[$id][$x]["folders"] = $main['pihakMainID'];
+                                        }
+
+                                    }
+                                    //                            arrPrint($itemsChild);
+                                    //                        foreach ($itemsChild as )
+                                }
+
+                                //endregion
+
+                                if (sizeof($itemsKomposisi[$xid]) > 0) {
+                                    if (array_key_exists($id, $itemsKomposisi[$xid])) {
+                                        foreach ($items7[$xid][$id] as $jenis_komposisi => $iiSpec) {
+                                            foreach ($iiSpec as $ee => $eeSpec) {
+                                                $komposisi = $itemsKomposisi[$xid][$id][$ee];
+                                                // re-kalkulasi gerbang items2
+                                                $items7[$xid][$id][$ee]['jml'] = $komposisi->jml * $validItems[$id];
+                                                $items7[$xid][$id][$ee]['sub_nilai'] = $komposisi->nilai * $validItems[$id];
+                                                cekhijau("pID: $id [], jml: " . $komposisi->jml . " validItems: " . $validItems[$id]);
+                                            }
+                                        }
+
+                                        $items6[$xid][$xid6]['jml'] = $itemsKomposisi[$xid][$id]["jml"] * $validItems[$xid];
+                                        $items6[$xid][$xid6]['qty'] = $itemsKomposisi[$xid][$id]["jml"] * $validItems[$xid];
+                                        $items6[$xid][$xid6]['max_jml'] = $items6[$xid][$xid6]['qty'];
+                                    }
+                                }
+                            }
+                            else {
+                                unset($items6[$xid]);
+                                unset($items7[$xid]);
+                            }
+                        } // items6
+
+                        //cekKuning($items2_sum);
+//                        cekPink($items2);
+                        if (sizeof($itemsKomposisi) > 0) {
+                            $items2_sum = array();// supplies-nya...
+                            $items3_sum = array();// biaya-nya...
+                            foreach ($items2 as $pID => $pSpec) {
+                                foreach ($pSpec as $jenis => $jSpec) {
+                                    foreach ($jSpec as $eSpec) {
+                                        if ($jenis == "produk") {
+                                            if (!isset($items2_sum[$eSpec['id']])) {
+                                                $items2_sum[$eSpec['id']] = $eSpec;
+                                                $items2_sum[$eSpec['id']]['jml'] = 0;
+                                                $items2_sum[$eSpec['id']]['produk_ids'] = array();
+                                            }
+                                            $items2_sum[$eSpec['id']]['jml'] += $eSpec['jml'];
+                                            $items2_sum[$eSpec['id']]['produk_ids'][$pID] = $pID;
+
+                                            cekBiru("pID: " . $eSpec['id'] . " jml: " . $eSpec['jml']);
+                                        }
+                                        if ($jenis == "biaya") {
+                                            if (!isset($items3_sum[$eSpec['id']])) {
+                                                $items3_sum[$eSpec['id']] = $eSpec;
+                                                $items3_sum[$eSpec['id']]['jml'] = 0;
+                                                $items3_sum[$eSpec['id']]['sub_nilai'] = 0;
+                                                $items3_sum[$eSpec['id']]['produk_ids'] = array();
+                                            }
+                                            $items3_sum[$eSpec['id']]['jml'] += $eSpec['jml'];
+                                            $items3_sum[$eSpec['id']]['sub_nilai'] += $eSpec['sub_nilai'];
+                                            $items3_sum[$eSpec['id']]['produk_ids'][$pID] = $pID;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+                //cekKuning($items2_sum);
+//                cekPink($items2);
+                if (sizeof($itemsKomposisi) > 0) {
+                    $items2_sum = array();// supplies-nya...
+                    $items3_sum = array();// biaya-nya...
+                    foreach ($items2 as $pID => $pSpec) {
+                        foreach ($pSpec as $jenis => $jSpec) {
+                            foreach ($jSpec as $eSpec) {
+                                if ($jenis == "produk") {
+                                    if (!isset($items2_sum[$eSpec['id']])) {
+                                        $items2_sum[$eSpec['id']] = $eSpec;
+                                        $items2_sum[$eSpec['id']]['jml'] = 0;
+                                        $items2_sum[$eSpec['id']]['produk_ids'] = array();
+                                    }
+                                    $items2_sum[$eSpec['id']]['jml'] += $eSpec['jml'];
+                                    $items2_sum[$eSpec['id']]['produk_ids'][$pID] = $pID;
+
+                                    cekBiru("pID: " . $eSpec['id'] . " jml: " . $eSpec['jml']);
+                                }
+                                if ($jenis == "biaya") {
+                                    if (!isset($items3_sum[$eSpec['id']])) {
+                                        $items3_sum[$eSpec['id']] = $eSpec;
+                                        $items3_sum[$eSpec['id']]['jml'] = 0;
+                                        $items3_sum[$eSpec['id']]['sub_nilai'] = 0;
+                                        $items3_sum[$eSpec['id']]['produk_ids'] = array();
+                                    }
+                                    $items3_sum[$eSpec['id']]['jml'] += $eSpec['jml'];
+                                    $items3_sum[$eSpec['id']]['sub_nilai'] += $eSpec['sub_nilai'];
+                                    $items3_sum[$eSpec['id']]['produk_ids'][$pID] = $pID;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            if (sizeof($itemsChild) > 0 && ($itemsChildGate == 'main')) {
+
+                $fieldAlias = isset($this->configUi[$this->jenisTr]["shopingCartDetailFields"][$stepNumber]['fieldAlias']) ? $this->configUi[$this->jenisTr]["shopingCartDetailFields"][$stepNumber]['fieldAlias'] : $itemsChild;//dipake detil pembelian aset
+                foreach ($fieldAlias as $col => $col_label) {
+                    $itemChildData[$main['pihakMainRulesID']][1][$col] = isset($main[$col_label]) ? $main[$col_label] : "";
+                }
+                $itemChildData[$main['pihakMainRulesID']][1]["jml"] = 1;
+                $itemChildData[$main['pihakMainRulesID']][1]["qty"] = 1;
+                $itemChildData[$main['pihakMainRulesID']][1]["folders"] = $main['pihakID'];
+                //                cekBiru("main");
+            }
+
+            //region session-swapper
+            unset($main["nilai_pembulatan"]);
+            $main["pengirimID"] = $pengirimID;
+            $main["pengirimName"] = $pengirimName;
+            $swappers = array(
+                "main" => $main,
+                // "items" => $items,
+                "items" => trimArray($items),
+                "items2" => $items2,
+                "items2_sum" => $items2_sum,
+                "items3" => $items3,
+                "items3_sum" => $items3_sum,
+                "items4" => $items4,
+                "items4_sum" => $items4_sum,
+                "items5_sum" => $items5_sum,
+                "items6_sum" => $items6_sum,
+                "items6" => $items6,
+                "items7" => $items7,
+                "items7_sum" => $items7_sum,
+                "items8_sum" => $items8_sum,
+                "items9_sum" => $items9_sum,
+                "items10_sum" => $items10_sum,
+
+                "items_child" => $itemChildData,
+                "rsltItems" => $rsltItems,
+                "rsltItems2" => $rsltItems2,
+                "extractedItems" => $extractedItems,
+                "extractedItems_last" => $extractedItems,
+
+
+                "tableIn_master" => $masterTableInParams,
+                "tableIn_detail" => $childTableInParams,
+                "tableIn_detail_rsltItems" => $childTableInParamsRsltItems,
+                "tableIn_detail_rsltItems2" => $childTableInParamsRsltItems2,
+                "tableIn_master_values" => $masterTableInValueParams,
+                "tableIn_detail_values" => $childTableInValueParams,
+                "tableIn_detail_values_rsltItems" => $childTableInValueParamsRsltItems,
+                "tableIn_detail_values_rsltItems2" => $childTableInValueParamsRsltItems2,
+                "main_add_values" => $masterAddValues,
+                //        ""=>$childAddValues ,
+                "main_add_fields" => $masterAddFields,
+                //                "main_applets"          => $mainApplets,
+                "main_elements" => $mainElements,
+                "main_inputs" => $mainInputs,
+                //
+                "extSteps" => $extSteps,
+                "paySrcs" => $paySrcs,
+                "lockerPayment" => $tempBtnUndo,
+                "items_komposisi" => $itemsKomposisi,
+            );
+            foreach ($swappers as $targetVar => $src) {
+                $sessionData[$cCode][$targetVar] = $src;
+
+            }
+            //endregion
+
+            if (sizeof($idsHis) > 0) {
+                foreach ($idsHis as $step_his => $data_his) {
+                    if ($step_his == 1) {
+                        $subCounters = blobDecode($data_his["counters"]);
+                        $countStepCode = 0;
+                        foreach ($subCounters["stepCode"] as $cc => $cct) {
+                            $countStepCode = $cct;
+                        }
+                        $sessionData[$cCode]['main']['referenceID'] = $data_his["trID"];
+                        $sessionData[$cCode]['main']['referenceNumber'] = $data_his["nomer"];
+                        $sessionData[$cCode]['main']['referenceNomer'] = $data_his["nomer"];
+                        $sessionData[$cCode]['main']['referenceDtime'] = $data_his["dtime"];
+                        $sessionData[$cCode]['main']['referenceFulldate'] = $data_his["fulldate"];
+                        $sessionData[$cCode]['main']['referenceCount'] = $countStepCode;
+
+                    }
+                    if ($step_his == 2) {
+                        $sessionData[$cCode]['main']['referenceIDSO'] = $data_his["trID"];
+                        $sessionData[$cCode]['main']['referenceNumberSO'] = $data_his["nomer"];
+                        $sessionData[$cCode]['main']['referenceNumberSOCounters'] = blobDecode($data_his["counters"]);
+                    }
+                    $sessionData[$cCode]['main']['referenceID__' . $step_his] = $data_his["trID"];
+                    $sessionData[$cCode]['main']['referenceNumber__' . $step_his] = $data_his["nomer"];
+                    $sessionData[$cCode]['main']['referenceNomer__' . $step_his] = $data_his["nomer"];
+                    $sessionData[$cCode]['main']['referenceDtime__' . $step_his] = $data_his["dtime"];
+                    $sessionData[$cCode]['main']['referenceFulldate__' . $step_his] = $data_his["fulldate"];
+                }
+            }
+
+            $this->CI->load->helper("he_value_builder");
+
+            //-------------------------------------------
+            $receiptElementsInjector = isset($this->configUi[$this->jenisTr]["receiptElementsInjector"]) ? $this->configUi[$this->jenisTr]["receiptElementsInjector"] : array();
+            if (sizeof($receiptElementsInjector) > 0) {
+                foreach ($receiptElementsInjector as $eName => $eSpec) {
+
+                    if ((!isset($main[$eName])) || (!isset($mainElements[$eName]))) {
+                        //                        cekhitam("tidak kenal ppv, maka diinjeckkan...");
+                        if (isset($eSpec['defaultValue'])) {//==cek apakah ada seting defaultValue
+                            //                        cekmerah("default value for $eName is: " . $eSpec['defaultValue']);
+                            $defValueSrc = $eSpec['defaultValue'];
+                            switch ($eSpec['elementType']) {
+                                case "dataModel":
+                                    heFetchElement_modul($this->jenisTr, $eName, $eSpec['mdlName'], $defValueSrc, $this->configUiJenis);
+                                    break;
+                                case "dataField":
+                                    heRecordElement_modul($this->jenisTr, $eName, $defValueSrc, $this->configUiJenis);
+                                    break;
+                            }
+                            $sessionData[$cCode]['main_elements'][$eName]['autoSelect'] = true;
+                        }
+                        else {//==cek apakah pilihannya cuma satu
+                            if (isset($eSpec['noPrefetch']) && $eSpec['noPrefetch'] == true) {
+
+                            }
+                            else {
+                                //                            cekHere(__LINE__);
+                                switch ($eSpec['elementType']) {
+                                    case "dataModel":
+                                        $amdlName = $eSpec['mdlName'];
+                                        $this->CI->load->model("Mdls/" . $amdlName);
+                                        $labelSrc = $eSpec['labelSrc'];
+                                        $keySrc = $eSpec['key'];
+                                        $oo = new $amdlName();
+                                        $aFilter = isset($eSpec['mdlFilter']) ? $eSpec['mdlFilter'] : array();
+                                        //                                    cekHitam($amdlName);
+                                        //                                    arrPrint($aFilter);
+                                        if (sizeof($aFilter) > 0) {
+                                            $oo = makeFilter($aFilter, $sessionData[$cCode]['main'], $oo);
+                                        }
+                                        $tmpo = $oo->lookupAll()->result();
+                                        if (sizeof($tmpo) == 1) {
+                                            $usedKey = $eSpec['key'];
+                                            $defValueSrc = $tmpo[0]->$usedKey;
+                                            heFetchElement_modul($this->jenisTr, $eName, $eSpec['mdlName'], $defValueSrc, $this->configUiJenis);
+                                        }
+                                        break;
+                                    case "dataField":
+                                        break;
+                                }
+                            }
+                        }
+
+                        resetValues($this->jenisTr);
+                        $sessionData[$cCode] = fillValues_he_value_builder_ns($this->jenisTr, $this->uri->segment(7), $this->uri->segment(6), $this->configCoreJenis, $this->configUiJenis, $this->configValuesJenis, $ppnFactor, $sessionData[$cCode]);
+
+                    }
+                }
+            }
+
+            //==init replacer
+            //==recover nilai HARGA master
+            $sessionData[$cCode]['main']['harga'] = 0;
+            $sessionData[$cCode]['main']['currentID'] = $no;
+            $sessionData[$cCode]['main']['currentNomer'] = $tmpNomorNota;
+
+            //==default load dari nota, maka dianggap langsung done
+            $sessionData[$cCode]['main']['status_4'] = 1;
+            $sessionData[$cCode]['main']['trash_4'] = 0;
+            if (sizeof($sessionData[$cCode]['items']) > 0) {
+                foreach ($sessionData[$cCode]['items'] as $xid => $iSpec) {
+                    $id = $iSpec['id'];
+                    $sessionData[$cCode]['main']['harga'] += ($iSpec['jml'] * $iSpec['harga']);
+                    /*---untuk keperluan mobile view---*/
+                    $sessionData[$cCode]['items'][$xid]['jml_target_scan'] = $iSpec['jml'];
+                }
+            }
+
+            //overwriter ppn facrot
+//            if (isset($sessionData[$cCode]["main"]["ppnFactor"]) && $sessionData[$cCode]["main"]["ppnFactor"] == $this->session->login["ppnFactor"]) {
+//
+//            }
+//            else {
+//                $sessionData[$cCode]["main"]["ppnFactor"] = $this->session->login["ppnFactor"];//baca dari session login
+//            }
+            $ppnFactor = isset($sessionData[$cCode]["main"]["ppnFactor"]) && $sessionData[$cCode]["main"]["ppnFactor"] == 11 ? $sessionData[$cCode]["main"]["ppnFactor"] : matiHere("error on build values on PrePrev " . __LINE__ . " silahkan relogin");
+
+            $transaksiID_exception = array(
+                "125339",
+                "125341",
+                //-----------
+                "113564",
+                "113544",
+                "113542",
+                "113534",
+                "113518",
+                "112436",
+                "112422",
+                //-----------
+                "127435",
+                "127439",
+                "127443",
+                "127453",
+                "127461",
+                "127467",
+                "127471",
+                //-----------
+            );
+            $dtime_ex = explode(" ", $tmpTr[0]->dtime);
+            $transaksi_date = $dtime_ex[0];
+
+            /* ----------------------------------------------------------------------
+             * deteksi mobile auto atau hanya orang tertentu,
+             * diatur di heWeb mobile
+             * ----------------------------------------------------------------------*/
+//            $isMob0 = isMobile_he_misc();
+//            $isMob = isset($_GET['ismob']) ? $_GET['ismob'] : $isMob0;
+//            cekHere("mob: $isMob");
+//
+
+            // region reload data produk sesuai config dari shoppingcart-----------------------------------
+            $pakai_ini = 0;
+            if ($pakai_ini == 1) {
+                $arrItemsKey = array_keys($sessionData[$cCode]["items"]);
+                $arrDataTambahan = array(
+                    "outdoor" => array(
+                        "outdoor_id" => "outdoor_nama",
+                    ),
+                    "indoor" => array(
+                        "indoor_id_1" => "indoor_nama_1",
+                        "indoor_id_2" => "indoor_nama_2",
+                        "indoor_id_3" => "indoor_nama_3",
+                        "indoor_id_4" => "indoor_nama_4",
+                    ),
+                    "heater" => array(
+                        "heater_id" => "heater_nama",
+                    ),
+                );
+                $selectorSrcModel = isset($sessionData[$cCode]['main']['pihakMdlNameSrc']) ? $sessionData[$cCode]['main']['pihakMdlNameSrc'] : $this->configUi[$this->jenisTr]['selectorSrcModel'];
+                $fieldSrcs = isset($this->configUi[$this->jenisTr]['shoppingCartFieldSrc']) ? $this->configUi[$this->jenisTr]['shoppingCartFieldSrc'] : array("nama" => "nama");
+                //arrPrintWebs($fieldSrcs);
+                $this->CI->load->model("Mdls/" . $selectorSrcModel);
+                $b = new $selectorSrcModel();
+                $b->addFilter("id in ('" . implode("','", $arrItemsKey) . "')");
+                $tmpB = $b->lookupAll()->result();
+                //            showLast_query("ungu");
+                //            cekHitam(sizeof($tmpB));
+                if (sizeof($tmpB) > 0) {
+                    foreach ($tmpB as $row) {
+                        $rows = $row;
+                        $tmp = (array)$row;
+                        $produk_id = $idp = $row->id;
+                        if (!isset($sessionData[$cCode]['items2'][$idp])) {
+                            $sessionData[$cCode]['items2'][$idp] = array();
+                        }
+                        foreach ($fieldSrcs as $key => $src) {
+                            //                        cekHitam("$key => $src");
+                            if (is_array($src) && sizeof($src) > 0) {
+                                //                            cekHitam("masuk disini " . __LINE__);
+                                foreach ($src as $srcSpec) {
+                                    if (isset($tmp[$srcSpec]) || isset($rows->$srcSpec)) {
+                                        $sessionData[$cCode]['items'][$idp][$key] = makeValue($srcSpec, $tmp, $tmp, isset($rows->$srcSpec) ? $rows->$srcSpec : "-");
+                                    }
+                                }
+                            }
+                            else {
+                                //                            cekUngu("masuk disini [$key => $src] " . __LINE__);
+                                $sessionData[$cCode]['items'][$idp][$key] = makeValue($src, $tmp, $tmp, isset($rows->$src) ? $rows->$src : 0);
+                            }
+                        }
+                        // memasukkan kolom sku ke items2
+                        //                    $tmp = $sessionData[$cCode]['items'][$id];
+                        //handle serial 1
+                        $jml_serial = $rows->jml_serial;
+                        $sessionData[$cCode]['items'][$produk_id]['jml_serial'] = $jml_serial;
+                        if (($jml_serial * 1) == 1) {
+                            $d_kode = $rows->kode;
+                            $sessionData[$cCode]['items2'][$produk_id][$d_kode] = array();
+                        }
+                        $arrCat = array();
+                        $arrCode = array();
+                        foreach ($arrDataTambahan as $cat => $catSpec) {
+                            foreach ($catSpec as $dkey => $dval) {
+                                if (isset($rows->$dval) && ($rows->$dval != NULL)) {
+                                    $sessionData[$cCode]['items2'][$produk_id][$rows->$dval] = array();
+                                    //--------------
+                                    if (!isset($arrCat[$cat])) {
+                                        $arrCat[$cat] = 0;
+                                    }
+                                    $arrCat[$cat] += 1;
+                                    //--------------
+                                    if (!isset($arrCode[$rows->$dval])) {
+                                        $arrCode[$rows->$dval] = 0;
+                                    }
+                                    $arrCode[$rows->$dval] += 1;
+                                    //--------------
+                                }
+                            }
+                        }
+                        $keterangan = "";
+                        $static_keterangan = "";
+                        if (!empty($arrCat)) {
+                            foreach ($arrCat as $kcat => $vcat) {
+                                $new_vcat = $vcat * $sessionData[$cCode]['items'][$idp]["jml"];
+                                if ($keterangan == "") {
+                                    $keterangan = " $new_vcat $kcat";
+                                }
+                                else {
+                                    $keterangan .= "<br> $new_vcat $kcat";
+                                }
+                                if ($static_keterangan == "") {
+                                    $static_keterangan = " $vcat $kcat";
+                                }
+                                else {
+                                    $static_keterangan .= "<br> $vcat $kcat";
+                                }
+                                $new_keyy = "qty_" . $kcat;
+                                $sessionData[$cCode]['items'][$idp][$new_keyy] = $vcat;
+                            }
+                        }
+                        if (!empty($arrCode)) {
+                            foreach ($arrCode as $kcat => $vcat) {
+                                $new_vcat = $vcat * $sessionData[$cCode]['items'][$idp]["jml"];
+                                $sessionData[$cCode]['items'][$idp][$kcat] = $new_vcat;
+                            }
+                        }
+                        $sessionData[$cCode]['items'][$idp]['keterangan'] = $keterangan;
+                        $sessionData[$cCode]['items'][$idp]['static_keterangan'] = $static_keterangan;
+                    }
+                }
+            }
+            // endregion reload data produk sesuai config dari shoppingcart-----------------------------------
+
+
+            // region copy gerbang serial dari distribusi
+            $shoppingCartCopySerialNumber = isset($this->configUi[$this->jenisTr]["shoppingCartCopySerialNumber"][$stepNumber]) ? $this->configUi[$this->jenisTr]["shoppingCartCopySerialNumber"][$stepNumber] : array();
+            if (sizeof($shoppingCartCopySerialNumber) > 0) {
+                $statusGudangConfig = $shoppingCartCopySerialNumber["statusGudang"];
+                $copyGateConfig = $shoppingCartCopySerialNumber["copyGate"];
+                $copyJenisConfig = $shoppingCartCopySerialNumber["copyJenis"];
+                if ($gudangStatusJenis == $statusGudangConfig) {
+                    $trs = new MdlPembelianTransaksi();
+                    $trs->addFilter("jenis='$copyJenisConfig'");
+                    $trs->addFilter("reference_id_top='$topID'");
+                    $trsTmp = $trs->lookupAll()->result();
+                    $trsID = $trsTmp[0]->id;
+
+                    $trs = new MdlPembelianTransaksi();
+                    $trs->setFilters(array());
+                    $trs->setJointSelectFields($copyGateConfig);
+                    $trs->addFilter("transaksi_id='$trsID'");
+                    $tmpReg = $trs->lookupDataRegistries()->result();
+                    if (sizeof($tmpReg) > 0) {
+                        foreach ($tmpReg as $row) {
+                            foreach ($row as $key_reg => $val_reg) {
+                                if ($val_reg == null) {
+                                    $val_reg = blobEncode(array());
+                                }
+                                $sessionData[$cCode][$key_reg] = blobDecode($val_reg);
+                            }
+                        }
+                    }
+                }
+
+            }
+            // endregion copy gerbang serial dari distribusi
+
+
+            resetValues_he_value_builder_ns($this->jenisTr, $this->configCore[$this->jenisTr], $sessionData);
+            $sessionData[$cCode] = fillValues_he_value_builder_ns($this->jenisTr, $currentStepNum, $stepNum, $this->configCoreJenis, $this->configUiJenis, $this->configValuesJenis, $ppnFactor, "", $sessionData[$cCode]);
+
+
+            return $sessionData;
+        }
+        else {
+            mati_disini(("No such transaction. You may want to refresh the browser to re-fetch actual content."));
+        }
+
+
+    }
+
+
+    public function autoCreate()
+    {
+        $location = "(library " . get_class($this) . ", method " . __FUNCTION__ . ")";
+        $this->setterValidate($location);
+
+        $cCode = $this->cCode;
+        $configUi = $this->configUiModul;
+        $modul_transaksi = $this->modul;
+        $sessionData = $this->cCodeData;
+
+        $tCodeTargetJenisTransaksi = $jenisTrTarget = isset($this->configUiModul[$this->jenisTr]["steps"][1]["target"]) ? $this->configUiModul[$this->jenisTr]["steps"][1]["target"] : NULL;
+        $relOptionConfigs = isset($this->configUiModul[$this->jenisTr]['relativeOptions']) ? $this->configUiModul[$this->jenisTr]['relativeOptions'] : array();
+        $runCoreAkunting = isset($this->configUiModul[$this->jenisTr]["steps"][1]["runCoreAkunting"]) ? $this->configUiModul[$this->jenisTr]["steps"][1]["runCoreAkunting"] : false;
+        $ppnFactor = isset($sessionData[$cCode]["main"]["ppnFactor"]) ? $sessionData[$cCode]["main"]["ppnFactor"] : matiHere("gagal menghitung ppn silahkan refresh atau relogin");
+        $inputLabels = array();
+        $inputAuthConfigs = array();
+
+        $modelModules = $this->modelModules;
+        $pathModules = isset($this->pathModules) ? $this->pathModules . "/" : "";
+
+
+//        $this->CI->load->model($pathModules."MdlPembelianTransaksi");
+        $this->CI->load->model($pathModules . "$modelModules");
+        $this->CI->load->library("FieldCalculator");
+        $cal = new FieldCalculator();
+
+
+//        $rawPrevURL = isset($_GET['rawPrev']) ? $_GET['rawPrev'] : "";
+//        $prevUrl = blobDecode($rawPrevURL);
+        $mongoList = array();
+        $mongRegID = array();
+        if (isset($sessionData[$cCode])) {
+
+            if (!isset($sessionData[$cCode]['items'])) {
+                mati_disini("belum ada item yang dipilih. code: " . __LINE__);
+            }
+            else {
+                if (sizeof($sessionData[$cCode]['items']) < 1) {
+                    mati_disini("belum ada item yang dipilih. code: " . __LINE__);
+                }
+            }
+            echo("now processing your transaction..<br>");
+
+            //region build table rekening
+            $buildTablesMaster = isset($this->configCoreModul[$this->jenisTr]['components'][$jenisTrTarget]['master']) ? $this->configCoreModul[$this->jenisTr]['components'][$jenisTrTarget]['master'] : array();
+            $buildTablesDetail = isset($this->configCoreModul[$this->jenisTr]['components'][$jenisTrTarget]['detail']) ? $this->configCoreModul[$this->jenisTr]['components'][$jenisTrTarget]['detail'] : array();
+
+            cekMerah("start pre-processor...");
+
+            //region pre-processors (item)
+            if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                $iterator = isset($sessionData[$cCode]['revert']['preProc']['detail']) ? $sessionData[$cCode]['revert']['preProc']['detail'] : array();
+                cekMerah(":: iterator preprocc dari gerbang revert ::");
+                arrPrintWebs($iterator);
+            }
+            else {
+                $iterator = isset($this->configCoreModul[$this->jenisTr]['preProcessor'][$jenisTrTarget]['detail']) ? $this->configCoreModul[$this->jenisTr]['preProcessor'][$jenisTrTarget]['detail'] : array();
+            }
+
+            if (sizeof($iterator) > 0) {
+                $itemNumLabels = isset($this->configUiModul[$this->jenisTr]['shoppingCartNumFields']) ? $this->configUiModul[$this->jenisTr]['shoppingCartNumFields'] : array();
+                echo "ITEM NUM LABELS";
+
+                if (sizeof($iterator) > 0) {
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $comName = $tComSpec['comName'];
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+
+                        echo "sub-preproc: $comName, initializing values <br>";
+
+                        foreach ($sessionData[$cCode][$srcGateName] as $xid => $dSpec) {
+                            $tmpOutParams[$cCtr] = array();
+                            $id = $xid;
+                            $subParams = array();
+
+                            if (isset($tComSpec['static'])) {
+                                foreach ($tComSpec['static'] as $key => $value) {
+                                    $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$id], $sessionData[$cCode][$srcGateName][$id], 0);
+                                    $subParams['static'][$key] = $realValue;
+                                }
+
+                                if (!isset($subParams['static']["transaksi_id"])) {
+                                    //									$subParams['static']["transaksi_id"] = $masterID;
+                                }
+
+                                $subParams['static']["fulldate"] = date("Y-m-d");
+                                $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                $subParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]['steps'][1]['label'] . " oleh " . $sessionData[$cCode]['main']['olehName'];
+                            }
+
+                            if (sizeof($subParams) > 0) {
+                                $tmpOutParams[$cCtr][] = $subParams;
+
+                                $comName = $tComSpec['comName'];
+                                $srcGateName = $tComSpec['srcGateName'];
+                                $srcRawGateName = $tComSpec['srcRawGateName'];
+                                $resultParams = isset($tComSpec['resultParams']) ? $tComSpec['resultParams'] : array();
+
+                                $mdlName = "Pre" . ucfirst($comName);
+                                $this->CI->load->model("Preprocs/" . $mdlName);
+                                $m = new $mdlName($resultParams);
+
+                                if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                                    $tobeExecuted = true;
+                                }
+                                else {
+                                    $tobeExecuted = false;
+                                }
+
+                                if ($tobeExecuted) {
+                                    $m->pair(0, $tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada pre-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                                    $gotParams = $m->exec();
+
+                                    cekmerah("gotparams dari pre-proc $comName");
+                                    arrprint($gotParams);
+
+                                    if (sizeof($gotParams) > 0) {//==gotParams means result from preprocessor
+                                        foreach ($gotParams as $gateName => $paramSpec) {
+                                            cekBiru(":: getParams inject ke $gateName ::");
+                                            if (!isset($sessionData[$cCode][$gateName])) {
+                                                $sessionData[$cCode][$gateName] = array();
+                                            }
+                                            else {
+
+                                            }
+
+                                            foreach ($paramSpec as $id => $gSpec) {
+                                                if (!isset($sessionData[$cCode][$gateName][$id])) {
+                                                    $sessionData[$cCode][$gateName][$id] = array();
+                                                }
+
+                                                if (isset($sessionData[$cCode][$gateName][$id])) {
+                                                    if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                                        foreach ($gSpec as $key => $val) {
+                                                            cekHere(":: injecte ke $gateName, ::: $key diisi dengan $val");
+                                                            $sessionData[$cCode][$gateName][$id][$key] = $val;
+                                                        }
+                                                    }
+                                                }
+                                                //==inject gotParams to child gate
+                                                cekHitam("srcGateName = $srcGateName :: " . __LINE__);
+                                                if (isset($sessionData[$cCode][$srcGateName][$id])) {
+                                                    if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                                        foreach ($gSpec as $key => $val) {
+                                                            $sessionData[$cCode][$srcGateName][$id][$key] = $val;
+                                                        }
+                                                    }
+                                                }
+
+                                                //cekMerah("REBUILDING VALUES..");
+                                                if (sizeof($itemNumLabels) > 0) {
+                                                    foreach ($itemNumLabels as $key => $label) {
+                                                        if (isset($sessionData[$cCode][$gateName][$id][$key])) {
+                                                            $sessionData[$cCode][$gateName][$id]['sub_' . $key] = ($sessionData[$cCode][$gateName][$id]['jml'] * $sessionData[$cCode][$gateName][$id][$key]);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else {
+                                    cekBiru("sub-komponem $comName tidak memenuhi syarat untuk ditulis");
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    //cekKuning("sub-preproc is not set");
+                }
+
+                $this->CI->load->helper("he_value_builder");
+                $sessionData[$cCode] = fillValues_he_value_builder_ns($this->jenisTr, 1, 1, $this->configCoreJenis, $this->configUiJenis, $this->configValuesJenis, $ppnFactor, NULL, $sessionData[$cCode]);
+
+                //region injector gerbang value untuk pembatalan ppv dan selisih
+                if (isset($sessionData[$cCode]["revert"]["preProc"]["replacer"])) {
+                    $replace = $sessionData[$cCode]["revert"]["preProc"]["replacer"];
+                    $jenisTrReference = $sessionData[$cCode]["main"]["jenisTr_reference"];
+                    switch ($jenisTrReference) {
+                        case "460":
+                            $tempCalculate = array();
+                            break;
+                        default:
+                            $tempCalculate = array(
+                                "selisih" => ($sessionData[$cCode]["main"]["hpp"] + $sessionData[$cCode]["main"]["ppn"]) - ($sessionData[$cCode]["main"]["nett"] + $sessionData[$cCode]["main"]["ppv"]),
+                                "hpp_nppv" => $sessionData[$cCode]["main"]["hpp"],
+                                "hpp_nppn" => $sessionData[$cCode]["main"]["hpp"] + $sessionData[$cCode]["main"]["ppn"],
+                            );
+                            break;
+                    }
+
+                    foreach ($replace['recalculate'] as $iKey => $gate) {
+                        $sessionData[$cCode]["main"][$gate] = $tempCalculate[$gate];
+                    }
+                    cekLime($sessionData[$cCode]["main"]["hpp"] . "+" . $sessionData[$cCode]["main"]["ppn"] . "-" . $sessionData[$cCode]["main"]["nett"]);
+                }
+                //endregion
+            }
+            else {
+                echo("no processor defined. skipping preprocessor..<br>");
+            }
+            //endregion
+
+            //region pre-processors (master)
+            if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                $iterator = isset($sessionData[$cCode]['revert']['preProc']['master']) ? $sessionData[$cCode]['revert']['preProc']['master'] : array();
+            }
+            else {
+                $iterator = isset($this->configCoreModul[$this->jenisTr]['preProcessor'][$jenisTrTarget]['master']) ? $this->configCoreModul[$this->jenisTr]['preProcessor'][$jenisTrTarget]['master'] : array();
+            }
+
+            if (sizeof($iterator) > 0) {
+                $itemNumLabels = isset($this->configUiModul[$this->jenisTr]['shoppingCartNumFields']) ? $this->configUiModul[$this->jenisTr]['shoppingCartNumFields'] : array();
+                if (sizeof($iterator) > 0) {
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $comName = $tComSpec['comName'];
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        $resultParams = isset($tComSpec['resultParams']) ? $tComSpec['resultParams'] : array();
+                        $switchResultParams = isset($tComSpec['switchResultParams']) ? $tComSpec['switchResultParams'] : false;
+                        $subParams = array();
+                        if (isset($tComSpec['static'])) {
+                            foreach ($tComSpec['static'] as $key => $value) {
+                                $realValue = makeValue($value, $sessionData[$cCode]['main'], $sessionData[$cCode]['main'], 0);
+                                $subParams['static'][$key] = $realValue;
+                            }
+
+                            if (!isset($subParams['static']["transaksi_id"])) {
+                                //									$subParams['static']["transaksi_id"] = $masterID;
+                            }
+                            $subParams['static']["fulldate"] = date("Y-m-d");
+                            $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                            $subParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]['steps'][1]['label'] . " oleh " . $sessionData[$cCode]['main']['olehName'];
+                        }
+                        $tmpOutParams[$cCtr] = $subParams;
+
+                        $mdlName = "Pre" . ucfirst($comName);
+                        $this->CI->load->model("Preprocs/" . $mdlName);
+                        $m = new $mdlName($resultParams);
+
+                        if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                            $tobeExecuted = true;
+                        }
+                        else {
+                            $tobeExecuted = false;
+                        }
+
+                        if ($tobeExecuted) {
+                            $m->pair(0, $tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada pre-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            $gotParams = $m->exec();
+
+                            cekbiru("gotparams dari pre-proc $comName");
+                            arrprint($gotParams);
+
+                            if (sizeof($gotParams) > 0) {//==gotParams means result from preprocessor
+                                foreach ($gotParams as $gateName => $gSpec) {
+                                    if ($switchResultParams == true) {
+                                        foreach ($gSpec as $id => $ggSpec) {
+                                            if (!isset($sessionData[$cCode][$gateName][$id])) {
+                                                $sessionData[$cCode][$gateName][$id] = array();
+                                            }
+
+                                            if (isset($sessionData[$cCode][$gateName][$id])) {
+                                                if (is_array($ggSpec) && sizeof($ggSpec) > 0) {
+                                                    foreach ($ggSpec as $key => $val) {
+                                                        $sessionData[$cCode][$gateName][$id][$key] = $val;
+                                                    }
+                                                }
+                                            }
+
+                                            if (sizeof($itemNumLabels) > 0) {
+                                                foreach ($itemNumLabels as $key => $label) {
+                                                    if (isset($sessionData[$cCode][$gateName][$id][$key])) {
+                                                        $sessionData[$cCode][$gateName][$id]['sub_' . $key] = ($sessionData[$cCode][$gateName][$id]['jml'] * $sessionData[$cCode][$gateName][$id][$key]);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        if (isset($sessionData[$cCode]['main'])) {
+                                            if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                                foreach ($gSpec as $key => $val) {
+                                                    $sessionData[$cCode]['main'][$key] = $val;
+                                                }
+                                            }
+                                        }
+                                        if (isset($sessionData[$cCode]['main'])) {
+                                            if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                                foreach ($gSpec as $key => $val) {
+                                                    $sessionData[$cCode]['main'][$key] = $val;
+                                                }
+                                            }
+                                        }
+                                        if (sizeof($itemNumLabels) > 0) {
+                                            foreach ($itemNumLabels as $key => $label) {
+                                                if (isset($sessionData[$cCode]['main'][$key])) {
+                                                    $sessionData[$cCode]['main']['sub_' . $key] = ($sessionData[$cCode]['main']['jml'] * $sessionData[$cCode]['main'][$key]);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            cekBiru("sub-komponem $comName tidak memenuhi syarat untuk ditulis");
+                        }
+
+                        cekPink2("fillvalue setelah $comName");
+                        $this->CI->load->helper("he_value_builder");
+                        $sessionData[$cCode] = fillValues_he_value_builder_ns($this->jenisTr, 1, 1, $this->configCoreJenis, $this->configUiJenis, $this->configValuesJenis, $ppnFactor, NULL, $sessionData[$cCode]);
+
+
+                    }
+                }
+                else {
+                    //cekKuning("sub-preproc is not set");
+                }
+                $this->CI->load->helper("he_value_builder");
+                $sessionData[$cCode] = fillValues_he_value_builder_ns($this->jenisTr, 1, 1, $this->configCoreJenis, $this->configUiJenis, $this->configValuesJenis, $ppnFactor, NULL, $sessionData[$cCode]);
+            }
+            else {
+                echo("no processor defined. skipping preprocessor..<br>");
+            }
+            //endregion
+
+//arrPrint($this->configUi);
+//mati_disini(__LINE__);
+
+            $this->CI->load->library("Validator");
+            $vd = new Validator();
+            $vd->setCCode($this->cCode);
+            $vd->setConfigUiJenis($this->configUiModul[$this->jenisTr]);
+            $step = $sessionData[$cCode]['main']['step_number'];
+//            $vd->midValidate($step);
+//            $vd->unionValidate();
+
+            //===finalisasi sebelum masuk tabel beneran
+            //===isinya ada pembentukan nomor nota dll
+
+            //region penomoran receipt
+            $this->CI->load->model("CustomCounter");
+            $cn = new CustomCounter("transaksi");
+            $cn->setType("transaksi");
+            $cn->setModul($modul_transaksi);
+            $cn->setStepCode($tCodeTargetJenisTransaksi);
+            $counterForNumber = array($this->configCoreModul[$this->jenisTr]['formatNota']);
+            if (!in_array($counterForNumber[0], $this->configCoreModul[$this->jenisTr]['counters'])) {
+                mati_disini(__LINE__ . " Used number should be registered in 'counters' config as well");
+            }
+            echo "<div style='background:#ff7766;'>";
+            foreach ($counterForNumber as $i => $cRawParams) {
+                $cParams = explode("|", $cRawParams);
+                $cValues = array();
+                foreach ($cParams as $param) {
+                    $cValues[$i][$param] = $sessionData[$cCode]['main'][$param];
+                }
+                $cRawValues = implode("|", $cValues[$i]);
+                $paramSpec = $cn->getNewCount($cParams, $cValues[$i]);
+            }
+            echo "</div style='background:#ff7766;'>";
+
+            $stepNumber = 1;
+            $tmpNomorNota2_current = $tmpNomorNota = $paramSpec['paramString'];
+            $tmpNomorNotaAlias = formatNota("nomer_nolink", $tmpNomorNota);
+
+            if (isset($this->configUiModul[$this->jenisTr]['steps'][2])) {
+                $nextProp = array(
+                    "num" => 2,
+                    "code" => $this->configUiModul[$this->jenisTr]['steps'][2]['target'],
+                    "label" => $this->configUiModul[$this->jenisTr]['steps'][2]['label'],
+                    "groupID" => $this->configUiModul[$this->jenisTr]['steps'][2]['userGroup'],
+                );
+            }
+            else {
+                $nextProp = array(
+                    "num" => 0,
+                    "code" => "",
+                    "label" => "",
+                    "groupID" => "",
+                );
+            }
+            //endregion
+
+            //region dynamic counters
+            $cn = new CustomCounter("transaksi");
+            $cn->setType("transaksi");
+            $cn->setModul($modul_transaksi);
+            $cn->setStepCode($tCodeTargetJenisTransaksi);
+            $configCustomParams = $this->configCoreModul[$this->jenisTr]['counters'];
+            $configCustomParams[] = "stepCode";
+            if (sizeof($configCustomParams) > 0) {
+                $cContent = array();
+                foreach ($configCustomParams as $i => $cRawParams) {
+                    $cParams = explode("|", $cRawParams);
+                    $cValues = array();
+                    foreach ($cParams as $param) {
+                        $cValues[$i][$param] = $sessionData[$cCode]['main'][$param];
+                    }
+                    $cRawValues = implode("|", $cValues[$i]);
+                    $paramSpec = $cn->getNewCount($cParams, $cValues[$i]);
+
+                    $cContent[$cRawParams][$cRawValues] = $paramSpec['value'];
+                    switch ($paramSpec['id']) {
+                        case 0: //===counter type is new
+                            $paramKeyRaw = print_r($cParams, true);
+                            $paramValuesRaw = print_r($cValues[$i], true);
+                            $cn->writeNewCount($cParams, $cValues[$i], $paramKeyRaw, $paramValuesRaw);
+                            break;
+                        default: //===counter to be updated
+                            $cn->updateCount($paramSpec['id'], $paramSpec['value']);
+                            break;
+                    }
+                }
+            }
+
+            $appliedCounters = base64_encode(serialize($cContent));
+            $appliedCounters_inText = print_r($cContent, true);
+
+            //region addition on master
+            $addValues = array(
+                'counters' => $appliedCounters,
+                'counters_intext' => $appliedCounters_inText,
+                'nomer' => $tmpNomorNota,
+                'nomer2' => $tmpNomorNotaAlias,
+                'dtime' => date("Y-m-d H:i:s"),
+                'fulldate' => date("Y-m-d"),
+                "step_avail" => sizeof($this->configUiModul[$this->jenisTr]['steps']),
+                "step_number" => 1,
+                "step_current" => 1,
+                "next_step_num" => $nextProp['num'],
+                "next_step_code" => $nextProp['code'],
+                "next_step_label" => $nextProp['label'],
+                "next_group_code" => $nextProp['groupID'],
+                "tail_number" => 1,
+                "tail_code" => $this->configUiModul[$this->jenisTr]['steps'][1]['target'],
+            );
+            foreach ($addValues as $key => $val) {
+                $sessionData[$cCode]['tableIn_master'][$key] = $val;
+            }
+            //endregion
+
+            //region addition on detail
+            $addSubValues = array(
+                "sub_step_number" => 1,
+                "sub_step_current" => 1,
+                "sub_step_avail" => sizeof($this->configUiModul[$this->jenisTr]['steps']),
+                "next_substep_num" => $nextProp['num'],
+                "next_substep_code" => $nextProp['code'],
+                "next_substep_label" => $nextProp['label'],
+                "next_subgroup_code" => $nextProp['groupID'],
+                "sub_tail_number" => 1,
+                "sub_tail_code" => $this->configUiModul[$this->jenisTr]['steps'][1]['target'],
+            );
+            foreach ($sessionData[$cCode]['tableIn_detail'] as $id => $dSpec) {
+                foreach ($addSubValues as $key => $val) {
+                    $sessionData[$cCode]['tableIn_detail'][$id][$key] = $val;
+                }
+            }
+            //endregion
+
+//            arrPrintWebs($addValues);
+//            arrPrintWebs($addSubValues);
+//            arrPrintWebs($sessionData[$cCode]['tableIn_master']);
+//            mati_disini(__LINE__);
+
+            //region numbering tambahan
+            $this->CI->load->library("CounterNumber");
+            $ccn = new CounterNumber();
+            $ccn->setCCode($this->cCode);
+            $ccn->setJenisTr($this->jenisTr);
+            $ccn->setModul($this->modul);
+            $ccn->setStepCode($jenisTrTarget);
+            $ccn->setTransaksiGate($sessionData[$cCode]['tableIn_master']);
+            $ccn->setMainGate($sessionData[$cCode]['main']);
+            $ccn->setItemsGate($sessionData[$cCode]['items']);
+            $ccn->setItems2SumGate($sessionData[$cCode]['items2_sum']);
+            $new_counter = $ccn->getCounterNumber();
+
+            if (isset($new_counter['main']) && sizeof($new_counter['main']) > 0) {
+                foreach ($new_counter['main'] as $ckey => $cval) {
+                    $sessionData[$cCode]['tableIn_master'][$ckey] = $cval;
+                    $sessionData[$cCode]['main'][$ckey] = $cval;
+                }
+            }
+            if (isset($new_counter['items']) && sizeof($new_counter['items']) > 0) {
+                foreach ($new_counter['items'] as $ikey => $iSpec) {
+                    foreach ($iSpec as $iikey => $iival) {
+                        $sessionData[$cCode]['items'][$ikey][$iikey] = $iival;
+                    }
+                }
+            }
+            if (isset($new_counter['items2_sum']) && sizeof($new_counter['items2_sum']) > 0) {
+                foreach ($new_counter['items2_sum'] as $ikey => $iSpec) {
+                    foreach ($iSpec as $iikey => $iival) {
+                        $sessionData[$cCode]['items2_sum'][$ikey][$iikey] = $iival;
+                    }
+                }
+            }
+            //endregion
+
+//            mati_disini("SETOPP... code: " . __LINE__);
+
+            $pakai_ini_cli = 1;
+            //region ----------write transaksi, transaksi_data, main_fields, main_values, main_applets, etc
+            if (isset($sessionData[$cCode]['tableIn_master']) && sizeof($sessionData[$cCode]['tableIn_master']) > 0) {
+                $sessionData[$cCode]['tableIn_master']['status_4'] = 11;
+                $sessionData[$cCode]['tableIn_master']['trash_4'] = 0;
+                if ($pakai_ini_cli == 1) {
+                    $sessionData[$cCode]['tableIn_master']['cli'] = 1;
+                }
+                else {
+                    $sessionData[$cCode]['tableIn_master']['cli'] = 0;
+                }
+
+//                $tr = new MdlPembelianTransaksi();
+                $tr = new $modelModules();
+                $insertTransaksiID = $insertID = $tr->writeMainEntries($sessionData[$cCode]['tableIn_master']);
+                $insertNum = $sessionData[$cCode]['tableIn_master']['nomer'];
+                $sessionData[$cCode]['main']['nomer'] = $insertNum;
+                if ($insertID < 1) {
+                    die("Gagal saat berusaha  write transaction entry pada " . __FILE__ . " baris " . __LINE__);
+                }
+                //==transaksi_id dan nomor nota diinject kan ke gate utama
+                $injectors = array(
+                    "transaksi_id" => $insertID,
+                    "nomer" => $tmpNomorNota,
+                    "nomer2" => $tmpNomorNotaAlias,
+                );
+                $arrInjectorsTarget = array(
+                    "items",
+                    "items2_sum",
+                    "rsltItems",
+                );
+                foreach ($injectors as $key => $val) {
+                    $sessionData[$cCode]['main'][$key] = $val;
+                    foreach ($arrInjectorsTarget as $target) {
+                        if (isset($sessionData[$cCode][$target])) {
+                            foreach ($sessionData[$cCode][$target] as $xid => $iSpec) {
+                                $id = isset($iSpec['id']) && $iSpec['id'] > 0 ? $iSpec['id'] : $xid;
+                                if (isset($sessionData[$cCode][$target][$id])) {
+                                    $sessionData[$cCode][$target][$id][$key] = $val;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //===signature
+                $dwsign = $tr->writeSignature($insertID, array(
+                    "nomer" => $sessionData[$cCode]['main']['nomer'],
+                    "step_number" => 1,
+                    "step_code" => $this->jenisTr,
+                    "step_name" => $this->configUiModul[$this->jenisTr]['steps'][1]['label'],
+                    "group_code" => $this->configUiModul[$this->jenisTr]['steps'][1]['userGroup'],
+                    "oleh_id" => $sessionData[$cCode]['main']['olehID'],
+                    "oleh_nama" => $sessionData[$cCode]['main']['olehName'],
+                    "keterangan" => $this->configUiModul[$this->jenisTr]['steps'][1]['label'] . " oleh " . $sessionData[$cCode]['main']['olehName'],
+                    "transaksi_id" => $insertID,
+                )) or die("Failed to write signature");
+                $mongoList['sign'][] = $dwsign;
+                $idHis = array(
+                    $stepNumber => array(
+                        "dtime" => date("Y-m-d H:i:s"),
+                        "fulldate" => date("Y-m-d"),
+                        "olehID" => $sessionData[$cCode]['main']['olehID'],
+                        "olehName" => $sessionData[$cCode]['main']['olehName'],
+                        "step" => $stepNumber,
+                        "trID" => $insertID,
+                        "nomer" => $tmpNomorNota,
+                        "nomer2" => $tmpNomorNotaAlias,
+                        "counters" => $appliedCounters,
+                        "counters_intext" => $appliedCounters_inText,
+                    ),
+                );
+                $idHis_blob = blobEncode($idHis);
+                $idHis_intext = print_r($idHis, true);
+//                $tr = new MdlPembelianTransaksi();
+                $tr = new $modelModules();
+                $dupState = $tr->updateData(array("id" => $insertID), array(
+                    "next_step_num" => $nextProp['num'],
+                    "next_step_code" => $nextProp['code'],
+                    "next_step_label" => $nextProp['label'],
+                    "next_group_code" => $nextProp['groupID'],
+                    //===references
+                    "id_master" => $insertID,
+                    "id_top" => $insertID,
+                    "ids_prev" => "",
+                    "ids_prev_intext" => "",
+                    "nomer_top" => $sessionData[$cCode]['main']['nomer'],
+                    "nomers_prev" => "",
+                    "nomers_prev_intext" => "",
+                    "jenises_prev" => "",
+                    "jenises_prev_intext" => "",
+                    "ids_his" => $idHis_blob,
+                    "ids_his_intext" => $idHis_intext,
+
+                )) or die("Failed to update tr next-state!");
+                cekHijau($this->CI->db->last_query());
+
+                $addValues = array(
+                    //===references
+                    "id_master" => $insertID,
+                    "id_top" => $insertID,
+                    "ids_prev" => "",
+                    "ids_prev_intext" => "",
+                    "nomer_top" => $sessionData[$cCode]['main']['nomer'],
+                    "nomers_prev" => "",
+                    "nomers_prev_intext" => "",
+                    "jenises_prev" => "",
+                    "jenises_prev_intext" => "",
+                    "ids_his" => $idHis_blob,
+                    "ids_his_intext" => $idHis_intext,
+                );
+                foreach ($addValues as $key => $val) {
+                    $sessionData[$cCode]['tableIn_master'][$key] = $val;
+                }
+                //inject ke main untuk followup nomer_top danids_his
+                $addMainValues = array(
+                    "nomer_top" => $sessionData[$cCode]['main']['nomer'],
+                    "nomers_prev" => "",
+                    "jenises_prev" => "",
+                    "ids_his" => $idHis_blob,
+
+                );
+                foreach ($addMainValues as $key_main => $val_main) {
+                    $sessionData[$cCode]['main'][$key_main] = $val_main;
+                }
+
+                $sessionData[$cCode]['main']['ids_his'] = $idHis_blob;
+                $sessionData[$cCode]['main']['ids_his_intext'] = $idHis_intext;
+            }
+            if (isset($sessionData[$cCode]['tableIn_master_values']) && sizeof($sessionData[$cCode]['tableIn_master_values']) > 0) {
+                $inserMainValues = array();
+                if (isset($this->configCoreModul[$this->jenisTr]['tableIn']['mainValues'])) {
+                    $inserMainValues = array();
+                    foreach ($this->configCoreModul[$this->jenisTr]['tableIn']['mainValues'] as $key => $src) {
+                        if (isset($sessionData[$cCode]['tableIn_master_values'][$key])) {
+                            $dd = $tr->writeMainValues($insertID, array(
+                                "key" => $key,
+                                "value" => $sessionData[$cCode]['tableIn_master_values'][$key],
+                            ));
+                            $inserMainValues[] = $dd;
+                            $mongoList['mainValues'][] = $dd;
+                        }
+                    }
+                }
+            }
+            if (isset($sessionData[$cCode]['main_add_values']) && sizeof($sessionData[$cCode]['main_add_values']) > 0) {
+                $inserMainValues = array();
+                foreach ($sessionData[$cCode]['main_add_values'] as $key => $val) {
+                    $dd = $tr->writeMainValues($insertID, array("key" => $key, "value" => $val));
+                    $inserMainValues[] = $dd;
+                    $mongoList['mainValues'][] = $dd;
+                }
+            }
+            if (isset($sessionData[$cCode]['main_inputs']) && sizeof($sessionData[$cCode]['main_inputs']) > 0) {
+                foreach ($sessionData[$cCode]['main_inputs'] as $key => $val) {
+                    $tr->writeMainValues($insertID, array("key" => $key, "value" => $val));
+                }
+            }
+            if (isset($sessionData[$cCode]['main_add_fields']) && sizeof($sessionData[$cCode]['main_add_fields']) > 0) {
+                foreach ($sessionData[$cCode]['main_add_fields'] as $key => $val) {
+                    $tr->writeMainFields($insertID, array("key" => $key, "value" => $val));
+                }
+            }
+            if (isset($sessionData[$cCode]['main_applets']) && sizeof($sessionData[$cCode]['main_applets']) > 0) {
+                foreach ($sessionData[$cCode]['main_applets'] as $amdl => $aSpec) {
+                    $tr->writeMainApplets($insertID, array(
+                        "mdl_name" => $amdl,
+                        "key" => $aSpec['key'],
+                        "label" => $aSpec['labelValue'],
+                        "description" => $aSpec['description'],
+                    ));
+                }
+            }
+            if (isset($sessionData[$cCode]['main_elements']) && sizeof($sessionData[$cCode]['main_elements']) > 0) {
+                foreach ($sessionData[$cCode]['main_elements'] as $elName => $aSpec) {
+                    $repv_element = array(
+                        "element_name" => $elName,
+                        "produk_id" => $aSpec["id"],
+                        "produk_nama" => $aSpec["id"],
+                    );
+                    $elementMerge = $repv_element + $aSpec;
+                    if (isset($aSpec["contents"])) {
+                        $elementMerge = $elementMerge + blobDecode($aSpec["contents"]);
+                    }
+                    arrPrintWebs($elementMerge);
+                    $tr->writeMainElements($insertID, $elementMerge) or matihere("gagal menulis element transaksi");
+                    cekLime($this->CI->db->last_query());
+
+                    //==nebeng bikin inputLabels
+                    $currentValue = "";
+                    switch ($aSpec['elementType']) {
+                        case "dataModel":
+                            $currentValue = $aSpec['key'];
+                            break;
+                        case "dataField":
+                            $currentValue = $aSpec['value'];
+                            break;
+                    }
+                    if (array_key_exists($elName, $relOptionConfigs)) {
+                        if (isset($relOptionConfigs[$elName][$currentValue])) {
+                            if (sizeof($relOptionConfigs[$elName][$currentValue]) > 0) {
+                                foreach ($relOptionConfigs[$elName][$currentValue] as $oValueName => $oValSpec) {
+                                    $inputLabels[$oValueName] = $oValSpec['label'];
+                                    if (isset($oValSpec['auth'])) {
+                                        if (isset($oValSpec['auth']['groupID'])) {
+                                            $inputAuthConfigs[$oValueName] = $oValSpec['auth']['groupID'];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            //						cekKuning("option $currentValue pada $eName TIDAK ada pilihannya");
+                        }
+                    }
+                }
+            }
+            if (isset($sessionData[$cCode]['tableIn_detail']) && sizeof($sessionData[$cCode]['tableIn_detail']) > 0) {
+                $insertIDs = array();
+                $insertDeIDs = array();
+                foreach ($sessionData[$cCode]['tableIn_detail'] as $dSpec) {
+                    $insertDetailID = $tr->writeDetailEntries($insertID, $dSpec);
+                    cekBiru($this->CI->db->last_query());
+                    if ($insertDetailID < 1) {
+                        die("Gagal saat berusaha write transaction detail entry pada " . __FILE__ . " baris " . __LINE__);
+                    }
+                    else {
+                        $insertIDs[] = $insertDetailID;
+                        $insertDeIDs[$insertID][] = $insertDetailID;
+                        $mongoList['detail'][] = $insertDetailID;
+                    }
+                }
+
+                if (sizeof($insertIDs) == 0) {
+                    die(lgShowAlert("Transaksi gagal disimpan karena rincian transaksi kosong."));
+                }
+                else {
+                }
+            }
+            else {
+                die(lgShowAlert("Transaksi gagal disimpan karena rincian transaksi kosong."));
+            }
+            if (isset($sessionData[$cCode]['tableIn_detail2']) && sizeof($sessionData[$cCode]['tableIn_detail2']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['tableIn_detail2'] as $dSpec) {
+                    $insertIDs[] = $tr->writeDetailEntries($insertID, $dSpec);
+                    $mongoList['detail'] = $insertIDs;
+                    cekUngu($this->CI->db->last_query());
+                }
+            }
+            if (isset($sessionData[$cCode]['tableIn_detail2_sum']) && sizeof($sessionData[$cCode]['tableIn_detail2_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['tableIn_detail2_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeDetailEntries($insertID, $dSpec);
+                    $insertIDs[] = $insertDetailID;
+                    $mongoList['detail'][] = $insertDetailID;
+                }
+            }
+            if (isset($sessionData[$cCode]['tableIn_detail_rsltItems']) && sizeof($sessionData[$cCode]['tableIn_detail_rsltItems']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['tableIn_detail_rsltItems'] as $dSpec) {
+                    $dd = $tr->writeDetailEntries($insertID, $dSpec);
+                    $insertIDs[] = $dd;
+                    $mongoList['detil'][] = $dd;
+                    cekUngu($this->CI->db->last_query());
+                }
+            }
+            if (isset($sessionData[$cCode]['tableIn_detail_values']) && sizeof($sessionData[$cCode]['tableIn_detail_values']) > 0) {
+
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['tableIn_detail_values'] as $pID => $dSpec) {
+                    if (isset($this->configCoreModul[$this->jenisTr]['tableIn']['detailValues'])) {
+                        foreach ($this->configCoreModul[$this->jenisTr]['tableIn']['detailValues'] as $key => $src) {
+                            if (isset($sessionData[$cCode]['tableIn_detail'][$pID])) {
+                                $dd = $tr->writeDetailValues($insertID, array(
+                                    "produk_jenis" => $sessionData[$cCode]['tableIn_detail'][$pID]['produk_jenis'],
+                                    "produk_id" => $pID,
+                                    "key" => $key,
+                                    "value" => isset($dSpec[$src]) ? $dSpec[$src] : "0",
+                                ));
+                                $insertIDs[$pID][] = $dd;
+                                $mongoList['detailValues'][] = $dd;
+
+                            }
+                        }
+                    }
+                }
+            }
+            if (isset($sessionData[$cCode]['tableIn_detail_values2_sum']) && sizeof($sessionData[$cCode]['tableIn_detail_values2_sum']) > 0) {
+                foreach ($sessionData[$cCode]['tableIn_detail_values2_sum'] as $pID => $dSpec) {
+                    if (isset($this->configCoreModul[$this->jenisTr]['tableIn']['detailValues2_sum'])) {
+                        $insertIDs = array();
+                        foreach ($this->configCoreModul[$this->jenisTr]['tableIn']['detailValues2_sum'] as $key => $src) {
+                            $dd = $tr->writeDetailValues($insertID, array(
+                                "produk_jenis" => $sessionData[$cCode]['tableIn_detail2_sum'][$pID]['produk_jenis'],
+                                "produk_id" => $pID,
+                                "key" => $key,
+                                "value" => $dSpec[$src],
+                            ));
+                            $insertIDs[] = $dd;
+                            $mongoList['detailValues'][] = $dd;
+                        }
+                    }
+                }
+            }
+
+            // region pengganti registry ditulis ke tabel fisik
+            if (isset($sessionData[$cCode]['main']) && sizeof($sessionData[$cCode]['main']) > 0) {
+                $inserMain = array();
+                $insertIDs[] = $tr->writeDetailMainEntries($insertID, $sessionData[$cCode]['main']);
+                cekBiru($this->CI->db->last_query());
+            }
+            if (isset($sessionData[$cCode]['items']) && sizeof($sessionData[$cCode]['items']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items'] as $dSpec) {
+                    $insertIDs[] = $tr->writeDetailItemsEntries($insertID, $dSpec);
+                    cekBiru($this->CI->db->last_query());
+                }
+            }
+            if (isset($sessionData[$cCode]['items2']) && sizeof($sessionData[$cCode]['items2']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['tableIn_items2'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems2($insertID, $dSpec);
+                    $mongoList['detail'] = $insertIDs;
+                    cekUngu($this->CI->db->last_query());
+                }
+            }
+            if (isset($sessionData[$cCode]['items2_sum']) && sizeof($sessionData[$cCode]['items2_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items2_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems2_sum($insertID, $dSpec);
+                    $insertIDs[] = $insertDetailID;
+                    $mongoList['detail'][] = $insertDetailID;
+                }
+            }
+            if (isset($sessionData[$cCode]['items3']) && sizeof($sessionData[$cCode]['items3']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items3'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems3($insertID, $dSpec);
+                }
+            }
+            if (isset($sessionData[$cCode]['items3_sum']) && sizeof($sessionData[$cCode]['items3_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items3_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems3_sum($insertID, $dSpec);
+                    cekMErah($this->CI->db->last_query());
+                }
+            }
+            if (isset($sessionData[$cCode]['items4']) && sizeof($sessionData[$cCode]['items4']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items4'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems4($insertID, $dSpec);
+                }
+            }
+            if (isset($sessionData[$cCode]['items4_sum']) && sizeof($sessionData[$cCode]['items4_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items4_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems4_sum($insertID, $dSpec);
+                }
+            }
+            if (isset($sessionData[$cCode]['items5']) && sizeof($sessionData[$cCode]['items5']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items5'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems5($insertID, $dSpec);
+                }
+            }
+            if (isset($sessionData[$cCode]['items5_sum']) && sizeof($sessionData[$cCode]['items5_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items5_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems5_sum($insertID, $dSpec);
+                }
+            }
+            if (isset($sessionData[$cCode]['items6']) && sizeof($sessionData[$cCode]['items6']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items6'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems6($insertID, $dSpec);
+                }
+            }
+            if (isset($sessionData[$cCode]['items6_sum']) && sizeof($sessionData[$cCode]['items6_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['tableIn_items6_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems6_sum($insertID, $dSpec);
+                }
+            }
+            if (isset($sessionData[$cCode]['items7']) && sizeof($sessionData[$cCode]['items7']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['tableIn_items7'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems7($insertID, $dSpec);
+                }
+            }
+            if (isset($sessionData[$cCode]['items7_sum']) && sizeof($sessionData[$cCode]['items7_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items7_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems7_sum($insertID, $dSpec);
+                }
+            }
+            if (isset($sessionData[$cCode]['items8']) && sizeof($sessionData[$cCode]['items8']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items8'] as $dSpec) {
+                    $insertIDs[] = $tr->writeEntriesDetailItems8($insertID, $dSpec);
+                }
+            }
+            if (isset($sessionData[$cCode]['items8_sum']) && sizeof($sessionData[$cCode]['items8_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items8_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems8_sum($insertID, $dSpec);
+                }
+            }
+            if (isset($sessionData[$cCode]['items9_sum']) && sizeof($sessionData[$cCode]['items9_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items9_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems9_sum($insertID, $dSpec);
+                    cekMErah($this->CI->db->last_query());
+                }
+            }
+            if (isset($sessionData[$cCode]['items10_sum']) && sizeof($sessionData[$cCode]['items10_sum']) > 0) {
+                $insertIDs = array();
+                foreach ($sessionData[$cCode]['items10_sum'] as $dSpec) {
+                    $insertDetailID = $tr->writeEntriesDetailItems10_sum($insertID, $dSpec);
+                    cekKuning($this->CI->db->last_query());
+                }
+            }
+            //endregion
+
+//            mati_disini("LINE: " . __LINE__ . " under maintenance, tunggu beberapa saat lagi yaa.., TRID: $insertID");
+
+            //===components akan langsung dieksekusi jika steps-nya tidak pakai approval
+            $steps = $this->configUiModul[$this->jenisTr]['steps'];
+
+            //region processing sub-components, if in single step geser ke CLI
+            $componentGate['detail'] = array();
+            $componentConfig['detail'] = array();
+            //            //==filter nilai, jika NOL tidak dikirim, sesuai config==
+            $compValidators = ($this->CI->config->item('transaksi_value_required_components') != null) ? $this->CI->config->item('transaksi_value_required_components') : array();
+            $filterNeeded = false;
+            if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                $iterator = isset($sessionData[$cCode]['revert']['jurnal']['detail']) ? $sessionData[$cCode]['revert']['jurnal']['detail'] : array();
+                $revertedTarget = $sessionData[$cCode]['main']['pihakExternID'];
+            }
+            else {
+                $iterator = isset($this->configCoreModul[$this->jenisTr]['components'][$jenisTrTarget]['detail']) ? $this->configCoreModul[$this->jenisTr]['components'][$jenisTrTarget]['detail'] : array();
+                $revertedTarget = "";
+            }
+            $componentConfig['detail'] = $iterator;
+            if ($pakai_ini_cli == 1) {
+                if (sizeof($iterator) > 0) {
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $tmpOutParams[$cCtr] = array();
+                        $gg = 0;
+                        $srcGateName = $tComSpec['srcGateName'];
+                        foreach ($sessionData[$cCode][$srcGateName] as $id => $dSpec) {
+                            $srcRawGateName = $tComSpec['srcRawGateName'];
+                            $comName = $tComSpec['comName'];
+                            if (substr($comName, 0, 1) == "{") {
+                                $comName = trim($comName, "{");
+                                $comName = trim($comName, "}");
+                                $comName = str_replace($comName, $sessionData[$cCode][$srcGateName][$id][$comName], $comName);
+                            }
+                            cekHitam(":: $comName ::");
+                            $mdlName = "Com" . ucfirst($comName);
+                            if (in_array($mdlName, $compValidators)) {//perlu validasi filter
+                                $filterNeeded = true;
+                            }
+                            else {
+                                $filterNeeded = false;
+                            }
+                            echo "sub-component: $comName, initializing values <br>";
+                            $subParams = array();
+                            if (isset($tComSpec['loop'])) {
+                                foreach ($tComSpec['loop'] as $key => $value) {
+                                    cekMerah(":: $key => $value ::");
+                                    if (substr($key, 0, 1) == "{") {
+                                        $key = trim($key, "{");
+                                        $key = trim($key, "}");
+                                        $key = str_replace($key, $sessionData[$cCode][$srcGateName][$id][$key], $key);
+                                    }
+
+                                    $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$id], $sessionData[$cCode][$srcGateName][$id], 0);
+                                    $subParams['loop'][$key] = $realValue;
+
+                                    if ($filterNeeded) {
+                                        if ($subParams['loop'][$key] == 0) {
+                                            unset($subParams['loop'][$key]);
+                                        }
+                                    }
+                                }
+                            }
+                            if (isset($tComSpec['static'])) {
+                                foreach ($tComSpec['static'] as $key => $value) {
+                                    $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$id], $sessionData[$cCode][$srcGateName][$id], 0);
+                                    $subParams['static'][$key] = $realValue;
+                                }
+                                if (!isset($subParams['static']["transaksi_id"])) {
+                                    $subParams['static']["transaksi_id"] = $insertID;
+                                }
+                                if (!isset($subParams['static']["transaksi_no"])) {
+                                    $subParams['static']["transaksi_no"] = $insertNum;
+                                }
+
+                                $subParams['static']["fulldate"] = date("Y-m-d");
+                                $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                $subParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]['steps'][1]['label'] . " nomor " . $tmpNomorNota . " oleh " . $this->session->login['nama'];
+                                if (strlen($revertedTarget) > 1) {
+                                    $subParams['static']['reverted_target'] = $revertedTarget;
+                                }
+                            }
+                            if (sizeof($subParams) > 0) {
+                                if ($filterNeeded) {
+                                    if (isset($subParams['loop']) && sizeof($subParams['loop']) > 0) {
+                                        $tmpOutParams[$cCtr][] = $subParams;
+                                    }
+                                }
+                                else {
+                                    $tmpOutParams[$cCtr][] = $subParams;
+                                }
+                            }
+                            else {
+                                cekhitam("subparam TIDAK ada isinya");
+                            }
+                        }
+
+                        $componentGate['detail'][$cCtr] = $subParams;
+                    }
+                    //cekHitam("cetak tmpOutParams");
+
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $srcGateName = $tComSpec['srcGateName'];
+                        foreach ($sessionData[$cCode][$srcGateName] as $id => $dSpec) {
+                            $srcRawGateName = $tComSpec['srcRawGateName'];
+                            $comName = $tComSpec['comName'];
+                            if (substr($comName, 0, 1) == "{") {
+                                $comName = trim($comName, "{");
+                                $comName = trim($comName, "}");
+                                $comName = str_replace($comName, $sessionData[$cCode][$srcGateName][$id][$comName], $comName);
+                            }
+                        }
+                        echo "sub component: $comName, sending values <br>";
+
+                        $mdlName = "Com" . ucfirst($comName);
+                        $this->CI->load->model("Coms/" . $mdlName);
+                        $m = new $mdlName();
+                        //===filter value nol, jika harus difilter
+                        //                    arrPrint($tmpOutParams[$cCtr]);
+                        if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                            $tobeExecuted = true;
+                        }
+                        else {
+                            $tobeExecuted = false;
+                        }
+                        if ($tobeExecuted) {
+                            cekMerah("$comName dieksekusiii");
+                            arrPrint($tmpOutParams[$cCtr]);
+                            $m->pair($tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            $m->exec() or die("Gagal saat berusaha  exec values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            cekBiru($this->CI->db->last_query());
+                        }
+                        else {
+                            cekMerah("$comName tidak eksekusi");
+                        }
+
+                    }
+                }
+                else {
+                    //cekKuning("subcomponents is not set");
+                }
+
+            }
+
+            //endregion
+
+            //region processing main components, if in single step
+            $componentJurnal = array();
+            $componentGate['master'] = array();
+            $componentConfig['master'] = array();
+            //==filter nilai, jika NOL tidak dikirim, sesuai config==
+            $compValidators = ($this->CI->config->item('transaksi_value_required_components') != null) ? $this->CI->config->item('transaksi_value_required_components') : array();
+            if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                $iterator = isset($sessionData[$cCode]['revert']['jurnal']['master']) ? $sessionData[$cCode]['revert']['jurnal']['master'] : array();
+            }
+            else {
+                $iterator = isset($this->configCoreModul[$this->jenisTr]['components'][$jenisTrTarget]['master']) ? $this->configCoreModul[$this->jenisTr]['components'][$jenisTrTarget]['master'] : array();
+            }
+
+
+            if (sizeof($iterator) > 0) {
+                $componentConfig['master'] = $iterator;
+                $cCtr = 0;
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $cCtr++;
+                    $comName = $tComSpec['comName'];
+                    if (substr($comName, 0, 1) == "{") {
+                        $comName = trim($comName, "{");
+                        $comName = trim($comName, "}");
+                        $comName = str_replace($comName, $sessionData[$cCode]['main'][$comName], $comName);
+                    }
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    echo "component # $cCtr: $comName<br>";
+
+                    $dSpec = $sessionData[$cCode][$srcGateName];
+                    $tmpOutParams = array();
+                    if (isset($tComSpec['loop'])) {
+                        foreach ($tComSpec['loop'] as $key => $value) {
+                            if (substr($key, 0, 1) == "{") {
+                                $key = trim($key, "{");
+                                $key = trim($key, "}");
+                                $key = str_replace($key, $sessionData[$cCode]['main'][$key], $key);
+                            }
+                            $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                            $tmpOutParams['loop'][$key] = $realValue;
+                        }
+                    }
+                    if (isset($tComSpec['static'])) {
+                        foreach ($tComSpec['static'] as $key => $value) {
+                            $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                            $tmpOutParams['static'][$key] = $realValue;
+                        }
+                        if (!isset($tmpOutParams['static']["transaksi_id"])) {
+                            $tmpOutParams['static']["transaksi_id"] = $insertID;
+                        }
+                        if (!isset($tmpOutParams['static']["transaksi_no"])) {
+                            $tmpOutParams['static']["transaksi_no"] = $insertNum;
+                        }
+                        $tmpOutParams['static']["urut"] = $cCtr;
+                        $tmpOutParams['static']["fulldate"] = date("Y-m-d");
+                        $tmpOutParams['static']["dtime"] = date("Y-m-d H:i:s");
+                        $tmpOutParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]['steps'][1]['label'] . " nomor " . $tmpNomorNota . " oleh " . $this->session->login['nama'];
+
+
+                    }
+
+                    if (isset($tComSpec['static2'])) {
+                        foreach ($tComSpec['static2'] as $key => $value) {
+                            $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$cCtr], $sessionData[$cCode][$srcGateName][$cCtr], 0);
+                            $tmpOutParams['static2'][$key] = $realValue;
+                        }
+                        if (!isset($tmpOutParams['static2']["transaksi_id"])) {
+                            $tmpOutParams['static2']["transaksi_id"] = $insertID;
+                        }
+                        if (!isset($tmpOutParams['static2']["transaksi_no"])) {
+                            $tmpOutParams['static2']["transaksi_no"] = $insertNum;
+                        }
+
+                        $tmpOutParams['static2']["fulldate"] = date("Y-m-d");
+                        $tmpOutParams['static2']["dtime"] = date("Y-m-d H:i:s");
+                        $tmpOutParams['static2']["keterangan"] = $this->configUiModul[$this->jenisTr]['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . " oleh " . $this->session->login['nama'];
+                    }
+
+
+                    $mdlName = "Com" . ucfirst($comName);
+                    $this->CI->load->model("Coms/" . $mdlName);
+                    $m = new $mdlName();
+                    //===filter value nol, jika harus difilter
+                    $tobeExecuted = true;
+                    if (in_array($mdlName, $compValidators)) {
+                        $loopParams = isset($tmpOutParams['loop']) ? $tmpOutParams['loop'] : array();
+                        if (sizeof($loopParams) > 0) {
+                            foreach ($loopParams as $key => $val) {
+                                if ($val == 0) {
+                                    unset($tmpOutParams['loop'][$key]);
+                                }
+                            }
+                        }
+                        if (sizeof($tmpOutParams['loop']) < 1) {
+                            $tobeExecuted = false;
+                        }
+                    }
+
+                    if ($tobeExecuted) {
+                        $m->pair($tmpOutParams) or die("Tidak berhasil memasang  values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        $m->exec() or die("Gagal saat berusaha  exec values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+//                        cekHitam($this->CI->db->last_query());
+                    }
+
+                    $componentGate['master'][$cCtr] = $tmpOutParams;
+                    if ($comName == "Jurnal") {
+                        $componentJurnal[] = $tmpOutParams;
+                    }
+                }
+            }
+            else {
+                //cekKuning("components is not set");
+            }
+            //endregion
+
+            cekHitam(":: START POST PROCC DETAIL... ::");
+
+            //region processing sub-post-processors, always
+            if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                $iterator = isset($sessionData[$cCode]['revert']['postProc']['detail']) ? $sessionData[$cCode]['revert']['postProc']['detail'] : array();
+                cekHitam("post procc pakai revert");
+            }
+            else {
+                $iterator = isset($this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget]['detail']) ? $this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget]['detail'] : array();
+                cekHitam("post procc pakai config core");
+            }
+            if (sizeof($iterator) > 0) {
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    echo "[$cCtr] sub-postProcessor: $comName, gate: $srcGateName, initializing values <br>";
+                    $tmpOutParams[$cCtr] = array();
+                    if (isset($sessionData[$cCode][$srcGateName]) && (sizeof($sessionData[$cCode][$srcGateName]) > 0)) {
+                        arrPrint($sessionData[$cCode][$srcGateName]);
+                        foreach ($sessionData[$cCode][$srcGateName] as $xid => $dSpec) {
+                            $id = $xid;
+                            $subParams = array();
+                            if (isset($tComSpec['loop'])) {
+                                foreach ($tComSpec['loop'] as $key => $value) {
+                                    $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$id], $sessionData[$cCode][$srcGateName][$id], 0);
+                                    $subParams['loop'][$key] = $realValue;
+                                }
+                            }
+                            if (isset($tComSpec['static'])) {
+                                foreach ($tComSpec['static'] as $key => $value) {
+                                    $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$id], $sessionData[$cCode][$srcGateName][$id], 0);
+                                    $subParams['static'][$key] = $realValue;
+                                }
+                                if (!isset($subParams['static']["transaksi_id"])) {
+                                    $subParams['static']["transaksi_id"] = $insertID;
+                                }
+                                if (!isset($subParams['static']["transaksi_no"])) {
+                                    $subParams['static']["transaksi_no"] = $insertNum;
+                                }
+                                $subParams['static']["fulldate"] = date("Y-m-d");
+                                $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                if (isset($sessionData[$cCode]['revert']['postProc']['detail'])) {
+                                    $subParams['static']["reverted_target"] = $sessionData[$cCode]['main']['pihakExternID'];
+                                }
+                                $subParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]['steps'][1]['label'] . " nomor " . $tmpNomorNota . " oleh " . $sessionData[$cCode][$srcGateName][$xid]['olehName'];
+                            }
+                            if (sizeof($subParams) > 0) {
+                                $tmpOutParams[$cCtr][] = $subParams;
+                            }
+                        }
+                    }
+                }
+
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    $loadByModules = isset($tComSpec['loadByModules']) ? $tComSpec['loadByModules'] : false;
+                    cekBiru("loadByModules: $loadByModules");
+                    if (isset($sessionData[$cCode][$srcGateName])) {
+                        echo "[$cCtr] sub-postProcessor: $comName, sending values <br>";
+                        $mdlName = "Com" . ucfirst($comName);
+                        if ($loadByModules == true) {
+                            $this->CI->load->model($pathModules . "Coms/" . $mdlName);
+                        }
+                        else {
+                            $this->CI->load->model("Coms/" . $mdlName);
+                        }
+//arrPrintWebs($tmpOutParams[$cCtr]);
+                        $m = new $mdlName();
+                        $m->pair($tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        cekPink($this->CI->db->last_query());
+                    }
+//                    mati_disini(__LINE__);
+                }
+            }
+            //endregion
+
+            //region relesaese connected payment source dan marking trash transaksi
+            if (isset($sessionData[$cCode]["revert"]["connectedPaymentsource"]) && $sessionData[$cCode]["revert"]["connectedPaymentsource"] == true) {
+                $keyRel = $sessionData[$cCode]["main"]["referenceID"];
+                $keyRelRef = $sessionData[$cCode]["main"]["pihakExternID"];
+                $relPaymentSrc = isset($this->CI->config->item("payment_source")[$keyRelRef]) ? $this->CI->config->item("payment_source")[$keyRelRef] : array();
+                if (sizeof($relPaymentSrc) > 0) {
+                    $this->CI->load->model("Mdls/MdlPaymentSource");
+                    $m = new MdlPaymentSource();
+                    $m->addFilter("transaksi_id='$keyRel'");
+                    $tmpRelPay = $m->lookupAll()->result();
+                    $paymentRelUsed = array(
+                        "cabang_id" => "placeID",
+                        "extern_id" => "id",
+                        "extern_nama" => "name",
+                        "label" => ".hutang biaya",
+                        "target_jenis" => "jenisTr",
+                        "transaksi_id" => "refID",
+                        "terbayar" => "nilai_bayar",
+                        "sisa" => "new_sisa",
+                        "ppn" => "valid_ppn",
+                        "extern_nilai2" => "valid_dpp",
+                    );
+                    if (sizeof($tmpRelPay) > 0) {
+                        $tmpOutParams = array();
+                        $iterator = array();
+                        foreach ($tmpRelPay as $indexKey => $relData) {
+                            $tmp = array();
+                            foreach ($paymentRelUsed as $key => $keyGate) {
+                                if ($key == "terbayar") {
+                                    $val = $relData->sisa;
+                                }
+                                else {
+                                    if ($key == "sisa") {
+                                        $val = "-" . $relData->sisa;
+                                    }
+                                    else {
+                                        $val = $relData->$key;
+                                    }
+                                }
+                                $tmp["static"][$key] = $val;
+                                $tmp["static"]["keterangan"] = $this->configUiModul[$this->jenisTr]['steps'][1]['label'] . " nomor " . $tmpNomorNota . " oleh " . $this->session->login['nama'];
+
+                            }
+                            $iterator[$indexKey]["loop"] = array();
+                            $iterator[$indexKey]["comName"] = "PaymentSrcItem";
+                            if (sizeof($tmp) > 0) {
+                                $tmpOutParams[$indexKey][] = $tmp;
+                            }
+                        }
+                        foreach ($iterator as $cCtr => $tComSpec) {
+                            $comName = $tComSpec['comName'];
+                            echo "sub-postProcessor: $comName, sending values <br>";
+                            $mdlName = "Com" . ucfirst($comName);
+                            $this->CI->load->model("Coms/" . $mdlName);
+                            $m = new $mdlName();
+                            $m->pair($tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            //                            cekHitam($this->CI->db->last_query());
+                        }
+                    }
+                    //                    foreach()
+                    cekLime("yuk direset paymentsource**");
+                }
+
+
+            }
+            //endregion
+
+            //region processing main-post-processors, always
+            if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                $iterator = isset($sessionData[$cCode]['revert']['postProc']['detail']) ? $sessionData[$cCode]['revert']['postProc']['master'] : array();
+            }
+            else {
+                $iterator = isset($this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget]['master']) ? $this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget]['master'] : array();
+            }
+
+            if (sizeof($iterator) > 0) {
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    $loadByModules = isset($tComSpec['loadByModules']) ? $tComSpec['loadByModules'] : false;
+                    echo "post-processor: $comName<br>LINE: " . __LINE__;
+
+                    $dSpec = $sessionData[$cCode][$srcGateName];
+                    $tmpOutParams = array();
+                    if (isset($tComSpec['loop'])) {
+                        foreach ($tComSpec['loop'] as $key => $value) {
+                            $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                            $tmpOutParams['loop'][$key] = $realValue;
+                        }
+                    }
+                    if (isset($tComSpec['static'])) {
+                        foreach ($tComSpec['static'] as $key => $value) {
+                            $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                            $tmpOutParams['static'][$key] = $realValue;
+                        }
+                        if (!isset($tmpOutParams['static']["transaksi_id"])) {
+                            $tmpOutParams['static']["transaksi_id"] = $insertID;
+                        }
+                        if (!isset($tmpOutParams['static']["transaksi_no"])) {
+                            $tmpOutParams['static']["transaksi_no"] = $insertNum;
+                        }
+
+                        $tmpOutParams['static']["fulldate"] = date("Y-m-d");
+                        $tmpOutParams['static']["dtime"] = date("Y-m-d H:i:s");
+                        $tmpOutParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]['steps'][1]['label'] . " nomor " . $tmpNomorNota . " oleh " . $sessionData[$cCode][$srcGateName]['olehName'];
+
+
+                    }
+                    if (isset($tComSpec['static2'])) {
+                        foreach ($tComSpec['static2'] as $key => $value) {
+                            $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$cCtr], $sessionData[$cCode][$srcGateName][$cCtr], 0);
+                            $tmpOutParams['static2'][$key] = $realValue;
+                        }
+                        if (!isset($tmpOutParams['static2']["transaksi_id"])) {
+                            $tmpOutParams['static2']["transaksi_id"] = $insertID;
+                        }
+                        if (!isset($tmpOutParams['static2']["transaksi_no"])) {
+                            $tmpOutParams['static2']["transaksi_no"] = $insertNum;
+                        }
+
+                        $tmpOutParams['static2']["fulldate"] = date("Y-m-d");
+                        $tmpOutParams['static2']["dtime"] = date("Y-m-d H:i:s");
+                        $tmpOutParams['static2']["keterangan"] = $this->configUiModul[$this->jenisTr]['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . " oleh " . $sessionData[$cCode][$srcGateName]['olehName'];
+                    }
+
+                    $mdlName = "Com" . ucfirst($comName);
+                    if ($loadByModules == true) {
+                        cekHere($pathModules . "Coms/" . $mdlName);
+//                        $pathModules = "../distribusi/models/";
+                        $this->CI->load->model($pathModules . "Coms/" . $mdlName);
+//                        $this->CI->load->model("Coms/" . $mdlName);
+                    }
+                    else {
+                        $this->CI->load->model("Coms/" . $mdlName);
+                    }
+                    $m = new $mdlName();
+
+                    cekBiru("kiriman komponem $comName");
+                    arrPrint($tmpOutParams);
+                    $m->pair($tmpOutParams) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                    $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                    //cekHitam($this->CI->db->last_query());
+
+                }
+            }
+            else {
+
+            }
+            //endregion
+
+//            mati_disini("LINE: " . __LINE__ . " under maintenance, tunggu beberapa saat lagi yaa.., TRID: $insertID");
+
+
+            //region updater main transaksi rejection jurnal next step exist
+            $mongUpdateList = array();
+            if (isset($this->configCoreModul[$this->jenisTr]['relativeComponets']) && $this->configCoreModul[$this->jenisTr]['relativeComponets'] == true) {
+                $tr->setFilters(array());
+                $tr->addFilter("id='" . $sessionData[$cCode]["main"]["referenceID"] . "'");
+                $tempData = $tr->lookupAll()->result();
+                $refMasterID = $tempData[0]->id_master;
+                $refMasterJenis = $tempData[0]->jenis_master;
+                $nextStepCode = $tempData[0]->next_step_code;
+                $mainStepCode = $tempData[0]->jenis;
+                $stepnum = $tempData[0]->step_number;
+                $stepnumAvail = $tempData[0]->step_avail;
+                if (($stepnumAvail - $stepnum) > 0) {
+                    $this->CI->load->model("Coms/ComTransaksi_jurnal_revert");
+                    $r = new ComTransaksi_jurnal_revert();
+                    $outParams = array(
+                        "refID" => $refMasterID,
+                        "main_code" => $mainStepCode,
+                        "next_code" => $nextStepCode,
+                        "step_num" => $stepnum,
+                    );
+                    $r->pair($outParams) or die("Tidak berhasil memasang  values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                    $r->exec() or die("Gagal saat berusaha  exec values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+
+                    //marking main transaksi trash4
+                    $udpate = array(
+                        "trash_4" => "1",
+                    );
+                    $tr->setFilters(array());
+                    //                    $tr = new MdlPembelianTransaksi();
+                    $dupState = $tr->updateData(array(
+                        "id" => $sessionData[$cCode]["main"]["referenceID"],
+                    ), $udpate) or die("Failed to update tr next-state!");
+                    $mongUpdateList['update']['main'][] = array(
+                        "where" => array("id" => $sessionData[$cCode]["main"]["referenceID"]),
+                        "value" => array(
+                            "trash_4" => "1",
+                        ),
+                    );
+                    cekHijau("UPDATE transaksi step sebelumnya...");
+                    cekHijau($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+
+                    //update validqty 0 supaya gak bisa difollowup
+                    $td = new MdlPembelianTransaksi();
+                    $td->setFilters(array());
+                    $rslt = $td->lookupJoinedByID($sessionData[$cCode]["main"]["referenceID"])->result();
+                    if (sizeof($rslt) > 0) {
+                        foreach ($rslt as $rsltSpec) {
+                            if (array_key_exists($rsltSpec->produk_id, $sessionData[$cCode]["items"])) {
+                                $arrData_detail["valid_qty"] = 0;
+                                $tr = new MdlPembelianTransaksi();
+                                $tr->setFilters(array());
+                                $tr->setTableName($tr->getTableNames()['detail']);
+                                $dupState = $tr->updateData(array(
+                                    "transaksi_id" => $sessionData[$cCode]["main"]["referenceID"],
+                                    "produk_id" => $rsltSpec->produk_id,
+                                ), $arrData_detail) or die("Failed to update tr next-state!");
+                                $mongUpdateList['update']['detail'][] = array(
+                                    "where" => array(
+                                        "transaksi_id" => $sessionData[$cCode]["main"]["referenceID"],
+                                        "produk_id" => $rsltSpec->produk_id,
+                                    ),
+                                    "value" => $arrData_detail,
+                                );
+                                cekKuning("UPDATE transaksi data...");
+                                cekKuning($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+                            }
+                        }
+                    }
+
+                    $dwsign = $tr->writeSignature($refMasterID, array(
+                        "prev_id" => "",
+                        "nomer" => "pembatalan jurnal",
+                        "step_number" => "-" . $stepnum, // ini minus step number
+                        "step_code" => $this->configUiModul[$refMasterJenis]['steps'][abs($stepnum)]['target'],
+                        "step_name" => $this->configUiModul[$refMasterJenis]['steps'][abs($stepnum)]['label'],
+                        "group_code" => $this->configUiModul[$refMasterJenis]['steps'][abs($stepnum)]['userGroup'],
+                        "oleh_id" => $sessionData[$cCode]["main"]['olehID'],
+                        "oleh_nama" => $sessionData[$cCode]["main"]['olehName'],
+                        "keterangan" => $this->configUiModul[$refMasterJenis]['steps'][abs($stepnum)]['label'] . " oleh " . $sessionData[$cCode]["main"]['olehName'],
+                    )) or die("Failed to write signature");
+                    $mongoList['sign'][] = $dwsign;
+                    cekKuning($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+                }
+                else {
+                    //marking main transaksi trash4
+                    $udpate = array(
+                        "trash_4" => "1",
+                    );
+                    $tr->setFilters(array());
+                    $dupState = $tr->updateData(array(
+                        "id" => $sessionData[$cCode]["main"]["referenceID"],
+                    ), $udpate) or die("Failed to update tr next-state!");
+                    $mongUpdateList['update']['main'][] = array(
+                        "where" => array("id" => $sessionData[$cCode]["main"]["referenceID"]),
+                        "value" => array(
+                            "trash_4" => "1",
+                        ),
+                    );
+
+                    //update validqty 0 supaya gak bisa difollowup
+                    $arrData_detail["valid_qty"] = $new_valid_qty;
+                    $td = new MdlPembelianTransaksi();
+                    $td->setFilters(array());
+                    $rslt = $td->lookupJoinedByID($sessionData[$cCode]["main"]["referenceID"])->result();
+                    if (sizeof($rslt) > 0) {
+                        foreach ($rslt as $rsltSpec) {
+                            if (array_key_exists($rsltSpec->produk_id, $sessionData[$cCode]["items"])) {
+                                $arrData_detail["valid_qty"] = 0;
+                                $tr = new MdlPembelianTransaksi();
+                                $tr->setFilters(array());
+                                $tr->setTableName($tr->getTableNames()['detail']);
+                                $dupState = $tr->updateData(array(
+                                    "transaksi_id" => $sessionData[$cCode]["main"]["referenceID"],
+                                    "produk_id" => $rsltSpec->produk_id,
+                                ), $arrData_detail) or die("Failed to update tr next-state!");
+                                cekKuning("UPDATE transaksi data...");
+                                cekKuning($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+                                $mongUpdateList['update']['detail'][] = array(
+                                    "where" => array(
+                                        "transaksi_id" => $sessionData[$cCode]["main"]["referenceID"],
+                                        "produk_id" => $rsltSpec->produk_id,
+                                    ),
+                                    "value" => $arrData_detail,
+                                );
+                            }
+                        }
+                    }
+
+                    $dwsign = $tr->writeSignature($refMasterID, array(
+                        "prev_id" => "",
+                        "nomer" => "pembatalan jurnal",
+                        "step_number" => "-" . $stepnum, // ini minus step number
+                        "step_code" => $this->configUiModul[$refMasterJenis]['steps'][abs($stepnum)]['target'],
+                        "step_name" => $this->configUiModul[$refMasterJenis]['steps'][abs($stepnum)]['label'],
+                        "group_code" => $this->configUiModul[$refMasterJenis]['steps'][abs($stepnum)]['userGroup'],
+                        "oleh_id" => $sessionData[$cCode]["main"]['olehID'],
+                        "oleh_nama" => $sessionData[$cCode]["main"]['olehName'],
+                        "keterangan" => $this->configUiModul[$refMasterJenis]['steps'][abs($stepnum)]['label'] . " oleh " . $sessionData[$cCode]["main"]['olehName'],
+                    )) or die("Failed to write signature");
+                    $mongoList['sign'][] = $dwsign;
+                    cekKuning($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+                }
+            }
+            //endregion
+
+            // region berlaku pembatalan transaksi bila ada config revertStep di model MdlRevertJurnal (true)
+            if (isset($sessionData[$cCode]['main']['pihakExternRevertStep']) && ($sessionData[$cCode]['main']['pihakExternRevertStep'] == true)) {
+                $referenceNextProp = (isset($sessionData[$cCode]['main']['referenceNextProp']) && (sizeof($sessionData[$cCode]['main']['referenceNextProp']) > 0)) ? $sessionData[$cCode]['main']['referenceNextProp'] : array();
+                if (sizeof($referenceNextProp) > 0) {
+                    // update transaksi reference, step sebelumnya menjadi aktif lagi
+                    $tr = new MdlPembelianTransaksi();
+                    $tr->setFilters(array());
+                    $dupState = $tr->updateData(array("id" => $referenceNextProp['trID']), array(
+                        "next_step_code" => $referenceNextProp['code'],
+                        "next_step_label" => $referenceNextProp['label'],
+                        "next_group_code" => $referenceNextProp['groupID'],
+                        "next_step_num" => $referenceNextProp['num'],
+                        "step_current" => $referenceNextProp['step_num'],
+
+                    )) or die("Failed to update tr next-state!");
+                    cekHijau("BATAL :: " . $this->CI->db->last_query() . " -- " . $this->CI->db->affected_rows());
+                    $mongUpdateList['update']['main'][] = array(
+                        "where" => array("id" => $referenceNextProp['trID']),
+                        "value" => array(
+                            "next_step_code" => $referenceNextProp['code'],
+                            "next_step_label" => $referenceNextProp['label'],
+                            "next_group_code" => $referenceNextProp['groupID'],
+                            "next_step_num" => $referenceNextProp['num'],
+                            "step_current" => $referenceNextProp['step_num'],
+                        ),
+                    );
+
+                    // update transaksi data reference, step sebelumnya menjadi aktif lagi
+                    $tr = new MdlPembelianTransaksi();
+                    $tr->setFilters(array());
+                    $tr->addFilter("trash='0'");
+                    $tr->addFilter("transaksi_id='" . $referenceNextProp['trID'] . "'");
+                    $tr->setTableName($tr->getTableNames()['detail']);
+                    $detailTmp = $tr->lookupAll()->result();
+                    $detailData = array();
+                    foreach ($detailTmp as $dTmpSpec) {
+                        $detailData[$dTmpSpec->produk_id] = array(
+                            "valid_qty" => $dTmpSpec->valid_qty,
+                        );
+                    }
+                    cekOrange($referenceNextProp['detailGate']);
+                    if (isset($sessionData[$cCode][$referenceNextProp['detailGate']]) && ($sessionData[$cCode][$referenceNextProp['detailGate']] != NULL)) {
+                        foreach ($sessionData[$cCode][$referenceNextProp['detailGate']] as $itemsSpec) {
+                            $valid_qty = isset($detailData[$itemsSpec['id']]['valid_qty']) ? $detailData[$itemsSpec['id']]['valid_qty'] : 0;
+                            $valid_qty_new = $valid_qty + $itemsSpec['qty'];
+
+                            $tr = new MdlPembelianTransaksi();
+                            $tr->setFilters(array());
+                            $tr->setTableName($tr->getTableNames()['detail']);
+                            $ddupState = $tr->updateData(
+                                array(
+                                    "transaksi_id" => $referenceNextProp['trID'],
+                                    "trash" => 0,
+                                    "produk_id" => $itemsSpec['id'],
+                                ), array(
+                                "next_substep_code" => $referenceNextProp['code'],
+                                "next_substep_label" => $referenceNextProp['label'],
+                                "next_subgroup_code" => $referenceNextProp['groupID'],
+                                "next_substep_num" => $referenceNextProp['num'],
+                                "sub_step_current" => $referenceNextProp['step_num'],
+                                "valid_qty" => $valid_qty_new,
+
+                            )) or die("Failed to update tr next-state!");
+                            cekHijau("BATAL :: " . $this->CI->db->last_query() . " -- " . $this->CI->db->affected_rows());
+                            $mongUpdateList['update']['detail'][] = array(
+                                "where" => array(
+                                    "transaksi_id" => $referenceNextProp['trID'],
+                                    "trash" => 0,
+                                    "produk_id" => $itemsSpec['id'],
+                                ),
+                                "value" => array(
+                                    "next_substep_code" => $referenceNextProp['code'],
+                                    "next_substep_label" => $referenceNextProp['label'],
+                                    "next_subgroup_code" => $referenceNextProp['groupID'],
+                                    "next_substep_num" => $referenceNextProp['num'],
+                                    "sub_step_current" => $referenceNextProp['step_num'],
+                                    "valid_qty" => $valid_qty_new,
+                                ),
+                            );
+                        }
+                    }
+                }
+            }
+            // endregion
+
+            //region nulis paymentSource
+            $stepCode = $this->configUiModul[$this->jenisTr]['steps'][1]['target'];
+            $paymentSources = $this->CI->config->item("payment_source");
+            if (array_key_exists($stepCode, $paymentSources)) {
+                $payConfigs = $paymentSources[$stepCode];
+                if (sizeof($payConfigs) > 0) {
+                    foreach ($payConfigs[1] as $paymentSrcConfig) {
+                        $valueLabel = isset($paymentSrcConfig['label_key']) ? $paymentSrcConfig['label_key'] : $paymentSrcConfig['label'];
+                        $valueSrc = $paymentSrcConfig['valueSrc'];
+                        $externSrc = $paymentSrcConfig['externSrc'];
+                        $paymentMethod = isset($paymentSrcConfig['method']) ? $paymentSrcConfig['method'] : "insert";
+
+                        if ($paymentMethod == "update") {
+                            $filters = array(
+                                "extern_id" => ""
+                            );
+                            $tr->setFilters(array());
+                            $tmpData = $tr->lookupPaymentSrcByJenis($paymentSrcConfig['jenisTarget'])->result();
+                            if (sizeof($tmpData) > 0) {
+                                //sudah ada update aja gak perlu insert
+                                $prevID = $tmpData[0]->id;
+                                $preValue = $tmpData[0]->sisa;
+                                $currValue = isset($sessionData[$cCode]['main'][$valueSrc]) ? $sessionData[$cCode]['main'][$valueSrc] : 0;
+                                $newValue = $preValue + $currValue;
+                                $where = array(
+                                    "id" => $prevID,
+                                );
+                                $data = array(
+                                    "tagihan" => $newValue,
+                                    "sisa" => $newValue,
+                                );
+                                $tr->updatePaymentSrc($where, $data);
+                            }
+                            else {
+                                //di insert baru
+                                $tr->writePaymentSrc($insertID, array(
+                                    "jenis" => $stepCode,
+                                    "target_jenis" => $paymentSrcConfig['jenisTarget'],
+                                    "reference_jenis" => $paymentSrcConfig['jenisSrc'],
+                                    "extern_id" => $sessionData[$cCode]['main'][$externSrc['id']],
+                                    "extern_nama" => $sessionData[$cCode]['main'][$externSrc['nama']],
+                                    "nomer" => $sessionData[$cCode]['main']['nomer'],
+                                    "label" => $paymentSrcConfig['label'],
+                                    "tagihan" => isset($sessionData[$cCode]['main'][$valueSrc]) ? $sessionData[$cCode]['main'][$valueSrc] : 0,
+                                    "terbayar" => 0,
+                                    "sisa" => isset($sessionData[$cCode]['main'][$valueSrc]) ? $sessionData[$cCode]['main'][$valueSrc] : 0,
+                                    "cabang_id" => $sessionData[$cCode]['main']['placeID'],
+                                    "cabang_nama" => $sessionData[$cCode]['main']['placeName'],
+                                    "oleh_id" => $sessionData[$cCode]['main']['olehID'],
+                                    "oleh_nama" => $sessionData[$cCode]['main']['olehName'],
+                                    "dtime" => date("Y-m-d H:i:s"),
+                                    "fulldate" => date("Y-m-d"),
+                                    "valas_id" => (isset($externSrc['valasId']) && isset($sessionData[$cCode]['main'][$externSrc['valasId']])) ? $sessionData[$cCode]['main'][$externSrc['valasId']] : '',
+                                    "valas_nama" => (isset($externSrc['valasLabel']) && isset($sessionData[$cCode]['main'][$externSrc['valasLabel']])) ? $sessionData[$cCode]['main'][$externSrc['valasLabel']] : '',
+                                    "valas_nilai" => (isset($externSrc['valasValue']) && isset($sessionData[$cCode]['main'][$externSrc['valasValue']])) ? $sessionData[$cCode]['main'][$externSrc['valasValue']] : 0,
+                                    "tagihan_valas" => (isset($externSrc['valasTagihan']) && isset($sessionData[$cCode]['main'][$externSrc['valasTagihan']])) ? $sessionData[$cCode]['main'][$externSrc['valasTagihan']] : 0,
+                                    "terbayar_valas" => (isset($externSrc['valasTerbayar']) && isset($sessionData[$cCode]['main'][$externSrc['valasTerbayar']])) ? $sessionData[$cCode]['main'][$externSrc['valasTerbayar']] : 0,
+                                    "sisa_valas" => (isset($externSrc['valasSisa']) && isset($sessionData[$cCode]['main'][$externSrc['valasSisa']])) ? $sessionData[$cCode]['main'][$externSrc['valasSisa']] : 0,
+                                    "extern_label2" => (isset($externSrc['extern_label2']) && ($sessionData[$cCode]['main'][$externSrc['extern_label2']])) ? $sessionData[$cCode]['main'][$externSrc['extern_label2']] : "",
+                                    "extern_nilai2" => (isset($externSrc['extern_nilai2']) && ($sessionData[$cCode]['main'][$externSrc['extern_nilai2']])) ? $sessionData[$cCode]['main'][$externSrc['extern_nilai2']] : 0,
+                                ));
+                            }
+
+
+                        }
+                        else {
+                            //region cek duplikasi paymentsource
+                            $tr->setFilters(array());
+                            $tr->addFilter("transaksi_id='$insertID'");
+                            $tr->addFilter("target_jenis='" . $paymentSrcConfig['jenisTarget'] . "'");
+                            $validateIsInserted = $tr->lookUpAllPaymentSrc()->result();
+                            if (sizeof($validateIsInserted) > 0) {
+                                matiHEre("Gagal menulis pembelian_transaksi. Silahkan relogin untuk membersihkan sesi demi menghindari duplikasi data, dan coba kembali transaksi yang gagal");
+                            }
+                            //endregion
+
+                            //-----------------------
+                            cekHitam("valuelabel: $valueLabel, valueSrc: $valueSrc");
+                            $this->CI->load->helper("he_payment_source");
+                            paymentSource($this->jenisTr, $componentJurnal, $sessionData[$cCode]['main'], $valueLabel, $valueSrc);
+                            //-----------------------
+
+
+                            $arrDataPym = array(
+                                "jenis" => $stepCode,
+                                "target_jenis" => $paymentSrcConfig['jenisTarget'],
+                                "reference_jenis" => $paymentSrcConfig['jenisSrc'],
+                                "extern_id" => $sessionData[$cCode]['main'][$externSrc['id']],
+                                "extern_nama" => $sessionData[$cCode]['main'][$externSrc['nama']],
+                                "nomer" => $sessionData[$cCode]['main']['nomer'],
+                                "label" => $paymentSrcConfig['label'],
+                                "tagihan" => isset($sessionData[$cCode]['main'][$valueSrc]) ? $sessionData[$cCode]['main'][$valueSrc] : 0,
+                                "terbayar" => 0,
+                                "sisa" => isset($sessionData[$cCode]['main'][$valueSrc]) ? $sessionData[$cCode]['main'][$valueSrc] : 0,
+                                "cabang_id" => $sessionData[$cCode]['main']['placeID'],
+                                "cabang_nama" => $sessionData[$cCode]['main']['placeName'],
+                                "oleh_id" => $sessionData[$cCode]['main']['olehID'],
+                                "oleh_nama" => $sessionData[$cCode]['main']['olehName'],
+                                "dtime" => date("Y-m-d H:i:s"),
+                                "fulldate" => date("Y-m-d"),
+                                "valas_id" => (isset($externSrc['valasId']) && isset($sessionData[$cCode]['main'][$externSrc['valasId']])) ? $sessionData[$cCode]['main'][$externSrc['valasId']] : '',
+                                "valas_nama" => (isset($externSrc['valasLabel']) && isset($sessionData[$cCode]['main'][$externSrc['valasLabel']])) ? $sessionData[$cCode]['main'][$externSrc['valasLabel']] : '',
+                                "valas_nilai" => (isset($externSrc['valasValue']) && isset($sessionData[$cCode]['main'][$externSrc['valasValue']])) ? $sessionData[$cCode]['main'][$externSrc['valasValue']] : 0,
+                                "tagihan_valas" => (isset($externSrc['valasTagihan']) && isset($sessionData[$cCode]['main'][$externSrc['valasTagihan']])) ? $sessionData[$cCode]['main'][$externSrc['valasTagihan']] : 0,
+                                "terbayar_valas" => (isset($externSrc['valasTerbayar']) && isset($sessionData[$cCode]['main'][$externSrc['valasTerbayar']])) ? $sessionData[$cCode]['main'][$externSrc['valasTerbayar']] : 0,
+                                "sisa_valas" => (isset($externSrc['valasSisa']) && isset($sessionData[$cCode]['main'][$externSrc['valasSisa']])) ? $sessionData[$cCode]['main'][$externSrc['valasSisa']] : 0,
+                                "extern_label2" => (isset($externSrc['extern_label2']) && ($sessionData[$cCode]['main'][$externSrc['extern_label2']])) ? $sessionData[$cCode]['main'][$externSrc['extern_label2']] : "",
+                                "extern_nilai2" => (isset($externSrc['extern_nilai2']) && ($sessionData[$cCode]['main'][$externSrc['extern_nilai2']])) ? $sessionData[$cCode]['main'][$externSrc['extern_nilai2']] : 0,
+                                "extern_nilai5" => (isset($externSrc['extern_nilai5']) && ($sessionData[$cCode]['main'][$externSrc['extern_nilai5']])) ? $sessionData[$cCode]['main'][$externSrc['extern_nilai5']] : 0,
+                                "payment_locked" => (isset($externSrc['payment_locked']) && ($sessionData[$cCode]['main'][$externSrc['payment_locked']])) ? $sessionData[$cCode]['main'][$externSrc['payment_locked']] : 0,
+                                "cash_account" => (isset($externSrc['cash_account']) && ($sessionData[$cCode]['main'][$externSrc['cash_account']])) ? $sessionData[$cCode]['main'][$externSrc['cash_account']] : 0,
+                                "cash_account_nama" => (isset($externSrc['cash_account_nama']) && ($sessionData[$cCode]['main'][$externSrc['cash_account_nama']])) ? $sessionData[$cCode]['main'][$externSrc['cash_account_nama']] : 0,
+                                "extern2_id" => (isset($externSrc['extern2_id']) && ($sessionData[$cCode]['main'][$externSrc['extern2_id']])) ? $sessionData[$cCode]['main'][$externSrc['extern2_id']] : 0,
+                                "extern2_nama" => (isset($externSrc['extern2_nama']) && ($sessionData[$cCode]['main'][$externSrc['extern2_nama']])) ? $sessionData[$cCode]['main'][$externSrc['extern2_nama']] : 0,
+                            );
+                            arrPrintWebs($arrDataPym);
+                            $tr->writePaymentSrc($insertID, $arrDataPym);
+                        }
+
+                        cekMerah($this->CI->db->last_query());
+                    }
+                }
+
+
+            }
+            else {
+                //cekMerah("TIDAK nulis paymentSrc");
+            }
+            //endregion
+
+            //region nulis paymentAntiSource
+            $stepCode = $this->configUiModul[$this->jenisTr]['steps'][1]['target'];
+            $paymentSources = $this->CI->config->item("payment_antiSource") != null ? $this->CI->config->item("payment_antiSource") : array();
+            if (array_key_exists($stepCode, $paymentSources)) {
+                cekHitam(":: starting PAYMENT ANTI SOURCE");
+                $payConfigs = $paymentSources[$stepCode];
+                if (sizeof($payConfigs) > 0) {
+                    foreach ($payConfigs as $paymentSrcConfig) {
+                        $valueSrc = $paymentSrcConfig['valueSrc'];
+                        $externSrc = $paymentSrcConfig['externSrc'];
+                        $tr->writePaymentAntiSrc($insertID, array(
+                            "jenis" => $stepCode,
+                            "target_jenis" => $paymentSrcConfig['jenisTarget'],
+                            "reference_jenis" => $paymentSrcConfig['jenisSrc'],
+                            "extern_id" => $sessionData[$cCode]['main'][$externSrc['id']],
+                            "extern_nama" => $sessionData[$cCode]['main'][$externSrc['nama']],
+                            "nomer" => $sessionData[$cCode]['main']['nomer'],
+                            "label" => $paymentSrcConfig['label'],
+                            "tagihan" => $sessionData[$cCode]['main'][$valueSrc],
+                            "terbayar" => 0,
+                            "sisa" => $sessionData[$cCode]['main'][$valueSrc],
+                            "cabang_id" => $sessionData[$cCode]['main']['placeID'],
+                            "cabang_nama" => $sessionData[$cCode]['main']['placeName'],
+                            "oleh_id" => $sessionData[$cCode]['main']['olehID'],
+                            "oleh_nama" => $sessionData[$cCode]['main']['olehName'],
+                            "dtime" => date("Y-m-d H:i:s"),
+                            "fulldate" => date("Y-m-d"),
+                            "valas_id" => isset($sessionData[$cCode]['main'][$externSrc['valasId']]) ? $sessionData[$cCode]['main'][$externSrc['valasId']] : '',
+                            "valas_nama" => isset($sessionData[$cCode]['main'][$externSrc['valasLabel']]) ? $sessionData[$cCode]['main'][$externSrc['valasLabel']] : '',
+                            "valas_nilai" => isset($sessionData[$cCode]['main'][$externSrc['valasValue']]) ? $sessionData[$cCode]['main'][$externSrc['valasValue']] : '',
+                            "tagihan_valas" => isset($sessionData[$cCode]['main'][$externSrc['valasTagihan']]) ? $sessionData[$cCode]['main'][$externSrc['valasTagihan']] : '',
+                            "terbayar_valas" => isset($sessionData[$cCode]['main'][$externSrc['valasTerbayar']]) ? $sessionData[$cCode]['main'][$externSrc['valasTerbayar']] : '',
+                            "sisa_valas" => isset($sessionData[$cCode]['main'][$externSrc['valasSisa']]) ? $sessionData[$cCode]['main'][$externSrc['valasSisa']] : '',
+                        ));
+                        //cekMerah($this->CI->db->last_query());
+                    }
+                }
+
+
+            }
+            else {
+                //cekMerah("TIDAK nulis paymentSrc");
+            }
+            //endregion
+
+            //====registri value-gate
+            if (isset($this->configCoreModul[$this->jenisTr]['components'][$jenisTrTarget]) && sizeof($this->configCoreModul[$this->jenisTr]['components'][$jenisTrTarget])) {
+                $jurnalIndex = $this->configCoreModul[$this->jenisTr]['components'][$jenisTrTarget];
+            }
+            else {
+                if (isset($sessionData[$cCode]["revert"]["jurnal"]) && sizeof($sessionData[$cCode]["revert"]["jurnal"]) > 0) {
+                    $jurnalIndex = $sessionData[$cCode]["revert"]["jurnal"];
+                }
+                else {
+                    $jurnalIndex = array();
+                }
+            }
+            //---------------------------------------------------
+            if (isset($this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget]) && sizeof($this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget])) {
+                $jurnalPostProc = $this->configCoreModul[$this->jenisTr]['postProcessor'][$jenisTrTarget];
+            }
+            else {
+                if (isset($sessionData[$cCode]["revert"]["postProc"]) && sizeof($sessionData[$cCode]["revert"]["postProc"]) > 0) {
+                    $jurnalPostProc = $sessionData[$cCode]["revert"]["postProc"];
+                }
+                else {
+                    $jurnalPostProc = array();
+                }
+            }
+            //---------------------------------------------------
+            if (isset($this->configCoreModul[$this->jenisTr]['preProcessor'][$jenisTrTarget]) && sizeof($this->configCoreModul[$this->jenisTr]['preProcessor'][$jenisTrTarget])) {
+                $jurnalPreProc = $this->configCoreModul[$this->jenisTr]['preProcessor'][$jenisTrTarget];
+            }
+            else {
+                if (isset($sessionData[$cCode]["revert"]["preProc"]) && sizeof($sessionData[$cCode]["revert"]["preProc"]) > 0) {
+                    $jurnalPreProc = $sessionData[$cCode]["revert"]["preProc"];
+                }
+                else {
+                    $jurnalPreProc = array();
+                }
+            }
+            //---------------------------------------------------
+
+            $baseRegistries = array(
+                "jurnal_index" => $jurnalIndex,
+                "postProcessor" => $jurnalPostProc,
+                "preProcessor" => $jurnalPreProc,
+                "revert" => isset($sessionData[$cCode]['revert']) ? $sessionData[$cCode]['revert'] : array(),
+                "items_komposisi" => isset($sessionData[$cCode]['items_komposisi']) ? $sessionData[$cCode]['items_komposisi'] : array(),
+                "jurnalItems" => isset($sessionData[$cCode]['jurnalItems']) ? $sessionData[$cCode]['jurnalItems'] : array(),
+                "componentsBuilder" => isset($sessionData[$cCode]['componentsBuilder']) ? $sessionData[$cCode]['componentsBuilder'] : array(),
+            );
+            $doWriteReg = $tr->writeDataRegistries($insertID, $baseRegistries) or die(lgShowError("Ada kesalahan", "Gagal saat berusaha  write base params into registries"));
+            //==========================================================================================================
+            $masterID = $insertID;
+            //==========================================================================================================
+
+            cekKuning(":: mulai cek rek besar dan rek pembantu");
+            $cabangID_validate = $sessionData[$cCode]['main']['placeID'];
+            validateJurnal($insertID, $componentConfig);
+            validateAllBalances();
+
+//            mati_disini("LINE: " . __LINE__ . " under maintenance, tunggu beberapa saat lagi yaa.., TRID: $insertID");
+
+            if (isset($sessionData[$cCode])) {
+                $sessionData[$cCode] = NULL;
+                unset($sessionData[$cCode]);
+            }
+            if (isset($oldCode)) {
+                if (isset($_SESSION[$oldCode])) {
+                    $_SESSION[$oldCode] = NULL;
+                    unset($_SESSION[$oldCode]);
+                }
+            }
+
+
+            $returnTransaksi = array(
+                "transaksi_id" => $insertTransaksiID,// trid saat ini
+                "transaksi_nomer" => $tmpNomorNota2_current,// trnomer saat ini
+                "transaksi_id_connecting" => "",// trid connecting ke cabang
+                "transaksi_nomer_connecting" => "",// trnomer connecting ke cabang
+                //----
+                "transaksi_reference_jenis_master" => "",
+                "transaksi_reference_jenis" => "",
+                "transaksi_reference_id" => "",
+                "transaksi_reference_nomer" => "",
+                //----
+                "sessionData" => $sessionData[$cCode],
+            );
+            return $returnTransaksi;
+
+
+        }
+        else {
+            die("the gate index you want to debug has not been formed yet!");
+        }
+    }
+
+
+    public function autoOtorisasi($jenisTr, $no, $stepNum, $stepNumCurrent, $itemsReplacer = array(), $extractedItems_last = array(), $addMainData = array())
+    {
+        $modelModules = isset($this->modelModules) ? $this->modelModules : "MdlPembelianTransaksi";
+        $pathModules = isset($this->pathModules) ? $this->pathModules . "/" : "";
+
+
+        $transaksiID_reference = $masterID = $no;
+        $nextStepNum = $stepNum + 1;
+        $itemsReplacerQty = array();
+        $itemsReplacerHarga = array();
+        if (sizeof($itemsReplacer) > 0) {
+            foreach ($itemsReplacer as $pid => $spec) {
+                $itemsReplacerQty[$pid] = $spec["jml"];
+                if (isset($spec["harga"])) {
+                    $itemsReplacerHarga[$pid] = $spec["harga"];
+                }
+            }
+        }
+        $paramPatchers = $this->CI->config->item('heTransaksi_paramPatchers') != null ? $this->CI->config->item('heTransaksi_paramPatchers') : array();
+        $paramForceFillers = $this->CI->config->item('heTransaksi_paramForceFillers') != null ? $this->CI->config->item('heTransaksi_paramForceFillers') : array();
+        $this->CI->load->library("FieldCalculator");
+        $cal = new FieldCalculator();
+        $stepNowParameter = array();
+        $this->CI->load->model($pathModules . "$modelModules");
+        $tr = new $modelModules();
+        $tr->addFilter($tr->getTableNames()["main"] . ".id in (" . implode(",", explode("-", $no)) . ")");
+        $tr->addFilterJoin($tr->getTableNames()["detail"] . ".trash='0'");
+        $tmpTr = $tr->lookupJoined();
+        showLast_query("biru");
+//        arrPrintKuning($tmpTr);
+        if (sizeof($tmpTr) > 0) {
+            $extractedItems = array();//==untuk urusan update transaksi referer
+            $validItems = array();
+            $validItemSends = array();
+            $validItemReqCancels = array();
+            $validItemCancels = array();
+            $validItemPreCancels = array();
+            $validItemSents = array();
+            foreach ($tmpTr as $row) {
+//                arrPrintPink($row);
+                if ($row->qty_saldo > 0) {
+                    if (!isset($validItems[$row->produk_id])) {
+                        $validItems[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemSends[$row->produk_id])) {
+                        $validItemSends[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemCancels[$row->produk_id])) {
+                        $validItemCancels[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemReqCancels[$row->produk_id])) {
+                        $validItemReqCancels[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemPackeds[$row->produk_id])) {
+                        $validItemPackeds[$row->produk_id] = 0;
+                    }
+                    if (!isset($validItemPreCancels[$row->produk_id])) {
+                        $validItemPreCancels[$row->produk_id] = 0;
+                    }
+
+                    $validItems[$row->produk_id] += isset($row->qty_saldo) ? $row->qty_saldo : 0;
+                    $validItemSends[$row->produk_id] += isset($arrTmp__['582spd'][$row->produk_id]) ? $arrTmp__['582spd'][$row->produk_id] : 0;
+                    $validItemCancels[$row->produk_id] += isset($row->cancel_qty) ? $row->cancel_qty : 0;
+                    $validItemReqCancels[$row->produk_id] += isset($row->req_cancel_qty) ? $row->req_cancel_qty : 0;
+                    $validItemPreCancels[$row->produk_id] += isset($arrPreTmp__['1982'][$row->produk_id]) ? $arrPreTmp__['1982'][$row->produk_id] : 0;
+                    $validItemPackeds[$row->produk_id] += isset($arrTmp__['582pkd'][$row->produk_id]) ? $arrTmp__['582pkd'][$row->produk_id] : 0;
+
+                    if (!isset($extractedItems[$row->produk_id])) {
+                        $extractedItems[$row->produk_id] = array();
+                    }
+                    $extractedItems[$row->produk_id][$row->id_detail] = array(
+//                        "id" => $row->id_detail,
+                        "id" => $row->produk_id,
+                        "produk_id" => $row->produk_id,
+                        "qty" => $row->produk_ord_jml,
+                        "valid_qty" => $row->qty_kredit,
+                        "transaksi_id" => $row->transaksi_id,
+                        "packed_qty" => isset($arrTmp__['582pkd'][$row->produk_id]) ? $arrTmp__['582pkd'][$row->produk_id] : 0,
+                        "sent_qty" => isset($arrTmp__['582spd'][$row->produk_id]) ? $arrTmp__['582spd'][$row->produk_id] : 0,
+                        "req_cancel_qty" => isset($arrPreTmp__['1982'][$row->produk_id]) ? $arrPreTmp__['1982'][$row->produk_id] : 0,
+                        "cancel_qty" => $row->cancel_qty,
+                        "outstanding" => $row->produk_ord_jml - ($row->produk_ord_jml - $row->qty_saldo),
+                    );
+                }
+            }
+            $this->jenisTr = $tmpTr[0]->jenis_master;
+            $masterID = $tmpTr[0]->id_master;
+            $topID = $tmpTr[0]->id_top;
+            $transaksiNomer_reference = $tmpNomorNota = $tmpTr[0]->nomer;
+            $origJenis = $tmpTr[0]->jenis_master;
+            $pengirimID = $tmpTr[0]->pengirim_id;
+            $pengirimName = $tmpTr[0]->pengirim_nama;
+            //--------------------------------
+            $gudangStatusJenis = $tmpTr[0]->gudang_status_jenis;
+            $cabangTujuanID = $tmpTr[0]->cabang_id;
+            $idsHis = ($tmpTr[0]->ids_his != null) ? blobDecode($tmpTr[0]->ids_his) : array();
+            $idsHisBlob = ($tmpTr[0]->ids_his != null) ? $tmpTr[0]->ids_his : array();
+            //--------------------------------
+            $masterTableInParams = (array)$tmpTr[0];
+            unset($masterTableInParams["id"]);
+            //--------------------------------
+            if (sizeof($idsHis) > 0) {
+                $main["ids_his"] = $idsHisBlob;
+                $masterTableInParams["ids_his"] = $idsHisBlob;
+            }
+
+
+            $currentID = $trID = $tmpTr[0]->transaksi_id;
+            $cCode = "_TR_" . $this->jenisTr;
+            if (isset($sessionData[$cCode])) {
+                $sessionData[$cCode] = null;
+                unset($sessionData[$cCode]);
+            }
+            //region session init
+            if (!isset($sessionData[$cCode])) {
+                $sessionData[$cCode] = array(
+                    "items" => array(),
+                    "main" => array(),
+                );
+            }
+            if (!isset($sessionData[$cCode]['main'])) {
+                $sessionData[$cCode]['main'] = array();
+            }
+            if (!isset($sessionData[$cCode]['items'])) {
+                $sessionData[$cCode]['items'] = array();
+            }
+            //endregion
+
+            $sessionData[$cCode]['extractedItems'] = $extractedItems;
+
+
+            $configUiMasterModulJenis = loadConfigModulJenis_he_misc($this->jenisTr, "coTransaksiUi");
+            $configCoreMasterModulJenis = loadConfigModulJenis_he_misc($this->jenisTr, "coTransaksiCore");
+            $configLayoutMasterModulJenis = loadConfigModulJenis_he_misc($this->jenisTr, "coTransaksiLayout");
+            $configValuesMasterModulJenis = loadConfigModulJenis_he_misc($this->jenisTr, "coTransaksiValues");
+            $modul_transaksi = $this->CI->config->item("heTransaksi_ui")[$this->jenisTr]["modul"];
+
+            $configUiMasterModulOrigJenis = loadConfigModulJenis_he_misc($origJenis, "coTransaksiUi");
+            $configCoreMasterModulOrigJenis = loadConfigModulJenis_he_misc($origJenis, "coTransaksiCore");
+            $configLayoutMasterModulOrigJenis = loadConfigModulJenis_he_misc($origJenis, "coTransaksiLayout");
+
+
+            $relOptionConfigs = isset($configUiMasterModulJenis['relativeOptions']) ? $configUiMasterModulJenis['relativeOptions'] : array();
+            $jenisTrTarget = isset($configUiMasterModulJenis["steps"][$stepNum]["target"]) ? $configUiMasterModulJenis["steps"][$stepNum]["target"] : NULL;
+            $detailValuesConfig = isset($configCoreMasterModulJenis['tableIn']['detailValues']) ? $configCoreMasterModulJenis['tableIn']['detailValues'] : array();
+            $additionalData = isset($configUiMasterModulJenis["addDetailData"][$stepNum]) ? $configUiMasterModulJenis["addDetailData"][$stepNum] : array();
+            //--------------------------------
+            $tableInMaster = isset($configCoreMasterModulJenis['tableIn']['master']) ? $configCoreMasterModulJenis['tableIn']['master'] : array();
+            $tableInDetail = isset($configCoreMasterModulJenis['tableIn']['detail']) ? $configCoreMasterModulJenis['tableIn']['detail'] : array();
+            //--------------------------------
+
+            $totalSteps = sizeof($configUiMasterModulJenis['steps']);
+            //==references, previous entry
+            $prevProp = array(
+                "id" => $tmpTr[0]->transaksi_id,
+                "jenis" => $tmpTr[0]->jenis,
+                "nomer" => $tmpTr[0]->nomer,
+            );
+            //------
+            $stepNowParameter = array(
+                "next_step_code" => $tmpTr[0]->next_step_code,
+                "next_step_label" => $tmpTr[0]->next_step_label,
+                "next_group_code" => $tmpTr[0]->next_group_code,
+                "next_step_num" => $tmpTr[0]->next_step_num,
+                "step_current" => $tmpTr[0]->step_current,
+            );
+//            $tmpVal_main = $tr->lookupMainValuesByTransID($trID)->result();
+            $tmpVal_main = array();
+            $tmpVal_detail = $tr->lookupDetailValuesByTransID($trID)->result();
+            $mainValues = array();
+            if (sizeof($tmpVal_main) > 0) {
+                foreach ($tmpVal_main as $row) {
+                    $mainValues[$row->key] = $row->value;
+                }
+            }
+            $detailValues = array();
+            if (sizeof($tmpVal_detail) > 0) {
+                foreach ($tmpVal_detail as $row) {
+                    $detailValues[$row->produk_id][$row->key] = $row->value;
+                }
+            }
+
+            $main = array();
+            $items = array();
+            $prevIDs = array();
+            $prevNos = array();
+            foreach ($tmpTr as $row) {
+                //----
+                $main = (array)$row;
+//                    $items[$row->produk_id] = (array)$row;
+                //----
+                $items[$row->produk_id] = array(
+                    "id" => $row->produk_id,
+                    "nama" => $row->produk_nama,
+                    "jml" => $row->produk_ord_jml,
+                    "harga" => $row->produk_ord_hrg,
+                    "valid_qty" => $row->qty_kredit,
+                    "transaksi_id" => $row->transaksi_id,
+                    "nomer" => $row->nomer,
+                );
+                if ($row->qty_kredit > 0) {
+                    cekHitam("ok lanjut");
+                }
+                else {
+                    if (isset($sessionData[$cCode]['items'][$row->produk_id])) {
+                        matiHere("Followed up already. Please close and refresh your browser " . $row->produk_nama . " " . $row->produk_id);//kalo session active ya harus dimatiin biar gak dobel
+                    }
+                }
+                if (!in_array($row->transaksi_id, $prevIDs)) {
+                    $prevIDs[] = $row->transaksi_id;
+                }
+                if (!in_array($row->nomer, $prevNos)) {
+                    $prevNos[] = $row->nomer;
+                }
+                if (sizeof($detailValuesConfig) > 0) {
+                    foreach ($detailValuesConfig as $key => $src) {
+                        echo "<script>top.writeProgress('$key akan ambil nilai dari $src');</script>";
+                        if (isset($detailValues[$row->produk_id][$key])) {
+                            $items[$row->produk_id][$key] = $detailValues[$row->produk_id][$key];
+                        }
+                        else {
+                            if (isset($row->$key)) {
+                                $items[$row->produk_id][$key] = $row->$key;
+                            }
+                        }
+                        echo "dan sekarang nilainya: " . $items[$row->produk_id][$key] . "<br>";
+                        echo "<script>top.writeProgress('dan sekarang nilainya: " . $items[$row->produk_id][$key] . "');</script>";
+                    }
+                }
+
+                //-------
+                if (sizeof($tableInMaster) > 0) {
+                    foreach ($tableInMaster as $mKey => $mVal) {
+                        $main[$mVal] = isset($row->$mKey) ? $row->$mKey : "";
+                    }
+                }
+                //-------
+                if (sizeof($tableInDetail) > 0) {
+                    foreach ($tableInDetail as $mKey => $mVal) {
+                        if ($mVal != NULL) {
+//                                $items[$row->produk_id][$mVal] = isset($row->$mKey) ? $row->$mKey : "";
+                        }
+                    }
+                }
+                //-------
+            }
+
+            //region take from registries
+            $trr = new $modelModules();
+            $trr->setFilters(array());
+            $trrTmp = $trr->lookupMainElementsByTransID($no)->result();
+            if (sizeof($trrTmp) > 0) {
+                foreach ($trrTmp as $trrSpec) {
+                    $mainElements[$trrSpec->name] = (array)$trrSpec;
+                }
+            }
+            $trr->setFilters(array());
+//            $tempReg = $trr->lookUpAllChild($no);
+            $tempReg = $trr->lookupDataRegistriesByMasterID($no);
+            cekKuning($this->CI->db->last_query());
+//            $main = array();
+            $items = array();
+            $items2 = array();
+            $items2_sum = array();
+            $items3 = array();
+            $items3_sum = array();
+            $items4 = array();
+            $items4_sum = array();
+            $items4 = array();
+            $items6_sum = array();
+            $items6 = array();
+            $items7 = array();
+            $items7_sum = array();
+            $items9_sum = array();
+            $items10_sum = array();
+            $rsltItems = array();
+            $rsltItems2 = array();
+            $masterGates = array();
+            $childGates = array();
+            $childGates2 = array();
+            $childGates2_sum = array();
+            $childGatesRsltItems = array();
+            $childGatesRsltItems2 = array();
+//            $masterTableInParams = array();
+            $childTableInParams = array();
+            $childTableInParamsRsltItems = array();
+            $childTableInParamsRsltItems2 = array();
+            $masterTableInValueParams = array();
+            $childTableInValueParams = array();
+            $childTableInValueParamsRsltItems = array();
+            $childTableInValueParamsRsltItems2 = array();
+            $masterAddValues = array();
+            $masterAddFields = array();
+//            $mainElements = array();
+            $mainInputs = array();
+            $itemsKomposisi = array();
+            if (sizeof($tempReg) > 0) {
+                foreach ($tempReg as $reg => $valuePair) {
+                    switch ($reg) {
+                        case "main_entries"://
+                            foreach ($valuePair as $m_key => $mVal) {
+                                $main[$m_key] = $mVal;
+                            }
+                            break;
+                        case "items"://
+                            cekHitam("cetak ITEMS");
+                            arrPrintPink($valuePair);
+                            $items = $items + $valuePair;
+                            break;
+                        case "items2"://
+                            $items2 = $items2 + $valuePair;
+                            break;
+                        case "rsltItems"://
+                            $rsltItems = $rsltItems + $valuePair;
+                            break;
+                        case "rsltItems2"://
+                            $rsltItems2 = $rsltItems2 + $valuePair;
+                            break;
+                        case "items2_sum"://
+                            $items2_sum = $items2_sum + $valuePair;
+                            break;
+                        case "items3"://
+                            $items3 = $items3 + $valuePair;
+                            break;
+                        case "items3_sum"://
+                            $items3_sum = $items3_sum + $valuePair;
+                            break;
+                        case "items4_sum"://
+                            $items4_sum = $items4_sum + $valuePair;
+                            break;
+                        case "items5_sum"://
+                            $items5_sum = $items5_sum + $valuePair;
+                            break;
+                        case "items6_sum"://
+                            $items6_sum = $items6_sum + $valuePair;
+                            break;
+                        case "items7_sum"://
+                            $items7_sum = $items7_sum + $valuePair;
+                            break;
+                        case "items8_sum"://
+                            $items8_sum = $items8_sum + $valuePair;
+                            break;
+                        case "items9_sum"://
+                            $items9_sum = $items9_sum + $valuePair;
+                            break;
+                        case "items10_sum"://
+                            $items10_sum = $items10_sum + $valuePair;
+                            break;
+                        case "items_komposisi"://
+                            $itemsKomposisi = $valuePair;
+                            break;
+                        case "tableIn_master_values"://
+                            // edited by glg (18:55 WIB, 2025-12-18)
+                            // change: menambahkan case untuk load tableIn_master_values dari registry PRE-PO
+                            // technical rationale: saat approval PRE-PO → PO, data nilai summary (harga, ppn, grand_total)
+                            // di field tableIn_master_values tidak pernah di-load dari registry PRE-PO.
+                            // Akibatnya saat write PO baru, data VAT hilang karena $sessionData[$cCode]['tableIn_master_values'] kosong.
+                            // Fix ini memastikan data VAT ter-copy dengan benar dari PRE-PO ke PO.
+                            $masterTableInValueParams = $masterTableInValueParams + $valuePair;
+                            break;
+                            // end edited by glg
+                    }
+                }
+
+            }
+            else {
+                die("Cannot read the registry entries from $masterID!");
+            }
+            //endregion
+
+            $masterReplacers = array(
+                "jenisTrMaster" => $this->jenisTr,
+                "jenisTrTop" => $main['jenis_top'],
+                "harga" => 0,
+                "masterID" => $masterID,
+            );
+            foreach ($masterReplacers as $key => $src) {
+                $main[$key] = $src;
+                $mainValues[$key] = $src;
+                $masterGates[$key] = $src;
+            }
+            if (sizeof($itemsReplacerQty) > 0) {
+                foreach ($items as $pid => $iiSpec) {
+                    if (array_key_exists($pid, $itemsReplacerQty)) {
+                        $items[$pid]["qty"] = $itemsReplacerQty[$pid];
+                        $items[$pid]["jml"] = $itemsReplacerQty[$pid];
+                    }
+                    else {
+                        unset($items[$pid]);
+                        unset($items6[$pid]);
+                        unset($items7[$pid]);
+                        unset($itemsKomposisi[$pid]);
+                    }
+                }
+            }
+            if (sizeof($itemsReplacerHarga) > 0) {
+                foreach ($items as $pid => $iiSpec) {
+                    if (array_key_exists($pid, $itemsReplacerHarga)) {
+                        $items[$pid]["harga"] = $itemsReplacerHarga[$pid];
+                        $items[$pid]["hpp"] = $itemsReplacerHarga[$pid];
+                    }
+                    else {
+                        unset($items[$pid]);
+                        unset($items6[$pid]);
+                        unset($items7[$pid]);
+                        unset($itemsKomposisi[$pid]);
+                    }
+                }
+            }
+            if (sizeof($items) > 0) {
+                foreach ($items as $xid => $iSpec) {
+                    if (isset($items6[$xid]) && sizeof($items6[$xid]) > 0) {
+                        foreach ($items6[$xid] as $xid6 => $iSpec) {
+                            $id = $iSpec['id'];
+                            if (sizeof($itemsKomposisi[$xid]) > 0) {
+                                if (array_key_exists($id, $itemsKomposisi[$xid])) {
+                                    $items6[$xid][$xid6]['jml'] = $itemsKomposisi[$xid][$id]["jml"] * $validItems[$xid];
+                                    $items6[$xid][$xid6]['qty'] = $itemsKomposisi[$xid][$id]["jml"] * $validItems[$xid];
+                                    $items6[$xid][$xid6]['max_jml'] = $items6[$xid][$xid6]['qty'];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (sizeof($addMainData) > 0) {
+                foreach ($addMainData as $sm_key => $am_val) {
+                    $main[$sm_key] = $am_val;
+                }
+            }
+
+            $main['currentID'] = $transaksiID_reference;
+            $main['currentNomer'] = $tmpNomorNota;
+
+
+            //region session-swapper
+            $main["pengirimID"] = $pengirimID;
+            $main["pengirimName"] = $pengirimName;
+            $swappers = array(
+                "main" => $main,
+                "items" => $items,
+                "items2" => $items2,
+                "items2_sum" => $items2_sum,
+                "items3" => $items3,
+                "items3_sum" => $items3_sum,
+                "items4" => $items4,
+                "items4_sum" => $items4_sum,
+                "items6" => $items6,
+                "items6_sum" => $items6_sum,
+                "items7" => $items7,
+                "items7_sum" => $items7_sum,
+                "items9_sum" => $items9_sum,
+                "items10_sum" => $items10_sum,
+                "items_child" => isset($itemChildData) ? $itemChildData : array(),
+                "rsltItems" => isset($rsltItems) ? $rsltItems : array(),
+                "rsltItems2" => isset($rsltItems2) ? $rsltItems2 : array(),
+                "extractedItems" => isset($extractedItems) ? $extractedItems : array(),
+                "extractedItems_last" => isset($extractedItems_last) ? $extractedItems_last : array(),
+                "tableIn_master" => isset($masterTableInParams) ? $masterTableInParams : array(),
+                "tableIn_detail" => isset($childTableInParams) ? $childTableInParams : array(),
+                "tableIn_detail_rsltItems" => isset($childTableInParamsRsltItems) ? $childTableInParamsRsltItems : array(),
+                "tableIn_detail_rsltItems2" => isset($childTableInParamsRsltItems2) ? $childTableInParamsRsltItems2 : array(),
+                "tableIn_master_values" => isset($masterTableInValueParams) ? $masterTableInValueParams : array(),
+                "tableIn_detail_values" => isset($childTableInValueParams) ? $childTableInValueParams : array(),
+                "tableIn_detail_values_rsltItems" => isset($childTableInValueParamsRsltItems) ? $childTableInValueParamsRsltItems : array(),
+                "tableIn_detail_values_rsltItems2" => isset($childTableInValueParamsRsltItems2) ? $childTableInValueParamsRsltItems2 : array(),
+                "main_add_values" => isset($masterAddValues) ? $masterAddValues : array(),
+                "main_add_fields" => isset($masterAddFields) ? $masterAddFields : array(),
+                "main_elements" => isset($mainElements) ? $mainElements : array(),
+                "main_inputs" => isset($mainInputs) ? $mainInputs : array(),
+                "extSteps" => isset($extSteps) ? $extSteps : array(),
+                "paySrcs" => isset($paySrcs) ? $paySrcs : array(),
+                "lockerPayment" => isset($tempBtnUndo) ? $tempBtnUndo : array(),
+                "items_komposisi" => isset($itemsKomposisi) ? $itemsKomposisi : array(),
+            );
+            foreach ($swappers as $targetVar => $src) {
+                $sessionData[$cCode][$targetVar] = $src;
+
+            }
+            //endregion
+
+
+            if (sizeof($idsHis) > 0) {
+                foreach ($idsHis as $step_his => $data_his) {
+                    if ($step_his == 1) {
+                        $subCounters = blobDecode($data_his["counters"]);
+                        $countStepCode = 0;
+                        foreach ($subCounters["stepCode"] as $cc => $cct) {
+                            $countStepCode = $cct;
+                        }
+                        $sessionData[$cCode]['main']['referenceID'] = $data_his["trID"];
+                        $sessionData[$cCode]['main']['referenceNumber'] = $data_his["nomer"];
+                        $sessionData[$cCode]['main']['referenceNomer'] = $data_his["nomer"];
+                        $sessionData[$cCode]['main']['referenceDtime'] = $data_his["dtime"];
+                        $sessionData[$cCode]['main']['referenceFulldate'] = $data_his["fulldate"];
+                        $sessionData[$cCode]['main']['referenceCount'] = $countStepCode;
+
+                    }
+                    $sessionData[$cCode]['main']['referenceID__' . $step_his] = $data_his["trID"];
+                    $sessionData[$cCode]['main']['referenceNumber__' . $step_his] = $data_his["nomer"];
+                    $sessionData[$cCode]['main']['referenceNomer__' . $step_his] = $data_his["nomer"];
+                    $sessionData[$cCode]['main']['referenceDtime__' . $step_his] = $data_his["dtime"];
+                    $sessionData[$cCode]['main']['referenceFulldate__' . $step_his] = $data_his["fulldate"];
+                }
+            }
+
+
+            // region copy gerbang serial dari distribusi
+            $shoppingCartCopySerialNumber = isset($configUiMasterModulJenis["shoppingCartCopySerialNumber"][$stepNum]) ? $configUiMasterModulJenis["shoppingCartCopySerialNumber"][$stepNum] : array();
+            if (sizeof($shoppingCartCopySerialNumber) > 0) {
+                $statusGudangConfig = $shoppingCartCopySerialNumber["statusGudang"];
+                $copyGateConfig = $shoppingCartCopySerialNumber["copyGate"];
+                $copyJenisConfig = $shoppingCartCopySerialNumber["copyJenis"];
+                if ($gudangStatusJenis == $statusGudangConfig) {
+                    $trs = new $modelModules();
+                    $trs->addFilter("jenis='$copyJenisConfig'");
+                    $trs->addFilter("reference_id_top='$topID'");
+                    $trsTmp = $trs->lookupAll()->result();
+                    showLast_query("biru");
+                    $trsID = $trsTmp[0]->id;
+
+                    $trs = new $modelModules();
+                    $trs->setFilters(array());
+                    $trs->setJointSelectFields($copyGateConfig);
+                    $trs->addFilter("transaksi_id='$trsID'");
+                    $tmpReg = $trs->lookupDataRegistries()->result();
+                    showLast_query("biru");
+                    if (sizeof($tmpReg) > 0) {
+                        foreach ($tmpReg as $row) {
+                            foreach ($row as $key_reg => $val_reg) {
+                                if ($val_reg == null) {
+                                    $val_reg = blobEncode(array());
+                                }
+                                $sessionData[$cCode][$key_reg] = blobDecode($val_reg);
+                            }
+                        }
+                    }
+                }
+
+            }
+            // endregion copy gerbang serial dari distribusi
+
+
+            $ppnFactor = isset($sessionData[$cCode]["main"]["ppnFactor"]) ? $sessionData[$cCode]["main"]["ppnFactor"] : my_ppn_factor();
+
+            $this->CI->load->helper("he_value_builder");
+            $sessionData[$cCode] = fillValues_he_value_builder_ns($this->jenisTr, $stepNumCurrent, $stepNum, $configCoreMasterModulJenis, $configUiMasterModulJenis, $configValuesMasterModulJenis, $ppnFactor, NULL, $sessionData[$cCode]);
+
+
+            $sessionData[$cCode]['extractedItems_last'] = $extractedItems_last;
+
+            //region pembulatan replacer disini
+            $injectBulat = isset($configCoreMasterModulJenis['valuePembulatan'][$stepNum]) ? $configCoreMasterModulJenis['valuePembulatan'][$stepNum] : array();
+            if (sizeof($injectBulat) > 0) {
+                echo "<script>top.writeProgress('PEMBULATAN', 'HEAD');</script>";
+                $selectedSource = $injectBulat['source'];
+                $injectSource = makeDppBulat($sessionData[$cCode]['main'][$selectedSource]);
+                foreach ($injectBulat['replacer'] as $k => $fields) {
+                    $sessionData[$cCode]['main'][$fields] = $injectSource[$k];
+                    echo "<script>top.writeProgress('PEMBULATAN ($fields)');</script>";
+                }
+
+            }
+            //endregion
+
+            cekMerah(":: MEMULAI PRE-PROCC ITEMS...");
+            cekMerah("[$cCode] --- " . $sessionData[$cCode]["main"]["ppnFactor"]);
+//            arrPrintPink($sessionData[$cCode]["items"]);
+//            arrPrintWebs($sessionData[$cCode]["tableIn_detail"]);
+
+            $ppnFactor = isset($sessionData[$cCode]["main"]["ppnFactor"]) ? $sessionData[$cCode]["main"]["ppnFactor"] : matiHere("gagal menghitung ppn silahkan refresh atau relogin");
+
+            //region pre-processors (item)
+            if (isset($configCoreMasterModulJenis['preProcessor'][$jenisTrTarget]['detail'])) {
+                $iterator = isset($configCoreMasterModulJenis['preProcessor'][$jenisTrTarget]['detail']) ? $configCoreMasterModulJenis['preProcessor'][$jenisTrTarget]['detail'] : array();
+                $itemNumLabels = isset($configUiMasterModulJenis['shoppingCartNumFields'][$stepNum]) ? $configUiMasterModulJenis['shoppingCartNumFields'][$stepNum] : array();
+                echo "ITEM NUM LABELS";
+
+                if (sizeof($iterator) > 0) {
+                    echo "<script>top.writeProgress('PERSIAPAN PRE-PROCESSOR...', 'HEAD');</script>";
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $comName = $tComSpec['comName'];
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        echo __LINE__ . " :: sub-preproc: $comName, initializing values <br>";
+                        if (isset($sessionData[$cCode][$srcGateName]) && count($sessionData[$cCode][$srcGateName]) > 0) {
+                            foreach ($sessionData[$cCode][$srcGateName] as $xid => $dSpec) {
+                                $tmpOutParams[$cCtr] = array();
+                                $id = $xid;
+                                $subParams = array();
+                                if (isset($tComSpec['static'])) {
+                                    foreach ($tComSpec['static'] as $key => $value) {
+
+                                        $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$id], $sessionData[$cCode][$srcGateName][$id], 0);
+                                        $subParams['static'][$key] = $realValue;
+
+                                    }
+
+                                    if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                        foreach ($paramPatchers[$comName] as $k => $v) {
+                                            if (!isset($subParams['static'][$k])) {
+                                                $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                            }
+                                        }
+                                    }
+                                    if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                        $jenis = $sessionData[$cCode]['main']['jenis'];
+                                        foreach ($paramForceFillers[$comName] as $k => $v) {
+                                            $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                        }
+                                    }
+
+                                    $subParams['static']["fulldate"] = date("Y-m-d");
+                                    $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                    $subParams['static']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . "";
+                                }
+                                if (sizeof($subParams) > 0) {
+
+                                    $tmpOutParams[$cCtr][] = $subParams;
+                                }
+
+                                $comName = $tComSpec['comName'];
+                                $srcGateName = $tComSpec['srcGateName'];
+                                $srcRawGateName = $tComSpec['srcRawGateName'];
+                                $resultParams = isset($tComSpec['resultParams']) ? $tComSpec['resultParams'] : array();
+
+                                echo "sub preproc #: $comName, sending values <br>";
+
+                                $mdlName = "Pre" . ucfirst($comName);
+                                $this->CI->load->model("Preprocs/" . $mdlName);
+                                $m = new $mdlName($resultParams);
+                                if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                                    $tobeExecuted = true;
+                                }
+                                else {
+                                    $tobeExecuted = false;
+                                }
+
+                                if ($tobeExecuted) {
+                                    $m->pair($masterID, $tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada pre-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                                    $gotParams = $m->exec();
+                                    cekHitam(":: PRE-PROCC -> GOTNAME, ITERATING...");
+                                    arrprint($gotParams);
+                                    if (sizeof($gotParams) > 0) {//==gotParams means result from preprocessor
+                                        foreach ($gotParams as $gateName => $paramSpec) {
+
+                                            if (!isset($sessionData[$cCode][$gateName])) {
+                                                $sessionData[$cCode][$gateName] = array();
+                                                //                                    cekhijau("building the session: $gateName");
+                                            }
+                                            else {
+                                                //                                    cekhijau("NOT building the session: $gateName");
+                                            }
+
+                                            foreach ($paramSpec as $id => $gSpec) {
+                                                //                                        $id = $gSpec['id'];
+                                                if (!isset($sessionData[$cCode][$gateName][$id])) {
+                                                    $sessionData[$cCode][$gateName][$id] = array();
+                                                }
+
+                                                if (isset($sessionData[$cCode][$gateName][$id])) {
+                                                    if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                                        foreach ($gSpec as $key => $val) {
+                                                            $sessionData[$cCode][$gateName][$id][$key] = $val;
+                                                        }
+                                                    }
+                                                }
+                                                //==inject gotParams to child gate
+                                                if ($gateName == $srcGateName) {
+                                                    if (isset($sessionData[$cCode][$srcGateName][$id])) {
+                                                        if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                                            foreach ($gSpec as $key => $val) {
+                                                                $sessionData[$cCode][$srcGateName][$id][$key] = $val;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                //cekMerah("REBUILDING VALUES..");
+                                                if (sizeof($itemNumLabels) > 0) {
+                                                    //cekHijau("REBUILDING SUBS FOR ITEMS");
+                                                    foreach ($itemNumLabels as $key => $label) {
+                                                        //cekHere("$id === $key => $label");
+                                                        $sessionData[$cCode][$gateName][$id]['sub_' . $key] = ($sessionData[$cCode][$gateName][$id]['jml'] * $sessionData[$cCode][$gateName][$id][$key]);
+                                                        //                                        die();
+                                                    }
+                                                }
+                                            }
+                                            //                                    arrPrint($sessionData[$cCode][$gateName]);die();
+                                        }
+                                    }
+
+                                }
+                                else {
+                                    cekBiru("sub-komponem $comName tidak memenuhi syarat untuk ditulis");
+                                }
+                            }
+                            $this->CI->load->helper("he_value_builder");
+                            $sessionData[$cCode] = fillValues_he_value_builder_ns($this->jenisTr, $stepNumCurrent, $stepNum, $configCoreMasterModulJenis, $configUiMasterModulJenis, $configValuesMasterModulJenis, $ppnFactor, NULL, $sessionData[$cCode]);
+                        }
+
+                    }
+                }
+                else {
+                    //cekKuning("sub-preproc is not set");
+                }
+
+
+                $this->CI->load->helper("he_value_builder");
+                $sessionData[$cCode] = fillValues_he_value_builder_ns($this->jenisTr, $stepNumCurrent, $stepNum, $configCoreMasterModulJenis, $configUiMasterModulJenis, $configValuesMasterModulJenis, $ppnFactor, NULL, $sessionData[$cCode]);
+            }
+            else {
+                echo("no processor defined. skipping preprocessor..<br>");
+            }
+
+
+            //ini untuk preproc dari multidimensional array contoh items2,items6
+            if (isset($configCoreMasterModulJenis['preProcessor'][$jenisTrTarget]['sub_detail'])) {
+                $iterator = isset($configCoreMasterModulJenis['preProcessor'][$jenisTrTarget]['sub_detail']) ? $configCoreMasterModulJenis['preProcessor'][$jenisTrTarget]['sub_detail'] : array();
+                $itemNumLabels = isset($configUiMasterModulJenis['shoppingCartNumFields'][$stepNum]) ? $configUiMasterModulJenis['shoppingCartNumFields'][$stepNum] : array();
+                echo "ITEM NUM LABELS";
+
+                if (sizeof($iterator) > 0) {
+                    echo "<script>top.writeProgress('PERSIAPAN PRE-PROCESSOR...', 'HEAD');</script>";
+                    foreach ($iterator as $cCtrX => $tComSpec) {
+                        $comName = $tComSpec['comName'];
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        echo __LINE__ . " :: sub-preproc: $comName, initializing values <br>";
+                        if (isset($sessionData[$cCode][$srcGateName]) && count($sessionData[$cCode][$srcGateName]) > 0) {
+                            foreach ($sessionData[$cCode][$srcGateName] as $xiID => $aDSpec) {
+                                $cCtr = 0;
+                                foreach ($aDSpec as $xid => $dSpec) {
+                                    $cCtr++;
+                                    $tmpOutParams[$cCtr] = array();
+                                    $id = $xid;
+                                    $subParams = array();
+                                    if (isset($tComSpec['static'])) {
+                                        foreach ($tComSpec['static'] as $key => $value) {
+
+                                            $realValue = makeValue($value, $dSpec, $dSpec, 0);
+                                            $subParams['static'][$key] = $realValue;
+
+                                        }
+                                        if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                            foreach ($paramPatchers[$comName] as $k => $v) {
+                                                if (!isset($subParams['static'][$k])) {
+                                                    $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                                }
+                                            }
+                                        }
+                                        if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                            $jenis = $sessionData[$cCode]['main']['jenis'];
+                                            foreach ($paramForceFillers[$comName] as $k => $v) {
+                                                $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                            }
+                                        }
+                                        $subParams['static']["fulldate"] = date("Y-m-d");
+                                        $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                        $subParams['static']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . "";
+                                    }
+                                    if (sizeof($subParams) > 0) {
+
+                                        $tmpOutParams[$cCtr][] = $subParams;
+                                    }
+                                    $comName = $tComSpec['comName'];
+                                    $srcGateName = $tComSpec['srcGateName'];
+                                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                                    $resultParams = isset($tComSpec['resultParams']) ? $tComSpec['resultParams'] : array();
+                                    echo "sub preproc #: $comName, sending values <br>";
+                                    $mdlName = "Pre" . ucfirst($comName);
+                                    $this->CI->load->model("Preprocs/" . $mdlName);
+                                    $m = new $mdlName($resultParams);
+                                    if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                                        $tobeExecuted = true;
+                                    }
+                                    else {
+                                        $tobeExecuted = false;
+                                    }
+                                    if ($tobeExecuted) {
+                                        $m->pair($masterID, $tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada pre-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                                        $gotParams = $m->exec();
+                                        cekHitam(":: PRE-PROCC -> GOTNAME, ITERATING...");
+                                        if (sizeof($gotParams) > 0) {//==gotParams means result from preprocessor
+                                            foreach ($gotParams as $gateName => $paramSpec) {
+
+                                                if (!isset($sessionData[$cCode][$gateName])) {
+                                                    $sessionData[$cCode][$gateName] = array();
+                                                    //                                    cekhijau("building the session: $gateName");
+                                                }
+                                                else {
+                                                    //                                    cekhijau("NOT building the session: $gateName");
+                                                }
+
+                                                foreach ($paramSpec as $idx => $gSpec) {
+                                                    //                                        $id = $gSpec['id'];
+                                                    if (!isset($sessionData[$cCode][$gateName][$xiID][$idx])) {
+                                                        $sessionData[$cCode][$gateName][$xiID][$idx] = array();
+                                                    }
+
+                                                    if (isset($sessionData[$cCode][$gateName][$xiID][$idx])) {
+                                                        if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                                            foreach ($gSpec as $key => $val) {
+                                                                $sessionData[$cCode][$gateName][$xiID][$idx][$key] = $val;
+                                                            }
+                                                        }
+                                                    }
+                                                    //==inject gotParams to child gate
+                                                    if ($gateName == $srcGateName) {
+                                                        if (isset($sessionData[$cCode][$srcGateName][$xiID][$idx])) {
+                                                            if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                                                foreach ($gSpec as $key => $val) {
+                                                                    $sessionData[$cCode][$srcGateName][$xiID][$idx][$key] = $val;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    //cekMerah("REBUILDING VALUES..");
+                                                    if (sizeof($itemNumLabels) > 0) {
+                                                        matiHere(__LINE__);
+                                                        //cekHijau("REBUILDING SUBS FOR ITEMS");
+                                                        foreach ($itemNumLabels as $key => $label) {
+                                                            //cekHere("$id === $key => $label");
+                                                            $sessionData[$cCode][$gateName][$xiID][$idx]['sub_' . $key] = ($sessionData[$cCode][$gateName][$xiID][$idx]['jml'] * $sessionData[$cCode][$gateName][$xiID][$idx][$key]);
+                                                            //                                        die();
+                                                            arrprint($sessionData[$cCode][$gateName][$xiID][$idx]);
+                                                        }
+                                                    }
+                                                    else {
+                                                        //                                                    matiHere(__LINE__.":: ".$this->jenisTr." step::".$stepNum);
+                                                    }
+                                                }
+                                                //                                    arrPrint($sessionData[$cCode][$gateName]);die();
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        cekBiru("sub-komponem $comName tidak memenuhi syarat untuk ditulis");
+                                    }
+                                }
+                            }
+                            $this->CI->load->helper("he_value_builder");
+                            $sessionData[$cCode] = fillValues_he_value_builder_ns($this->jenisTr, $stepNumCurrent, $stepNum, $configCoreMasterModulJenis, $configUiMasterModulJenis, $configValuesMasterModulJenis, $ppnFactor, NULL, $sessionData[$cCode]);
+
+                        }
+
+                    }
+                }
+                else {
+                    //cekKuning("sub-preproc is not set");
+                }
+            }
+            //endregion
+
+            //region prepoc subdetail multi dimensional array /array 2 tinggkat
+            $iterator = isset($configCoreMasterModulJenis['preProcessor'][$jenisTrTarget]['sub_detail']) ? $configCoreMasterModulJenis['preProcessor'][$jenisTrTarget]['sub_detail'] : array();
+            if (sizeof($iterator) > 0) {
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    echo "sub-postProcessor: $comName, initializing values <br>";
+                    echo "<script>top.writeProgress('MENYIAPKAN DATA SUB-PROCESSORS UNTUK DIKIRIM...', 'head');</script>";
+                    $tmpOutParams[$cCtr] = array();
+                    foreach ($sessionData[$cCode][$srcGateName] as $cnt => $dDSpec) {
+                        foreach ($dDSpec as $idOP_spec => $dSpec) {
+                            $subParams = array();
+                            if (isset($tComSpec['loop'])) {
+                                foreach ($tComSpec['loop'] as $key => $value) {
+
+                                    $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$cnt][$idOP_spec], $sessionData[$cCode][$srcGateName][$cnt][$idOP_spec], 0);
+                                    $subParams['loop'][$key] = $realValue;
+
+                                }
+                            }
+                            if (isset($tComSpec['static'])) {
+                                foreach ($tComSpec['static'] as $key => $value) {
+
+                                    $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$cnt][$idOP_spec], $sessionData[$cCode][$srcGateName][$cnt][$idOP_spec], 0);
+                                    $subParams['static'][$key] = $realValue;
+                                    cekBiru("$key diisi dengan $realValue");
+
+                                }
+                                if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                    foreach ($paramPatchers[$comName] as $k => $v) {
+                                        if (!isset($subParams['static'][$k])) {
+                                            $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                        }
+                                    }
+                                }
+                                if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                    $jenis = $sessionData[$cCode]['main']['jenis'];
+                                    foreach ($paramForceFillers[$comName] as $k => $v) {
+                                        $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                        cekorange(":: $k diisikan dengan " . $subParams['static'][$k]);
+                                    }
+                                }
+                                $subParams['static']["fulldate"] = date("Y-m-d");
+                                $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                $subParams['static']["keterangan"] = $this->configUi[$this->jenisTr]['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . "";
+                            }
+                            if (sizeof($subParams) > 0) {
+                                $tmpOutParams[$cCtr][] = $subParams;
+                            }
+                        }
+                        echo "<script>top.writeProgress('" . isset($subParams['static']['name']) ? $subParams['static']['name'] : "" . " " . isset($subParams['static']['extern_nama']) ? $subParams['static']['extern_nama'] : "" . " " . isset($subParams['static']['nama']) ? $subParams['static']['nama'] : "" . "');</script>";
+                    }
+                }
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    echo "sub-postProcessor: $comName, sending values <br>";
+                    echo "<script>top.writeProgress('SENDING SUB-PROCESSORS ($comName)...', 'head');</script>";
+                    $mdlName = "Com" . ucfirst($comName);
+                    $this->CI->load->model("Coms/" . $mdlName);
+                    $m = new $mdlName();
+                    if (count($tmpOutParams[$cCtr]) > 0) {
+                        $m->pair($tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        cekBiru($this->CI->db->last_query());
+                    }
+
+
+                }
+            }
+
+            //endregion
+
+            //region pre-processors (master)
+            if (isset($configCoreMasterModulJenis['preProcessor'][$jenisTrTarget]['master'])) {
+                $iterator = isset($configCoreMasterModulJenis['preProcessor'][$jenisTrTarget]['master']) ? $configCoreMasterModulJenis['preProcessor'][$jenisTrTarget]['master'] : array();
+                $itemNumLabels = isset($configUiMasterModulJenis['shoppingCartNumFields']) ? $configUiMasterModulJenis['shoppingCartNumFields'] : array();
+
+                echo "ITEM NUM LABELS";
+
+                if (sizeof($iterator) > 0) {
+                    echo "<script>top.writeProgress('PERSIAPAN PRE-PROCESSOR...', 'HEAD');</script>";
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $comName = $tComSpec['comName'];
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        $resultParams = isset($tComSpec['resultParams']) ? $tComSpec['resultParams'] : array();
+                        $switchResultParams = isset($tComSpec['switchResultParams']) ? $tComSpec['switchResultParams'] : false;
+
+                        echo "master-preproc: $comName, initializing values <br>";
+                        $tmpOutParams[$cCtr] = array();
+                        $subParams = array();
+                        if (isset($tComSpec['static'])) {
+                            foreach ($tComSpec['static'] as $key => $value) {
+
+                                $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                                $subParams['static'][$key] = $realValue;
+
+                            }
+                            if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                foreach ($paramPatchers[$comName] as $k => $v) {
+                                    if (!isset($subParams['static'][$k])) {
+                                        $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                    }
+                                }
+                            }
+                            if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                $jenis = $sessionData[$cCode]['main']['jenis'];
+                                foreach ($paramForceFillers[$comName] as $k => $v) {
+                                    $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                }
+                            }
+                            $subParams['static']["fulldate"] = date("Y-m-d");
+                            $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                            $subParams['static']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . "";
+                        }
+                        if (sizeof($subParams) > 0) {
+                            $tmpOutParams[$cCtr] = $subParams;
+                        }
+                        $mdlName = "Pre" . ucfirst($comName);
+                        $this->CI->load->model("Preprocs/" . $mdlName);
+                        $m = new $mdlName($resultParams);
+                        if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                            $tobeExecuted = true;
+                        }
+                        else {
+                            $tobeExecuted = false;
+                        }
+                        if ($tobeExecuted) {
+                            $m->pair($masterID, $tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada pre-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            $gotParams = $m->exec();
+                            cekbiru("gotparams dari $comName");
+                            arrprint($gotParams);
+                            if (sizeof($gotParams) > 0) {//==gotParams means result from preprocessor
+                                cekhijau("ada gotparam, sekarang mau replace");
+                                foreach ($gotParams as $gateName => $gSpec) {
+
+                                    if ($switchResultParams == true) {
+                                        foreach ($gSpec as $id => $ggSpec) {
+                                            if (!isset($sessionData[$cCode][$gateName][$id])) {
+                                                $sessionData[$cCode][$gateName][$id] = array();
+                                            }
+                                            if (isset($sessionData[$cCode][$gateName][$id])) {
+                                                if (is_array($ggSpec) && sizeof($ggSpec) > 0) {
+                                                    foreach ($ggSpec as $key => $val) {
+                                                        $sessionData[$cCode][$gateName][$id][$key] = $val;
+                                                    }
+                                                }
+                                            }
+                                            //cekMerah("REBUILDING VALUES..");
+                                            if (sizeof($itemNumLabels) > 0) {
+                                                //cekHijau("REBUILDING SUBS FOR ITEMS");
+                                                foreach ($itemNumLabels as $key => $label) {
+                                                    //cekHere("$id === $key => $label");
+                                                    if (isset($sessionData[$cCode][$gateName][$id][$key])) {
+                                                        $sessionData[$cCode][$gateName][$id]['sub_' . $key] = ($sessionData[$cCode][$gateName][$id]['jml'] * $sessionData[$cCode][$gateName][$id][$key]);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else {
+
+                                        if (isset($sessionData[$cCode]['main'])) {
+                                            if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                                foreach ($gSpec as $key => $val) {
+                                                    cekbiru("injecting param $key with $val");
+                                                    $sessionData[$cCode]['main'][$key] = $val;
+                                                }
+                                            }
+                                        }
+                                        //==inject gotParams to child gate
+                                        if (isset($sessionData[$cCode]['main'])) {
+                                            if (is_array($gSpec) && sizeof($gSpec) > 0) {
+                                                foreach ($gSpec as $key => $val) {
+                                                    $sessionData[$cCode]['main'][$key] = $val;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                            else {
+                                cekmerah("TIDAK ada gotparam, tidak perlu replace");
+                            }
+                        }
+                        else {
+                            cekBiru("sub-komponem $comName tidak memenuhi syarat untuk ditulis");
+                        }
+                    }
+                }
+                else {
+                    //cekKuning("sub-preproc is not set");
+                }
+
+
+                $this->CI->load->helper("he_value_builder");
+                $sessionData[$cCode] = fillValues_he_value_builder_ns($this->jenisTr, $stepNumCurrent, $stepNum, $configCoreMasterModulJenis, $configUiMasterModulJenis, $configValuesMasterModulJenis, $ppnFactor, NULL, $sessionData[$cCode]);
+
+
+            }
+            else {
+                echo("no processor defined. skipping preprocessor..<br>");
+            }
+
+            //endregion
+
+            //region pre-proc value injector items2 items2_sum dari gerbang main
+            $injectValues = isset($configCoreMasterModulJenis['preInjectValue'][$stepNum]) ? $configCoreMasterModulJenis['preInjectValue'][$stepNum] : array();
+            if (sizeof($injectValues) > 0) {
+                $iterator = isset($configCoreMasterModulJenis['preInjectValue'][$stepNum]['master']) ? $configCoreMasterModulJenis['preInjectValue'][$stepNum]['master'] : array();
+                $itemNumLabels = isset($configUiMasterModulJenis['shoppingCartNumFields']) ? $configUiMasterModulJenis['shoppingCartNumFields'] : array();
+                if (sizeof($iterator) > 0) {
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $comName = $tComSpec['comName'];
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        $resultParams = isset($tComSpec['resultParams']) ? $tComSpec['resultParams'] : array();
+                        //                    echo "master-preproc: $comName, initializing values <br>";
+                        $tmpOutParams[$cCtr] = array();
+
+
+                        $subParams = array();
+                        if (isset($tComSpec['static'])) {
+                            foreach ($tComSpec['static'] as $key => $value) {
+
+                                $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                                $subParams['static'][$key] = $realValue;
+
+                            }
+
+                            if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                foreach ($paramPatchers[$comName] as $k => $v) {
+                                    if (!isset($subParams['static'][$k])) {
+                                        $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                    }
+                                }
+                            }
+                            if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                $jenis = $sessionData[$cCode]['main']['jenis'];
+                                foreach ($paramForceFillers[$comName] as $k => $v) {
+                                    $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                }
+                            }
+
+                            $subParams['static']["fulldate"] = date("Y-m-d");
+                            $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                            $subParams['static']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . "";
+                        }
+                        if (sizeof($subParams) > 0) {
+                            $tmpOutParams[$cCtr] = $subParams;
+                        }
+
+
+                        $mdlName = "Pre" . ucfirst($comName);
+                        $this->CI->load->model("Preprocs/" . $mdlName);
+                        $m = new $mdlName($resultParams);
+
+
+                        if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                            $tobeExecuted = true;
+                        }
+                        else {
+                            $tobeExecuted = false;
+                        }
+
+                        if ($tobeExecuted) {
+                            $m->pair($masterID, $tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada pre-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            $gotParams = $m->exec();
+                            if (sizeof($gotParams) > 0) {//==gotParams means result from preprocessor
+                                //                            cekhijau("ada gotparam, sekarang mau replace");
+                                foreach ($gotParams as $gateName => $gSpec) {
+                                    if ($gateName == "main") {
+                                        foreach ($gSpec as $key => $val) {
+                                            $sessionData[$cCode]['main'][$key] = $val;
+                                        }
+                                    }
+                                    if ($gateName == "items2") {
+                                        foreach ($sessionData[$cCode]['items2'] as $k => $tmpSes) {
+                                            foreach ($gSpec as $key => $val) {
+                                                foreach ($tmpSes as $y => $sesData) {
+                                                    if (array_key_exists($key, $sesData)) {
+                                                        $sessionData[$cCode]['items2'][$k][$y][$key] = $val;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                    if ($gateName == "items2_sum") {
+                                        foreach ($sessionData[$cCode]['items2_sum'] as $k => $tmpSes) {
+                                            foreach ($gSpec as $key => $val) {
+                                                $sessionData[$cCode]['items2_sum'][$k][$key] = $val;
+                                            }
+                                        }
+
+                                    }
+
+                                }
+                            }
+                            else {
+                                cekmerah("TIDAK ada gotparam, tidak perlu replace");
+                            }
+
+                        }
+                        else {
+                            cekBiru("sub-komponem $comName tidak memenuhi syarat untuk ditulis");
+                        }
+
+                    }
+                }
+                else {
+                    //cekKuning("sub-preproc is not set");
+                }
+
+                $this->CI->load->helper("he_value_builder");
+                $sessionData[$cCode] = fillValues_he_value_builder_ns($this->jenisTr, $stepNumCurrent, $stepNum, $configCoreMasterModulJenis, $configUiMasterModulJenis, $configValuesMasterModulJenis, $ppnFactor, NULL, $sessionData[$cCode]);
+
+            }
+            //endregion
+
+
+            arrprint($sessionData);
+            $this->CI->load->library("Validator");
+            $va = new Validator();
+            $va->setConfigUiJenis($configUiMasterModulJenis);
+            $va->setCCode($cCode);
+            $va->midValidate_ns($sessionData, $stepNum);
+//            matiHere(__LINE__.__FUNCTION__);
+            $va->unionValidate_ns($sessionData);
+
+            //region update step2an
+            if (isset($configUiMasterModulJenis['steps'][$nextStepNum])) {//===masih ada langkah selanjutnya
+                echo "authorizing to next step..<br>";
+                $nextProp = array(
+                    "num" => $nextStepNum,
+                    "code" => $configUiMasterModulJenis['steps'][$nextStepNum]['target'],
+                    "label" => $configUiMasterModulJenis['steps'][$nextStepNum]['label'],
+                    "groupID" => $configUiMasterModulJenis['steps'][$nextStepNum]['userGroup'],
+                );
+            }
+            else {//==ini step terakhir, tulis komponen jika ada
+                $nextProp = array(
+                    "num" => 0,
+                    "code" => "",
+                    "label" => "",
+                    "groupID" => "",
+                );
+            }
+            //endregion
+
+            //region update step terdahulu
+            $tr = new $modelModules();
+            $dupState = $tr->updateData(array("id" => $topID), array(
+                "next_step_code" => $nextProp['code'],
+                "next_step_label" => $nextProp['label'],
+                "next_group_code" => $nextProp['groupID'],
+                "next_step_num" => $nextProp['num'],
+                "step_current" => $stepNum,
+                "partial" => isset($sessionData[$cCode]['main']['partial']) ? $sessionData[$cCode]['main']['partial'] : 0,
+
+            )) or die("Failed to update tr next-state!");
+            cekHijau(__LINE__ . " ::: " . $this->CI->db->last_query());
+
+            //-------------------------------------------------
+            $tr = new $modelModules();
+            $dupState = $tr->updateData(array("id" => $trID), array(
+                "partial" => isset($sessionData[$cCode]['main']['partial']) ? $sessionData[$cCode]['main']['partial'] : 0,
+            )) or die("Failed to update tr next-state!");
+            //endregion
+
+//            arrPrintPink($sessionData[$cCode]["main"]);
+//            mati_disini(__LINE__ . " ;; function " . __FUNCTION__);
+
+            $tCode = $configUiMasterModulOrigJenis['steps'][$stepNum]['target'];
+            $tCodeName = $configUiMasterModulOrigJenis['steps'][$stepNum]['label'];
+            $masterReplacers = array(
+                "inv" => $tmpNomorNota,
+                "jenis" => $tCode,
+                "jenis_label" => $tCodeName,
+                "transaksi_jenis" => $tCode,
+                "cabang_id" => $sessionData[$cCode]['main']['cabang_id'],
+                "cabang_nama" => $sessionData[$cCode]['main']['cabang_nama'],
+                "gudang_id" => $sessionData[$cCode]['main']['gudang_id'],
+                "gudang_nama" => $sessionData[$cCode]['main']['gudang_nama'],
+                "oleh_id" => $sessionData[$cCode]["main"]["oleh_id"],
+                "oleh_nama" => $sessionData[$cCode]["main"]["oleh_nama"],
+                "step_avail" => sizeof($configUiMasterModulJenis["steps"]),
+                "step_current" => $stepNum,
+                "step_number" => $stepNum,
+                "next_step_num" => $nextProp['num'],
+                "next_step_code" => $nextProp['code'],
+                "next_step_label" => $nextProp['label'],
+                "next_group_code" => $nextProp['groupID'],
+                //===references
+                "id_master" => $masterID,
+                "id_top" => $topID,
+                "ids_prev" => base64_encode(serialize($prevIDs)),
+                "ids_prev_intext" => print_r($prevIDs, true),
+                "nomer_top2" => isset($sessionData[$cCode]['main']['nomer_top2']) ? $sessionData[$cCode]['main']['nomer_top2'] : "",
+                "nomer_top" => $sessionData[$cCode]['main']['nomer_top'],
+                "nomers_prev" => base64_encode(serialize($prevNos)),
+                "nomers_prev_intext" => print_r($prevNos, true),
+                "jenises_prev" => base64_encode(serialize(array($prevProp['jenis']))),
+                "jenises_prev_intext" => print_r(array($prevProp['jenis']), true),
+                "tail_number" => $stepNum,
+                "tail_code" => $configUiMasterModulJenis['steps'][$stepNum]['target'],
+                "ids_his" => $sessionData[$cCode]["main"]["ids_his"],
+
+            );
+            foreach ($masterReplacers as $key => $val) {
+                $sessionData[$cCode]['tableIn_master'][$key] = $val;
+            }
+
+            $childTableRepaclers = array(
+                "sub_step_number" => $stepNum,
+                "sub_step_current" => $stepNum,
+                "sub_step_avail" => sizeof($configUiMasterModulJenis['steps']),
+                "next_substep_num" => $nextProp['num'],
+                "next_substep_code" => $nextProp['code'],
+                "next_substep_label" => $nextProp['label'],
+                "next_subgroup_code" => $nextProp['groupID'],
+            );
+            foreach ($sessionData[$cCode]['tableIn_detail'] as $id => $dSpec) {
+                //			$id = $dSpec['id'];
+                foreach ($childTableRepaclers as $key => $val) {
+                    $sessionData[$cCode]['tableIn_detail'][$id][$key] = $val;
+                }
+            }
+
+            $masterReplacersO = array(
+                "jenisTr" => $tCode,
+                "jenisTrName" => $tCodeName,
+                "oleh_id" => $sessionData[$cCode]["main"]["oleh_id"],
+                "oleh_nama" => $sessionData[$cCode]["main"]["oleh_nama"],
+                "stepNumber" => $stepNum,
+                "stepCode" => $tCode,
+            );
+            foreach ($masterReplacersO as $key => $val) {
+                $sessionData[$cCode]['main'][$key] = $val;
+            }
+            cekHitam("[$modul_transaksi]");
+
+            //region menimbulkan nilai tagihan
+            $unpaidList = null != $this->CI->config->item('tr_unpaidList') ? $this->CI->config->item('tr_unpaidList') : array();
+            //        arrprint($sessionData[$cCode]['tableIn_master']);
+            if (in_array($tCode, $unpaidList)) {
+                $sessionData[$cCode]['tableIn_master']["transaksi_nilai_tagihan"] = $sessionData[$cCode]['tableIn_master']['transaksi_nilai'];
+                $sessionData[$cCode]['tableIn_master']["transaksi_nilai_terbayar"] = 0;
+                $sessionData[$cCode]['tableIn_master']["transaksi_nilai_sisa"] = ($sessionData[$cCode]['tableIn_master']['transaksi_nilai_tagihan'] - $sessionData[$cCode]['tableIn_master']['transaksi_nilai_terbayar']);
+                //cekMerah("NULIS TAGIHANN");
+            }
+            else {
+                //cekMerah("TIDAK NULIS TAGIHANN");
+            }
+            //endregion
+
+            //region penomoran receipt #1
+
+            $this->CI->load->model("CustomCounter");
+            $cn = new CustomCounter("transaksi");
+            $cn->setType("transaksi");
+            $cn->setModul($modul_transaksi);
+            $cn->setStepCode($jenisTrTarget);
+            $counterForNumber = array($configCoreMasterModulOrigJenis['formatNota']);
+            if (!in_array($counterForNumber[0], $configCoreMasterModulOrigJenis['counters'])) {
+                die(__LINE__ . " Used number should be registered in 'counters' config as well");
+            }
+            foreach ($counterForNumber as $i => $cRawParams) {
+                $cParams = explode("|", $cRawParams);
+                $cValues = array();
+                foreach ($cParams as $param) {
+                    $cValues[$i][$param] = $sessionData[$cCode]['main'][$param];
+                }
+                $cRawValues = implode("|", $cValues[$i]);
+                $paramSpec = $cn->getNewCount($cParams, $cValues[$i]);
+            }
+            $tmpNomorNota2_current = $tmpNomorNota2 = $paramSpec['paramString'];
+            $tmpNomorNota2Alias_current = $tmpNomorNota2Alias = formatNota("nomer_nolink", $tmpNomorNota2);
+            //endregion
+
+            //region dynamic counters #1
+            echo "<script>top.writeProgress('sedang membuat penomoran');</script>";
+
+            $cn = new CustomCounter("transaksi");
+            $cn->setType("transaksi");
+            $cn->setModul($modul_transaksi);
+            $cn->setStepCode($jenisTrTarget);
+            $configCustomParams = $configCoreMasterModulOrigJenis['counters'];
+            $configCustomParams[] = "stepCode";
+            if (sizeof($configCustomParams) > 0) {
+                $cContent = array();
+                foreach ($configCustomParams as $i => $cRawParams) {
+                    $cParams = explode("|", $cRawParams);
+                    $cValues = array();
+                    foreach ($cParams as $param) {
+                        $cValues[$i][$param] = $sessionData[$cCode]['main'][$param];
+                    }
+                    $cRawValues = implode("|", $cValues[$i]);
+                    $paramSpec = $cn->getNewCount($cParams, $cValues[$i]);
+
+                    $cContent[$cRawParams][$cRawValues] = $paramSpec['value'];
+                    switch ($paramSpec['id']) {
+                        case 0: //===counter type is new
+                            $paramKeyRaw = print_r($cParams, true);
+                            $paramValuesRaw = print_r($cValues[$i], true);
+                            $cn->writeNewCount($cParams, $cValues[$i], $paramKeyRaw, $paramValuesRaw);
+                            break;
+                        default: //===counter to be updated
+                            $cn->updateCount($paramSpec['id'], $paramSpec['value']);
+                            break;
+                    }
+
+                }
+            }
+            $appliedCounters2 = base64_encode(serialize($cContent));
+            $appliedCounters_inText2 = print_r($cContent, true);
+
+
+            $masterReplacers = array(
+                "nomer" => $tmpNomorNota2,
+                "nomer2" => $tmpNomorNota2Alias,
+                "counters" => $appliedCounters2,
+                "counters_intext" => $appliedCounters_inText2,
+            );
+            foreach ($masterReplacers as $key => $val) {
+                $sessionData[$cCode]['tableIn_master'][$key] = $val;
+            }
+
+            $addValues = array(
+                'counters' => $appliedCounters2,
+                'counters_intext' => $appliedCounters_inText2,
+                'nomer' => $tmpNomorNota2,
+                'nomer2' => $tmpNomorNota2Alias,
+                'dtime' => date("Y-m-d H:i:s"),
+                'fulldate' => date("Y-m-d"),
+            );
+            foreach ($addValues as $key => $val) {
+                $sessionData[$cCode]['tableIn_master'][$key] = $val;
+            }
+            //endregion
+
+            //region numbering tambahan
+            $this->CI->load->library("CounterNumber");
+            $ccn = new CounterNumber();
+            $ccn->setModul($modul_transaksi);
+            $ccn->setCCode($cCode);
+            $ccn->setStepCode($jenisTrTarget);
+            $ccn->setJenisTr($this->jenisTr);
+            $ccn->setTransaksiGate($sessionData[$cCode]['tableIn_master']);
+            $ccn->setMainGate($sessionData[$cCode]['main']);
+            $ccn->setItemsGate($sessionData[$cCode]['items']);
+            $ccn->setItems2SumGate($sessionData[$cCode]['items2_sum']);
+            $new_counter = $ccn->getCounterNumber();
+            cekHitam("jenistr yang disett dari create " . $this->jenisTr);
+
+            if (isset($new_counter['main']) && sizeof($new_counter['main']) > 0) {
+                foreach ($new_counter['main'] as $ckey => $cval) {
+                    $sessionData[$cCode]['tableIn_master'][$ckey] = $cval;
+                    $sessionData[$cCode]['main'][$ckey] = $cval;
+                }
+            }
+            if (isset($new_counter['items']) && sizeof($new_counter['items']) > 0) {
+                foreach ($new_counter['items'] as $ikey => $iSpec) {
+                    foreach ($iSpec as $iikey => $iival) {
+                        $sessionData[$cCode]['items'][$ikey][$iikey] = $iival;
+                    }
+                }
+            }
+            if (isset($new_counter['items2_sum']) && sizeof($new_counter['items2_sum']) > 0) {
+                foreach ($new_counter['items2_sum'] as $ikey => $iSpec) {
+                    foreach ($iSpec as $iikey => $iival) {
+                        $sessionData[$cCode]['items2_sum'][$ikey][$iikey] = $iival;
+                    }
+                }
+            }
+            //endregion
+
+            //==tulis kloningan transaksi
+//            arrPrintWebs($sessionData[$cCode]['tableIn_master']);
+
+            $pakai_cli = 0;
+
+            //region write entries
+            if (sizeof($sessionData[$cCode]['tableIn_master']) > 0) {
+
+                // region locker transaksi---------------------------------
+                $pakai_ini = 0;
+                if ($pakai_ini == 1) {
+                    if ($this->session->login['ghost'] == 0) {
+                        $this->CI->load->model("Mdls/MdlLockerTransaksi");
+                        $lt = New MdlLockerTransaksi();
+                        $lt->addFilter("transaksi_id='$no'");
+                        $lt->addFilter("state='hold'");
+                        $lt->addFilter("jumlah='1'");
+                        $lt->addFilter("oleh_id=" . my_id());
+                        $ltTmp = $lt->lookupAll()->result();
+                        showLast_query("biru");
+                        if (sizeof($ltTmp) == 1) {
+                            cekHijau(":: lanjuut eksekusi transaksi ini....");
+                        }
+                        else {
+                            $msg = "Transaksi sudah dieksekusi atau ada indikasi transaksi ganda. Silahkan tutup halaman ini dan refresh ulang.";
+                            cekMerah($msg);
+                            die(lgShowAlertBiru($msg));
+                        }
+
+                        //                }
+                    }
+                }
+                // endregion locker transaksi---------------------------------
+
+                $sessionData[$cCode]['tableIn_master']['status_4'] = 11;
+                $sessionData[$cCode]['tableIn_master']['trash_4'] = 0;
+                $sessionData[$cCode]['tableIn_master']['status'] = 1;
+                $sessionData[$cCode]['tableIn_master']['trash'] = 0;
+                $sessionData[$cCode]['main']['status_4'] = 11;
+                $sessionData[$cCode]['main']['trash_4'] = 0;
+                if ($pakai_cli == 1) {
+                    $sessionData[$cCode]['main']['cli'] = 0;
+                }
+                else {
+                    $sessionData[$cCode]['main']['cli'] = 1;
+                }
+
+                $insertTransaksiID = $insertID = $tr->writeMainEntries($sessionData[$cCode]['tableIn_master']);
+                $midmaster = $insertID;
+                cekBiru("master invoice " . $insertID);
+                $insertNum = $sessionData[$cCode]['tableIn_master']['nomer'];
+                $mNumMaster = $insertNum;
+                $mJenisMaster = $sessionData[$cCode]['tableIn_master']['jenis'];
+                $sessionData[$cCode]['main']['nomer'] = $insertNum;
+                if ($insertID < 1) {
+                    mati_disini("Gagal saat berusaha  write transaction entry pada " . __FILE__ . " baris " . __LINE__);
+                }
+
+
+                if (isset($sessionData[$cCode]['tableIn_master']['ids_his'])) {
+                    $idHis_decode = blobDecode($sessionData[$cCode]['tableIn_master']['ids_his']);
+                    $idHis_decode[$stepNum] = array(
+                        "dtime" => date("Y-m-d H:i:s"),
+                        "fulldate" => date("Y-m-d"),
+                        "olehID" => $sessionData[$cCode]['main']['olehID'],
+                        "olehName" => $sessionData[$cCode]['main']['olehName'],
+                        "step" => $stepNum,
+                        "trID" => $insertID,
+                        "nomer" => $tmpNomorNota2,
+                        "nomer2" => $tmpNomorNota2Alias,
+                        "counters" => $appliedCounters2,
+                        "counters_intext" => $appliedCounters_inText2,
+                    );
+                    $idHis_blob = blobEncode($idHis_decode);
+                    $idHis_intext = print_r($idHis_decode, true);
+
+                    $sessionData[$cCode]['tableIn_master']['ids_his'] = $idHis_blob;
+                    $sessionData[$cCode]['tableIn_master']['ids_his_intext'] = $idHis_intext;
+
+
+                    $tr = new $modelModules();
+                    $dup = $tr->updateData(array("id" => $insertID), array(
+                        "ids_his" => $idHis_blob,
+                        "ids_his_intext" => $idHis_intext,
+
+                    )) or mati_disini("Failed to update tr next-state!");
+                    cekUngu($this->CI->db->last_query());
+                }
+                else {
+                    cekHitam("tidak ada tableIn_master ids_his");
+                }
+
+
+                cekUngu(":: insertID => $insertID :: code: " . __LINE__);
+                if (isset($sessionData[$cCode]['tableIn_master_values']) && sizeof($sessionData[$cCode]['tableIn_master_values']) > 0) {
+                    $inserMainValues = array();
+                    $mongoList['mainValues'] = array();
+                    foreach ($sessionData[$cCode]['tableIn_master_values'] as $key => $val) {
+                        $dd = $tr->writeMainValues($insertID, array("key" => $key, "value" => $val));
+                        $inserMainValues[] = $dd;
+                        $mongoList['mainValues'][] = $dd;
+                    }
+//                    if (sizeof($inserMainValues) > 0) {
+//                        $arrBlob = blobEncode($inserMainValues);
+//                        $this->CI->db->query("UPDATE transaksi SET indexing_main_values = '$arrBlob' WHERE id=$insertID");
+//                    }
+                }
+                if (isset($sessionData[$cCode]['main_add_values']) && sizeof($sessionData[$cCode]['main_add_values']) > 0) {
+                    foreach ($sessionData[$cCode]['main_add_values'] as $key => $val) {
+                        $dd = $tr->writeMainValues($insertID, array("key" => $key, "value" => $val));
+                        $mongoList['mainValues'][] = $dd;
+                    }
+                }
+                if (isset($sessionData[$cCode]['main_inputs']) && sizeof($sessionData[$cCode]['main_inputs']) > 0) {
+                    foreach ($sessionData[$cCode]['main_inputs'] as $key => $val) {
+                        $dd = $tr->writeMainValues($insertID, array("key" => $key, "value" => $val));
+                        $mongoList['mainValues'][] = $dd;
+                    }
+                }
+                if (isset($sessionData[$cCode]['main_add_fields']) && sizeof($sessionData[$cCode]['main_add_fields']) > 0) {
+                    foreach ($sessionData[$cCode]['main_add_fields'] as $key => $val) {
+                        $tr->writeMainFields($insertID, array("key" => $key, "value" => $val));
+                    }
+                }
+                if (isset($sessionData[$cCode]['main_elements']) && sizeof($sessionData[$cCode]['main_elements']) > 0) {
+                    foreach ($sessionData[$cCode]['main_elements'] as $elName => $aSpec) {
+                        $pakai_elemenet_baru = 1;
+                        if ($pakai_elemenet_baru == 1) {
+
+                            $repv_element = array(
+                                "element_name" => $elName,
+                                "produk_id" => $aSpec["id"],
+                                "produk_nama" => $aSpec["id"],
+
+                            );
+                            $elementMerge = $repv_element + $aSpec;
+                            if (isset($aSpec["contents"])) {
+                                $elementMerge = $elementMerge + blobDecode($aSpec["contents"]);
+                            }
+                            $tr->writeMainElements($insertID, $elementMerge) or matihere("gagal menulis element transaksi");
+                            cekLime($this->CI->db->last_query());
+
+                            //==nebeng bikin inputLabels
+                            $currentValue = "";
+                            switch ($aSpec['elementType']) {
+                                case "dataModel":
+                                    $currentValue = $aSpec['key'];
+                                    break;
+                                case "dataField":
+                                    $currentValue = $aSpec['value'];
+                                    break;
+                            }
+                            if (array_key_exists($elName, $relOptionConfigs)) {
+                                //					cekhijau("$eName terdaftar pada relInputs");
+                                if (isset($relOptionConfigs[$elName][$currentValue])) {
+                                    if (sizeof($relOptionConfigs[$elName][$currentValue]) > 0) {
+                                        foreach ($relOptionConfigs[$elName][$currentValue] as $oValueName => $oValSpec) {
+                                            $inputLabels[$oValueName] = $oValSpec['label'];
+                                            if (isset($oValSpec['auth'])) {
+                                                if (isset($oValSpec['auth']['groupID'])) {
+                                                    $inputAuthConfigs[$oValueName] = $oValSpec['auth']['groupID'];
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else {
+                                    //						cekKuning("option $currentValue pada $eName TIDAK ada pilihannya");
+                                }
+
+                            }
+
+                        }
+                        else {
+                            $tr->writeMainElements($insertID, array(
+                                "mdl_name" => isset($aSpec['mdl_name']) ? $aSpec['mdl_name'] : "",
+                                "key" => isset($aSpec['key']) ? $aSpec['key'] : 0,
+                                "value" => isset($aSpec['value']) ? $aSpec['value'] : "",
+                                "name" => $aSpec['name'],
+                                "label" => $aSpec['label'],
+                                "contents" => isset($aSpec['contents']) ? $aSpec['contents'] : "",
+                                "contents_intext" => isset($aSpec['contents_intext']) ? print_r($aSpec['contents_intext'], true) : "",
+
+                            ));
+                        }
+
+                    }
+                }
+                if (isset($sessionData[$cCode]['tableIn_detail_values']) && sizeof($sessionData[$cCode]['tableIn_detail_values']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['tableIn_detail_values'] as $pID => $dSpec) {
+                        if (isset($configCoreMasterModulJenis['tableIn']['detailValues'])) {
+                            foreach ($configCoreMasterModulJenis['tableIn']['detailValues'] as $key => $src) {
+                                $dd = $tr->writeDetailValues($insertID, array(
+                                    "produk_jenis" => $sessionData[$cCode]['tableIn_detail'][$pID]['produk_jenis'],
+                                    "produk_id" => $pID,
+                                    "key" => $key,
+                                    "value" => isset($dSpec[$src]) ? $dSpec[$src] : 0,
+                                ));
+                                $insertIDs[$pID][] = $dd;
+                                $mongoList['detailValues'][] = $dd;
+                            }
+
+                        }
+                    }
+//                    if (sizeof($insertIDs) > 0) {
+//                        $arrBlob = blobEncode($insertIDs);
+//                        $this->CI->db->query("UPDATE transaksi SET indexing_detail_values = '$arrBlob' WHERE id=$insertID");
+//                    }
+                }
+                if (isset($sessionData[$cCode]['tableIn_detail_values2_sum']) && sizeof($sessionData[$cCode]['tableIn_detail_values2_sum']) > 0) {
+                    foreach ($sessionData[$cCode]['tableIn_detail_values2_sum'] as $pID => $dSpec) {
+                        if (isset($configCoreMasterModulJenis['tableIn']['detailValues2_sum'])) {
+                            foreach ($configCoreMasterModulJenis['tableIn']['detailValues2_sum'] as $key => $src) {
+                                $dd = $tr->writeDetailValues($insertID, array(
+                                    "produk_jenis" => $sessionData[$cCode]['tableIn_detail2_sum'][$pID]['produk_jenis'],
+                                    "produk_id" => $pID,
+                                    "key" => $key,
+                                    "value" => $dSpec[$src],
+                                ));
+                                $insertIDs[] = $dd;
+                                $mongoList['detailValues'][] = $dd;
+                            }
+                        }
+
+
+                    }
+                }
+                if (isset($sessionData[$cCode]['tableIn_detail_rsltItems']) && sizeof($sessionData[$cCode]['tableIn_detail_rsltItems']) > 0) {
+                    foreach ($sessionData[$cCode]['tableIn_detail_rsltItems'] as $pID => $dSpec) {
+                        if (isset($configCoreMasterModulJenis['tableIn']['detail_rsltItems'])) {
+                            foreach ($configCoreMasterModulJenis['tableIn']['detail_rsltItems'] as $key => $src) {
+                                $dd = $tr->writeDetailValues($insertID, array(
+                                    "produk_jenis" => $sessionData[$cCode]['tableIn_detail_rsltItems'][$pID]['produk_jenis'],
+                                    "produk_id" => $pID,
+                                    "key" => $key,
+                                    "value" => $dSpec[$src],
+                                ));
+                                $insertIDs[$pID][] = $dd;
+                                $mongoList['detailValues'][] = $dd;
+                            }
+                        }
+
+
+                    }
+                }
+
+
+                //==tulis signature
+                $dwsign = $tr->writeSignature($masterID, array(
+                    "nomer" => $tmpNomorNota2,
+                    "step_number" => $stepNum,
+                    "step_code" => $configUiMasterModulOrigJenis['steps'][$stepNum]['target'],
+                    "step_name" => $configUiMasterModulOrigJenis['steps'][$stepNum]['label'],
+                    "group_code" => $configUiMasterModulOrigJenis['steps'][$stepNum]['userGroup'],
+                    "oleh_id" => $sessionData[$cCode]["main"]["oleh_id"],
+                    "oleh_nama" => $sessionData[$cCode]["main"]["oleh_nama"],
+                    "keterangan" => $configUiMasterModulOrigJenis['steps'][$stepNum]['label'] . "",
+                    "transaksi_id" => $masterID,
+                )) or mati_disini("Failed to write signature");
+
+
+                //region update validQty pada step sebelumnya yang di-refer
+                echo "<script>top.writeProgress('EXTRACT ITEMS...','head');</script>";
+                $seluruhnya = true;
+                $prevTrID = 0;
+                $arrvalidQtySisa = array();
+                if (isset($sessionData[$cCode]['tableIn_detail']) && sizeof($sessionData[$cCode]['tableIn_detail']) > 0) {
+                    $closedRequest = isset($configCoreMasterModulOrigJenis['closedRequest'][$stepNum]['enabled']) ? $configCoreMasterModulOrigJenis['closedRequest'][$stepNum]['enabled'] : false;
+                    $insertIDs = array();
+                    $insertDeIDs = array();
+                    foreach ($sessionData[$cCode]['tableIn_detail'] as $iID => $dSpec) {
+                        $insertDetailID = $tr->writeDetailEntries($insertID, $dSpec);
+                        cekHitam($this->CI->db->last_query());
+                        if ($insertDetailID < 1) {
+                            die("Gagal saat berusaha write transaction detail entry pada " . __FILE__ . " baris " . __LINE__);
+                        }
+                        else {
+                            $insertIDs[] = $insertDetailID;
+                            $insertDeIDs[$insertID][] = $insertDetailID;
+                            $mongoList['detail'][] = $insertDetailID;
+
+                        }
+                        cekHitam("EXTRACTED ITEMS... [$iID]");
+                        echo "<script>top.writeProgress('" . strtoupper($dSpec['produk_nama']) . "');</script>";
+
+//                        if (isset($sessionData[$cCode]['extractedItems'])) {
+//                            if (array_key_exists($iID, $sessionData[$cCode]['extractedItems'])) {
+//                                $itemFulfilledJml = 0;
+//                                foreach ($sessionData[$cCode]['extractedItems'][$iID] as $triID => $triSpec) {
+//                                    $prevTrID = $triSpec['transaksi_id'];
+//                                    $tru = new $modelModules();
+//                                    $tru->setFilters(array());
+//                                    $tru->setTableName($tru->getTableNames()['detail']);
+//                                    //----------------------------------------------------------
+//                                    if ($triSpec['valid_qty'] >= $dSpec['produk_ord_jml']) {
+//                                        $newValidQty = ($triSpec['valid_qty'] - $dSpec['produk_ord_jml']);
+//                                    }
+//                                    else {
+//                                        $newValidQty = ($triSpec['valid_qty'] - $triSpec['valid_qty']);
+//                                    }
+//                                    //----------------------------------------------------------
+//                                    $newValidQtyNotApprove = 0;
+//                                    if ($closedRequest == true) {
+//                                        cekPink2("closed Request enabled, request: " . $triSpec['valid_qty'] . ", approve: " . $dSpec['produk_ord_jml'] . ", newValidQty: " . $newValidQty);
+//                                        if ($triSpec['valid_qty'] >= $dSpec['produk_ord_jml']) {
+//                                            $newValidQty = 0;
+//                                            $newValidQtyNotApprove = ($triSpec['valid_qty'] - $dSpec['produk_ord_jml']);
+//
+//                                        }
+//                                        //                                    else{
+//                                        //                                        $newValidQty = 0;
+//                                        //                                        $newValidQtyNotApprove = ($triSpec['valid_qty'] - $dSpec['produk_ord_jml']);
+//                                        //                                    }
+//                                        cekPink2("new valid qty: $newValidQty, valid qty not approve: $newValidQtyNotApprove");
+//                                    }
+//                                    //----------------------------------------------------------
+//
+//
+//                                    $itemFulfilledJml += $newValidQty;
+//                                    $updateContents = array(
+////                                        "valid_qty" => $newValidQty,
+////                                        "valid_qty_no_approve" => $newValidQtyNotApprove,
+//                                    );
+//                                    if ($newValidQty < 1) {
+//                                        $childPrevRepaclers = array(
+//                                            "next_substep_code" => "",
+//                                            "next_substep_label" => "",
+//                                            "next_subgroup_code" => "",
+//                                            "sub_tail_number" => $stepNum,
+//                                            "sub_tail_code" => $configUiMasterModulJenis['steps'][$stepNum]['target'],
+//                                        );
+//                                        foreach ($childPrevRepaclers as $key => $val) {
+//                                            $updateContents[$key] = $val;
+//                                        }
+//                                    }
+//                                    else {//==kalau ada yang tidak habis, berarti TIDAK seluruhnya yang dilanjutkan pada step berikutnya
+//                                        $seluruhnya = false;
+//                                        $arrvalidQtySisa[$iID] = $newValidQty;
+//                                    }
+//
+//                                    $whereUpdateContents = array(
+//                                        "produk_id" => $iID,
+//                                        "id" => $triID,
+//                                        "transaksi_id" => $triSpec['transaksi_id'],
+//                                    );
+//                                    if($cCode == "_TR_5822"){
+//                                        arrPrint($whereUpdateContents);
+//                                        arrprintPink($updateContents);
+//                                        mati_disini("STOP... $cCode");
+//                                    }
+//                                    $dupState = $tru->updateData($whereUpdateContents, $updateContents) or die("Failed to update previous detail entries!");
+//                                    cekHijau(__LINE__ . " :: UPDATE TRANSAKSI_DATA :: " . $this->CI->db->last_query());
+//
+//                                    unset($tru);
+//                                }
+//                            }
+//                        }
+
+                    }
+
+                    if ($closedRequest == true) {
+                        if (isset($sessionData[$cCode]['extractedItems'])) {
+                            foreach ($sessionData[$cCode]['extractedItems'] as $iIDex => $exSpec) {
+                                if (!array_key_exists($iIDex, $sessionData[$cCode]['tableIn_detail'])) {
+                                    foreach ($exSpec as $trDataID => $trdSpec) {
+                                        $tru = new $modelModules();
+                                        $tru->setFilters(array());
+                                        $tru->setTableName($tru->getTableNames()['detail']);
+                                        $updateContents = array(
+//                                            "valid_qty" => 0,
+//                                            "valid_qty_no_approve" => $trdSpec['qty'],
+                                        );
+                                        $childPrevRepaclers = array(
+                                            "next_substep_code" => "",
+                                            "next_substep_label" => "",
+                                            "next_subgroup_code" => "",
+                                            "sub_tail_number" => $stepNum,
+                                            "sub_tail_code" => $configUiMasterModulJenis['steps'][$stepNum]['target'],
+                                        );
+                                        foreach ($childPrevRepaclers as $key => $val) {
+                                            $updateContents[$key] = $val;
+                                        }
+                                        $dupState = $tru->updateData(array(
+                                            "produk_id" => $iIDex,
+                                            "id" => $trDataID,
+                                            "transaksi_id" => $trdSpec['transaksi_id'],
+                                        ), $updateContents) or die("Failed to update previous detail entries!");
+                                        unset($tru);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (sizeof($insertIDs) == 0) {
+                        die(lgShowAlert("Transaksi gagal disimpan karena rincian transaksi kosong."));
+                    }
+                    else {
+                        $indexing_details = array();
+                        foreach ($insertDeIDs as $key => $numb) {
+                            $indexing_details[$key] = $numb;
+                        }
+
+                    }
+
+                    //-------------
+                    $lastStepPartialApprove = isset($configUiMasterModulJenis['lastStepPartialApprove']) ? $configUiMasterModulJenis['lastStepPartialApprove'] : false;
+                    if ($lastStepPartialApprove == true) {
+                        cekKuning(__LINE__ . " $lastStepPartialApprove :: $totalSteps");
+                        if ($totalSteps == 2) {
+                            if (sizeof($arrvalidQtySisa) > 0) {
+                                cekPink("ada valid qty yang tersisa");
+                                $tr = new $modelModules();
+                                $dupState = $tr->updateData(array("id" => $topID), $stepNowParameter) or die("Failed to update tr next-state!");
+                                cekHitam(__LINE__ . " ## 2 step, dan step akhir partial, YESS...");
+                                showLast_query("orange");
+                            }
+                        }
+                    }
+                }
+                else {
+                    mati_disini(("Transaksi gagal disimpan karena rincian transaksi kosong."));
+                }
+
+                if ($seluruhnya) {
+                    $tr = new $modelModules();
+                    $dupState = $tr->updateData(array("id" => $prevTrID), array(
+                        "tail_number" => $stepNum,
+                        "tail_code" => $configUiMasterModulJenis['steps'][$stepNum]['target'],
+                        "status_4" => $sessionData[$cCode]['main']['status_4'],
+                        "trash_4" => $sessionData[$cCode]['main']['trash_4'],
+                    )) or mati_disini("Failed to update tr next-state!");
+                    cekHijau(":: UOPDATE transaksi dengan trID -> $prevTrID");
+                    $mongUpdateList['update']['main'][] = array(
+                        "where" => array(
+                            "id" => "$prevTrID",
+                        ),
+                        "value" => array(
+                            "tail_number" => $stepNum,
+                            "tail_code" => $configUiMasterModulJenis['steps'][$stepNum]['target'],
+                            "status_4" => $sessionData[$cCode]['main']['status_4'],
+                            "trash_4" => $sessionData[$cCode]['main']['trash_4'],
+                        ),
+                    );
+                    cekHijau($this->CI->db->last_query());
+                }
+                //endregion
+
+                //region cloner items to item_child
+                if (sizeof($additionalData) > 0) {
+                    echo "<script>top.writeProgress('CLONING ITEMS TO ITEM CHILD...','head');</script>";
+                    cekHitam("ini data");
+                    $dataMdl = $additionalData["mdlName"];
+                    $this->CI->load->model("Mdls/" . $dataMdl);
+                    $da = new $dataMdl();
+                    $arrColl = $da->getFields();
+                    $selectedCol = array();
+                    foreach ($arrColl as $colSpec) {
+                        $selectedCol[] = $colSpec['kolom'];
+                    }
+
+                    if (isset($sessionData[$cCode]['items_child']) && sizeof($sessionData[$cCode]['items_child'])) {
+                        $gateData = isset($configUiMasterModulJenis['shopingCartDetailFields'][$stepNum]['gate']) ? $configUiMasterModulJenis['shopingCartDetailFields'][$stepNum]['gate'] : "detail";
+
+                        $arrBlacklist = array(
+                            "jml", "max_jml", "qty",
+                        );
+                        if (isset($sessionData[$cCode]["items2_sum"])) {
+                            unset($sessionData[$cCode]["items2_sum"]);
+                            unset($sessionData[$cCode]["items2"]);
+                            unset($sessionData[$cCode]["tableIn_detail_values2_sum"]);
+                        }
+                        foreach ($sessionData[$cCode]['items_child'] as $mainProdsID => $defData) {
+                            if ($gateData == "detail") {
+                                $itemsMain = isset($sessionData[$cCode]['items'][$mainProdsID]) ? $sessionData[$cCode]['items'][$mainProdsID] : array();
+                            }
+                            else {
+                                $forceMainToItems = isset($configUiMasterModulJenis['shopingCartDetailFields'][$stepNum]['changeToItems'][$gateData]) ? $configUiMasterModulJenis['shopingCartDetailFields'][$stepNum]['changeToItems'][$gateData] : array();
+                                if (sizeof($forceMainToItems) > 0) {
+                                    foreach ($forceMainToItems as $key1 => $key2) {
+                                        $keyForce = strlen($key2) > 2 ? $key2 : $key1;
+                                        $itemsMain[$key1] = isset($sessionData[$cCode]['main'][$keyForce]) ? $sessionData[$cCode]['main'][$keyForce] : "";
+                                    }
+                                    $itemsMain["jml"] = "1";
+                                    $itemsMain["qty"] = "1";
+                                    $itemsMain["max_jml"] = "1";
+
+                                }
+                                else {
+                                    matiHEre("detil aset gagal di tulis!");
+                                }
+                                //                            arrPrint($forceMainToItems);
+                            }
+
+                            $arrChilds = array_diff_key($itemsMain, array_flip($arrBlacklist));
+                            //                        arrPrint($itemsMain);
+                            //                        matiHEre();
+                            //
+                            //arrPrint($arrChilds);
+                            cekLime("ini brooo " . $gateData);
+
+                            $arrNew = array();
+                            if (sizeof($itemsMain) > 0) {
+                                foreach ($defData as $inID => $detil_child) {
+                                    //                        $arrNewChild = array_diff($itemsMain,$detil_child);
+
+                                    $paramDetil = array_replace($arrChilds, $detil_child);
+                                    if (array_key_exists("id", $paramDetil)) {
+
+                                        $paramDetil["parent_id"] = $paramDetil["id"];
+                                        if (!isset($paramDetil["folders"]) || $paramDetil["folders"] == 0) {
+                                            $paramDetil["folders"] = $paramDetil["pihakMainId"];
+                                            $paramDetil["keterangan"] = $paramDetil["pihakMainName"];
+                                        }
+                                        unset($paramDetil["id"]);
+                                    }
+                                    $tmpData = array();
+                                    foreach ($selectedCol as $i => $coloum) {
+                                        if (isset($paramDetil[$coloum])) {
+                                            $tmpData[$coloum] = $paramDetil[$coloum];
+                                        }
+                                    }
+                                    //                                arrPrint($paramDetil);
+                                    if (isset($paramDetil["subtotal"])) {
+                                        $paramDetil["subtotal"] = $paramDetil["jml"] * $paramDetil["harga"];
+                                    }
+
+                                    $insertDataID = $da->addData($tmpData, $da->getTableName()) or die(lgShowError("Gagal menulis pengajuan data", __FILE__));
+                                    cekHere($this->CI->db->last_query());
+                                    $paramDetil["id"] = $insertDataID;
+                                    echo "<script>top.writeProgress('PENGAJUAN DATA (TRID:$insertDataID)');</script>";
+                                    $sessionData[$cCode]["items2_sum"][$insertDataID] = $paramDetil;
+                                    $sessionData[$cCode]["items2"][$mainProdsID][$insertDataID] = $paramDetil;
+                                    //                            $arrNew
+
+                                }
+                            }
+
+
+                            //                        arrPrint($arrNew);
+                            //
+
+
+                            //                  arrPrint($itemsMain);
+                        }
+
+                    }
+                }
+
+                //endregion
+
+                if (isset($sessionData[$cCode]['tableIn_detail2_sum']) && sizeof($sessionData[$cCode]['tableIn_detail2_sum']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['tableIn_detail2_sum'] as $iID => $dSpec) {
+                        $dd = $tr->writeDetailEntries($insertID, $dSpec);
+                        $insertIDs[] = $dd;
+                        $mongoList['detail'][] = $dd;
+                    }
+                }
+                if (isset($sessionData[$cCode]['tableIn_detail2']) && sizeof($sessionData[$cCode]['tableIn_detail2']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['tableIn_detail2'] as $iID => $dSpec) {
+                        $dd = $tr->writeDetailEntries($insertID, $dSpec);
+                        $insertIDs[] = $dd;
+                        $mongoList['detail'][] = $dd;
+                        cekUngu($this->CI->db->last_query());
+                    }
+                }
+
+                if (isset($configUiMasterModulJenis['updateDueDate'][$stepNum])) {
+                    $dueDateConf = $configUiMasterModulJenis['updateDueDate'][$stepNum];
+                    $sourceDue = $dueDateConf['source'];
+                    $targetDue = $dueDateConf['target'];
+                    $datenow = date("Y-m-d");
+                    foreach ($sourceDue as $key => $val) {
+                        $indexVal = isset($sessionData[$cCode]['main_elements'][$key][$val]) ? $sessionData[$cCode]['main_elements'][$key][$val] : 14;
+                        $dueDate = dueDate($datenow, $indexVal);
+                    }
+                    $fieldDue = $tr->getFields()["dueDate"];
+                    $dataDue = array();
+                    foreach ($fieldDue as $kol) {
+                        if (isset($sessionData[$cCode]['tableIn_master'][$kol])) {
+                            $dataDue[$kol] = $sessionData[$cCode]['tableIn_master'][$kol];
+                        }
+                    }
+                    $dataDue['due_date'] = $dueDate;
+                    $validateDue = validateDueDate($sessionData[$cCode]['main']['customerID'], $sessionData[$cCode]['main']['dtime']);
+//                    cekMErah("masuk config duedate");
+//                    arrPrint($validateDue);
+//                    arrPrintWebs($dataDue);
+//                    cekBiru($sessionData[$cCode]['main']['nilai_tambah_2010050_2010050010']);
+//matiHere(__LINE__);
+//                    arrPrint($validateDue);
+//                    if ($validateDue['allow_create'] == "true") {
+                    if (isset($sessionData[$cCode]['main']['nilai_tambah_2010050_2010050010']) && $sessionData[$cCode]['main']['nilai_tambah_2010050_2010050010'] > 0) {
+                        cekBiru($sessionData[$cCode]['main']['nilai_tambah_2010050_2010050010']);
+                        switch ($sessionData[$cCode]['main']['paymentMethod']) {
+                            case "cash":
+                                break;
+                            default:
+                                $tr->writeDueDate($insertID, $dataDue);
+                                break;
+                        }
+
+                        cekHitam($this->CI->db->last_query());
+                    }
+//                    }
+//                    else {
+//                        $allowedOver = validateOverDue($sessionData[$cCode]['main']['customerID']);
+//                        if ($allowedOver['status'] == "allowed") {
+//
+//                        }
+//                        else {
+//                            //                        matiHere($validateDue['error']);//matiin transaksi sudah over due
+//                        }
+//                        //                    arrPrint()
+//                        //                    matiHere($validateDue['error']);//matiin transaksi sudah over due
+//                    }
+//                                    matiHere();
+                    //update main elementnya
+                    foreach ($targetDue as $keyTarget => $valTarget) {
+                        $sessionData[$cCode]['main_elements'][$keyTarget][$valTarget] = $dueDate;
+                        $sessionData[$cCode]['main']['dueDate'] = $dueDate;
+                    }
+                }
+                else {
+//                    matiHere("GAgal menulis duedate");
+                }
+
+                //pengganti registry ditulis ke tabel fisik
+                if (isset($sessionData[$cCode]['main']) && sizeof($sessionData[$cCode]['main']) > 0) {
+                    $inserMain = array();
+                    $insertIDs[] = $tr->writeDetailMainEntries($insertID, $sessionData[$cCode]['main']);
+                }
+                if (isset($sessionData[$cCode]['items']) && sizeof($sessionData[$cCode]['items']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items'] as $dSpec) {
+                        $insertIDs[] = $tr->writeDetailItemsEntries($insertID, $dSpec);
+//                        cekBiru($this->CI->db->last_query());
+                    }
+                }
+                if (isset($sessionData[$cCode]['items2']) && sizeof($sessionData[$cCode]['items2']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items2'] as $dSpec) {
+                        $insertIDs[] = $tr->writeEntriesDetailItems2($insertID, $dSpec);
+                        $mongoList['detail'] = $insertIDs;
+                        cekUngu($this->CI->db->last_query());
+                    }
+                }
+                if (isset($sessionData[$cCode]['items2_sum']) && sizeof($sessionData[$cCode]['items2_sum']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items2_sum'] as $dSpec) {
+                        $insertDetailID = $tr->writeEntriesDetailItems2_sum($insertID, $dSpec);
+                        $insertIDs[] = $insertDetailID;
+                        $mongoList['detail'][] = $insertDetailID;
+                    }
+                }
+                if (isset($sessionData[$cCode]['items3']) && sizeof($sessionData[$cCode]['items3']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items3'] as $dSpec) {
+                        $insertIDs[] = $tr->writeEntriesDetailItems3($insertID, $dSpec);
+                    }
+                }
+                if (isset($sessionData[$cCode]['items3_sum']) && sizeof($sessionData[$cCode]['items3_sum']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items3_sum'] as $dSpec) {
+                        $insertDetailID = $tr->writeEntriesDetailItems3_sum($insertID, $dSpec);
+                        cekMErah($this->CI->db->last_query());
+                    }
+                }
+                if (isset($sessionData[$cCode]['items4']) && sizeof($sessionData[$cCode]['items4']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items4'] as $dSpec) {
+                        $insertIDs[] = $tr->writeEntriesDetailItems4($insertID, $dSpec);
+                    }
+                }
+                if (isset($sessionData[$cCode]['items4_sum']) && sizeof($sessionData[$cCode]['items4_sum']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items4_sum'] as $dSpec) {
+                        $insertDetailID = $tr->writeEntriesDetailItems4_sum($insertID, $dSpec);
+                    }
+                }
+                if (isset($sessionData[$cCode]['items5']) && sizeof($sessionData[$cCode]['items5']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items5'] as $dSpec) {
+                        $insertIDs[] = $tr->writeEntriesDetailItems5($insertID, $dSpec);
+                    }
+                }
+                if (isset($sessionData[$cCode]['items5_sum']) && sizeof($sessionData[$cCode]['items5_sum']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items5_sum'] as $dSpec) {
+                        $insertDetailID = $tr->writeEntriesDetailItems5_sum($insertID, $dSpec);
+                    }
+                }
+                if (isset($sessionData[$cCode]['items6']) && sizeof($sessionData[$cCode]['items6']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items6'] as $dSpec) {
+                        $insertIDs[] = $tr->writeEntriesDetailItems6($insertID, $dSpec);
+                    }
+                }
+                if (isset($sessionData[$cCode]['items6_sum']) && sizeof($sessionData[$cCode]['items6_sum']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items6_sum'] as $dSpec) {
+                        $insertDetailID = $tr->writeEntriesDetailItems6_sum($insertID, $dSpec);
+                    }
+                }
+                if (isset($sessionData[$cCode]['items7']) && sizeof($sessionData[$cCode]['items7']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items7'] as $dSpec) {
+                        $insertIDs[] = $tr->writeEntriesDetailItems7($insertID, $dSpec);
+                    }
+                }
+                if (isset($sessionData[$cCode]['items7_sum']) && sizeof($sessionData[$cCode]['items7_sum']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items7_sum'] as $dSpec) {
+                        $insertDetailID = $tr->writeEntriesDetailItems7_sum($insertID, $dSpec);
+                    }
+                }
+                if (isset($sessionData[$cCode]['items8']) && sizeof($sessionData[$cCode]['items8']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items8'] as $dSpec) {
+                        $insertIDs[] = $tr->writeEntriesDetailItems8($insertID, $dSpec);
+                    }
+                }
+                if (isset($sessionData[$cCode]['items8_sum']) && sizeof($sessionData[$cCode]['items8_sum']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items8_sum'] as $dSpec) {
+                        $insertDetailID = $tr->writeEntriesDetailItems8_sum($insertID, $dSpec);
+                    }
+                }
+                if (isset($sessionData[$cCode]['items9_sum']) && sizeof($sessionData[$cCode]['items9_sum']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items9_sum'] as $dSpec) {
+                        $insertDetailID = $tr->writeEntriesDetailItems9_sum($insertID, $dSpec);
+                        cekMErah($this->CI->db->last_query());
+                    }
+                }
+                if (isset($sessionData[$cCode]['items10_sum']) && sizeof($sessionData[$cCode]['items10_sum']) > 0) {
+                    $insertIDs = array();
+                    foreach ($sessionData[$cCode]['items10_sum'] as $dSpec) {
+                        $insertDetailID = $tr->writeEntriesDetailItems10_sum($insertID, $dSpec);
+                    }
+                }
+
+
+                $baseRegistries = array(
+                    "jurnal_index" => isset($configCoreMasterModulJenis['components'][$jenisTrTarget]) ? $configCoreMasterModulJenis['components'][$jenisTrTarget] : array(),
+                    "preProcessor" => isset($configCoreMasterModulJenis['preProcessor'][$jenisTrTarget]) ? $configCoreMasterModulJenis['preProcessor'][$jenisTrTarget] : array(),
+                    "postProcessor" => isset($configCoreMasterModulJenis['postProcessor'][$jenisTrTarget]) ? $configCoreMasterModulJenis['postProcessor'][$jenisTrTarget] : array(),
+                    "revert" => isset($sessionData[$cCode]['revert']) ? $sessionData[$cCode]['revert'] : array(),
+                    "items_komposisi" => isset($sessionData[$cCode]['items_komposisi']) ? $sessionData[$cCode]['items_komposisi'] : array(),
+                    "componentsBuilder" => isset($sessionData[$cCode]['componentsBuilder']) ? $sessionData[$cCode]['componentsBuilder'] : array(),
+                    "jurnalItems" => isset($sessionData[$cCode]['jurnalItems']) ? $sessionData[$cCode]['jurnalItems'] : array(),
+                );
+                $doWriteReg = $tr->writeDataRegistries($insertID, $baseRegistries) or mati_disini("Gagal saat berusaha  write base params into registries");
+                cekHijau($this->CI->db->last_query());
+                echo "<script>top.writeProgress('MENULIS KE-REGISTRY....');</script>";
+            }
+            else {
+                die(lgShowAlert("Transaksi gagal disimpan, silahkan cek kembali transaksi ini."));
+            }
+            //endregion
+
+
+            //region processing sub-post-processors, always
+            $iterator = isset($configCoreMasterModulJenis['postProcessor'][$jenisTrTarget]['detail']) ? $configCoreMasterModulJenis['postProcessor'][$jenisTrTarget]['detail'] : array();
+            if (sizeof($iterator) > 0) {
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    echo "sub-postProcessor: $comName, initializing values <br>";
+                    echo "<script>top.writeProgress('MENYIAPKAN DATA SUB-PROCESSORS UNTUK DIKIRIM...', 'head');</script>";
+
+                    $tmpOutParams[$cCtr] = array();
+                    if (isset($sessionData[$cCode][$srcGateName]) && (sizeof($sessionData[$cCode][$srcGateName]) > 0)) {
+                        foreach ($sessionData[$cCode][$srcGateName] as $cnt => $dSpec) {
+                            $subParams = array();
+                            if (isset($tComSpec['loop'])) {
+                                foreach ($tComSpec['loop'] as $key => $value) {
+
+                                    $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$cnt], $sessionData[$cCode][$srcGateName][$cnt], 0);
+                                    $subParams['loop'][$key] = $realValue;
+
+                                }
+                            }
+                            if (isset($tComSpec['static'])) {
+                                foreach ($tComSpec['static'] as $key => $value) {
+
+                                    $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$cnt], $sessionData[$cCode][$srcGateName][$cnt], 0);
+                                    $subParams['static'][$key] = $realValue;
+                                    cekBiru("$key diisi dengan $realValue");
+
+                                }
+
+                                if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                    foreach ($paramPatchers[$comName] as $k => $v) {
+                                        if (!isset($subParams['static'][$k])) {
+                                            $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                        }
+                                    }
+                                }
+                                if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                    $jenis = $sessionData[$cCode]['main']['jenis'];
+                                    foreach ($paramForceFillers[$comName] as $k => $v) {
+                                        $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                        cekorange(":: $k diisikan dengan " . $subParams['static'][$k]);
+                                    }
+                                }
+
+                                $subParams['static']["fulldate"] = date("Y-m-d");
+                                $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                $subParams['static']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . " ";
+                            }
+
+                            if (sizeof($subParams) > 0) {
+                                $tmpOutParams[$cCtr][] = $subParams;
+                            }
+//                        echo "<script>top.writeProgress('" . isset($subParams['static']['name']) ? $subParams['static']['name'] : "" . " " . isset($subParams['static']['extern_nama']) ? $subParams['static']['extern_nama'] : "" . " " . isset($subParams['static']['nama']) ? $subParams['static']['nama'] : "" . "');</script>";
+                        }
+                    }
+                }
+
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    $loadByModules = isset($tComSpec['loadByModules']) ? $tComSpec['loadByModules'] : false;
+                    if (sizeof($tmpOutParams[$cCtr]) > 0) {
+
+                        echo "sub-postProcessor: $comName, sending values <br>";
+                        echo "<script>top.writeProgress('SENDING SUB-PROCESSORS ($comName)...', 'head');</script>";
+                        $mdlName = "Com" . ucfirst($comName);
+                        if ($loadByModules == true) {
+                            $this->CI->load->model($pathModules . "Coms/" . $mdlName);
+                        }
+                        else {
+                            $this->CI->load->model("Coms/" . $mdlName);
+                        }
+
+                        $m = new $mdlName();
+
+                        $m->pair($tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        cekBiru($this->CI->db->last_query());
+                    }
+                }
+            }
+
+            //endregion
+
+            //region postproc sub detail , multidimensional array
+            $iterator = isset($configCoreMasterModulJenis['postProcessor'][$jenisTrTarget]['sub_detail']) ? $configCoreMasterModulJenis['postProcessor'][$jenisTrTarget]['sub_detail'] : array();
+            if (sizeof($iterator) > 0) {
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    echo "sub-postProcessor: $comName, initializing values <br>";
+                    echo "<script>top.writeProgress('MENYIAPKAN DATA SUB-PROCESSORS UNTUK DIKIRIM...', 'head');</script>";
+
+                    $tmpOutParams[$cCtr] = array();
+                    if (isset($sessionData[$cCode][$srcGateName]) && count($sessionData[$cCode][$srcGateName]) > 0) {
+
+                        foreach ($sessionData[$cCode][$srcGateName] as $cnt => $dDSpec) {
+                            foreach ($dDSpec as $cnt2 => $dSpec) {
+                                $subParams = array();
+                                if (isset($tComSpec['loop'])) {
+                                    foreach ($tComSpec['loop'] as $key => $value) {
+
+                                        $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$cnt][$cnt2], $sessionData[$cCode][$srcGateName][$cnt][$cnt2], 0);
+                                        $subParams['loop'][$key] = $realValue;
+
+                                    }
+                                }
+                                if (isset($tComSpec['static'])) {
+                                    foreach ($tComSpec['static'] as $key => $value) {
+
+                                        $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$cnt][$cnt2], $sessionData[$cCode][$srcGateName][$cnt][$cnt2], 0);
+                                        $subParams['static'][$key] = $realValue;
+                                        cekBiru("$key diisi dengan $realValue");
+
+                                    }
+
+                                    if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                        foreach ($paramPatchers[$comName] as $k => $v) {
+                                            if (!isset($subParams['static'][$k])) {
+                                                $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                            }
+                                        }
+                                    }
+                                    if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                        $jenis = $sessionData[$cCode]['main']['jenis'];
+                                        foreach ($paramForceFillers[$comName] as $k => $v) {
+                                            $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                            cekorange(":: $k diisikan dengan " . $subParams['static'][$k]);
+                                        }
+                                    }
+
+                                    $subParams['static']["fulldate"] = date("Y-m-d");
+                                    $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                    $subParams['static']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . "";
+                                }
+
+                                if (sizeof($subParams) > 0) {
+                                    $tmpOutParams[$cCtr][] = $subParams;
+                                }
+                                echo "<script>top.writeProgress('" . isset($subParams['static']['name']) ? $subParams['static']['name'] : "" . " " . isset($subParams['static']['extern_nama']) ? $subParams['static']['extern_nama'] : "" . " " . isset($subParams['static']['nama']) ? $subParams['static']['nama'] : "" . "');</script>";
+
+                            }
+
+                        }
+                    }
+                }
+
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    if (count($tmpOutParams[$cCtr]) > 0) {
+                        $comName = $tComSpec['comName'];
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        $loadByModules = isset($tComSpec['loadByModules']) ? $tComSpec['loadByModules'] : false;
+                        echo "sub-postProcessor: $comName, sending values <br>";
+                        echo "<script>top.writeProgress('SENDING SUB-PROCESSORS ($comName)...', 'head');</script>";
+                        $mdlName = "Com" . ucfirst($comName);
+                        if ($loadByModules == true) {
+                            $this->CI->load->model($pathModules . "Coms/" . $mdlName);
+                        }
+                        else {
+                            $this->CI->load->model("Coms/" . $mdlName);
+                        }
+                        $m = new $mdlName();
+
+                        $m->pair($tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        cekBiru($this->CI->db->last_query());
+                    }
+
+                }
+            }
+            //endregion
+
+            //region processing main-post-processors, always
+            $iterator = isset($configCoreMasterModulJenis['postProcessor'][$jenisTrTarget]['master']) ? $configCoreMasterModulJenis['postProcessor'][$jenisTrTarget]['master'] : array();
+            if (sizeof($iterator) > 0) {
+                echo "<script>top.writeProgress('MEMPROSES MAIN-PROCESSORS...', 'head');</script>";
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    $loadByModules = isset($tComSpec['loadByModules']) ? $tComSpec['loadByModules'] : false;
+                    echo "post-processor: $comName<br>";
+
+                    if (isset($sessionData[$cCode][$srcGateName]) && (sizeof($sessionData[$cCode][$srcGateName]) > 0)) {
+
+                        $dSpec = $sessionData[$cCode][$srcGateName];
+                        $tmpOutParams = array();
+                        if (isset($tComSpec['loop'])) {
+                            foreach ($tComSpec['loop'] as $key => $value) {
+
+                                $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                                $tmpOutParams['loop'][$key] = $realValue;
+
+                            }
+                        }
+                        if (isset($tComSpec['static'])) {
+                            //cekHere("DISINI OIII");
+                            foreach ($tComSpec['static'] as $key => $value) {
+
+                                $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                                $tmpOutParams['static'][$key] = $realValue;
+
+                            }
+                            if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                foreach ($paramPatchers[$comName] as $k => $v) {
+                                    if (!isset($tmpOutParams['static'][$k])) {
+                                        $tmpOutParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                        echo "<script>top.writeProgress(':: $key diisikan dengan " . $tmpOutParams['static'][$k] . ");</script>";
+                                    }
+                                }
+                            }
+                            if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                $jenis = $sessionData[$cCode]['main']['jenis'];
+                                foreach ($paramForceFillers[$comName] as $k => $v) {
+                                    $tmpOutParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                    echo "<script>top.writeProgress(':: $key diisikan dengan " . $tmpOutParams['static'][$k] . ");</script>";
+                                }
+                            }
+                            $tmpOutParams['static']["fulldate"] = date("Y-m-d");
+                            $tmpOutParams['static']["dtime"] = date("Y-m-d H:i:s");
+                            $tmpOutParams['static']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . "";
+
+
+                        }
+                        if (isset($tComSpec['static2'])) {
+                            //cekHere("DISINI OIII");
+                            foreach ($tComSpec['static2'] as $key => $value) {
+
+                                $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$cCtr], $sessionData[$cCode][$srcGateName][$cCtr], 0);
+                                $tmpOutParams['static2'][$key] = $realValue;
+
+                            }
+                            if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                foreach ($paramPatchers[$comName] as $k => $v) {
+                                    if (!isset($subParams['static'][$k])) {
+                                        $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                    }
+                                }
+                            }
+                            if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                $jenis = $sessionData[$cCode]['main']['jenis'];
+                                foreach ($paramForceFillers[$comName] as $k => $v) {
+                                    $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                }
+                            }
+                            $tmpOutParams['static2']["fulldate"] = date("Y-m-d");
+                            $tmpOutParams['static2']["dtime"] = date("Y-m-d H:i:s");
+                            $tmpOutParams['static2']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . "";
+
+
+                        }
+
+
+                        $mdlName = "Com" . ucfirst($comName);
+                        if ($loadByModules == true) {
+                            $this->CI->load->model($pathModules . "Coms/" . $mdlName);
+                        }
+                        else {
+                            $this->CI->load->model("Coms/" . $mdlName);
+                        }
+
+                        $m = new $mdlName();
+                        $m->pair($tmpOutParams) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+
+                    }
+                    else {
+                        celMerah("TIDAK ADA [$comName] dengan gerbang $srcGateName");
+                    }
+
+
+                }
+            }
+            //endregion
+
+
+            //region ----------subcomponents GESER KE CLI
+            $iterator = isset($configCoreMasterModulJenis['components'][$jenisTrTarget]['detail']) ? $configCoreMasterModulJenis['components'][$jenisTrTarget]['detail'] : array();
+            $componentConfig['detail'] = $iterator;
+            if ($pakai_cli == 1) {
+                cekKuning("pakai cli, jadi tidak eksekusi lewat sini...");
+            }
+            else {
+                if (sizeof($iterator) > 0) {
+                    $compValidators = ($this->CI->config->item('transaksi_value_required_components') != null) ? $this->CI->config->item('transaksi_value_required_components') : array();
+                    $filterNeeded = false;
+                    if (in_array($mdlName, $compValidators)) {//perlu validasi filter
+                        $filterNeeded = true;
+                    }
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        echo "lib transaksional pembelian sub-component: $comName, $srcGateName, initializing values <br>";
+                        if (isset($sessionData[$cCode][$srcGateName]) && (sizeof($sessionData[$cCode][$srcGateName]) > 0)) {
+                            $tmpOutParams[$cCtr] = array();
+                            foreach ($sessionData[$cCode][$srcGateName] as $id => $dSpec) {
+                                cekmerah("mengevaluasi $srcGateName..");
+                                $comName = $tComSpec['comName'];
+                                if (substr($comName, 0, 1) == "{") {
+                                    $comName = trim($comName, "{");
+                                    $comName = trim($comName, "}");
+                                    $comName = str_replace($comName, $sessionData[$cCode][$srcGateName][$id][$comName], $comName);
+                                    $tComSpec['comName'] = $comName;
+                                    $iterator[$cCtr]['comName'] = $comName;
+                                }
+
+                                $filterNeeded = false;
+                                $mdlName = "Com" . ucfirst($comName);
+                                if (in_array($mdlName, $compValidators)) {//perlu validasi filter
+                                    $filterNeeded = true;
+                                }
+
+                                $subParams = array();
+                                if (isset($tComSpec['loop'])) {
+                                    foreach ($tComSpec['loop'] as $key => $value) {
+                                        if (substr($key, 0, 1) == "{") {
+                                            $key = trim($key, "{");
+                                            $key = trim($key, "}");
+                                            $key = str_replace($key, $sessionData[$cCode][$srcGateName][$id][$key], $key);
+                                        }
+                                        $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$id], $sessionData[$cCode][$srcGateName][$id], 0);
+                                        $subParams['loop'][$key] = $realValue;
+                                        cekKuning("LOOP: $key diisi dengan $realValue");
+
+                                        if ($filterNeeded) {
+                                            if ($subParams['loop'][$key] == 0) {
+                                                unset($subParams['loop'][$key]);
+                                            }
+                                        }
+                                    }
+                                }
+                                if (isset($tComSpec['static'])) {
+                                    foreach ($tComSpec['static'] as $key => $value) {
+
+                                        $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$id], $sessionData[$cCode][$srcGateName][$id], 0);
+                                        $subParams['static'][$key] = $realValue;
+                                        cekKuning("STATIC: $key diisi dengan $realValue");
+
+                                    }
+                                    if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                        foreach ($paramPatchers[$comName] as $k => $v) {
+                                            if (!isset($subParams['static'][$k])) {
+                                                $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                                cekOrange("fill :: $comName :: $k => " . $subParams['static'][$k]);
+                                            }
+                                        }
+                                    }
+                                    if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                        //                            cekOrange("comName:: $comName");
+                                        $jenis = $sessionData[$cCode]['main']['jenis'];
+                                        foreach ($paramForceFillers[$comName] as $k => $v) {
+                                            $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                            cekOrange("fillforce :: $comName :: $k => " . $subParams['static'][$k]);
+                                        }
+                                    }
+                                    $subParams['static']["fulldate"] = date("Y-m-d");
+                                    $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                    $subParams['static']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . "";
+                                }
+                                cekHitam("cetak subParams");
+                                arrPrint($subParams);
+                                if (sizeof($subParams) > 0) {
+                                    if ($filterNeeded) {
+                                        if (isset($subParams['loop']) && sizeof($subParams['loop']) > 0) {
+                                            $tmpOutParams[$cCtr][] = $subParams;
+                                        }
+                                    }
+                                    else {
+
+                                        $tmpOutParams[$cCtr][] = $subParams;
+                                    }
+                                }
+                            }
+                            $componentGate['detail'][$cCtr] = $subParams;
+                        }
+                    }
+
+
+                    $it = 0;
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $it++;
+                        $comName = $tComSpec['comName'];
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+
+                        echo "sub component #$it: $comName, sending values <br>";
+
+                        $mdlName = "Com" . ucfirst($comName);
+                        $this->CI->load->model("Coms/" . $mdlName);
+                        $m = new $mdlName();
+
+                        if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                            $tobeExecuted = true;
+                        }
+                        else {
+                            $tobeExecuted = false;
+                        }
+
+                        if ($tobeExecuted) {
+                            $m->pair($tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            $m->exec() or die("Gagal saat berusaha  exec values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        }
+                        else {
+                            cekBiru("sub-komponem $comName tidak memenuhi syarat untuk ditulis");
+                        }
+                    }
+                }
+                else {
+                    cekKuning("subcomponents is not set");
+                }
+            }
+
+            //endregion
+
+            //region ----------components
+            $componentJurnal = array();
+            $componentGate['master'] = array();
+            $componentConfig['master'] = array();
+            if (isset($configCoreMasterModulJenis['relativeComponets']) && $configCoreMasterModulJenis['relativeComponets'] == true) {
+                $iterator = isset($sessionData[$cCode]['revert']['jurnal'][$stepNum]['master']) ? $sessionData[$cCode]['revert']['jurnal'][$stepNum]['master'] : array();
+            }
+            else {
+                if (isset($sessionData[$cCode]['componentsBuilder'][$stepNum]['master'])) {
+                    $iterator = $sessionData[$cCode]['componentsBuilder'][$stepNum]['master'];
+                }
+                elseif (isset($configCoreMasterModulJenis['components'][$jenisTrTarget]['master'])) {
+                    $iterator = $configCoreMasterModulJenis['components'][$jenisTrTarget]['master'];
+                }
+                else {
+                    $iterator = array();
+                }
+            }
+
+            if (sizeof($iterator) > 0) {
+                echo "<script>top.writeProgress('KOMPONEN...', 'head');</script>";
+                $componentConfig['master'] = $iterator;
+                $it = 0;
+                //==filter nilai, jika NOL tidak dikirim, sesuai config==
+                $compValidators = ($this->CI->config->item('transaksi_value_required_components') != null) ? $this->CI->config->item('transaksi_value_required_components') : array();
+                foreach ($iterator as $cCtr => $tComSpec) {
+                    $it++;
+                    $comName = $tComSpec['comName'];
+                    $srcGateName = $tComSpec['srcGateName'];
+                    $srcRawGateName = $tComSpec['srcRawGateName'];
+                    echo "component #$it: $comName :: $srcGateName <br>";
+
+                    $dSpec = $sessionData[$cCode][$srcGateName];
+                    $tmpOutParams = array();
+                    if (isset($tComSpec['loop'])) {
+                        foreach ($tComSpec['loop'] as $key => $value) {
+                            if (substr($key, 0, 1) == "{") {
+                                $key = trim($key, "{");
+                                $key = trim($key, "}");
+                                //                            $key = str_replace($key, $sessionData[$cCode]['main'][$key], $key);
+                                $key = str_replace($key, $sessionData[$cCode][$srcGateName][$key], $key);
+                            }
+                            $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                            if ($key != null) {
+                                $tmpOutParams['loop'][$key] = $realValue;
+                            }
+
+                        }
+                    }
+                    if (isset($tComSpec['static'])) {
+                        foreach ($tComSpec['static'] as $key => $value) {
+
+                            $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                            $tmpOutParams['static'][$key] = $realValue;
+                            cekHijau(":: NORMAL :: $key => $realValue ::");
+                        }
+                        if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                            cekHijau(":: masuk ke PATCHER ::");
+                            foreach ($paramPatchers[$comName] as $k => $v) {
+                                cekHijau(":: ada yang mau di-PATCHER ::");
+                                arrPrint($tmpOutParams['static']);
+                                if (!isset($tmpOutParams['static'][$k])) {
+                                    $tmpOutParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                    cekHijau(":: PATCHER :: $key => $realValue ::");
+                                }
+
+                            }
+                        }
+                        else {
+                            cekMerah(":: TIDAK TERMASUK PATCHER ::");
+                        }
+                        if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                            $jenis = $sessionData[$cCode]['main']['jenis'];
+                            foreach ($paramForceFillers[$comName] as $k => $v) {
+                                $tmpOutParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                cekHijau(":: FORCEFILL :: $key => $realValue ::");
+                            }
+                        }
+                        $tmpOutParams['static']["urut"] = $cCtr;
+                        $tmpOutParams['static']["fulldate"] = date("Y-m-d");
+                        $tmpOutParams['static']["dtime"] = date("Y-m-d H:i:s");
+                        $tmpOutParams['static']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . "";
+
+
+                    }
+                    if (isset($tComSpec['static2'])) {
+                        foreach ($tComSpec['static2'] as $key => $value) {
+
+                            $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                            $tmpOutParams['static2'][$key] = $realValue;
+
+                        }
+                        if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                            foreach ($paramPatchers[$comName] as $k => $v) {
+                                if (!isset($subParams['static'][$k])) {
+                                    $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                }
+                            }
+                        }
+                        if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                            $jenis = $sessionData[$cCode]['main']['jenis'];
+                            foreach ($paramForceFillers[$comName] as $k => $v) {
+                                $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                            }
+                        }
+                        $tmpOutParams['static2']["fulldate"] = date("Y-m-d");
+                        $tmpOutParams['static2']["dtime"] = date("Y-m-d H:i:s");
+                        $tmpOutParams['static2']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . " oleh ";
+
+
+                    }
+
+                    //lgShowError("Ada kesalahan",);
+                    $mdlName = "Com" . ucfirst($comName);
+                    $this->CI->load->model("Coms/" . $mdlName);
+                    $m = new $mdlName();
+                    $m->setModul($modul_transaksi);
+                    $m->setStepCode($jenisTrTarget);
+                    //===filter value nol, jika harus difilter
+                    $tobeExecuted = true;
+
+                    if (in_array($mdlName, $compValidators)) {
+
+                        $loopParams = isset($tmpOutParams['loop']) ? $tmpOutParams['loop'] : array();
+                        if (sizeof($loopParams) > 0) {
+                            foreach ($loopParams as $key => $val) {
+                                cekmerah("$comName : $key = $val ");
+                                if ($val == 0) {
+                                    unset($tmpOutParams['loop'][$key]);
+                                }
+                            }
+                        }
+                        if (sizeof($tmpOutParams['loop']) < 1) {
+                            $tobeExecuted = false;
+                        }
+
+                    }
+
+                    if ($tobeExecuted) {
+                        cekBiru("kiriman komponen $comName");
+                        arrPrint($tmpOutParams);
+                        $m->pair($tmpOutParams) or die("Tidak berhasil memasang  values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                        $m->exec() or die("Gagal saat berusaha  exec values pada komponen: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                    }
+                    else {
+                        cekBiru("komponem $comName tidak memenuhi syarat untuk ditulis");
+                    }
+
+                    $componentGate['master'][$cCtr] = $tmpOutParams;
+                    if ($comName == "Jurnal") {
+                        $componentJurnal[] = $tmpOutParams;
+                    }
+                }
+            }
+            else {
+                //cekKuning("components is not set");
+            }
+            //endregion
+
+            //region nulis paymentSource
+            $stepCode = $configUiMasterModulJenis['steps'][$stepNum]['target'];
+            $paymentSources = $this->CI->config->item("payment_source");
+            if (array_key_exists($stepCode, $paymentSources)) {
+                $payConfigs = isset($paymentSources[$stepCode][$stepNum]) ? $paymentSources[$stepCode][$stepNum] : array();
+                if (sizeof($payConfigs) > 0) {
+                    foreach ($payConfigs as $paymentSrcConfig) {
+                        $valueLabel = isset($paymentSrcConfig['label_key']) ? $paymentSrcConfig['label_key'] : $paymentSrcConfig['label'];
+                        $valueSrc = $paymentSrcConfig['valueSrc'];
+                        $externSrc = $paymentSrcConfig['externSrc'];
+                        $valueAdd = isset($sessionData[$cCode]['main'][$paymentSrcConfig['addValueValidator']]) ? $sessionData[$cCode]['main'][$paymentSrcConfig['addValueValidator']] : 0;
+                        if (isset($paymentSrcConfig['model'])) {
+                            $mdlName = $paymentSrcConfig['model'];
+                            $this->CI->load->model("Mdls/$mdlName");
+                            $pMdl = New $mdlName();
+                            $pTmpMdl = $pMdl->lookupAll()->result();
+                            $pTmpMdlResult = array();
+                            if (sizeof($pTmpMdl) > 0) {
+                                foreach ($pTmpMdl as $pTmpMdlSpec) {
+                                    $pTmpMdlResult[$pTmpMdlSpec->id] = $pTmpMdlSpec;
+                                }
+                            }
+                        }
+                        else {
+                            $pTmpMdlResult = array();
+                        }
+
+                        if (isset($sessionData[$cCode]['main'][$valueSrc]) && $sessionData[$cCode]['main'][$valueSrc] > 0) {
+                            if (isset($externSrc['extern_label2'])) {
+                                //cek ada isinya atau kosong
+                                $cek = strlen($sessionData[$cCode]['main'][$externSrc['extern_label2']]) > 4 ? "" : matiHere("jenis biaya tidak dikenali " . __LINE__);//
+                            }
+                            //region cek duplikasi paymentsource
+                            $tr->setFilters(array());
+                            $tr->addFilter("transaksi_id='$insertID'");
+                            $tr->addFilter("target_jenis='" . $paymentSrcConfig['jenisTarget'] . "'");
+                            // $tr->addFilter("target_jenis='759'");
+                            $validateIsInserted = $tr->lookUpAllPaymentSrc()->result();
+                            if (sizeof($validateIsInserted) > 0) {
+                                matiHEre("Gagal menulis transaksi. Silahkan relogin untuk membersihkan sesi demi menghindari duplikasi data, dan coba kembali transaksi yang gagal");
+                            }
+                            //endregion
+
+                            //-----------------------
+                            cekHitam("valuelabel: $valueLabel, valueSrc: $valueSrc");
+                            $this->CI->load->helper("he_payment_source");
+                            //                        paymentSource($this->jenisTr, $componentJurnal, $sessionData[$cCode]['main'], $valueLabel, $valueSrc, $valueAdd);
+                            //-----------------------
+
+                            $arrPymSrc = array(
+                                "jenis" => $stepCode,
+                                "target_jenis" => $paymentSrcConfig['jenisTarget'],
+                                "reference_jenis" => $paymentSrcConfig['jenisSrc'],
+                                "extern_id" => isset($sessionData[$cCode]['main'][$externSrc['id']]) ? $sessionData[$cCode]['main'][$externSrc['id']] : "",
+                                "extern_nama" => isset($sessionData[$cCode]['main'][$externSrc['nama']]) ? $sessionData[$cCode]['main'][$externSrc['nama']] : "",
+                                "nomer" => $tmpNomorNota2,
+                                "label" => $paymentSrcConfig['label'],
+
+                                "tagihan" => $sessionData[$cCode]['main'][$valueSrc],
+                                "terbayar" => 0,
+                                "sisa" => $sessionData[$cCode]['main'][$valueSrc],
+
+                                "cabang_id" => $sessionData[$cCode]['main']['placeID'],
+                                "cabang_nama" => $sessionData[$cCode]['main']['placeName'],
+                                "oleh_id" => $sessionData[$cCode]["main"]["oleh_id"],
+                                "oleh_nama" => $sessionData[$cCode]["main"]["oleh_nama"],
+                                "dtime" => date("Y-m-d H:i:s"),
+                                "fulldate" => date("Y-m-d"),
+                                "valas_id" => isset($externSrc['valasId']) && isset($sessionData[$cCode]['main'][$externSrc['valasId']]) ? $sessionData[$cCode]['main'][$externSrc['valasId']] : '',
+                                "valas_nama" => isset($externSrc['valasLabel']) && isset($sessionData[$cCode]['main'][$externSrc['valasLabel']]) ? $sessionData[$cCode]['main'][$externSrc['valasLabel']] : '',
+                                "valas_nilai" => isset($externSrc['valasValue']) && isset($sessionData[$cCode]['main'][$externSrc['valasValue']]) ? $sessionData[$cCode]['main'][$externSrc['valasValue']] : '',
+
+                                "tagihan_valas" => isset($externSrc['valasTagihan']) && isset($sessionData[$cCode]['main'][$externSrc['valasTagihan']]) ? $sessionData[$cCode]['main'][$externSrc['valasTagihan']] : '',
+                                "terbayar_valas" => 0,
+                                "sisa_valas" => isset($externSrc['valasSisa']) && isset($sessionData[$cCode]['main'][$externSrc['valasSisa']]) ? $sessionData[$cCode]['main'][$externSrc['valasSisa']] : '',
+
+                                //                            "extern_label2" => isset($sessionData[$cCode]['main']['pihakMainName']) ? $sessionData[$cCode]['main']['pihakMainName'] : "",
+                                "extern_label2" => (isset($externSrc['extern_label2']) && ($sessionData[$cCode]['main'][$externSrc['extern_label2']])) ? $sessionData[$cCode]['main'][$externSrc['extern_label2']] : "",
+
+                                "dpp_ppn" => (isset($externSrc['dpp_ppn']) && ($sessionData[$cCode]['main'][$externSrc['dpp_ppn']])) ? $sessionData[$cCode]['main'][$externSrc['dpp_ppn']] : 0,
+                                "ppn" => (isset($externSrc['ppn']) && ($sessionData[$cCode]['main'][$externSrc['ppn']])) ? $sessionData[$cCode]['main'][$externSrc['ppn']] : 0,
+                                "ppn_approved" => (isset($externSrc['ppn_approved']) && ($sessionData[$cCode]['main'][$externSrc['ppn_approved']])) ? $sessionData[$cCode]['main'][$externSrc['ppn_approved']] : 0,
+                                "ppn_sisa" => (isset($externSrc['ppn']) && ($sessionData[$cCode]['main'][$externSrc['ppn']])) ? $sessionData[$cCode]['main'][$externSrc['ppn']] : "",
+                                "ppn_status" => (isset($externSrc['ppn_status'])) ? $externSrc['ppn_status'] : 0,
+                                "extern_nilai2" => (isset($externSrc['extern_nilai2']) && ($sessionData[$cCode]['main'][$externSrc['extern_nilai2']])) ? $sessionData[$cCode]['main'][$externSrc['extern_nilai2']] : 0,
+                                "extern_date2" => (isset($externSrc['extern_date2']) && ($sessionData[$cCode]['main'][$externSrc['extern_date2']])) ? $sessionData[$cCode]['main'][$externSrc['extern_date2']] : "",
+                                "pph_23" => (isset($externSrc['pph_23']) && ($sessionData[$cCode]['main'][$externSrc['pph_23']])) ? $sessionData[$cCode]['main'][$externSrc['pph_23']] : "",
+
+                                "npwp" => (isset($externSrc['npwp']) && ($sessionData[$cCode]['main'][$externSrc['npwp']])) ? $sessionData[$cCode]['main'][$externSrc['npwp']] : "",
+                                "extern2_id" => (isset($externSrc['extern2_id']) && ($sessionData[$cCode]['main'][$externSrc['extern2_id']])) ? $sessionData[$cCode]['main'][$externSrc['extern2_id']] : "",
+                                "extern2_nama" => (isset($externSrc['extern2_nama']) && ($sessionData[$cCode]['main'][$externSrc['extern2_nama']])) ? $sessionData[$cCode]['main'][$externSrc['extern2_nama']] : "",
+                                "ppn_pph_faktor" => (isset($externSrc['ppn_pph_faktor']) && ($sessionData[$cCode]['main'][$externSrc['ppn_pph_faktor']])) ? $sessionData[$cCode]['main'][$externSrc['ppn_pph_faktor']] : "",
+                                "extern_jenis" => (isset($externSrc['extern_jenis']) && ($sessionData[$cCode]['main'][$externSrc['extern_jenis']])) ? $sessionData[$cCode]['main'][$externSrc['extern_jenis']] : "",
+                                "extern_nilai3" => (isset($externSrc['extern_nilai3']) && ($sessionData[$cCode]['main'][$externSrc['extern_nilai3']])) ? $sessionData[$cCode]['main'][$externSrc['extern_nilai3']] : "",
+                                "extern_nilai4" => (isset($externSrc['extern_nilai4']) && ($sessionData[$cCode]['main'][$externSrc['extern_nilai4']])) ? $sessionData[$cCode]['main'][$externSrc['extern_nilai4']] : "",
+                                "npwp" => (isset($externSrc['npwp']) && ($sessionData[$cCode]['main'][$externSrc['npwp']])) ? $sessionData[$cCode]['main'][$externSrc['npwp']] : "",
+                                //                            "extern_nilai2" => (isset($externSrc['extern_nilai2']) && ($sessionData[$cCode]['main'][$externSrc['extern_nilai2']])) ? $sessionData[$cCode]['main'][$externSrc['extern_nilai2']] : "",
+                                "payment_locked" => (isset($externSrc['payment_locked']) && ($sessionData[$cCode]['main'][$externSrc['payment_locked']])) ? $sessionData[$cCode]['main'][$externSrc['payment_locked']] : 0,
+                                "cash_account" => (isset($externSrc['cash_account']) && ($sessionData[$cCode]['main'][$externSrc['cash_account']])) ? $sessionData[$cCode]['main'][$externSrc['cash_account']] : 0,
+                                "cash_account_nama" => (isset($externSrc['cash_account_nama']) && ($sessionData[$cCode]['main'][$externSrc['cash_account_nama']])) ? $sessionData[$cCode]['main'][$externSrc['cash_account_nama']] : 0,
+                            );
+                            $tr->writePaymentSrc($insertID, $arrPymSrc);
+
+                        }
+
+
+                        cekMerah($this->CI->db->last_query());
+                    }
+                }
+
+            }
+            else {
+                cekMerah("TIDAK nulis paymentSrc");
+            }
+
+            $addPaymentSource = isset($configUiMasterModulJenis['steps'][$stepNum]['additionalStep']['shippingService']) ? $configUiMasterModulJenis['steps'][$stepNum]['additionalStep']['shippingService'] : array();
+
+            //endregion
+
+            //region nulis paymentAntiSource
+            $stepCode = $configUiMasterModulJenis['steps'][$stepNum]['target'];
+            $paymentSources = $this->CI->config->item("payment_antiSource");
+            if (array_key_exists($stepCode, $paymentSources)) {
+                cekMerah(":: starting PAYMENT ANTI SOURCE");
+                $payConfigs = $paymentSources[$stepCode];
+                if (sizeof($payConfigs) > 0) {
+                    foreach ($payConfigs as $paymentSrcConfig) {
+                        //					$paymentSrcConfig = $paymentSources[$stepCode];
+                        $valueSrc = $paymentSrcConfig['valueSrc'];
+                        $externSrc = $paymentSrcConfig['externSrc'];
+                        $tr->writePaymentAntiSrc($insertID, array(
+                            "jenis" => $stepCode,
+                            "target_jenis" => $paymentSrcConfig['jenisTarget'],
+                            "reference_jenis" => $paymentSrcConfig['jenisSrc'],
+                            "extern_id" => $sessionData[$cCode]['main'][$externSrc['id']],
+                            "extern_nama" => $sessionData[$cCode]['main'][$externSrc['nama']],
+                            "nomer" => $tmpNomorNota2,
+                            "label" => $paymentSrcConfig['label'],
+                            "tagihan" => $sessionData[$cCode]['main'][$valueSrc],
+                            "terbayar" => 0,
+                            "sisa" => $sessionData[$cCode]['main'][$valueSrc],
+                            "cabang_id" => $sessionData[$cCode]['main']['placeID'],
+                            "cabang_nama" => $sessionData[$cCode]['main']['placeName'],
+                            "oleh_id" => $sessionData[$cCode]["main"]["oleh_id"],
+                            "oleh_nama" => $sessionData[$cCode]["main"]["oleh_nama"],
+                            "dtime" => date("Y-m-d H:i:s"),
+                            "fulldate" => date("Y-m-d"),
+                        ));
+                        //cekMerah($this->CI->db->last_query());
+                    }
+                }
+
+            }
+            else {
+                //cekMerah("TIDAK nulis paymentSrc");
+            }
+            //endregion
+
+            //region nulis uangMukaSource
+            /*dimatiin geser ke ComUangmukaSourceDetail karena ada di items.
+            /*revisi tanggal 27 mei 2020 subject digeser ke vendor dari jenis transaksi misal uangmuka asuransi,uang muka pembelian ->uang muka.
+             *
+             */
+            $stepCode = $configUiMasterModulJenis['steps'][$stepNum]['target'];
+            $uangMukaSources = $this->CI->config->item("uang_muka");
+
+            if (array_key_exists($stepCode, $uangMukaSources)) {
+                cekMerah(":: starting UANG MUKA  SOURCE");
+                //            matiHere();
+                $uangMukaConfigs = isset($uangMukaSources[$stepCode][$stepNum]) ? $uangMukaSources[$stepCode][$stepNum] : array();
+                if (sizeof($uangMukaConfigs) > 0) {
+                    $cekPreValue = "";
+                    $this->CI->load->model("Mdls/MdlPaymentUangMuka");
+                    $l = new MdlPaymentUangMuka();
+                    foreach ($uangMukaConfigs as $uangMukaSrcConfig) {
+                        //					$paymentSrcConfig = $paymentSources[$stepCode];
+                        //                    arrPrint($uangMukaSrcConfig);
+                        $valueSrc = $uangMukaSrcConfig['valueSrc'];
+                        $externSrc = $uangMukaSrcConfig['externSrc'];
+                        $l->addFilter("extern_id='" . $sessionData[$cCode]['main'][$externSrc['id']] . "'");
+                        $l->addFilter("extern_label2='" . $externSrc['extLabel'] . "'");
+                        $tmpUm = $l->lookupAll()->result();
+                        //                    arrPrint($tmpUm);
+                        if (sizeof($tmpUm) > 0) {
+                            //update here broo
+                            $preTagihan = $tmpUm[0]->tagihan;
+                            $preSisa = $tmpUm[0]->sisa;
+
+                            $newTahigan = $preTagihan + $sessionData[$cCode]['main'][$valueSrc];
+                            $newsisa = $preSisa + $sessionData[$cCode]['main'][$valueSrc];
+                            $update = array(
+                                "tagihan" => $newTahigan,
+                                "sisa" => $newsisa,
+                            );
+                            $where = array(
+                                "extern_id" => $sessionData[$cCode]['main'][$externSrc['id']],
+                            );
+                            $tr->updateUangMukaSrc($where, $update);
+                            cekHitam($this->CI->db->last_query());
+                        }
+                        else {
+                            //insertbaru brooo
+                            $tr->writeUangMukaSrc($insertID, array(
+                                "jenis" => $stepCode,
+                                "target_jenis" => $uangMukaSrcConfig['jenisTarget'],
+                                "reference_jenis" => $uangMukaSrcConfig['jenisSrc'],
+                                "extern_id" => $sessionData[$cCode]['main'][$externSrc['id']],
+                                "extern_nama" => $sessionData[$cCode]['main'][$externSrc['nama']],
+                                "nomer" => "",
+                                "note" => "",
+                                "label" => $uangMukaSrcConfig['label'],
+                                "tagihan" => $sessionData[$cCode]['main'][$valueSrc],
+                                "terbayar" => 0,
+                                "sisa" => $sessionData[$cCode]['main'][$valueSrc],
+                                "cabang_id" => $sessionData[$cCode]['main']['placeID'],
+                                "cabang_nama" => $sessionData[$cCode]['main']['placeName'],
+                                "oleh_id" => $sessionData[$cCode]["main"]["oleh_id"],
+                                "oleh_nama" => $sessionData[$cCode]["main"]["oleh_nama"],
+                                "dtime" => date("Y-m-d H:i:s"),
+                                "fulldate" => date("Y-m-d"),
+                                "extern_label2" => $externSrc['extLabel'],
+                            ));
+                        }
+                        cekMerah($this->CI->db->last_query());
+                    }
+                }
+                else {
+                    cekLime("not write uang muka");
+                }
+
+            }
+            else {
+                cekMerah("not write uang muka");
+            }
+            //endregion
+
+            validateAllBalances($cabangTujuanID);
+
+
+            // region connecting antar cabang
+            $configUiMasterModulJenis = loadConfigModulJenis_he_misc($this->jenisTr, "coTransaksiUi");
+            $configCoreMasterModulJenis = loadConfigModulJenis_he_misc($this->jenisTr, "coTransaksiCore");
+            $configLayoutMasterModulJenis = loadConfigModulJenis_he_misc($this->jenisTr, "coTransaksiLayout");
+            $configValuesMasterModulJenis = loadConfigModulJenis_he_misc($this->jenisTr, "coTransaksiValues");
+            $modul_transaksi = getFolderModul($this->jenisTr);
+            $configUiMasterModulOrigJenis = loadConfigModulJenis_he_misc($origJenis, "coTransaksiUi");
+            $configCoreMasterModulOrigJenis = loadConfigModulJenis_he_misc($origJenis, "coTransaksiCore");
+            $configLayoutMasterModulOrigJenis = loadConfigModulJenis_he_misc($origJenis, "coTransaksiLayout");
+
+            $steps = isset($configUiMasterModulOrigJenis['steps']) ? $configUiMasterModulOrigJenis['steps'] : array();
+            $connector = isset($configUiMasterModulOrigJenis['connectTo']) ? $configUiMasterModulOrigJenis['connectTo'] : "";
+            $preReplacer = isset($configUiMasterModulJenis['replacerConnectTo']) ? $configUiMasterModulJenis['replacerConnectTo'] : array();
+            $validateValueConnector = isset($configUiMasterModulJenis['connectoValidate'][$stepNum]) ? $configUiMasterModulJenis['connectoValidate'][$stepNum] : array();
+            $mongoListConnect = array();
+            $mongRegIDConnect = array();
+            $insertConnectingID = 0;
+            if (strlen($connector) > 0) {
+                cekMerah("TO BE CONNECT TO $connector |$stepNum|" . sizeof($steps));
+//                mati_disini(__LINE__ . " ||| [$stepNum] --- " . sizeof($steps));
+
+                if (isset($configUiMasterModulJenis['connectoValidate'][$stepNum])) {
+                    $validateValueConnector = $configUiMasterModulJenis['connectoValidate'][$stepNum];
+                    $preVal = $sessionData[$cCode]['main'][$validateValueConnector];
+                    $stepNum = $preVal > 0 ? $stepNum : "1000";//1000 untuk nglewatin step biar gak jalan connectingnya karena nilai yang dicari 0 kasusnya cash in advance ppn sudah masuk pusat tidak perlu diterbitkan auto dorong ppn ke pusat
+                }
+                if ($stepNum == sizeof($steps)) {
+                    cekMerah("NOW CONNECTING to $connector");
+
+                    $configUiMasterModulJenis = loadConfigModulJenis_he_misc($connector, "coTransaksiUi");
+                    $configCoreMasterModulJenis = loadConfigModulJenis_he_misc($connector, "coTransaksiCore");
+                    $configLayoutMasterModulJenis = loadConfigModulJenis_he_misc($connector, "coTransaksiLayout");
+                    $configValuesMasterModulJenis = loadConfigModulJenis_he_misc($connector, "coTransaksiValues");
+                    $modul_transaksi = getFolderModul($connector);
+
+                    if (sizeof($configUiMasterModulJenis) == 0) {
+                        mati_disini("kode connector tidak dikenali!");
+                    }
+                    if (sizeof($configUiMasterModulJenis['steps']) < 2) {
+                        mati_disini("konfigurasi connector harus memiliki step lebih dari satu!");
+                    }
+
+                    $oldCode = $cCode;
+                    $cCode = "_TR_" . $connector;
+
+                    $sessionData[$cCode] = array();
+                    $sessionData[$cCode] = $sessionData[$oldCode];
+//                    $sessionData[$cCode] = array(
+//                        "main" => $sessionData[$oldCode]['main'],
+//                        "items" => $sessionData[$oldCode]['items'],
+//                        "items2" => $sessionData[$oldCode]['items2'],
+//                        "items2_sum" => $sessionData[$oldCode]['items2_sum'],
+//                        "items3" => $sessionData[$oldCode]['items3'],
+//                        "items3_sum" => $sessionData[$oldCode]['items3_sum'],
+//                        "items4" => $sessionData[$oldCode]['items4'],
+//                        "items4_sum" => $sessionData[$oldCode]['items4_sum'],
+//                        "items5" => $sessionData[$oldCode]['items5'],
+//                        "items5_sum" => $sessionData[$oldCode]['items5_sum'],
+//                        "items6" => $sessionData[$oldCode]['items6'],
+//                        "items6_sum" => $sessionData[$oldCode]['items6_sum'],
+//                        "items7" => $sessionData[$oldCode]['items7'],
+//                        "items7_sum" => $sessionData[$oldCode]['items7_sum'],
+//                        "items8" => $sessionData[$oldCode]['items8'],
+//                        "items8_sum" => $sessionData[$oldCode]['items8_sum'],
+//                        "items9_sum" => $sessionData[$oldCode]['items9_sum'],
+//                        "items10_sum" => $sessionData[$oldCode]['items10_sum'],
+//                        "items_noapprove" => $sessionData[$oldCode]['items_noapprove'],
+//                        "tableIn_master" => $sessionData[$oldCode]['tableIn_master'],
+//                        "tableIn_detail" => $sessionData[$oldCode]['tableIn_detail'],
+//                        "rsltItems" => $sessionData[$oldCode]['rsltItems'],
+//                        "tableIn_detail_rsltItems" => $sessionData[$oldCode]['tableIn_detail_rsltItems'],
+//                        "tableIn_master_values" => $sessionData[$oldCode]['tableIn_master_values'],
+//                        "tableIn_detail_values" => $sessionData[$oldCode]['tableIn_detail_values'],
+//                        "tableIn_detail_values_rsltItems" => $sessionData[$oldCode]['tableIn_detail_values_rsltItems'],
+//                    );
+
+                    //==replace pertama
+                    $masterReplacersO = array(
+                        "jenisTr" => $connector,
+                        "jenisTrMaster" => $connector,
+                        "jenisTrTop" => $configUiMasterModulJenis['steps'][1]['target'],
+                        "jenis" => $configUiMasterModulJenis['steps'][1]['target'],
+                        "jenis_label" => $configUiMasterModulJenis['steps'][1]['label'],
+                        "transaksi_jenis" => $configUiMasterModulJenis['steps'][1]['target'],
+                        "stepCode" => $configUiMasterModulJenis['steps'][1]['target'],
+                        "placeID" => isset($preReplacer['place2ID']) ? $preReplacer['place2ID'] : $sessionData[$cCode]['main']['place2ID'],
+                        "placeName" => isset($preReplacer['place2Name']) ? $preReplacer['place2Name'] : $sessionData[$cCode]['main']['place2Name'],
+                        "place2ID" => $sessionData[$cCode]['main']['placeID'],
+                        "place2Name" => $sessionData[$cCode]['main']['placeName'],
+                        "cabangID" => isset($preReplacer['cabang2ID']) ? $preReplacer['cabang2ID'] : $sessionData[$cCode]['main']['place2ID'],
+                        "cabangName" => isset($preReplacer['place2Name']) ? $preReplacer['place2Name'] : $sessionData[$cCode]['main']['place2Name'],
+                        "cabang2ID" => $sessionData[$cCode]['main']['placeID'],
+                        "cabang2Name" => $sessionData[$cCode]['main']['placeName'],
+
+                        "gudang2ID" => $sessionData[$cCode]['main']['gudangID'],
+                        "gudang2Name" => $sessionData[$cCode]['main']['gudangName'],
+                        "gudangID" => isset($preReplacer['gudang2ID']) ? $preReplacer['gudang2ID'] : $sessionData[$cCode]['main']['gudang2ID'],
+                        "gudangName" => isset($preReplacer['gudang2Name']) ? $preReplacer['gudang2Name'] : $sessionData[$cCode]['main']['gudang2Name'],
+                        "pihakID" => isset($sessionData[$cCode]['main']['placeID']) ? $sessionData[$cCode]['main']['placeID'] : "",
+                        "pihakName" => isset($sessionData[$cCode]['main']['placeName']) ? $sessionData[$cCode]['main']['placeName'] : "",
+                        "pihakName2" => $sessionData[$cCode]['main']['placeName'],
+                        "gudang" => $sessionData[$cCode]['main']['gudangID'],
+                        "gudang__name" => $sessionData[$cCode]['main']['gudangName'],
+                        "gudang__label" => $sessionData[$cCode]['main']['gudangName'],
+                        "efaktur_source" => isset($preReplacer['efaktur_source']) ? $sessionData[$cCode]['main']['nomer'] : "",
+                    );
+                    foreach ($masterReplacersO as $key => $val) {
+                        $sessionData[$cCode]['main'][$key] = $val;
+                        //                    $sessionData[$cCode]['main'][$key] = $val;
+                    }
+                    $masterReplacers = array(
+                        "inv" => $tmpNomorNota,
+                        "jenis_master" => $connector,
+                        "jenis_top" => $configUiMasterModulJenis['steps'][1]['target'],
+                        "jenis" => $configUiMasterModulJenis['steps'][1]['target'],
+                        "jenis_label" => $configUiMasterModulJenis['steps'][1]['label'],
+                        "transaksi_jenis" => $configUiMasterModulJenis['steps'][1]['target'],
+                        "cabang_id" => isset($preReplacer['cabang2ID']) ? $preReplacer['cabang2ID'] : $sessionData[$cCode]['tableIn_master']['cabang2_id'],
+                        "cabang_nama" => isset($preReplacer['cabang2Name']) ? $preReplacer['cabang2Name'] : $sessionData[$cCode]['tableIn_master']['cabang2_nama'],
+                        "cabang2_id" => $sessionData[$cCode]['tableIn_master']['cabang_id'],
+                        "cabang2_nama" => $sessionData[$cCode]['tableIn_master']['cabang_nama'],
+                        "gudang_id" => isset($preReplacer['gudang2ID']) ? $preReplacer['gudang2ID'] : $sessionData[$cCode]['tableIn_master']['gudang2_id'],
+                        "gudang_nama" => isset($preReplacer['gudang2Name']) ? $preReplacer['gudang2Name'] : $sessionData[$cCode]['tableIn_master']['gudang2_nama'],
+                        "gudang2_id" => $sessionData[$cCode]['tableIn_master']['gudang_id'],
+                        "gudang2_nama" => $sessionData[$cCode]['tableIn_master']['gudang_nama'],
+                        "gudang" => $sessionData[$cCode]['tableIn_master']['gudang_id'],
+                        "gudang__name" => $sessionData[$cCode]['tableIn_master']['gudang_nama'],
+                        "gudang__label" => $sessionData[$cCode]['tableIn_master']['gudang_nama'],
+
+                        "step_avail" => sizeof($configUiMasterModulJenis['steps']),
+                        "step_current" => 1,
+                        "step_number" => 1,
+                        "next_step_code" => isset($configUiMasterModulJenis['steps'][2]) ? $configUiMasterModulJenis['steps'][2]['target'] : "",
+                        "next_step_label" => isset($configUiMasterModulJenis['steps'][2]) ? $configUiMasterModulJenis['steps'][2]['label'] : "",
+                        "next_group_code" => isset($configUiMasterModulJenis['steps'][2]) ? $configUiMasterModulJenis['steps'][2]['userGroup'] : "",
+                        "next_step_num" => isset($configUiMasterModulJenis['steps'][2]) ? 2 : "0",
+                        "efaktur_source" => isset($preReplacer['efaktur_source']) ? $sessionData[$cCode]['main']['nomer'] : "",
+                        //===references
+                        //                    "id_master"            => $masterID,
+                        //                    "id_top"               => $topID,
+                        //                    "ids_prev"             => base64_encode(serialize(array($prevProp['id']))),
+                        //                    "ids_prev_intext"      => print_r(array($prevProp['id'], true)),
+                        //                    "nomer_top"            => $sessionData[$cCode]['main']['nomer'],
+                        //                    "nomers_prev"          => base64_encode(serialize(array($prevProp['nomer']))),
+                        //                    "nomers_prev_intext"   => print_r(array($prevProp['nomer'], true)),
+                        //                    "jenis_top"            => $this->jenisTr,
+                        //                    "jenises_prev"        => base64_encode(serialize(array($prevProp['jenis']))),
+                        //                    "jenises_prev_intext" => print_r(array($prevProp['jenis'], true)),
+                    );
+                    foreach ($masterReplacers as $key => $val) {
+                        $sessionData[$cCode]['tableIn_master'][$key] = $val;
+                    }
+
+
+                    // region loader ulang session data connecting
+                    $this->CI->load->helper("he_value_builder");
+                    $sessionData[$cCode] = fillValues_he_value_builder_ns($connector, 1, 1, $configCoreMasterModulJenis, $configUiMasterModulJenis, $configValuesMasterModulJenis, $ppnFactor, NULL, $sessionData[$cCode]);
+                    // endregion loader ulang session data connecting
+
+                    arrPrint($sessionData[$cCode]['tableIn_master']);
+
+
+
+                    //region penomoran receipt #2
+
+                    $this->CI->load->model("CustomCounter");
+                    $cn = new CustomCounter("transaksi");
+                    $cn->setType("transaksi");
+                    $cn->setModul($modul_transaksi);
+                    $cn->setStepCode($configUiMasterModulJenis['steps'][1]['target']);
+                    $counterForNumber = array($configCoreMasterModulJenis['formatNota']);
+                    if (!in_array($counterForNumber[0], $configCoreMasterModulJenis['counters'])) {
+                        mati_disini(__LINE__ . " Used number should be registered in 'counters' config as well");
+                    }
+
+                    foreach ($counterForNumber as $i => $cRawParams) {
+                        $cParams = explode("|", $cRawParams);
+                        $cValues = array();
+                        foreach ($cParams as $param) {
+                            $cValues[$i][$param] = $sessionData[$cCode]['main'][$param];
+                        }
+                        $cRawValues = implode("|", $cValues[$i]);
+                        $paramSpec = $cn->getNewCount($cParams, $cValues[$i]);
+                    }
+                    $tmpNomorNotaConnecting = $tmpNomorNota2 = $paramSpec['paramString'];
+                    $tmpNomorNota2Alias = formatNota("nomer_nolink", $tmpNomorNota2);
+
+
+                    //endregion
+
+                    //region dynamic counters #2
+                    // <editor-fold defaultstate="collapsed" desc="==========__init+update dynamic-counters ">
+                    $cn = new CustomCounter("transaksi");
+                    $cn->setType("transaksi");
+                    $cn->setModul($modul_transaksi);
+                    $cn->setStepCode($configUiMasterModulJenis['steps'][1]['target']);
+                    $configCustomParams = $configCoreMasterModulJenis['counters'];
+                    $configCustomParams[] = "stepCode";
+                    if (sizeof($configCustomParams) > 0) {
+                        $cContent = array();
+                        foreach ($configCustomParams as $i => $cRawParams) {
+                            $cParams = explode("|", $cRawParams);
+                            $cValues = array();
+                            foreach ($cParams as $param) {
+                                $cValues[$i][$param] = $sessionData[$cCode]['main'][$param];
+                            }
+                            $cRawValues = implode("|", $cValues[$i]);
+                            $paramSpec = $cn->getNewCount($cParams, $cValues[$i]);
+
+                            $cContent[$cRawParams][$cRawValues] = $paramSpec['value'];
+                            switch ($paramSpec['id']) {
+                                case 0: //===counter type is new
+                                    $paramKeyRaw = print_r($cParams, true);
+                                    $paramValuesRaw = print_r($cValues[$i], true);
+                                    $cn->writeNewCount($cParams, $cValues[$i], $paramKeyRaw, $paramValuesRaw);
+                                    break;
+                                default: //===counter to be updated
+                                    $cn->updateCount($paramSpec['id'], $paramSpec['value']);
+                                    break;
+                            }
+                            //echo "<hr>";
+                        }
+                    }
+                    $appliedCounters2 = base64_encode(serialize($cContent));
+                    $appliedCounters_inText2 = print_r($cContent, true);
+                    // </editor-fold>
+                    //endregion
+
+                    //region tambahan counter
+                    $this->CI->load->library("CounterNumber");
+                    $ccn = new CounterNumber();
+                    $ccn->setCCode($cCode);
+                    $ccn->setJenisTr($connector);
+                    $ccn->setModul($modul_transaksi);
+//                    $ccn->setStepCode($jenisTrTarget);
+                    $ccn->setStepCode($configUiMasterModulJenis['steps'][1]['target']);
+                    $ccn->setTransaksiGate($sessionData[$cCode]['tableIn_master']);
+                    $ccn->setMainGate($sessionData[$cCode]['main']);
+                    $ccn->setItemsGate($sessionData[$cCode]['items']);
+                    $ccn->setItems2SumGate($sessionData[$cCode]['items2_sum']);
+                    $new_counter = $ccn->getCounterNumber();
+                    cekHitam("jenistr yang disett dari create " . $this->jenisTr);
+
+
+                    if (isset($new_counter['main']) && sizeof($new_counter['main']) > 0) {
+                        foreach ($new_counter['main'] as $ckey => $cval) {
+                            $sessionData[$cCode]['tableIn_master'][$ckey] = $cval;
+                            $sessionData[$cCode]['main'][$ckey] = $cval;
+                        }
+                    }
+                    if (isset($new_counter['items']) && sizeof($new_counter['items']) > 0) {
+                        foreach ($new_counter['items'] as $ikey => $iSpec) {
+                            foreach ($iSpec as $iikey => $iival) {
+                                $sessionData[$cCode]['items'][$ikey][$iikey] = $iival;
+                            }
+                        }
+                    }
+                    if (isset($new_counter['items2_sum']) && sizeof($new_counter['items2_sum']) > 0) {
+                        foreach ($new_counter['items2_sum'] as $ikey => $iSpec) {
+                            foreach ($iSpec as $iikey => $iival) {
+                                $sessionData[$cCode]['items2_sum'][$ikey][$iikey] = $iival;
+                            }
+                        }
+                    }
+                    //endregion
+
+                    $addValues = array(
+                        'counters' => $appliedCounters2,
+                        'counters_intext' => $appliedCounters_inText2,
+                        'nomer' => $tmpNomorNota2,
+                        'nomer2' => $tmpNomorNota2Alias,
+                        'dtime' => date("Y-m-d H:i:s"),
+                        'fulldate' => date("Y-m-d"),
+                    );
+                    foreach ($addValues as $key => $val) {
+                        $sessionData[$cCode]['tableIn_master'][$key] = $val;
+                    }
+
+                    //===cloning nota cab1 ke cab2
+                    //===daftar perbedaan
+                    //== referensi_id, inv, jenis, nomer, counters, counters_inText, cabang_id, cabang_nama, cabang2_id, cabang2_nama,
+                    //==replace kedua
+                    $masterReplacers = array(
+                        "nomer" => $tmpNomorNota2,
+                        "nomer2" => $tmpNomorNota2Alias,
+                        "counters" => $appliedCounters2,
+                        "counters_intext" => $appliedCounters_inText2,
+                    );
+                    foreach ($masterReplacers as $key => $val) {
+                        $sessionData[$cCode]['tableIn_master'][$key] = $val;
+                    }
+
+                    //===cloning detail/items cabang1 ke cabang2
+                    //===yang direplace: sub_step_number, sub_step_current, sub_step_avail, next_substep_num, next_substep_code, next_substep_label, next_subgroup_code
+                    $detailReplacers = array(
+                        "sub_step_avail" => sizeof($configUiMasterModulJenis['steps']),
+                        "sub_step_current" => 1,
+                        "sub_step_number" => 1,
+                        "next_substep_num" => $sessionData[$cCode]['tableIn_master']['next_step_num'],
+                        "next_substep_code" => $sessionData[$cCode]['tableIn_master']['next_step_code'],
+                        "next_substep_label" => $sessionData[$cCode]['tableIn_master']['next_step_label'],
+                        "next_subgroup_code" => $sessionData[$cCode]['tableIn_master']['next_group_code'],
+                    );
+                    if (isset($sessionData[$cCode]['tableIn_detail']) && sizeof($sessionData[$cCode]['tableIn_detail']) > 0) {
+                        foreach ($sessionData[$cCode]['tableIn_detail'] as $k => $dSpec) {
+                            foreach ($dSpec as $key => $val) {
+                                $sessionData[$cCode]['tableIn_detail'][$k][$key] = isset($detailReplacers[$key]) ? $detailReplacers[$key] : $val;
+                            }
+                        }
+                    }
+                    else {
+                        //                    cekmerah("GAGAL tulis rincian transaksi kedua");
+                    }
+
+
+                    //region ----------write transaksi & transaksi_data #2
+                    if (isset($sessionData[$cCode]['tableIn_master']) && sizeof($sessionData[$cCode]['tableIn_master']) > 0) {
+
+                        $sessionData[$cCode]['tableIn_master']['status'] = 1;
+                        $sessionData[$cCode]['tableIn_master']['trash'] = 0;
+
+                        $tr = new $modelModules();
+                        $insertConnectingID = $insertID = $tr->writeMainEntries($sessionData[$cCode]['tableIn_master']);
+                        showLast_query("hitam");
+                        $insertNum = $sessionData[$cCode]['tableIn_master']['nomer'];
+                        $sessionData[$cCode]['main']['nomer'] = $insertNum;
+                        if ($insertID < 1) {
+                            die("Gagal saat berusaha  write transaction entry pada " . __FILE__ . " baris " . __LINE__);
+                        }
+                    }
+                    else {
+                        cekmerah("GAGAL tulis transaksi kedua");
+                    }
+                    if (isset($sessionData[$cCode]['tableIn_master_values']) && sizeof($sessionData[$cCode]['tableIn_master_values']) > 0) {
+                        $inserMainValues = array();
+                        foreach ($sessionData[$cCode]['tableIn_master_values'] as $key => $val) {
+                            $dd = $tr->writeMainValues($insertID, array("key" => $key, "value" => $val));
+                            $inserMainValues[] = $dd;
+                            $mongoListConnect['mainValues'][] = $dd;
+                        }
+                        if (sizeof($inserMainValues) > 0) {
+                            $arrBlob = blobEncode($inserMainValues);
+                            $this->CI->db->query("UPDATE transaksi SET indexing_main_values = '$arrBlob' WHERE id=$insertID");
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['main_add_values']) && sizeof($sessionData[$cCode]['main_add_values']) > 0) {
+                        foreach ($sessionData[$cCode]['main_add_values'] as $key => $val) {
+                            $dd = $tr->writeMainValues($insertID, array("key" => $key, "value" => $val));
+                            $mongoListConnect['mainValues'][] = $dd;
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['main_inputs']) && sizeof($sessionData[$cCode]['main_inputs']) > 0) {
+                        foreach ($sessionData[$cCode]['main_inputs'] as $key => $val) {
+                            $dd = $tr->writeMainValues($insertID, array("key" => $key, "value" => $val));
+                            $inserMainValues[] = $dd;
+                            $mongoListConnect['mainValues'][] = $dd;
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['main_elements']) && sizeof($sessionData[$cCode]['main_elements']) > 0) {
+                        //                    cekMerah("ada mainElements");
+                        foreach ($sessionData[$cCode]['main_elements'] as $elName => $aSpec) {
+                            $tr->writeMainElements($insertID, array(
+                                "mdl_name" => isset($aSpec['mdl_name']) ? $aSpec['mdl_name'] : "",
+                                "key" => isset($aSpec['key']) ? $aSpec['key'] : 0,
+                                "value" => isset($aSpec['value']) ? $aSpec['value'] : "",
+                                "name" => $aSpec['name'],
+                                "label" => $aSpec['label'],
+                                "contents" => isset($aSpec['contents']) ? $aSpec['contents'] : "",
+                                "contents_intext" => isset($aSpec['contents_intext']) ? $aSpec['contents_intext'] : "",
+
+                            ));
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['tableIn_detail']) && sizeof($sessionData[$cCode]['tableIn_detail']) > 0) {
+                        $insertIDs = array();
+                        $insertDeIDs = array();
+                        foreach ($sessionData[$cCode]['tableIn_detail'] as $dSpec) {
+                            $insertDetailID = $tr->writeDetailEntries($insertID, $dSpec);
+                            showLast_query("hitam");
+                            if ($insertDetailID < 1) {
+                                die("Gagal saat berusaha write transaction detail entry pada " . __FILE__ . " baris " . __LINE__);
+                            }
+                            else {
+                                $insertIDs[] = $insertDetailID;
+                                $insertDeIDs[$insertID][] = $insertDetailID;
+                                $mongoListConnect['detail'][] = $insertDetailID;
+                            }
+                        }
+                        if (sizeof($insertIDs) == 0) {
+                            die(lgShowAlert("Transaksi gagal disimpan karena rincian transaksi kosong."));
+                        }
+                        else {
+                            $indexing_details = array();
+                            foreach ($insertDeIDs as $key => $numb) {
+                                $indexing_details[$key] = $numb;
+                            }
+
+                            foreach ($indexing_details as $k => $arrID) {
+                                $arrBlob = blobEncode($arrID);
+                                $this->CI->db->query("UPDATE transaksi SET indexing_details = '$arrBlob' WHERE id=$k");
+                                cekOrange($this->CI->db->last_query());
+                            }
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['tableIn_detail2_sum']) && sizeof($sessionData[$cCode]['tableIn_detail2_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['tableIn_detail2_sum'] as $dSpec) {
+                            $insertIDs[] = $tr->writeDetailEntries($insertID, $dSpec);
+                            $mongoListConnect['detail'] = $insertIDs;
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['tableIn_detail_values']) && sizeof($sessionData[$cCode]['tableIn_detail_values']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['tableIn_detail_values'] as $pID => $dSpec) {
+                            if (isset($this->configCore[$this->jenisTr]['tableIn']['detailValues'])) {
+                                foreach ($this->configCore[$this->jenisTr]['tableIn']['detailValues'] as $key => $src) {
+                                    //                                $insertIDs[$pID][] = $tr->writeDetailValues($insertID, array(
+                                    //                                    "produk_jenis" => $sessionData[$cCode]['tableIn_detail'][$pID]['produk_jenis'],
+                                    //                                    "produk_id" => $pID,
+                                    //                                    "key" => $key,
+                                    //                                    "value" => isset($dSpec[$src]) ? $dSpec[$src] : 0,
+                                    //                                ));
+                                    $dd = $tr->writeDetailValues($insertID, array(
+                                        "produk_jenis" => $sessionData[$cCode]['tableIn_detail'][$pID]['produk_jenis'],
+                                        "produk_id" => $pID,
+                                        "key" => $key,
+                                        "value" => isset($dSpec[$src]) ? $dSpec[$src] : 0,
+                                    ));
+                                    $insertIDs[] = $dd;
+                                    $mongoListConnect['detailValues'][] = $dd;
+
+                                }
+                            }
+                        }
+                        if (sizeof($insertIDs) > 0) {
+                            $arrBlob = blobEncode($insertIDs);
+                            $this->CI->db->query("UPDATE transaksi SET indexing_detail_values = '$arrBlob' WHERE id=$insertID");
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['tableIn_detail_values2_sum']) && sizeof($sessionData[$cCode]['tableIn_detail_values2_sum']) > 0) {
+                        foreach ($sessionData[$cCode]['tableIn_detail_values2_sum'] as $pID => $dSpec) {
+                            if (isset($this->configCore[$this->jenisTr]['tableIn']['detailValues2_sum'])) {
+                                foreach ($this->configCore[$this->jenisTr]['tableIn']['detailValues2_sum'] as $key => $src) {
+                                    $insertIDs[] = $tr->writeDetailValues($insertID, array(
+                                        "produk_jenis" => $sessionData[$cCode]['tableIn_detail2_sum'][$pID]['produk_jenis'],
+                                        "produk_id" => $pID,
+                                        "key" => $key,
+                                        "value" => $dSpec[$src],
+                                    ));
+
+                                }
+                            }
+                        }
+                    }
+
+
+                    //region nulis paymentSource
+                    $jenisTrTarget = $stepCode = $configUiMasterModulJenis['steps'][1]['target'];
+                    $paymentSources = $this->CI->config->item("payment_source");
+                    if (array_key_exists($stepCode, $paymentSources)) {
+
+                        $payConfigs = $paymentSources[$stepCode];
+                        if (sizeof($payConfigs) > 0) {
+                            foreach ($payConfigs as $paymentSrcConfig) {
+                                //					$paymentSrcConfig = $paymentSources[$stepCode];
+                                $valueSrc = $paymentSrcConfig['valueSrc'];
+                                $externSrc = $paymentSrcConfig['externSrc'];
+                                $tr->writePaymentSrc($insertID, array(
+                                    "jenis" => $stepCode,
+                                    "target_jenis" => $paymentSrcConfig['jenisTarget'],
+                                    "reference_jenis" => $paymentSrcConfig['jenisSrc'],
+                                    "extern_id" => $sessionData[$cCode]['main'][$externSrc['id']],
+                                    "extern_nama" => $sessionData[$cCode]['main'][$externSrc['nama']],
+                                    "nomer" => $tmpNomorNota2,
+                                    "label" => $paymentSrcConfig['label'],
+                                    "tagihan" => $sessionData[$cCode]['main'][$valueSrc],
+                                    "terbayar" => 0,
+                                    "sisa" => $sessionData[$cCode]['main'][$valueSrc],
+                                    "cabang_id" => $sessionData[$cCode]['main']['placeID'],
+                                    "cabang_nama" => $sessionData[$cCode]['main']['placeName'],
+                                    "oleh_id" => $sessionData[$cCode]["main"]["oleh_id"],
+                                    "oleh_nama" => $sessionData[$cCode]["main"]["oleh_nama"],
+                                    "dtime" => date("Y-m-d H:i:s"),
+                                    "fulldate" => date("Y-m-d"),
+                                    "valas_id" => isset($sessionData[$cCode]['main'][$externSrc['valasId']]) ? $sessionData[$cCode]['main'][$externSrc['valasId']] : '',
+                                    "valas_nama" => isset($sessionData[$cCode]['main'][$externSrc['valasLabel']]) ? $sessionData[$cCode]['main'][$externSrc['valasLabel']] : '',
+                                    "valas_nilai" => isset($sessionData[$cCode]['main'][$externSrc['valasValue']]) ? $sessionData[$cCode]['main'][$externSrc['valasValue']] : '',
+                                    "tagihan_valas" => isset($sessionData[$cCode]['main'][$externSrc['valasTagihan']]) ? $sessionData[$cCode]['main'][$externSrc['valasTagihan']] : '',
+                                    "terbayar_valas" => 0,
+                                    "sisa_valas" => isset($sessionData[$cCode]['main'][$externSrc['valasSisa']]) ? $sessionData[$cCode]['main'][$externSrc['valasSisa']] : '',
+                                ));
+                            }
+                        }
+
+
+                        //cekMerah($this->CI->db->last_query());
+
+                    }
+                    else {
+                        //cekMerah("TIDAK nulis paymentSrc");
+                    }
+                    //endregion
+
+
+                    //region nulis paymentAntiSource
+                    $jenisTrTarget = $stepCode = $configUiMasterModulJenis['steps'][1]['target'];
+                    $paymentSources = $this->CI->config->item("payment_antiSource");
+                    if (array_key_exists($stepCode, $paymentSources)) {
+                        $payConfigs = $paymentSources[$stepCode];
+                        if (sizeof($payConfigs) > 0) {
+                            foreach ($payConfigs as $paymentSrcConfig) {
+                                //					$paymentSrcConfig = $paymentSources[$stepCode];
+                                $valueSrc = $paymentSrcConfig['valueSrc'];
+                                $externSrc = $paymentSrcConfig['externSrc'];
+                                $tr->writePaymentAntiSrc($insertID, array(
+                                    "jenis" => $stepCode,
+                                    "target_jenis" => $paymentSrcConfig['jenisTarget'],
+                                    "reference_jenis" => $paymentSrcConfig['jenisSrc'],
+                                    "extern_id" => $sessionData[$cCode]['main'][$externSrc['id']],
+                                    "extern_nama" => $sessionData[$cCode]['main'][$externSrc['nama']],
+                                    "nomer" => $tmpNomorNota2,
+                                    "label" => $paymentSrcConfig['label'],
+                                    "tagihan" => $sessionData[$cCode]['main'][$valueSrc],
+                                    "terbayar" => 0,
+                                    "sisa" => $sessionData[$cCode]['main'][$valueSrc],
+                                    "cabang_id" => $sessionData[$cCode]['main']['placeID'],
+                                    "cabang_nama" => $sessionData[$cCode]['main']['placeName'],
+                                    "oleh_id" => $sessionData[$cCode]["main"]["oleh_id"],
+                                    "oleh_nama" => $sessionData[$cCode]["main"]["oleh_nama"],
+                                    "dtime" => date("Y-m-d H:i:s"),
+                                    "fulldate" => date("Y-m-d"),
+                                ));
+                            }
+                        }
+
+
+                        //cekMerah($this->CI->db->last_query());
+
+                    }
+                    else {
+                        //cekMerah("TIDAK nulis paymentSrc");
+                    }
+                    //endregion
+
+
+                    $idHis_decode[$stepNum] = array(
+                        "olehID" => $sessionData[$cCode]['main']['olehID'],
+                        "olehName" => $sessionData[$cCode]['main']['olehName'],
+                        "step" => $stepNum,
+                        "trID" => $insertID,
+                        "nomer" => $tmpNomorNota2,
+                        "nomer2" => $tmpNomorNota2Alias,
+                        "counters" => $appliedCounters2,
+                        "counters_intext" => $appliedCounters_inText2,
+                        "dtime" => date("Y-m-d H:i:s"),
+                        "fulldate" => date("Y-m-d"),
+                    );
+                    $idHis_blob = blobEncode($idHis_decode);
+                    $idHis_intext = print_r($idHis_decode, true);
+
+                    $sessionData[$cCode]['tableIn_master']['ids_his'] = $idHis_blob;
+                    $sessionData[$cCode]['tableIn_master']['ids_his_intext'] = $idHis_intext;
+
+                    $tr = new $modelModules();
+                    $dupState = $tr->updateData(array("id" => $insertID), array(
+                        "id_master" => $masterID,
+                        "id_top" => $insertID,
+                        "ids_his" => $idHis_blob,
+                        "ids_his_intext" => $idHis_intext,
+                    )) or die("Failed to update tr next-state!");
+                    showLast_query("hitam");
+
+
+                    //pengganti registry ditulis ke tabel fisik
+                    if (isset($_SESSION[$cCode]['main']) && sizeof($_SESSION[$cCode]['main']) > 0) {
+                        $inserMain = array();
+                        //                foreach ($_SESSION[$cCode]['main'] as $key => $val) {
+                        $insertIDs[] = $tr->writeDetailMainEntries($insertID, $_SESSION[$cCode]['main']);
+                        cekBiru($this->db->last_query());
+                        //                }
+                        //                                matiHEre(__LINE__);
+                    }
+                    if (isset($sessionData[$cCode]['items']) && sizeof($sessionData[$cCode]['items']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items'] as $dSpec) {
+                            $insertIDs[] = $tr->writeDetailItemsEntries($insertID, $dSpec);
+                            cekBiru($this->CI->db->last_query());
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items2']) && sizeof($sessionData[$cCode]['items2']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items2'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems2($insertID, $dSpec);
+                            $mongoList['detail'] = $insertIDs;
+                            cekUngu($this->CI->db->last_query());
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items2_sum']) && sizeof($sessionData[$cCode]['items2_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items2_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems2_sum($insertID, $dSpec);
+                            $insertIDs[] = $insertDetailID;
+                            $mongoList['detail'][] = $insertDetailID;
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items3']) && sizeof($sessionData[$cCode]['items3']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items3'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems3($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items3_sum']) && sizeof($sessionData[$cCode]['items3_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items3_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems3_sum($insertID, $dSpec);
+                            cekMErah($this->CI->db->last_query());
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items4']) && sizeof($sessionData[$cCode]['items4']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items4'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems4($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items4_sum']) && sizeof($sessionData[$cCode]['items4_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items4_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems4_sum($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items5']) && sizeof($sessionData[$cCode]['items5']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items5'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems5($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items5_sum']) && sizeof($sessionData[$cCode]['items5_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items5_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems5_sum($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items6']) && sizeof($sessionData[$cCode]['items6']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items6'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems6($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items6_sum']) && sizeof($sessionData[$cCode]['items6_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items6_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems6_sum($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items7']) && sizeof($sessionData[$cCode]['items7']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items7'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems7($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items7_sum']) && sizeof($sessionData[$cCode]['items7_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items7_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems7_sum($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items8']) && sizeof($sessionData[$cCode]['items8']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items8'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems8($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items8_sum']) && sizeof($sessionData[$cCode]['items8_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items8_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems8_sum($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items9_sum']) && sizeof($sessionData[$cCode]['items9_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items9_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems9_sum($insertID, $dSpec);
+                            cekMErah($this->CI->db->last_query());
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items10_sum']) && sizeof($sessionData[$cCode]['items10_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items10_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems10_sum($insertID, $dSpec);
+                        }
+                    }
+
+                    $baseRegistries = array(
+                        "items_komposisi" => isset($sessionData[$cCode]['items_komposisi']) ? $sessionData[$cCode]['items_komposisi'] : array(),
+                        "componentsBuilder" => isset($sessionData[$cCode]['componentsBuilder']) ? $sessionData[$cCode]['componentsBuilder'] : array(),
+                        "jurnalItems" => isset($sessionData[$cCode]['jurnalItems']) ? $sessionData[$cCode]['jurnalItems'] : array(),
+                        "jurnal_index" => isset($sessionData[$cCode]['jurnal_index']) ? $sessionData[$cCode]['jurnal_index'] : array(),
+                        "postProcessor" => isset($sessionData[$cCode]['postProcessor']) ? $sessionData[$cCode]['postProcessor'] : array(),
+                        "preProcessor" => isset($sessionData[$cCode]['preProcessor']) ? $sessionData[$cCode]['preProcessor'] : array(),
+                        "revert" => isset($sessionData[$cCode]['revert']) ? $sessionData[$cCode]['revert'] : array(),
+//                        "tableIn_master_values" => isset($sessionData[$cCode]['tableIn_master_values']) ? $sessionData[$cCode]['tableIn_master_values'] : array(),
+                    );
+                    $doWriteReg = $tr->writeDataRegistries($insertID, $baseRegistries) or die(lgShowError("Ada kesalahan", "Gagal saat berusaha  write base params into registries"));
+                    $mongRegIDConnect = $doWriteReg;
+                    //endregion
+
+
+                    //region processing sub-post-processors, always
+                    $iterator = isset($configCoreMasterModulJenis['postProcessor'][$jenisTrTarget]['detail']) ? $configCoreMasterModulJenis['postProcessor'][$jenisTrTarget]['detail'] : array();
+                    if (sizeof($iterator) > 0) {
+                        foreach ($iterator as $cCtr => $tComSpec) {
+                            $comName = $tComSpec['comName'];
+                            $srcGateName = $tComSpec['srcGateName'];
+                            $srcRawGateName = $tComSpec['srcRawGateName'];
+                            echo "sub-postProcessor: $comName, initializing values <br>";
+                            echo "<script>top.writeProgress('MENYIAPKAN DATA SUB-PROCESSORS UNTUK DIKIRIM...', 'head');</script>";
+
+                            $tmpOutParams[$cCtr] = array();
+                            if (isset($sessionData[$cCode][$srcGateName]) && (sizeof($sessionData[$cCode][$srcGateName]) > 0)) {
+                                foreach ($sessionData[$cCode][$srcGateName] as $cnt => $dSpec) {
+                                    $subParams = array();
+                                    if (isset($tComSpec['loop'])) {
+                                        foreach ($tComSpec['loop'] as $key => $value) {
+
+                                            $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$cnt], $sessionData[$cCode][$srcGateName][$cnt], 0);
+                                            $subParams['loop'][$key] = $realValue;
+
+                                        }
+                                    }
+                                    if (isset($tComSpec['static'])) {
+                                        foreach ($tComSpec['static'] as $key => $value) {
+
+                                            $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$cnt], $sessionData[$cCode][$srcGateName][$cnt], 0);
+                                            $subParams['static'][$key] = $realValue;
+                                            cekBiru("$key diisi dengan $realValue");
+
+                                        }
+
+                                        if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                            foreach ($paramPatchers[$comName] as $k => $v) {
+                                                if (!isset($subParams['static'][$k])) {
+                                                    $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                                }
+                                            }
+                                        }
+                                        if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                            $jenis = $sessionData[$cCode]['main']['jenis'];
+                                            foreach ($paramForceFillers[$comName] as $k => $v) {
+                                                $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                                cekorange(":: $k diisikan dengan " . $subParams['static'][$k]);
+                                            }
+                                        }
+
+                                        $subParams['static']["fulldate"] = date("Y-m-d");
+                                        $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                        $subParams['static']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . " ";
+                                    }
+
+                                    if (sizeof($subParams) > 0) {
+                                        $tmpOutParams[$cCtr][] = $subParams;
+                                    }
+                                }
+                            }
+                        }
+
+                        foreach ($iterator as $cCtr => $tComSpec) {
+                            $comName = $tComSpec['comName'];
+                            $srcGateName = $tComSpec['srcGateName'];
+                            $srcRawGateName = $tComSpec['srcRawGateName'];
+                            $loadByModules = isset($tComSpec['loadByModules']) ? $tComSpec['loadByModules'] : false;
+                            if (sizeof($tmpOutParams[$cCtr]) > 0) {
+
+                                echo "sub-postProcessor: $comName, sending values <br>";
+                                echo "<script>top.writeProgress('SENDING SUB-PROCESSORS ($comName)...', 'head');</script>";
+                                $mdlName = "Com" . ucfirst($comName);
+                                if ($loadByModules == true) {
+                                    $this->CI->load->model($pathModules . "Coms/" . $mdlName);
+                                }
+                                else {
+                                    $this->CI->load->model("Coms/" . $mdlName);
+                                }
+
+                                $m = new $mdlName();
+
+                                $m->pair($tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                                $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                                cekBiru($this->CI->db->last_query());
+                            }
+                        }
+                    }
+
+                    //endregion
+
+                    //region processing main-post-processors, always
+                    $iterator = isset($configCoreMasterModulJenis['postProcessor'][$jenisTrTarget]['master']) ? $configCoreMasterModulJenis['postProcessor'][$jenisTrTarget]['master'] : array();
+                    if (sizeof($iterator) > 0) {
+                        echo "<script>top.writeProgress('MEMPROSES MAIN-PROCESSORS...', 'head');</script>";
+                        foreach ($iterator as $cCtr => $tComSpec) {
+                            $comName = $tComSpec['comName'];
+                            $srcGateName = $tComSpec['srcGateName'];
+                            $srcRawGateName = $tComSpec['srcRawGateName'];
+                            $loadByModules = isset($tComSpec['loadByModules']) ? $tComSpec['loadByModules'] : false;
+                            echo "post-processor: $comName<br>";
+
+                            if (isset($sessionData[$cCode][$srcGateName]) && (sizeof($sessionData[$cCode][$srcGateName]) > 0)) {
+
+                                $dSpec = $sessionData[$cCode][$srcGateName];
+                                $tmpOutParams = array();
+                                if (isset($tComSpec['loop'])) {
+                                    foreach ($tComSpec['loop'] as $key => $value) {
+
+                                        $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                                        $tmpOutParams['loop'][$key] = $realValue;
+
+                                    }
+                                }
+                                if (isset($tComSpec['static'])) {
+                                    //cekHere("DISINI OIII");
+                                    foreach ($tComSpec['static'] as $key => $value) {
+
+                                        $realValue = makeValue($value, $sessionData[$cCode][$srcGateName], $sessionData[$cCode][$srcGateName], 0);
+                                        $tmpOutParams['static'][$key] = $realValue;
+
+                                    }
+                                    if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                        foreach ($paramPatchers[$comName] as $k => $v) {
+                                            if (!isset($tmpOutParams['static'][$k])) {
+                                                $tmpOutParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                                echo "<script>top.writeProgress(':: $key diisikan dengan " . $tmpOutParams['static'][$k] . ");</script>";
+                                            }
+                                        }
+                                    }
+                                    if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                        $jenis = $sessionData[$cCode]['main']['jenis'];
+                                        foreach ($paramForceFillers[$comName] as $k => $v) {
+                                            $tmpOutParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                            echo "<script>top.writeProgress(':: $key diisikan dengan " . $tmpOutParams['static'][$k] . ");</script>";
+                                        }
+                                    }
+                                    $tmpOutParams['static']["fulldate"] = date("Y-m-d");
+                                    $tmpOutParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                    $tmpOutParams['static']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . "";
+
+
+                                }
+                                if (isset($tComSpec['static2'])) {
+                                    //cekHere("DISINI OIII");
+                                    foreach ($tComSpec['static2'] as $key => $value) {
+
+                                        $realValue = makeValue($value, $sessionData[$cCode][$srcGateName][$cCtr], $sessionData[$cCode][$srcGateName][$cCtr], 0);
+                                        $tmpOutParams['static2'][$key] = $realValue;
+
+                                    }
+                                    if (isset($paramPatchers[$comName]) && sizeof($paramPatchers[$comName]) > 0) {
+                                        foreach ($paramPatchers[$comName] as $k => $v) {
+                                            if (!isset($subParams['static'][$k])) {
+                                                $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                            }
+                                        }
+                                    }
+                                    if (isset($paramForceFillers[$comName]) && sizeof($paramForceFillers[$comName]) > 0) {
+                                        $jenis = $sessionData[$cCode]['main']['jenis'];
+                                        foreach ($paramForceFillers[$comName] as $k => $v) {
+                                            $subParams['static'][$k] = isset($$v) ? $$v : "_v";
+                                        }
+                                    }
+                                    $tmpOutParams['static2']["fulldate"] = date("Y-m-d");
+                                    $tmpOutParams['static2']["dtime"] = date("Y-m-d H:i:s");
+                                    $tmpOutParams['static2']["keterangan"] = $configUiMasterModulJenis['steps'][$stepNum]['label'] . " nomor " . $tmpNomorNota . "";
+
+
+                                }
+
+
+                                $mdlName = "Com" . ucfirst($comName);
+                                if ($loadByModules == true) {
+                                    $this->CI->load->model($pathModules . "Coms/" . $mdlName);
+                                }
+                                else {
+                                    $this->CI->load->model("Coms/" . $mdlName);
+                                }
+
+                                $m = new $mdlName();
+                                $m->pair($tmpOutParams) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                                $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+
+                            }
+                            else {
+                                celMerah("TIDAK ADA [$comName] dengan gerbang $srcGateName");
+                            }
+
+
+                        }
+                    }
+                    //endregion
+
+                }
+                else {
+                    cekMerah("to be delayed to connect to $connector");
+                }
+            }
+            else {
+                //cekKuning("not connecting to any tCode");
+            }
+            // endregion connecting antar cabang
+
+
+            $returnTransaksi = array(
+                "transaksi_id" => $insertTransaksiID,// trid saat ini
+                "transaksi_nomer" => $tmpNomorNota2_current,// trnomer saat ini
+                "transaksi_id_connecting" => $insertConnectingID,// trid connecting ke cabang
+                "transaksi_nomer_connecting" => $tmpNomorNotaConnecting,// trnomer connecting ke cabang
+                //----
+                "transaksi_reference_jenis_master" => $origJenis,
+                "transaksi_reference_jenis" => $jenisTrTarget,
+                "transaksi_reference_id" => $transaksiID_reference,
+                "transaksi_reference_nomer" => $transaksiNomer_reference,
+                //----
+                "sessionData" => $sessionData[$cCode],
+            );
+            return $returnTransaksi;
+        }
+        else {
+            $masterID = 0;
+            $tmpNomorNota = "XXXX";
+            $origJenis = 0;
+            $topID = 0;
+            cekMerah("[$masterID] [$tmpNomorNota] [$origJenis] [$topID]");
+            mati_disini(("No such receipt ID: $no, pada step: $stepNumCurrent, // code: " . __LINE__));
+        }
+
+
+    }
+
+
+    public function autoReject($po_id){
+
+        $modelModules = isset($this->modelModules) ? $this->modelModules : "MdlPembelianTransaksi";
+        $pathModules = isset($this->pathModules) ? $this->pathModules . "/" : "";
+        $this->CI->load->model($pathModules . "$modelModules");
+        $transaksiID_reference = $no = $po_id;
+        $transaksiID_reference = $no = $po_id;
+
+        // region transaksi yang dibuka
+        $tr = new MdlPembelianTransaksi();
+        $tr->setFilters(array());
+        $tr->addFilter("id='$no'");
+        $tmpTr = $tr->lookupMainTransaksi()->result();
+        //        cekOrange($this->db->last_query());
+        $insertID = $tmpTr[0]->id;
+        $insertNum = $tmpTr[0]->nomer;
+        $masterID = $tmpTr[0]->id_master;
+        $jenisTr = $jenisTr_master = $tmpTr[0]->jenis;
+        $childTargetStepNum = $tmpTr[0]->step_number;
+
+            // endregion transaksi yang dibuka
+
+        cekHitam("trID: $insertID, masterID: $masterID");
+        $jenisTr_con = $jenisTr ;
+        $stepNumCurrent = $stepNumCurrent = $masterTargetStepNum = $childTargetStepNum;
+        $cCode = "_TR_" . $jenisTr;
+
+        //region membaca transaksi berdasarkan masterID
+        $trm = new MdlPembelianTransaksi();
+        $trm->setFilters(array());
+        $trm->addFilter("id_master='$masterID'");
+        $trm->addFilter("link_id='0'");
+        $trm->addFilter("trash_4='0'");
+        $tmpTrm = $trm->lookupMainTransaksi()->result();
+
+        showLast_query("biru");
+        $indexReg = array();
+        $arrMainDataTrans = array();
+        $arrMainDataTransID = array();
+        $arrTrIDs = array();
+        $regParam = array(
+            "main",
+            "items",
+            "tableIn_master",
+            "tableIn_detail",
+        );
+
+        foreach ($tmpTrm as $tmpTrmSpec) {
+            $arrMainDataTransID[$tmpTrmSpec->id] = array(
+                "step" => $tmpTrmSpec->step_number,
+                "jenisTr" => $tmpTrmSpec->jenis_master,
+                "transaksi_id" => $tmpTrmSpec->id,
+                "nomer" => $tmpTrmSpec->nomer,
+                "cabang_id" => $tmpTrmSpec->cabang_id,
+                "cabang_nama" => $tmpTrmSpec->cabang_nama,
+                "gudang_id" => $tmpTrmSpec->gudang_id,
+                "gudang_nama" => $tmpTrmSpec->gudang_nama,
+                "oleh_id" => $tmpTrmSpec->oleh_id,
+                "oleh_nama" => $tmpTrmSpec->oleh_nama,
+
+            );
+            $arrTrIDs[$tmpTrmSpec->id] = $tmpTrmSpec->id;
+        }
+        //endregion
+//        arrPrint($tmpTrm);
+//        matiHere();
+
+        krsort($arrMainDataTransID);
+
+
+        //region swap from registry
+        $tr = new MdlPembelianTransaksi();
+        $tr->setFilters(array());
+        $tr->addFilter("transaksi_id in ('" . implode("','", $arrTrIDs) . "')");
+        $tmpReg = $tr->lookupDataRegistries();
+
+        $tmpRegData = array();
+        if (sizeof($tmpReg) > 0) {
+            $tmpRegData = $tmpReg;
+
+            foreach($tmpReg[$no] as $key =>$values){
+
+                if($key=="main_entries"){
+                    $tmpRegData[$no]["main"]=$values;
+                }
+                else{
+                    $tmpRegData[$no][$key]=$values;
+                }
+            }
+
+        }
+        //endregion
+
+        $prepConfigs = null != $this->CI->config->item('hePreProcessors') ? $this->CI->config->item('hePreProcessors') : array();
+        $postConfigs = null != $this->CI->config->item('hePostProcessors') ? $this->CI->config->item('hePostProcessors') : array();
+        $postDeniedConfigs = null != $this->CI->config->item('hePostProcessorsDenied') ? $this->CI->config->item('hePostProcessorsDenied') : array();
+        $tableInMaster = isset($this->configCoreModul[$jenisTr]['tableIn']['master']) ? $this->configCoreModul[$jenisTr]['tableIn']['master'] : array();
+        $nextProp = array(
+            "num" => 0,
+            "code" => "",
+            "label" => "",
+            "groupID" => "",
+        );
+        $mongListUpadte = array();
+        //$mongoList = array();
+        $rejectData_id = array();
+        $rejectData_num = array();
+        foreach ($arrMainDataTransID as $arrMainDataTransIDSpec) {
+//        $arrMainDataTransIDSpec=$arrMainDataTransID[10];
+            $no = $arrMainDataTransIDSpec['transaksi_id'];
+            $stepNumCurrent = $arrMainDataTransIDSpec['step'];
+
+            $jenisTr = $arrMainDataTransIDSpec['jenisTr'];
+            $oleh_id = $arrMainDataTransIDSpec["oleh_id"];
+            $oleh_nama = $arrMainDataTransIDSpec["oleh_nama"];
+            $cabang_id = $arrMainDataTransIDSpec["cabang_id"];
+            $cabang_nama = $arrMainDataTransIDSpec["cabang_nama"];
+            $gudang_id = $arrMainDataTransIDSpec["gudang_id"];
+            $gudang_nama = $arrMainDataTransIDSpec["gudang_nama"];
+//            matiHere();
+//            cekUngu(":: trID yang dibatalkan $no ::");
+            $tp = new MdlPembelianTransaksi();
+            $tp->addFilter("id='$no'");
+            $tpTmp = $tp->lookupAll()->result();
+
+            $idsHis = ($tmpTr[0]->ids_his != null) ? blobDecode($tmpTr[0]->ids_his) : array();
+            $idsHisBlob = ($tmpTr[0]->ids_his != null) ? $tmpTr[0]->ids_his : array();
+            $currentMasterID = $tpTmp[0]->id_master;
+
+
+            cekHitam("MENGEMBALIKAN PRE & POST UNTUK STEP $stepNumCurrent");
+
+            $arrData = array(
+                "next_step_code" => $nextProp['code'],
+                "next_step_label" => $nextProp['label'],
+                "next_group_code" => $nextProp['groupID'],
+                "next_step_num" => $nextProp['num'],
+                "step_current" => $stepNumCurrent,
+                //                "step_number" => $stepNumCurrent,
+                "trash_4" => "1",
+                "cancel_dtime" => date("Y-m-d H:i:s"),
+                "cancel_name" => $oleh_nama." auto by system",
+                "cancel_id" => $oleh_id,
+            );
+            $arrData_detail = array(
+                "next_substep_code" => $nextProp['code'],
+                "next_substep_label" => $nextProp['label'],
+                "next_subgroup_code" => $nextProp['groupID'],
+                "next_substep_num" => $nextProp['num'],
+                "sub_step_number" => 0,
+            );
+
+//            arrPrint($tmpRegData[$no]);
+
+                $tmpRegDatas = $tmpRegData[$no];
+            $tmpRegDatas["main"] = $tmpRegDatas["main_entries"] + array(
+                "placeID" => $cabang_id,
+                "placeName" => $cabang_nama,
+                "olehID" => $oleh_id,
+                "olehName" => $oleh_nama,
+                "gudangID" => $gudang_id,
+                "gudangName" => $gudang_nama,
+                );
+            unset($tmpRegDatas['main_entries']);
+            $regData = $tmpRegDatas;
+
+            if (sizeof($tableInMaster) > 0) {
+                foreach ($tableInMaster as $mKey => $mVal) {
+                    $regData["main"][$mVal] = isset($tpTmp[0]->$mKey) ? $tpTmp[0]->$mKey : "";
+                    $regData["tableIn_master"][$mVal] = isset($tpTmp[0]->$mKey) ? $tpTmp[0]->$mKey : "";
+//                    $regData["main"][$mVal] = isset($tpTmp[0]->$mKey) ? $tpTmp[0]->$mKey : "";
+                }
+            }
+            if (sizeof($idsHis) > 0) {
+                foreach ($idsHis as $step_his => $data_his) {
+                    if ($step_his == 2) {
+                        $regData['main']['referenceIDSO'] = $data_his["trID"];
+                        $regData['main']['referenceNumberSO'] = $data_his["nomer"];
+                        $regData['main']['referenceNumberSOCounters'] = blobDecode($data_his["counters"]);
+                    }
+                    $regData["main"]['referenceID__' . $step_his] = $data_his["trID"];
+                    $regData["main"]['referenceNumber__' . $step_his] = $data_his["nomer"];
+                    $regData["main"]['referenceNomer__' . $step_his] = $data_his["nomer"];
+                    $regData["main"]['referenceDtime__' . $step_his] = $data_his["dtime"];
+                    $regData["main"]['referenceFulldate__' . $step_his] = $data_his["fulldate"];
+                }
+
+            }
+            $sessionData[$cCode] = fillValues_he_value_builder_ns($jenisTr, $stepNumCurrent, $stepNumCurrent, $this->configCoreModul[$jenisTr], $this->configUiModul[$jenisTr], $this->configValuesModul[$jenisTr], $regData["main"]["ppnFactor"], NULL, $regData);
+            //region update step yang sebelumnya aktif, transaksi yang dibuka sekarang
+            $tp = new MdlPembelianTransaksi();
+            $dupState = $tp->updateData(array(
+                "id" => $no,
+            ), $arrData) or die("Failed to update tr next-state!");
+            $mongListUpadte['update']['main'][] = array(
+                "where" => array("id" => $no,),
+                "value" => $arrData,
+            );
+            cekLime($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+
+            $to = new MdlPembelianTransaksi();
+            $to->setFilters(array());
+            $to->setTableName($to->getTableNames()['detail']);
+            $dupState = $to->updateData(array(
+                "transaksi_id" => $no,
+                "trash" => 0,
+            ), $arrData_detail) or die("Failed to update tr next-state!");
+            $mongListUpadte['update']['detail'][] = array(
+                "where" => array(
+                    "transaksi_id" => $no,
+                    "trash" => 0,
+                ),
+                "value" => $arrData_detail,
+            );
+            cekLime($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+
+            //endregion
+
+
+            //region sesuaikan signature untuk cloningan, ikut minus
+            $arrSign = array(
+                "prev_id" => $no,
+                "nomer" => "rejection",
+                "step_number" => -$stepNumCurrent, // ini minus step number
+                "step_code" => $this->configUiModul[$jenisTr]['steps'][abs($stepNumCurrent)]['target'],
+                "step_name" => $this->configUiModul[$jenisTr]['steps'][abs($stepNumCurrent)]['label'],
+                "group_code" => $this->configUiModul[$jenisTr]['steps'][abs($stepNumCurrent)]['userGroup'],
+                "oleh_id" => $oleh_id ." auto by system",
+                "oleh_nama" => $oleh_nama ." auto by system",
+                "keterangan" => $this->configUiModul[$jenisTr]['steps'][abs($stepNumCurrent)]['label'] . " oleh " . $oleh_nama. " auto by system",
+            );
+            $dwsign = $tr->writeSignature($tmpTr[0]->id_top, $arrSign) or die("Failed to write signature");
+            //$mongoList['sign'][] = $dwsign;
+//            cekPink2($this->CI->db->last_query() . " [" . $this->CI->db->affected_rows() . "]");
+            //endregion
+
+
+            // region netralisasi payment source
+            $tr = New MdlPembelianTransaksi();
+            $tr->setFilters(array());
+            $tr->addFilter("sisa>0");
+            $paymentSrc = $tr->lookupPaymentSrcByTransID($no)->result();
+            cekBiru($this->CI->db->last_query());
+            if (sizeof($paymentSrc) > 0) {
+                foreach ($paymentSrc as $pSpec) {
+                    if ($pSpec->terbayar == 0) {
+                        $where = array(
+                            "id" => $pSpec->id,
+                            "transaksi_id" => $pSpec->transaksi_id,
+                        );
+                        $data = array(
+                            "sisa" => 0,
+                            "returned" => $pSpec->sisa,
+                            "sisa_valas" => 0,
+                            "returned_valas" => $pSpec->sisa_valas,
+                            "cancel_id" => $oleh_id,
+                            "cancel_name" => $oleh_nama,
+                            "cancel_dtime" => date("Y-m-d H:i:s"),
+                        );
+
+                        $tra = New MdlPembelianTransaksi();
+                        $tra->setFilters(array());
+                        $tra->updatePaymentSrc($where, $data);
+                        cekUngu(":: mereject payment source bila ada...");
+                        cekUngu($this->db->last_query());
+                    }
+                    else {
+                        mati_disini("transaksi gagal karena " . $pSpec->_key . " telah diterima oleh finance.");
+                    }
+                }
+            }
+            else {
+                cekBiru(":: tidak ada payment source... ::");
+            }
+            // endregion netralisasi payment source
+
+            // region netralisasi extended step
+            $tr = New MdlPembelianTransaksi();
+            $tr->setFilters(array());
+            $exTmp = $tr->lookupExtStepByTrID($no);
+            if (sizeof($exTmp) > 0) {
+                foreach ($exTmp as $exSpec) {
+
+                    $tra = New MdlPembelianTransaksi();
+                    $tra->setFilters(array());
+                    $tra->rejectExtStepByID($exSpec['id']);
+                    $mongListUpadte['update']['extra'][] = array(
+                        "where" => array(
+                            "id" => $exSpec['id'],
+                        ),
+                        "value" => array(
+                            "state" => "-1",
+                        ),
+                    );
+                    cekUngu(":: mereject extended step bila ada...");
+                    cekUngu($this->db->last_query());
+                }
+            }
+            else {
+                cekBiru(":: tidak ada extended step... ::");
+            }
+
+            // endregion netralisasi extended step
+//arrPrint($this->configUiModul[$jenisTr]["connectToReject"][$stepNumCurrent]);
+//            matiHere(__LINE__);
+            // region menulis entry point
+
+            if (isset($this->configUiModul[$jenisTr]["connectToReject"][$stepNumCurrent])) {
+                if ($this->configUiModul[$jenisTr]["connectToReject"][$stepNumCurrent]["enabled"] == true) {
+                    $masterID = $currentMasterID;
+                    $connecTo = $this->configUiModul[$jenisTr]["connectToReject"][$stepNumCurrent]["connectTo"];
+                    $tCodeTargetJenisTransaksi = $this->configUiModul[$jenisTr]["connectToReject"][$stepNumCurrent]["connectTo"];
+                    $modul_transaksi = $this->modul;
+//                    matiHere($modul_transaksi);
+                    cekHijau("START menjalankan REJECT ALL... [$masterID] [$connecTo]");
+                    if ($connecTo == NULL) {
+                        mati_disini("kode edit transaksi tidak dikenali. segera hubungi admin.");
+                    }
+                    $oldCode = $cCode;
+                    $cCode = "_TR_" . $connecTo;
+                    $sessionData[$cCode] = array(
+                        'main' => isset($sessionData[$oldCode]['main']) ? $sessionData[$oldCode]['main'] : array(),
+                        'items' => isset($sessionData[$oldCode]['items']) ? $sessionData[$oldCode]['items'] : array(),
+                        'items2' => isset($sessionData[$oldCode]['items2']) ? $sessionData[$oldCode]['items2'] : array(),
+                        'items2_sum' => isset($sessionData[$oldCode]['items2_sum']) ? $sessionData[$oldCode]['items2_sum'] : array(),
+                        'itemSrc' => isset($sessionData[$oldCode]['itemSrc']) ? $sessionData[$oldCode]['itemSrc'] : array(),
+                        'itemSrc_sum' => isset($sessionData[$oldCode]['itemSrc_sum']) ? $sessionData[$oldCode]['itemSrc_sum'] : array(),
+                        'items3' => isset($sessionData[$oldCode]['items3']) ? $sessionData[$oldCode]['items3'] : array(),
+                        'items3_sum' => isset($sessionData[$oldCode]['items3_sum']) ? $sessionData[$oldCode]['items3_sum'] : array(),
+                        'items4' => isset($sessionData[$oldCode]['items4']) ? $sessionData[$oldCode]['items4'] : array(),
+                        'items4_sum' => isset($sessionData[$oldCode]['items4_sum']) ? $sessionData[$oldCode]['items4_sum'] : array(),
+                        'items5_sum' => isset($sessionData[$oldCode]['items5_sum']) ? $sessionData[$oldCode]['items5_sum'] : array(),
+                        'items6_sum' => isset($sessionData[$oldCode]['items6_sum']) ? $sessionData[$oldCode]['items6_sum'] : array(),
+                        'items7_sum' => isset($sessionData[$oldCode]['items7_sum']) ? $sessionData[$oldCode]['items7_sum'] : array(),
+                        'items8_sum' => isset($sessionData[$oldCode]['items8_sum']) ? $sessionData[$oldCode]['items8_sum'] : array(),
+                        'items9_sum' => isset($sessionData[$oldCode]['items9_sum']) ? $sessionData[$oldCode]['items9_sum'] : array(),
+                        'items10_sum' => isset($sessionData[$oldCode]['items10_sum']) ? $sessionData[$oldCode]['items10_sum'] : array(),
+                        'rsltItems' => isset($sessionData[$oldCode]['rsltItems']) ? $sessionData[$oldCode]['rsltItems'] : array(),
+                        'rsltItems2' => isset($sessionData[$oldCode]['rsltItems2']) ? $sessionData[$oldCode]['rsltItems2'] : array(),
+                        'rsltItems3' => isset($sessionData[$oldCode]['rsltItems3']) ? $sessionData[$oldCode]['rsltItems3'] : array(),
+                        'tableIn_master' => isset($sessionData[$oldCode]['tableIn_master']) ? $sessionData[$oldCode]['tableIn_master'] : array(),
+                        'tableIn_detail' => isset($sessionData[$oldCode]['tableIn_detail']) ? $sessionData[$oldCode]['tableIn_detail'] : array(),
+                        'tableIn_detail2_sum' => isset($sessionData[$oldCode]['tableIn_detail2_sum']) ? $sessionData[$oldCode]['tableIn_detail2_sum'] : array(),
+                        'tableIn_detail_rsltItems' => isset($sessionData[$oldCode]['tableIn_detail_rsltItems']) ? $sessionData[$oldCode]['tableIn_detail_rsltItems'] : array(),
+                        'tableIn_detail_rsltItems2' => isset($sessionData[$oldCode]['tableIn_detail_rsltItems2']) ? $sessionData[$oldCode]['tableIn_detail_rsltItems2'] : array(),
+                        'tableIn_master_values' => isset($sessionData[$oldCode]['tableIn_master_values']) ? $sessionData[$oldCode]['tableIn_master_values'] : array(),
+                        'tableIn_detail_values' => isset($sessionData[$oldCode]['tableIn_detail_values']) ? $sessionData[$oldCode]['tableIn_detail_values'] : array(),
+                        'tableIn_detail_values_rsltItems' => isset($sessionData[$oldCode]['tableIn_detail_values_rsltItems']) ? $sessionData[$oldCode]['tableIn_detail_values_rsltItems'] : array(),
+                        'tableIn_detail_values_rsltItems2' => isset($sessionData[$oldCode]['tableIn_detail_values_rsltItems2']) ? $sessionData[$oldCode]['tableIn_detail_values_rsltItems2'] : array(),
+                        'tableIn_detail_values2_sum' => isset($sessionData[$oldCode]['tableIn_detail_values2_sum']) ? $sessionData[$oldCode]['tableIn_detail_values2_sum'] : array(),
+                        'main_add_values' => isset($sessionData[$oldCode]['main_add_values']) ? $sessionData[$oldCode]['main_add_values'] : array(),
+                        'main_add_fields' => isset($sessionData[$oldCode]['main_add_fields']) ? $sessionData[$oldCode]['main_add_fields'] : array(),
+                        'main_elements' => isset($sessionData[$oldCode]['main_elements']) ? $sessionData[$oldCode]['main_elements'] : array(),
+                        'main_inputs' => isset($sessionData[$oldCode]['main_inputs']) ? $sessionData[$oldCode]['main_inputs'] : array(),
+                        'main_inputs_orig' => isset($sessionData[$oldCode]['main_inputs']) ? $sessionData[$oldCode]['main_inputs'] : array(),
+                        "receiptDetailFields" => isset($this->configLayout[$this->jenisTr]['receiptDetailFields'][1]) ? $this->configLayout[$this->jenisTr]['receiptDetailFields'][1] : array(),
+                        "receiptSumFields" => isset($this->configLayout[$this->jenisTr]['receiptSumFields'][1]) ? $this->configLayout[$this->jenisTr]['receiptSumFields'][1] : array(),
+                        "receiptDetailFields2" => isset($this->configLayout[$this->jenisTr]['receiptDetailFields2'][1]) ? $this->configLayout[$this->jenisTr]['receiptDetailFields2'][1] : array(),
+                        "receiptDetailSrcFields" => isset($this->configLayout[$this->jenisTr]['receiptDetailSrcFields'][1]) ? $this->configLayout[$this->jenisTr]['receiptDetailSrcFields'][1] : array(),
+                        "receiptSumFields2" => isset($this->configLayout[$this->jenisTr]['receiptSumFields2'][1]) ? $this->configLayout[$this->jenisTr]['receiptSumFields2'][1] : array(),
+                        "jurnal_index" => isset($jurnalIndex) ? $jurnalIndex : array(),
+                        "postProcessor" => isset($jurnalPostProc) ? $jurnalPostProc : array(),
+                        "preProcessor" => isset($jurnalPreProc) ? $jurnalPreProc : array(),
+                        "revert" => isset($sessionData[$oldCode]['revert']) ? $sessionData[$oldCode]['revert'] : array(),
+                        "items_komposisi" => isset($sessionData[$oldCode]['items_komposisi']) ? $sessionData[$oldCode]['items_komposisi'] : array(),
+                        "items_noapprove" => isset($sessionData[$oldCode]['items_noapprove']) ? $sessionData[$oldCode]['items_noapprove'] : array(),
+                        "jurnalItems" => isset($sessionData[$oldCode]['jurnalItems']) ? $sessionData[$oldCode]['jurnalItems'] : array(),
+                        "componentsBuilder" => isset($sessionData[$oldCode]['componentsBuilder']) ? $sessionData[$oldCode]['componentsBuilder'] : array(),
+                    );
+                    // masuk ke gerbang TableInMaster, tabel transaksi
+
+//                    arrPrint($sessionData);
+//                    matiHere(__LINE__);
+                    $masterReplacers = array(
+                        //                        "inv" => $tmpNomorNota,
+                        "jenis_master" => $this->jenisTr,
+                        "jenis_top" => $connecTo,
+                        "jenis" => $connecTo,
+                        "jenis_label" => $this->configUiModul[$jenisTr]["connectToReject"][$stepNumCurrent]["label"],
+                        "transaksi_jenis" => $connecTo,
+                        "step_avail" => 1,
+                        "step_current" => 1,
+                        "step_number" => 1,
+                        "next_step_code" => "",
+                        "next_step_label" => "",
+                        "next_group_code" => "",
+                        "next_step_num" => "0",
+                        "trash_4" => 1,
+                        "cancel_dtime" => date("Y-m-d H:i:s"),
+                        "cancel_name" => $oleh_id,
+                        "cancel_id" => $oleh_nama ." auto by system",
+                        "deskripsi" => "rejection",
+                        "oleh_id" => my_id(),
+                        "oleh_nama" => my_name()
+                    );
+                    // masuk ke gerbang main
+                    $masterReplacersO = array(
+                        "stepCode" => $connecTo,
+                        "jenisTrTop" => $connecTo,
+                        "jenisTrName" => $this->configUiModul[$jenisTr]["connectToReject"][$stepNumCurrent]["label"],
+                        //                        "inv" => $tmpNomorNota,
+                        "jenis_master" => $this->jenisTr,
+                        "jenis_top" => $connecTo,
+                        "jenis" => $connecTo,
+                        "jenis_label" => $this->configUiModul[$jenisTr]["connectToReject"][$stepNumCurrent]["label"],
+                        "transaksi_jenis" => $connecTo,
+                        "stepCode" => $connecTo,
+                        "jenisTrTop" => $connecTo,
+                        "jenisTrName" => $this->configUiModul[$jenisTr]["connectToReject"][$stepNumCurrent]["label"],
+                        "step_avail" => 1,
+                        "step_current" => 1,
+                        "step_number" => 1,
+                        "next_step_code" => "",
+                        "next_step_label" => "",
+                        "next_group_code" => "",
+                        "next_step_num" => "0",
+                        "olehID" => my_id(),
+                        "olehName" => my_name(),
+                    );
+                    foreach ($masterReplacersO as $key => $val) {
+                        $sessionData[$cCode]['main'][$key] = $val;
+                    }
+                    foreach ($masterReplacers as $key => $val) {
+                        $sessionData[$cCode]['tableIn_master'][$key] = $val;
+                    }
+
+                    //region penomoran receipt
+                    $this->CI->load->model("CustomCounter");
+                    $cn = new CustomCounter("transaksi");
+                    $cn->setType("transaksi");
+                    $cn->setModul($modul_transaksi);
+                    $cn->setStepCode($tCodeTargetJenisTransaksi);
+                    $counterForNumber = array($this->configCoreModul[$this->jenisTr]['formatNotaReject']);
+                    if (!in_array($counterForNumber[0], $this->configCoreModul[$this->jenisTr]['countersReject'])) {
+                        die(__LINE__ . " Used number should be registered in 'counters' config as well");
+                    }
+                    echo "<div style='background:#ff7766;'>";
+                    foreach ($counterForNumber as $i => $cRawParams) {
+                        $cParams = explode("|", $cRawParams);
+                        $cValues = array();
+                        foreach ($cParams as $param) {
+                            $cValues[$i][$param] = $sessionData[$cCode]['main'][$param];
+                        }
+                        $cRawValues = implode("|", $cValues[$i]);
+                        $paramSpec = $cn->getNewCount($cParams, $cValues[$i]);
+                    }
+                    echo "</div style='background:#ff7766;'>";
+
+                    $stepNumber = 1;
+                    $tmpNomorNota = $paramSpec['paramString'];
+                    $tmpNomorNotaAlias = formatNota("nomer_nolink", $tmpNomorNota);
+                    $nextProp = array(
+                        "num" => 0,
+                        "code" => "",
+                        "label" => "",
+                        "groupID" => "",
+                    );
+                    //endregion
+
+                    //region dynamic counters
+                    // <editor-fold defaultstate="collapsed" desc="==========__init+update dynamic-counters ">
+                    $cn = new CustomCounter("transaksi");
+                    $cn->setType("transaksi");
+                    $cn->setModul($modul_transaksi);
+                    $cn->setStepCode($tCodeTargetJenisTransaksi);
+                    $configCustomParams = $this->configCoreModul[$this->jenisTr]['countersReject'];
+                    $configCustomParams[] = "stepCode";
+                    //arrPrint($configCustomParams);
+                    if (sizeof($configCustomParams) > 0) {
+                        $cContent = array();
+                        foreach ($configCustomParams as $i => $cRawParams) {
+                            $cParams = explode("|", $cRawParams);
+                            $cValues = array();
+                            foreach ($cParams as $param) {
+                                $cValues[$i][$param] = $sessionData[$cCode]['main'][$param];
+                            }
+                            $cRawValues = implode("|", $cValues[$i]);
+                            $paramSpec = $cn->getNewCount($cParams, $cValues[$i]);
+                            $cContent[$cRawParams][$cRawValues] = $paramSpec['value'];
+                            switch ($paramSpec['id']) {
+                                case 0: //===counter type is new
+                                    $paramKeyRaw = print_r($cParams, true);
+                                    $paramValuesRaw = print_r($cValues[$i], true);
+                                    $cn->writeNewCount($cParams, $cValues[$i], $paramKeyRaw, $paramValuesRaw);
+                                    break;
+                                default: //===counter to be updated
+                                    $cn->updateCount($paramSpec['id'], $paramSpec['value']);
+                                    break;
+                            }
+                            //echo "<hr>";
+                        }
+                    }
+                    $appliedCounters = base64_encode(serialize($cContent));
+                    $appliedCounters_inText = print_r($cContent, true);
+                    //region addition on master
+
+
+                    $addValues = array(
+                        'counters' => $appliedCounters,
+                        'counters_intext' => $appliedCounters_inText,
+                        'nomer' => $tmpNomorNota,
+                        'nomer2' => $tmpNomorNotaAlias,
+                        'dtime' => date("Y-m-d H:i:s"),
+                        'fulldate' => date("Y-m-d"),
+                        "step_avail" => sizeof($this->configUiModul[$this->jenisTr]['steps']),
+                        "step_number" => 1,
+                        "step_current" => 1,
+                        "next_step_num" => $nextProp['num'],
+                        "next_step_code" => $nextProp['code'],
+                        "next_step_label" => $nextProp['label'],
+                        "next_group_code" => $nextProp['groupID'],
+                        "tail_number" => 1,
+                        "tail_code" => $this->configUiModul[$this->jenisTr]['steps'][1]['target'],
+
+
+                    );
+                    foreach ($addValues as $key => $val) {
+                        $sessionData[$cCode]['tableIn_master'][$key] = $val;
+                    }
+                    //endregion
+
+                    //
+                    //region addition on detail
+                    $addSubValues = array(
+                        "sub_step_number" => 1,
+                        "sub_step_current" => 1,
+                        "sub_step_avail" => sizeof($this->configUiModul[$this->jenisTr]['steps']),
+                        "next_substep_num" => $nextProp['num'],
+                        "next_substep_code" => $nextProp['code'],
+                        "next_substep_label" => $nextProp['label'],
+                        "next_subgroup_code" => $nextProp['groupID'],
+                        "sub_tail_number" => 1,
+                        "sub_tail_code" => $this->configUiModul[$this->jenisTr]['steps'][1]['target'],
+
+
+                    );
+                    foreach ($sessionData[$cCode]['tableIn_detail'] as $id => $dSpec) {
+                        foreach ($addSubValues as $key => $val) {
+                            $sessionData[$cCode]['tableIn_detail'][$id][$key] = $val;
+                        }
+                    }
+//                    arrPrint($sessionData[$cCode]['tableIn_detail']);
+//                    matiHere($cCode);
+                    //endregion
+
+                    //endregion
+
+                    $addValues = array(
+                        'counters' => $appliedCounters,
+                        'counters_intext' => $appliedCounters_inText,
+                        'nomer' => $tmpNomorNota,
+                        'nomer2' => $tmpNomorNotaAlias,
+                        'dtime' => date("Y-m-d H:i:s"),
+                        'fulldate' => date("Y-m-d"),
+                    );
+                    foreach ($addValues as $key => $val) {
+                        $sessionData[$cCode]['tableIn_master'][$key] = $val;
+                    }
+                    $masterReplacers = array(
+                        "nomer" => $tmpNomorNota,
+                        "nomer2" => $tmpNomorNotaAlias,
+                        "counters" => $appliedCounters,
+                        "counters_intext" => $appliedCounters_inText,
+                    );
+                    foreach ($masterReplacers as $key => $val) {
+                        $sessionData[$cCode]['tableIn_master'][$key] = $val;
+                    }
+                    $detailReplacers = array(
+                        "sub_step_avail" => 1,
+                        "sub_step_current" => 1,
+                        "sub_step_number" => 1,
+                        "next_substep_num" => "",
+                        "next_substep_code" => "",
+                        "next_substep_label" => "",
+                        "next_subgroup_code" => "",
+                    );
+                    if (isset($sessionData[$cCode]['tableIn_detail']) && sizeof($sessionData[$cCode]['tableIn_detail']) > 0) {
+                        foreach ($sessionData[$cCode]['tableIn_detail'] as $k => $dSpec) {
+                            foreach ($dSpec as $key => $val) {
+                                $sessionData[$cCode]['tableIn_detail'][$k][$key] = isset($detailReplacers[$key]) ? $detailReplacers[$key] : $val;
+                            }
+                        }
+                    }
+                    $itemsReplacers = array(
+                        "next_substep_num" => "",
+                        "next_substep_code" => "",
+                        "next_substep_label" => "",
+                        "next_subgroup_code" => "",
+                    );
+                    if (isset($sessionData[$cCode]['items']) && sizeof($sessionData[$cCode]['items']) > 0) {
+                        foreach ($sessionData[$cCode]['items'] as $k => $dSpec) {
+                            foreach ($dSpec as $key => $val) {
+                                $sessionData[$cCode]['items'][$k][$key] = isset($itemsReplacers[$key]) ? $itemsReplacers[$key] : $val;
+                            }
+                        }
+                    }
+
+                    //region ----------write transaksi, transaksi_data, main_fields, main_values, main_applets, etc
+                    if (isset($sessionData[$cCode]['tableIn_master']) && sizeof($sessionData[$cCode]['tableIn_master']) > 0) {
+                        $sessionData[$cCode]['tableIn_master']['status_4'] = 11;
+                        $sessionData[$cCode]['tableIn_master']['trash_4'] = 1;// dibatalkan
+                        $sessionData[$cCode]['tableIn_master']['cli'] = 1;
+
+                        $tr = new MdlPembelianTransaksi();
+                        $tr->addFilter("transaksi.cabang_id='" . $this->session->login['cabang_id'] . "'");
+                        $insertID = $tr->writeMainEntries($sessionData[$cCode]['tableIn_master']);
+
+                        cekHitam("[$insertID] :: " . $this->CI->db->last_query());
+//                        $epID = $tr->writeMainEntries_entryPoint($insertID, $masterID, $sessionData[$cCode]['tableIn_master']);
+                        $insertNum = $sessionData[$cCode]['tableIn_master']['nomer'];
+                        $rejectData_id[]=$insertID;
+                        $rejectData_num[$insertID]=$insertNum;
+                        $sessionData[$cCode]['main']['nomer'] = $insertNum;
+                        if ($insertID < 1) {
+                            die("Gagal saat berusaha  write transaction entry pada " . __FILE__ . " baris " . __LINE__);
+                        }
+                        //$mongoList['main'] = array($insertID, $epID);
+                        //==transaksi_id dan nomor nota diinject kan ke gate utama
+                        $injectors = array(
+                            "transaksi_id" => $insertID,
+                            "nomer" => $tmpNomorNota,
+                            "nomer2" => $tmpNomorNotaAlias,
+                        );
+                        $arrInjectorsTarget = array(
+                            "items",
+                            "items2_sum",
+                            "rsltItems",
+                        );
+                        foreach ($injectors as $key => $val) {
+                            $sessionData[$cCode]['main'][$key] = $val;
+                            foreach ($arrInjectorsTarget as $target) {
+                                if (isset($sessionData[$cCode][$target])) {
+                                    foreach ($sessionData[$cCode][$target] as $xid => $iSpec) {
+                                        $id = isset($iSpec['id']) && $iSpec['id'] > 0 ? $iSpec['id'] : $xid;
+                                        if (isset($sessionData[$cCode][$target][$id])) {
+                                            $sessionData[$cCode][$target][$id][$key] = $val;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        //===signature
+                        $dwsign = $tr->writeSignature($insertID, array(
+                            "nomer" => $sessionData[$cCode]['main']['nomer'],
+                            "step_number" => 1,
+                            "step_code" => $connecTo,
+                            "step_name" => $this->configUiModul[$jenisTr]["connectToReject"][1]["label"],
+                            "group_code" => "",
+                            "oleh_id" => $oleh_id,
+                            "oleh_nama" => $oleh_nama,
+                            "keterangan" => $this->configUiModul[$jenisTr]['steps'][1]['label'] . " oleh " . $oleh_nama,
+                            "transaksi_id" => $masterID,
+                            "deskripsi" => "edit transaksi",
+                            "cabang_id" => $cabang_id,
+                            "cabang_nama" =>$cabang_nama,
+                            "current_transaksi_id" => $masterID,
+                            "current_nomer" => $sessionData[$cCode]['main']['nomer'],
+                        )) or die("Failed to write signature");
+                        showLast_query("kuning");
+                        //$mongoList['sign'][] = $dwsign;
+                        $idHis = array(
+                            $stepNumber => array(
+                                "dtime" => date("Y-m-d H:i:s"),
+                                "fulldate" => date("Y-m-d"),
+                                "olehID" => $sessionData[$cCode]['main']['olehID'],
+                                "olehName" => $sessionData[$cCode]['main']['olehName'],
+                                "step" => $stepNumber,
+                                "trID" => $insertID,
+                                "nomer" => $tmpNomorNota,
+                                "nomer2" => $tmpNomorNotaAlias,
+                                "counters" => $appliedCounters,
+                                "counters_intext" => $appliedCounters_inText,
+                            ),
+                        );
+                        $idHis_blob = blobEncode($idHis);
+                        $idHis_intext = print_r($idHis, true);
+                        $tr = new MdlPembelianTransaksi();
+                        $dupState = $tr->updateData(array("id" => $insertID), array(
+                            "next_step_num" => $nextProp['num'],
+                            "next_step_code" => $nextProp['code'],
+                            "next_step_label" => $nextProp['label'],
+                            "next_group_code" => $nextProp['groupID'],
+
+                            //===references
+                            //                            "id_master" => $insertID,
+                            "id_master" => $masterID,// milik transkasiID yang diedit
+                            "id_top" => $insertID,
+                            "ids_prev" => "",
+                            "ids_prev_intext" => "",
+                            "nomer_top" => $sessionData[$cCode]['main']['nomer'],
+                            "nomers_prev" => "",
+                            "nomers_prev_intext" => "",
+                            "jenises_prev" => "",
+                            "jenises_prev_intext" => "",
+                            "ids_his" => $idHis_blob,
+                            "ids_his_intext" => $idHis_intext,
+
+                        )) or die("Failed to update tr next-state!");
+                        cekHijau($this->CI->db->last_query());
+
+                        $addValues = array(
+                            //===references
+                            "id_master" => $insertID,
+                            "id_top" => $insertID,
+                            "ids_prev" => "",
+                            "ids_prev_intext" => "",
+                            "nomer_top" => $sessionData[$cCode]['main']['nomer'],
+                            "nomers_prev" => "",
+                            "nomers_prev_intext" => "",
+                            "jenises_prev" => "",
+                            "jenises_prev_intext" => "",
+                            "ids_his" => $idHis_blob,
+                            "ids_his_intext" => $idHis_intext,
+                        );
+                        foreach ($addValues as $key => $val) {
+                            $sessionData[$cCode]['tableIn_master'][$key] = $val;
+                        }
+
+                    }
+                    if (isset($sessionData[$cCode]['tableIn_master_values']) && sizeof($sessionData[$cCode]['tableIn_master_values']) > 0) {
+                        $inserMainValues = array();
+                        if (isset($this->configCoreModul[$this->jenisTr]['tableIn']['mainValues'])) {
+                            //matiHEre("hooppp");
+                            $inserMainValues = array();
+                            foreach ($this->configCoreModul[$this->jenisTr]['tableIn']['mainValues'] as $key => $src) {
+                                if (isset($sessionData[$cCode]['tableIn_master_values'][$key])) {
+                                    $dd = $tr->writeMainValues($insertID, array(
+                                        "key" => $key,
+                                        "value" => $sessionData[$cCode]['tableIn_master_values'][$key],
+                                    ));
+
+                                    $inserMainValues[] = $dd;
+                                    //$mongoList['mainValues'][] = $dd;
+                                }
+                            }
+                        }
+
+                        if (sizeof($inserMainValues) > 0) {
+                            $arrBlob = blobEncode($inserMainValues);
+                            $this->db->query("UPDATE transaksi SET indexing_main_values = '$arrBlob' WHERE id=$insertID");
+                        }
+
+                    }
+                    if (isset($sessionData[$cCode]['main_add_values']) && sizeof($sessionData[$cCode]['main_add_values']) > 0) {
+                        $inserMainValues = array();
+                        foreach ($sessionData[$cCode]['main_add_values'] as $key => $val) {
+                            $dd = $tr->writeMainValues($insertID, array("key" => $key, "value" => $val));
+                            $inserMainValues[] = $dd;
+                            //$mongoList['mainValues'][] = $dd;
+                        }
+
+                        if (sizeof($inserMainValues) > 0) {
+                            $arrBlob = blobEncode($inserMainValues);
+                            $this->db->query("UPDATE transaksi SET indexing_main_values = '$arrBlob' WHERE id=$insertID");
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['main_inputs']) && sizeof($sessionData[$cCode]['main_inputs']) > 0) {
+                        foreach ($sessionData[$cCode]['main_inputs'] as $key => $val) {
+                            $tr->writeMainValues($insertID, array("key" => $key, "value" => $val));
+                            //                    cekkuning("making a clone for input key $key / $val");
+                            //                    $tmpTableIn=$sessionData[$cCode]['tableIn_master'];
+                            //                    $replacers=array(
+                            //                        "nomer"=>$sessionData[$cCode]['tableIn_master']['nomer']."_$key",
+                            //                    );
+                            //                    foreach($replacers as $key=>$val){
+                            //                        $tmpTableIn[$key]=$val;
+                            //                    }
+                            //                    $subInputInsertID = $tr->writeMainEntries($tmpTableIn);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['main_add_fields']) && sizeof($sessionData[$cCode]['main_add_fields']) > 0) {
+                        foreach ($sessionData[$cCode]['main_add_fields'] as $key => $val) {
+                            $tr->writeMainFields($insertID, array("key" => $key, "value" => $val));
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['main_applets']) && sizeof($sessionData[$cCode]['main_applets']) > 0) {
+                        foreach ($sessionData[$cCode]['main_applets'] as $amdl => $aSpec) {
+                            $tr->writeMainApplets($insertID, array(
+                                "mdl_name" => $amdl,
+                                "key" => $aSpec['key'],
+                                "label" => $aSpec['labelValue'],
+                                "description" => $aSpec['description'],
+                            ));
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['main_elements']) && sizeof($sessionData[$cCode]['main_elements']) > 0) {
+                        foreach ($sessionData[$cCode]['main_elements'] as $elName => $aSpec) {
+                            $tr->writeMainElements($insertID, array(
+                                "mdl_name" => isset($aSpec['mdl_name']) ? $aSpec['mdl_name'] : "",
+                                "key" => isset($aSpec['key']) ? $aSpec['key'] : 0,
+                                "value" => isset($aSpec['value']) ? $aSpec['value'] : "",
+                                "name" => $aSpec['name'],
+                                "label" => $aSpec['label'],
+                                "contents" => isset($aSpec['contents']) ? $aSpec['contents'] : "",
+                                "contents_intext" => isset($aSpec['contents_intext']) ? $aSpec['contents_intext'] : "",
+
+                            ));
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['tableIn_detail']) && sizeof($sessionData[$cCode]['tableIn_detail']) > 0) {
+
+                        $insertIDs = array();
+                        $insertDeIDs = array();
+                        foreach ($sessionData[$cCode]['tableIn_detail'] as $dSpec) {
+                            $insertDetailID = $tr->writeDetailEntries($insertID, $dSpec);
+                            if ($insertDetailID < 1) {
+                                die("Gagal saat berusaha write transaction detail entry pada " . __FILE__ . " baris " . __LINE__);
+                            }
+                            else {
+                                $insertIDs[] = $insertDetailID;
+                                $insertDeIDs[$insertID][] = $insertDetailID;
+                                //$mongoList['detail'][] = $insertDetailID;
+                            }
+                        }
+
+                        if (sizeof($insertIDs) == 0) {
+                            die(lgShowAlert("Transaksi gagal disimpan karena rincian transaksi kosong."));
+                        }
+                        else {
+                            $indexing_details = array();
+                            foreach ($insertDeIDs as $key => $numb) {
+                                $indexing_details[$key] = $numb;
+                            }
+
+                            foreach ($indexing_details as $k => $arrID) {
+                                $arrBlob = blobEncode($arrID);
+                                $this->CI->db->query("UPDATE pembelian_transaksi SET indexing_details = '$arrBlob' WHERE id=$k");
+                                cekOrange($this->CI->db->last_query());
+                            }
+                        }
+                    }
+                    else {
+                        matiHere("Transaksi gagal disimpan karena rincian transaksi kosong.");
+                    }
+                    if (isset($sessionData[$cCode]['tableIn_detail2']) && sizeof($sessionData[$cCode]['tableIn_detail2']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['tableIn_detail2'] as $dSpec) {
+                            $insertIDs[] = $tr->writeDetailEntries($insertID, $dSpec);
+                            cekUngu($this->db->last_query());
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['tableIn_detail2_sum']) && sizeof($sessionData[$cCode]['tableIn_detail2_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['tableIn_detail2_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeDetailEntries($insertID, $dSpec);
+                            $insertIDs[] = $insertDetailID;
+                            //$mongoList['detail'][] = $insertDetailID;
+//                            if ($epID != 999) {
+//                                $dd = $tr->writeDetailEntries($epID, $dSpec);
+//                                $insertIDs[] = $dd;
+//                                //$mongoList['detail'][] = $dd;
+//                            }
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['tableIn_detail_rsltItems']) && sizeof($sessionData[$cCode]['tableIn_detail_rsltItems']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['tableIn_detail_rsltItems'] as $dSpec) {
+                            $dd = $tr->writeDetailEntries($insertID, $dSpec);
+                            $insertIDs[] = $dd;
+                            //$mongoList['detil'][] = $dd;
+//                            if ($epID != 999) {
+//                                $insertIDs[] = $tr->writeDetailEntries($epID, $dSpec);
+//                                //$mongoList['detil'] = $insertIDs;
+//                            }
+                            cekUngu($this->db->last_query());
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['tableIn_detail_values']) && sizeof($sessionData[$cCode]['tableIn_detail_values']) > 0) {
+
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['tableIn_detail_values'] as $pID => $dSpec) {
+                            if (isset($this->configCoreModul[$this->jenisTr]['tableIn']['detailValues'])) {
+                                foreach ($this->configCoreModul[$this->jenisTr]['tableIn']['detailValues'] as $key => $src) {
+                                    if (isset($sessionData[$cCode]['tableIn_detail'][$pID])) {
+                                        $dd = $tr->writeDetailValues($insertID, array(
+                                            "produk_jenis" => $sessionData[$cCode]['tableIn_detail'][$pID]['produk_jenis'],
+                                            "produk_id" => $pID,
+                                            "key" => $key,
+                                            "value" => isset($dSpec[$src]) ? $dSpec[$src] : "0",
+                                        ));
+                                        $insertIDs[$pID][] = $dd;
+                                        //$mongoList['detailValues'][] = $dd;
+
+                                    }
+                                }
+                            }
+                        }
+
+                        if (sizeof($insertIDs) > 0) {
+                            $arrBlob = blobEncode($insertIDs);
+                            $this->db->query("UPDATE transaksi SET indexing_detail_values = '$arrBlob' WHERE id=$insertID");
+                        }
+
+                    }
+                    if (isset($sessionData[$cCode]['tableIn_detail_values2_sum']) && sizeof($sessionData[$cCode]['tableIn_detail_values2_sum']) > 0) {
+                        foreach ($sessionData[$cCode]['tableIn_detail_values2_sum'] as $pID => $dSpec) {
+                            if (isset($this->configCoreModul[$this->jenisTr]['tableIn']['detailValues2_sum'])) {
+                                $insertIDs = array();
+                                foreach ($this->configCoreModul[$this->jenisTr]['tableIn']['detailValues2_sum'] as $key => $src) {
+                                    $dd = $tr->writeDetailValues($insertID, array(
+                                        "produk_jenis" => $sessionData[$cCode]['tableIn_detail2_sum'][$pID]['produk_jenis'],
+                                        "produk_id" => $pID,
+                                        "key" => $key,
+                                        "value" => $dSpec[$src],
+                                    ));
+                                    $insertIDs[] = $dd;
+                                    //$mongoList['detailValues'][] = $dd;
+                                }
+                            }
+                        }
+                    }
+                    //endregion
+
+                    //pengganti registry ditulis ke tabel fisik
+                    if (isset($sessionData[$cCode]['main']) && sizeof($sessionData[$cCode]['main']) > 0) {
+                        $inserMain = array();
+//                foreach ($sessionData[$cCode]['main'] as $key => $val) {
+                        $insertIDs[] = $tr->writeDetailMainEntries($insertID, $sessionData[$cCode]['main']);
+                        cekBiru($this->CI->db->last_query());
+//                }
+                    }
+                    if (isset($sessionData[$cCode]['items']) && sizeof($sessionData[$cCode]['items']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items'] as $dSpec) {
+                            arrPrint($dSpec);
+                            $insertIDs[] = $tr->writeDetailItemsEntries($insertID, $dSpec);
+                            cekBiru($this->CI->db->last_query());
+                        }
+//                matiHere();
+                    }
+                    if (isset($sessionData[$cCode]['items2']) && sizeof($sessionData[$cCode]['items2']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['tableIn_items2'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems2($insertID, $dSpec);
+                            $mongoList['detail'] = $insertIDs;
+//                    if ($epID != 999) {
+//                        $insertIDs[] = $tr->writeEntriesDetailItems2($epID, $dSpec);
+//                        $mongoList['detail'] = $insertIDs;
+//                    }
+                            cekUngu($this->db->last_query());
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items2_sum']) && sizeof($sessionData[$cCode]['items2_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items2_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems2_sum($insertID, $dSpec);
+                            $insertIDs[] = $insertDetailID;
+                            $mongoList['detail'][] = $insertDetailID;
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items3']) && sizeof($sessionData[$cCode]['items3']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items3'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems3($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items3_sum']) && sizeof($sessionData[$cCode]['items3_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items3_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems3_sum($insertID, $dSpec);
+                            cekMErah($this->db->last_query());
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items4']) && sizeof($sessionData[$cCode]['items4']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items4'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems4($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items4_sum']) && sizeof($sessionData[$cCode]['items4_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items4_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems4_sum($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items5']) && sizeof($sessionData[$cCode]['items5']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items5'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems5($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items5_sum']) && sizeof($sessionData[$cCode]['items5_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items5_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems5_sum($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items6']) && sizeof($sessionData[$cCode]['items6']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items6'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems6($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items6_sum']) && sizeof($sessionData[$cCode]['items6_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['tableIn_items6_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems6_sum($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items7']) && sizeof($sessionData[$cCode]['items7']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['tableIn_items7'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems7($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items7_sum']) && sizeof($sessionData[$cCode]['items7_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items7_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems7_sum($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items8']) && sizeof($sessionData[$cCode]['items8']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items8'] as $dSpec) {
+                            $insertIDs[] = $tr->writeEntriesDetailItems8($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items8_sum']) && sizeof($sessionData[$cCode]['items8_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items8_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems8_sum($insertID, $dSpec);
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items9_sum']) && sizeof($sessionData[$cCode]['items9_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items9_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems9_sum($insertID, $dSpec);
+                            cekMErah($this->db->last_query());
+                        }
+                    }
+                    if (isset($sessionData[$cCode]['items10_sum']) && sizeof($sessionData[$cCode]['items10_sum']) > 0) {
+                        $insertIDs = array();
+                        foreach ($sessionData[$cCode]['items10_sum'] as $dSpec) {
+                            $insertDetailID = $tr->writeEntriesDetailItems10_sum($insertID, $dSpec);
+                        }
+                    }
+
+
+                    $baseRegistries = array(
+                        "jurnal_index" => isset($jurnalIndex) ? $jurnalIndex : array(),
+                        "postProcessor" => isset($jurnalPostProc) ? $jurnalPostProc : array(),
+                        "preProcessor" => isset($jurnalPreProc) ? $jurnalPreProc : array(),
+                        "revert" => isset($sessionData[$cCode]['revert']) ? $sessionData[$cCode]['revert'] : array(),
+                        "items_komposisi" => isset($sessionData[$cCode]['items_komposisi']) ? $sessionData[$cCode]['items_komposisi'] : array(),
+                        "items_noapprove" => isset($sessionData[$cCode]['items_noapprove']) ? $sessionData[$cCode]['items_noapprove'] : array(),
+                        "jurnalItems" => isset($sessionData[$cCode]['jurnalItems']) ? $sessionData[$cCode]['jurnalItems'] : array(),
+                        "componentsBuilder" => isset($sessionData[$cCode]['componentsBuilder']) ? $sessionData[$cCode]['componentsBuilder'] : array(),
+                        //----
+//                        'mainOriginal' => isset($sessionData[$cCode]['mainOriginal']) ? $sessionData[$cCode]['mainOriginal'] : array(),
+//                        'itemsOriginal' => isset($sessionData[$cCode]['itemsOriginal']) ? $sessionData[$cCode]['itemsOriginal'] : array(),
+                        //----
+                    );
+                    $doWriteReg = $tr->writeDataRegistries($insertID, $baseRegistries) or die(lgShowError("Ada kesalahan", "Gagal saat berusaha  write base params into registries"));
+                    showLast_query("hijau");
+                    cekHijau("SELESAI menjalankan REJECT ALL...");
+                }
+                else {
+                    $msg = "Transaksi gagal disimpan karena konfigurasi reject/cancel tidak dikenal. Segera hubungi admin. code: " . __LINE__;
+                    mati_disini($msg);
+                }
+            }
+            else {
+//
+                $msg = "Transaksi gagal disimpan karena konfigurasi reject/cancel tidak dikenal. Segera hubungi admin. code: " . __LINE__;
+                mati_disini($msg);
+            }
+            // endregion menulis entry point
+
+
+            $jenisTr_component = isset($this->configUiModul[$jenisTr]['steps'][$stepNumCurrent]['target']) ? $this->configUiModul[$jenisTr]['steps'][$stepNumCurrent]['target'] : NULL;
+
+            //mati_disini("jenisTr target $jenisTr_component");
+            //rollback preproc, master
+            if (isset($this->configCoreModul[$jenisTr]['preProcessor'][$jenisTr_component]['master'])) {
+                $iterator = isset($this->configCoreModul[$jenisTr]['preProcessor'][$jenisTr_component]['master']) ? $this->configCoreModul[$jenisTr]['preProcessor'][$jenisTr_component]['master'] : array();
+                if (sizeof($iterator) > 0) {
+                    $it = 0;
+                    cekbiru("ada iterator pre-proc master");
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $it++;
+                        $oriComName = $tComSpec['comName'];
+                        $comName = $tComSpec['comName'] . "_reverse";
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        $resultParams = isset($tComSpec['resultParams']) ? $tComSpec['resultParams'] : array();
+                        $gateItems = $$srcGateName;
+
+                        echo "reverse master-preproc: $comName, initializing values <br>";
+                        $tmpOutParams[$cCtr] = array();
+
+
+                        $subParams = array();
+
+                        if (isset($tComSpec['static'])) {
+                            foreach ($tComSpec['static'] as $key => $value) {
+
+                                $realValue = makeValue($value, $gateItems, $gateItems, 0);
+                                $subParams['static'][$key] = $realValue;
+
+                            }
+
+                            if (array_key_exists($oriComName, $prepConfigs)) {
+                                if (sizeof($prepConfigs[$oriComName]) > 0) {
+                                    foreach ($prepConfigs[$oriComName] as $key => $src) {
+                                        $subParams['static'][$key] = makeValue($src, $gateItems, $gateItems, 0);
+                                    }
+                                }
+                            }
+
+                            if (!isset($subParams['static']["transaksi_id"])) {
+                                $subParams['static']["transaksi_id"] = $no;
+                            }
+
+
+                            $subParams['static']["fulldate"] = date("Y-m-d");
+                            $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                            $subParams['static']["keterangan"] = $this->configUiModul[$this->jenisTr]['steps'][$stepNumCurrent]['label'] . " nomor " . $no . " oleh " . $oleh_nama;
+                        }
+                        if (sizeof($subParams) > 0) {
+                            $tmpOutParams[$cCtr] = $subParams;
+                        }
+
+
+                        $mdlName = "Pre" . ucfirst($comName);
+                        $this->load->model("Preprocs/" . $mdlName);
+                        $m = new $mdlName($resultParams);
+
+
+                        if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                            $tobeExecuted = true;
+                        }
+                        else {
+                            $tobeExecuted = false;
+                        }
+
+                        if ($tobeExecuted) {
+                            arrprint($tmpOutParams[$cCtr]);
+                            $m->pair($no, $tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada pre-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            $gotParams = $m->exec();
+
+
+                        }
+                        else {
+                            cekBiru("sub-komponem $comName tidak memenuhi syarat untuk ditulis");
+                        }
+
+                    }
+                }
+            }
+            else {
+                cekbiru("TIDAK ada config pre-proc master $jenisTr :: $stepNumCurrent");
+            }
+
+//arrPrint( $sessionData[$cCode]["main"]);
+//            matiHere(__LINE__);
+            //rollback preproc, detail
+            if (isset($this->configCoreModul[$jenisTr]['preProcessor'][$jenisTr_component]['detail'])) {
+                $iterator = isset($this->configCoreModul[$jenisTr]['preProcessor'][$jenisTr_component]['detail']) ? $this->configCoreModul[$jenisTr]['preProcessor'][$jenisTr_component]['detail'] : array();
+                if (sizeof($iterator) > 0) {
+                    $it = 0;
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $it++;
+                        $oriComName = $tComSpec['comName'];
+                        $comName = $tComSpec['comName'] . "_reverse";
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        $gateItems = $$srcGateName;
+
+                        echo "reverse preproc (detail): $comName, initializing values <br>";
+                        foreach ($gateItems as $xid => $dSpec) {
+                            $tmpOutParams[$cCtr] = array();
+                            //                        $id = $dSpec['id'];
+                            $id = $xid;
+                            $subParams = array();
+
+                            if (isset($tComSpec['static'])) {
+                                foreach ($tComSpec['static'] as $key => $value) {
+
+                                    $realValue = makeValue($value, $gateItems[$id], $gateItems[$id], 0);
+                                    $subParams['static'][$key] = $realValue;
+
+                                }
+
+                                if (array_key_exists($oriComName, $prepConfigs)) {
+                                    cekhitam("terdapat di dalam prepConfig");
+                                    if (sizeof($prepConfigs[$oriComName]) > 0) {
+                                        foreach ($prepConfigs[$oriComName] as $key => $src) {
+                                            $subParams['static'][$key] = makeValue($src, $gateItems[$id], $gateItems[$id], 0);
+                                        }
+                                    }
+                                }
+                                else {
+                                    cekhitam("TIDAK terdapat di dalam prepConfig");
+                                }
+                                if (!isset($subParams['static']["transaksi_id"])) {
+                                    $subParams['static']["transaksi_id"] = $no;
+                                }
+
+
+                                $subParams['static']["fulldate"] = date("Y-m-d");
+                                $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                $subParams['static']["keterangan"] = "rollingback " . $this->configUiModul[$jenisTr]['steps'][$stepNumCurrent]['label'] . " nomor " . $no . " oleh " . $oleh_nama;
+                            }
+
+                            if (sizeof($subParams) > 0) {
+
+                                $tmpOutParams[$cCtr][] = $subParams;
+                            }
+
+
+                            $comName = $tComSpec['comName'] . "_reverse";
+                            $srcGateName = $tComSpec['srcGateName'];
+                            $srcRawGateName = $tComSpec['srcRawGateName'];
+                            $resultParams = isset($tComSpec['resultParams']) ? $tComSpec['resultParams'] : array();
+
+                            echo "sub preproc #$it: $comName, sending values <br>";
+
+                            $mdlName = "Pre" . ucfirst($comName);
+                            $this->load->model("Preprocs/" . $mdlName);
+                            $m = new $mdlName($resultParams);
+
+
+                            if (sizeof($tmpOutParams[$cCtr]) > 0) {
+                                $tobeExecuted = true;
+                            }
+                            else {
+                                $tobeExecuted = false;
+                            }
+
+                            if ($tobeExecuted) {
+
+                                //                            arrprint($tmpOutParams[$cCtr]);
+
+                                $m->pair($no, $tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada pre-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                                $gotParams = $m->exec();
+
+                                //                            cekbiru("gotparams");
+                                //                            arrprint($gotParams);
+
+                            }
+                            else {
+                                cekBiru("sub-komponem $comName tidak memenuhi syarat untuk ditulis");
+                            }
+
+                        }
+                    }
+                }
+            }
+            else {
+                cekbiru("TIDAK ada config pre-proc detail $jenisTr :: $stepNumCurrent");
+            }
+            //rollback postproc, master
+            if (isset($this->configCoreModul[$jenisTr]['postProcessor'][$jenisTr_component]['master'])) {
+                $iterator = isset($this->configCoreModul[$jenisTr]['postProcessor'][$jenisTr_component]['master']) ? $this->configCoreModul[$jenisTr]['postProcessor'][$jenisTr_component]['master'] : array();
+                $replacerReject = isset($this->configCoreModul[$jenisTr]['replacerReject'][$jenisTr_component]['master']) ? $this->configCoreModul[$jenisTr]['replacerReject'][$jenisTr_component]['master'] : array();
+                if (sizeof($iterator) > 0) {
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $oriComName = $tComSpec['comName'];
+                        $comName = $tComSpec['comName'];
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        $gateItems = $sessionData[$cCode][$srcGateName];
+
+                        echo "rollback main post-processor: $comName<br>";
+                        $loadByModules = isset($tComSpec['loadByModules']) ? $tComSpec['loadByModules'] : false;
+                        cekBiru("loadByModules: $loadByModules");
+                        if (!in_array($comName, $postDeniedConfigs)) {
+
+                            $dSpec = $gateItems;
+                            $tmpOutParams = array();
+                            if (isset($tComSpec['loop'])) {
+                                foreach ($tComSpec['loop'] as $key => $value) {
+                                    $realValue = makeValue($value, $gateItems, $gateItems, 0);
+                                    $tmpOutParams['loop'][$key] = $realValue;
+                                }
+                            }
+                            if (isset($tComSpec['static'])) {
+                                foreach ($tComSpec['static'] as $key => $value) {
+
+                                    $realValue = makeValue($value, $gateItems, $gateItems, 0);
+                                    $tmpOutParams['static'][$key] = $realValue;
+
+                                }
+                                if (!isset($tmpOutParams['static']["transaksi_id"])) {
+                                    $tmpOutParams['static']["transaksi_id"] = $insertID;
+                                }
+                                if (!isset($tmpOutParams['static']["transaksi_no"])) {
+                                    $tmpOutParams['static']["transaksi_no"] = $insertNum;
+                                }
+                                $tmpOutParams['static']["method"] = "reject";
+                                $tmpOutParams['static']["fulldate"] = date("Y-m-d");
+                                $tmpOutParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                $tmpOutParams['static']["keterangan"] = $this->configUiModul[$jenisTr]['steps'][$stepNumCurrent]['label'] . " nomor " . $no . " oleh " . $oleh_nama;
+
+
+                            }
+                            if (isset($tComSpec['static2'])) {
+
+                                foreach ($tComSpec['static2'] as $key => $value) {
+
+                                    $realValue = makeValue($value, $gateItems[$cCtr], $gateItems[$cCtr], 0);
+                                    $tmpOutParams['static2'][$key] = $realValue;
+
+                                }
+                                if (!isset($tmpOutParams['static2']["transaksi_id"])) {
+                                    $tmpOutParams['static2']["transaksi_id"] = $insertID;
+                                }
+                                if (!isset($tmpOutParams['static2']["transaksi_no"])) {
+                                    $tmpOutParams['static2']["transaksi_no"] = $insertNum;
+                                }
+                                $tmpOutParams['static2']["method"] = "reject";
+                                $tmpOutParams['static2']["fulldate"] = date("Y-m-d");
+                                $tmpOutParams['static2']["dtime"] = date("Y-m-d H:i:s");
+                                $tmpOutParams['static2']["keterangan"] = $this->configUiModul[$this->jenisTr]['steps'][$stepNumber]['label'] . " nomor " . $tmpNomorNota . " oleh " . $oleh_nama;
+
+
+                            }
+
+                            if (array_key_exists($oriComName, $postConfigs)) {
+                                if (sizeof($postConfigs[$oriComName]) > 0) {
+                                    foreach ($postConfigs[$oriComName] as $key) {
+                                        $oldVal = isset($tmpOutParams['static'][$key]) ? $tmpOutParams['static'][$key] : 0;
+                                        $newVal = $oldVal < 0 ? abs($oldVal) : -($oldVal);
+                                        $tmpOutParams['static'][$key] = $newVal;
+                                    }
+                                    if (isset($tmpOutParams['loop']) && (sizeof($tmpOutParams['loop']) > 0)) {
+                                        foreach ($tmpOutParams['loop'] as $loop_key => $loop_val) {
+                                            $new_loop_val = $loop_val < 0 ? abs($loop_val) : -($loop_val);
+                                            $tmpOutParams['loop'][$loop_key] = $new_loop_val;
+                                            //-------
+                                            if (isset($replacerReject[$loop_key]) && (sizeof($replacerReject[$loop_key]) > 0)) {
+                                                foreach ($replacerReject[$loop_key] as $replace_key => $replace_val) {
+                                                    $new_replace_val = makeValue($replace_val, $gateItems, $gateItems, 0);
+                                                    $tmpOutParams['static'][$replace_key] = $new_replace_val;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+
+                            $mdlName = "Com" . ucfirst($comName);
+//                            $this->load->model("Coms/" . $mdlName);
+//                            cekMerah($pathModules."Coms/".$mdlName);
+//                            $this->CI->load->model($pathModules . "Coms/$mdlName");
+                            if ($loadByModules == true) {
+                                $this->CI->load->model($pathModules . "Coms/" . $mdlName);
+                            }
+                            else {
+                                $this->CI->load->model("Coms/" . $mdlName);
+                            }
+                            $m = new $mdlName();
+
+                            cekBiru("kiriman rollback main-postproc $comName");
+
+                            $m->pair($tmpOutParams) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+
+                        }
+                        else {
+                            cekHitam("$comName denied");
+                        }
+
+                    }
+                }
+            }
+            else {
+                cekbiru("TIDAK ada config post-proc master $jenisTr :: $stepNumCurrent");
+            }
+            //rollback postproc, detail
+            if (isset($this->configCoreModul[$jenisTr]['postProcessor'][$jenisTr_component]['detail'])) {
+                $iterator = isset($this->configCoreModul[$jenisTr]['postProcessor'][$jenisTr_component]['detail']) ? $this->configCoreModul[$jenisTr]['postProcessor'][$jenisTr_component]['detail'] : array();
+                $replacerReject = isset($this->configCoreModul[$jenisTr]['replacerReject'][$jenisTr_component]['detail']) ? $this->configCoreModul[$jenisTr]['replacerReject'][$jenisTr_component]['detail'] : array();
+                if (sizeof($iterator) > 0) {
+                    cekHitam("cetak iterator :: $jenisTr :: $stepNumCurrent ||");
+                    //                    arrPrintWebs($iterator);
+                    $iteratorAdd = array();
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        if (isset($tComSpec['static']['state']) && ($tComSpec['static']['state'] == '.hold')) {
+                            if (isset($tComSpec['static']['oleh_id']) && ($tComSpec['static']['oleh_id'] != '.0')) {
+                                // bila state == .hold dan oleh_id != .0, maka dibuatkan ::
+                                // HOLD, +QTY, oleh_id dan ACTIVE, -QTY
+                                $tComSpecAddHold = $tComSpec;
+                                $tComSpecAddActive = $tComSpec;
+                                $staticReplaceHold = array(
+                                    "jumlah" => "qty",
+                                    "transaksi_no" => ".0",
+                                );
+                                $staticReplaceActive = array(
+                                    "jumlah" => "-qty",
+                                    "transaksi_id" => ".0",
+                                    "nomer" => ".0",
+                                    "state" => ".active",
+                                    "oleh_id" => ".0",
+                                    "oleh_nama" => "",
+                                    "transaksi_no" => ".0",
+                                );
+                                foreach ($staticReplaceHold as $k_rpc => $v_rpc) {
+                                    $tComSpecAddHold['static'][$k_rpc] = $v_rpc;
+                                }
+                                foreach ($staticReplaceActive as $k_rpc => $v_rpc) {
+                                    $tComSpecAddActive['static'][$k_rpc] = $v_rpc;
+                                }
+
+                                $iteratorAdd[101] = $tComSpecAddHold; // postprocc hold by orang
+                                $iteratorAdd[102] = $tComSpecAddActive; // postprocc active
+                            }
+                        }
+                    }
+
+                    if (sizeof($iteratorAdd) > 0) {
+                        foreach ($iteratorAdd as $ii => $spec) {
+                            $iterator[$ii] = $spec;
+                        }
+                    }
+                    foreach ($iterator as $cCtr => $tComSpec) {
+                        $oriComName = $tComSpec['comName'];
+                        $comName = $tComSpec['comName'];
+                        $srcGateName = $tComSpec['srcGateName'];
+                        $srcRawGateName = $tComSpec['srcRawGateName'];
+                        $gateItems = $sessionData[$cCode][$srcGateName];
+//                        if($srcGateName=="items"){
+//                            arrPrint($gateItems);
+//                            matiHEre();
+//                        }
+
+
+                        echo "rollback sub-postProcessor: $comName, initializing values <br>";
+                        if (!in_array($comName, $postDeniedConfigs)) {
+
+                            $tmpOutParams[$cCtr] = array();
+                            if (isset($gateItems) && count($gateItems) > 0) {
+
+                                foreach ($gateItems as $cnt => $dSpec) {
+                                    arrPrintWebs($dSpec);
+                                    $subParams = array();
+                                    if (isset($tComSpec['loop'])) {
+                                        foreach ($tComSpec['loop'] as $key => $value) {
+                                            $realValue = makeValue($value, $dSpec, $dSpec, 0);
+                                            $subParams['loop'][$key] = $realValue;
+                                        }
+                                    }
+                                    if (isset($tComSpec['static'])) {
+                                        foreach ($tComSpec['static'] as $key => $value) {
+
+                                            $realValue = makeValue($value, $dSpec, $dSpec, 0);
+                                            $subParams['static'][$key] = $realValue;
+
+                                        }
+
+                                        if (array_key_exists($oriComName, $postConfigs)) {
+
+                                            if (sizeof($postConfigs[$oriComName]) > 0) {
+                                                foreach ($postConfigs[$oriComName] as $key) {
+                                                    $oldVal = isset($subParams['static'][$key]) ? $subParams['static'][$key] : 0;
+                                                    $newVal = $oldVal < 0 ? abs($oldVal) : -($oldVal);
+                                                    $subParams['static'][$key] = $newVal;
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            //                                cekhitam("TIDAK terdapat di dalam prepConfig");
+                                        }
+
+
+                                        if (!isset($subParams['static']["transaksi_id"])) {
+                                            $subParams['static']["transaksi_id"] = $no;
+                                        }
+                                        if (!isset($subParams['static']["transaksi_no"])) {
+                                            $subParams['static']["transaksi_no"] = $no;
+                                        }
+                                        $subParams['static']["fulldate"] = date("Y-m-d");
+                                        $subParams['static']["dtime"] = date("Y-m-d H:i:s");
+                                        $subParams['static']["keterangan"] = "rollback of $no";
+                                        $subParams['static']["rejection"] = true;
+                                        $subParams['static']["method"] = "reject";
+                                    }
+
+                                    if (array_key_exists($oriComName, $postConfigs)) {
+                                        if (sizeof($postConfigs[$oriComName]) > 0) {
+//                                            foreach ($postConfigs[$oriComName] as $key) {
+//                                                $oldVal = isset($subParams['static'][$key]) ? $subParams['static'][$key] : 0;
+//                                                $newVal = $oldVal < 0 ? abs($oldVal) : -($oldVal);
+//                                                $subParams['static'][$key] = $newVal;
+//                                                cekHitam($key."=>$oldVal =>".$newVal);
+//                                            }
+                                            if (isset($subParams['loop']) && (sizeof($subParams['loop']) > 0)) {
+                                                foreach ($subParams['loop'] as $loop_key => $loop_val) {
+                                                    $new_loop_val = $loop_val < 0 ? abs($loop_val) : -($loop_val);
+                                                    $subParams['loop'][$loop_key] = $new_loop_val;
+                                                    //-------
+                                                    if (isset($replacerReject[$loop_key]) && (sizeof($replacerReject[$loop_key]) > 0)) {
+                                                        foreach ($replacerReject[$loop_key] as $replace_key => $replace_val) {
+
+                                                            $new_replace_val = makeValue($replace_val, $dSpec,$dSpec, 0);
+                                                            $subParams['static'][$replace_key] = $new_replace_val;
+                                                            cekBiru($replace_key. "=>".$loop_val ."inikah yang inject ".$replace_key ."=>".$new_replace_val);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    if (sizeof($subParams) > 0) {
+                                        $tmpOutParams[$cCtr][] = $subParams;
+                                    }
+                                }
+                            }
+                            else {
+                                //buang dari list array supaya diskip
+                                unset($tmpOutParams[$cCtr]);
+                            }
+                        }
+                        else {
+                            cekHitam("$comName denied");
+                        }
+                    }
+                    if (count($tmpOutParams) > 0) {
+
+                        foreach ($iterator as $cCtr => $tComSpec) {
+                            $oriComName = $tComSpec['comName'];
+                            $comName = $tComSpec['comName'];
+                            $srcGateName = $tComSpec['srcGateName'];
+                            $srcRawGateName = $tComSpec['srcRawGateName'];
+                            echo "sub-postProcessor: $comName, sending values <br>";
+                            $loadByModules = isset($tComSpec['loadByModules']) ? $tComSpec['loadByModules'] : false;
+//                            cekBiru("loadByModules: $loadByModules");
+                            if (!in_array($comName, $postDeniedConfigs)) {
+
+                                $mdlName = "Com" . ucfirst($comName);
+
+//                                $this->load->model("Coms/" . $mdlName);
+                                if ($loadByModules == true) {
+                                    $this->CI->load->model($pathModules . "Coms/" . $mdlName);
+                                }
+                                else {
+                                    $this->CI->load->model("Coms/" . $mdlName);
+                                }
+                                $m = new $mdlName();
+
+
+//                                cekBiru("kiriman rollback detail-postproc $comName");
+//                                arrPrint($tmpOutParams[$cCtr]);
+                                $m->pair($tmpOutParams[$cCtr]) or die("Tidak berhasil memasang  values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                                $m->exec() or die("Gagal saat berusaha  exec values pada post-processor: $comName/" . $this->jenisTr . "/" . __FUNCTION__ . "/" . __LINE__);
+                            }
+                            else {
+                                cekHitam("$comName denied");
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                cekbiru("TIDAK ada config post-proc detail $jenisTr :: $stepNumCurrent");
+            }
+
+//break;
+        }
+        $returnTransaksi = array(
+            "transaksi_id" => $rejectData_id,// trid saat ini
+            "transaksi_nomer" => $rejectData_num,// trnomer saat ini
+            "transaksi_id_connecting" => "",// trid connecting ke cabang
+            "transaksi_nomer_connecting" => "",// trnomer connecting ke cabang
+            //----
+            "transaksi_reference_jenis_master" => "",
+            "transaksi_reference_jenis" => "",
+            "transaksi_reference_id" => "",
+            "transaksi_reference_nomer" => "",
+            //----
+
+        );
+        return $returnTransaksi;
+//        matiHere(__LINE__);
+
+
+
+//        mati_disini("DONE :: $cCode
+
+    }
+
+    public function writeReselerMasterBridge($data)
+    {
+        /**
+         * untuk membuat backup order yang dikirim ke holding company
+         * jika rabbit gagal bisa copy dari data ini ke reseller_master_bridge holding company
+         */
+        $this->CI->load->model("Mdls/MdlPembelianReselerMasterBridge");
+        $m = new MdlPembelianReselerMasterBridge();
+        if (count($data) > 0) {
+            $m->addData($data["data"]);
+        }
+
+    }
+
+}
+
+
+?>
